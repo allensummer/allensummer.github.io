@@ -1,0 +1,827 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="spark,大数据," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/58.jpg?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="1、spark简介1.1 这是什么？  &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;Spark于2009年诞生于加州大学伯克利分校AMPLab（出身高贵呀）。目前，已经成为Apache软件基金会旗下的顶级项目（后妈同样很强）。Spark是基于内存计算的大数据并行计算架构。这里面有两个概念：内存计算，并行计算架构。
+
+内存计算，把数据放在内存中，运算的时候从内存中读取数据，而不是从硬盘中读取数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spark探秘 ">
+<meta property="og:url" content="http://yoursite.com/2016/03/29/spark/index.html">
+<meta property="og:site_name" content="王谦的博客">
+<meta property="og:description" content="1、spark简介1.1 这是什么？  &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;Spark于2009年诞生于加州大学伯克利分校AMPLab（出身高贵呀）。目前，已经成为Apache软件基金会旗下的顶级项目（后妈同样很强）。Spark是基于内存计算的大数据并行计算架构。这里面有两个概念：内存计算，并行计算架构。
+
+内存计算，把数据放在内存中，运算的时候从内存中读取数据，而不是从硬盘中读取数据">
+<meta property="og:image" content="http://www.2cto.com/uploadfile/2014/1203/20141203021322155.png">
+<meta property="og:image" content="http://www.2cto.com/uploadfile/2014/1203/20141203022320916.png">
+<meta property="og:updated_time" content="2016-03-29T14:35:46.522Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="spark探秘 ">
+<meta name="twitter:description" content="1、spark简介1.1 这是什么？  &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;Spark于2009年诞生于加州大学伯克利分校AMPLab（出身高贵呀）。目前，已经成为Apache软件基金会旗下的顶级项目（后妈同样很强）。Spark是基于内存计算的大数据并行计算架构。这里面有两个概念：内存计算，并行计算架构。
+
+内存计算，把数据放在内存中，运算的时候从内存中读取数据，而不是从硬盘中读取数据">
+<meta name="twitter:image" content="http://www.2cto.com/uploadfile/2014/1203/20141203021322155.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 2520238585,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> spark探秘  | 王谦的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">王谦的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                spark探秘 
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-29T22:28:24+08:00" content="2016-03-29">
+              2016-03-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/spark/" itemprop="url" rel="index">
+                    <span itemprop="name">spark</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/29/spark/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/29/spark/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1、spark简介"><a href="#1、spark简介" class="headerlink" title="1、spark简介"></a>1、spark简介</h1><h2 id="1-1-这是什么？"><a href="#1-1-这是什么？" class="headerlink" title="1.1 这是什么？"></a>1.1 这是什么？</h2><p>  &ensp;&ensp;&ensp;&ensp;Spark于2009年诞生于加州大学伯克利分校AMPLab（出身高贵呀）。目前，已经成为Apache软件基金会旗下的顶级项目（后妈同样很强）。Spark是基于内存计算的大数据并行计算架构。这里面有两个概念：内存计算，并行计算架构。</p>
+<ul>
+<li>内存计算，把数据放在内存中，运算的时候从内存中读取数据，而不是从硬盘中读取数据。</li>
+<li>并行计算框架，使用多台计算机同时工作解决一件计算任务的框架。<h2 id="1-2-优势"><a href="#1-2-优势" class="headerlink" title="1.2.优势"></a>1.2.优势</h2></li>
+<li>支持复杂查询。（能干的活多）</li>
+<li>轻量级快速处理。（代码少，速度快）</li>
+<li>易于使用。支持Scala.java.python编写程序，最新版的Spark1.4还支持R语言。</li>
+<li>于HDFS等存储层兼容。（Spark只负责计算，存储使用其他存储层）</li>
+<li>社区活跃程度高。（很多人支持，不怕倒下）<a id="more"></a>
+<h2 id="1-3-Spark生态系统BDAS"><a href="#1-3-Spark生态系统BDAS" class="headerlink" title="1.3.Spark生态系统BDAS"></a>1.3.Spark生态系统BDAS</h2>伯克利将Spark的整个生态系统称为伯克利数据分析栈（BDAS).其核心是Spark，围绕着Spark有着一系列的子项目，提供了更高层/更丰富的计算范式。底层同时也有其他重量级的选手，如分布式内存文件系统Tachyon,分布式文件系统HDFS,资源管理框架Mesos。</li>
+</ul>
+<p><img src="http://www.2cto.com/uploadfile/2014/1203/20141203021322155.png" alt="BDAS项目结构图"><br>（1）Spark<br>Spark是整个BDAS的核心组件，是一个大数据分布式编程框架，不仅实现了MapReduce的算子map 函数和reduce函数及计算模型，还提供更为丰富的算子，如filter、join、groupByKey等。Spark将分布式数据抽象为弹性分布式数据集（RDD），实现了应用任务调度、RPC、序列化和压缩，并为运行在其上的上层组件提供API。其底层采用Scala这种函数式语言书写而成，并且所提供的API深度借鉴Scala函数式的编程思想，提供与Scala类似的编程接口。</p>
+<p>（2）Shark<br>Shark是构建在Spark和Hive基础之上的数据仓库。目前，Shark已经完成学术使命，终止开发，但其架构和原理仍具有借鉴意义。它提供了能够查询Hive中所存储数据的一套SQL接口，兼容现有的Hive QL语法。这样，熟悉Hive QL或者SQL的用户可以基于Shark进行快速的Ad-Hoc、Reporting等类型的SQL查询。Shark底层复用Hive的解析器、优化器以及元数据存储和序列化接口。Shark会将Hive QL编译转化为一组Spark任务，进行分布式运算。</p>
+<p>（3）Spark SQL<br>Spark SQL提供在大数据上的SQL查询功能，类似于Shark在整个生态系统的角色，它们可以统称为SQL on Spark。之前，Shark的查询编译和优化器依赖于Hive，使得Shark不得不维护一套Hive分支，而Spark SQL使用Catalyst做查询解析和优化器，并在底层使用Spark作为执行引擎实现SQL 的Operator。用户可以在Spark上直接书写SQL，相当于为Spark扩充了一套SQL算子，这无疑更加丰富了Spark的算子和功能，同时Spark SQL不断兼容不同的持久化存储（如HDFS、Hive等），为其发展奠定广阔的空间。</p>
+<p>（4）Spark Streaming<br>Spark Streaming通过将流数据按指定时间片累积为RDD，然后将每个RDD进行批处理，进而实现大规模的流数据处理。其吞吐量能够超越现有主流流处理框架Storm，并提供丰富的API用于流数据计算。</p>
+<p>（5）GraphX<br>GraphX基于BSP模型，在Spark之上封装类似Pregel的接口，进行大规模同步全局的图计算，尤其是当用户进行多轮迭代时，基于Spark内存计算的优势尤为明显。</p>
+<p>（6）Tachyon<br>Tachyon是一个分布式内存文件系统，可以理解为内存中的HDFS。为了提供更高的性能，将数据存储剥离Java Heap。用户可以基于Tachyon实现RDD或者文件的跨应用共享，并提供高容错机制，保证数据的可靠性。</p>
+<p>（7）Mesos<br>Mesos是一个资源管理框架，提供类似于YARN的功能。用户可以在其中插件式地运行Spark、MapReduce、Tez等计算框架的任务。Mesos会对资源和任务进行隔离，并实现高效的资源任务调度。</p>
+<p>（8）BlinkDB<br>BlinkDB是一个用于在海量数据上进行交互式 SQL 的近似查询引擎。它允许用户通过在查询准确性和查询响应时间之间做出权衡，完成近似查询。其数据的精度被控制在允许的误差范围内。为了达到这个目标，BlinkDB的核心思想是：通过一个自适应优化框架，随着时间的推移，从原始数据建立并维护一组多维样本；通过一个动态样本选择策略，选择一个适当大小的示例，然后基于查询的准确性和响应时间满足用户查询需求。</p>
+<h2 id="1-4-Spark架构"><a href="#1-4-Spark架构" class="headerlink" title="1.4.Spark架构"></a>1.4.Spark架构</h2><p><img src="http://www.2cto.com/uploadfile/2014/1203/20141203022320916.png" alt="这里写图片描述"><br>Spark集群成功部署了之后，需要在主节点和从节点分别启动Master进程和Worker进程。Client客户机将计算任务提交到主节点中的master进程，master进程找到一个worker启动Driver，Driver向Master或ClusterManager申请资源，之后将任务转化成RDD DAG，DAGScheduler将RDD DAG转化位Stage的有向无环图图提交给TaskScheduler，再又TaskScheduler提交计算任务给Executor执行。</p>
+<h1 id="2-RDD的Transformations操作"><a href="#2-RDD的Transformations操作" class="headerlink" title="2.RDD的Transformations操作"></a>2.RDD的Transformations操作</h1><h2 id="2-1、简介"><a href="#2-1、简介" class="headerlink" title="2.1、简介"></a>2.1、简介</h2><p>　　Spark中的核心数据模型是弹性分布式数据集（RDD），而弹性分布式数据集（RDD）是个抽象类，具体的实现是由各个子类实现的。Spark将常用的大数据操作都转换为对RDD的子类操作。<br>　　Transformation操作的对象有两种：Value数据类型，Key-Value数据类型。下面将这两种数据类型的操作列出来：</p>
+<h2 id="2-2、Translation操作"><a href="#2-2、Translation操作" class="headerlink" title="2.2、Translation操作"></a>2.2、Translation操作</h2><h3 id="2-1-Value数据类型"><a href="#2-1-Value数据类型" class="headerlink" title="2.1 Value数据类型"></a>2.1 Value数据类型</h3><p>map(func)<br>　　将原来RDD中的每个元素通过自定义函数func转换为一个包含新元素的RDD。</p>
+<p>filter(func)<br>　　对原有RDD中的元素进行过滤，每个元素输入到func函数中，如果func函数返回为true则保留，返回false则丢弃。</p>
+<p>flatMap(func)<br>　　功能与map相似，但是输出的是一个集合。</p>
+<p>mapPatitions(func)<br>　　功能与map相似，但是mapPatitions获取的是每个分区的迭代器。</p>
+<p>mapPationsWithIndex(func)<br>　　功能与mapPatitions相似，但是func函数要返回一个表示分区index的interger类型的值</p>
+<p>sanple(withReplacement, fraction, seed)<br>　　对数据集中的数据进行采样，想成一个新的RDD</p>
+<p>union(otherDateset)<br>　　将两个数据类型相同的RDD合并成一个RDD</p>
+<p>intersection(oterDataset)<br>　　返回一个包含两个数据类型相同的RDD的交集的全新的RDD</p>
+<p>distinct([numTasks])<br>　　对RDD中的元素进行去重操作</p>
+<p>cartesian(otherDataset)<br>　　对两个RDD内的所有元素进行笛卡尔积操作。</p>
+<p>pip(command, [envVars])<br> 　　对RDD的每个分区通过脚本命令，RDD元素可以写入进程的stdin和行输出到标准输出作为字符串返回。</p>
+<p> coalesce(numPartitions)<br>  　　设置RDD数据的分区数，可以让数据集的操作更加高校。</p>
+<p>  repartition(numPartitions)<br>  　　修改RDD数据的分区数</p>
+<p>  repartionAndSortWithinPartitions(pationer)<br>  　　重新设置RDD分区，根据keys值排序，这个比repartition更加高效。</p>
+<h3 id="2-2-Key-value类型"><a href="#2-2-Key-value类型" class="headerlink" title="2.2 Key-value类型"></a>2.2 Key-value类型</h3><p>groupByKey([numTasks])<br>　　返回一个（k, iterable<v>)键值对<br>　　注意:如果你分组是为了执行一个聚合(比如求和或平均),使用reduceByKey或aggregateByKey将有更好的性能。<br>　　注意:默认情况下,并行输出的分区数取决于父抽样的分区的数量。您可以通过一个可选的numTasks参数设置不同数量的任务。<br>　　<br>reduceByKey(func, [numTasks])<br>　　对k相同的键值对中的值调用func函数，合并产生一个值<br>　　<br>aggregateByKey(zeroValue)(seqOp, combOp, [numTasks])<br>　　当对(K、V)的数据集对调用函数时,返回一个数据集的(K,U)对每个键值聚合使用给定的组合功能和一个中立的“0”值。允许产生的聚合值类型不同于输入值类型,同时避免不必要的配置。而在groupByKey中,需要配置第二个参数。<br>　　<br>sortedByKey([ascending], [numTasks])<br>　　返回一个按照k值进行排序的键值对RDD。</v></p>
+<p>cogroup(oterDataset, [numTasks])<br>　　对两个RDD进行协同划分，每个RDD中形同Key的元素分别聚合为一个集合，并且返回两个RDD中对应key中的元素集合的迭代器。</p>
+<p>join(otherDataset, [numTasks])<br>　　对俩个需要连接的RDD进行cogroup函数操作，cogroup原理如上，cogroup操作后形成的新的RDD，对每个Key下的元素进行笛卡尔积操作，返回结果在展平。</p>
+<h1 id="3-RDD的action操作"><a href="#3-RDD的action操作" class="headerlink" title="3.RDD的action操作"></a>3.RDD的action操作</h1><p>本质上，Action通过SparkContext执行提交作业的runjob操作，触发了RDD DAG的执行。</p>
+<p>reduce(func)<br>　　 将集合中的元素通过func函数合并起来，该函数应该是可交换，结合的，这样才能应用到并行计算中。</p>
+<p>collect()<br>　　将数据中的元素返回为一个数组，这个函数通常用在filter等其他操作后。</p>
+<p>count()<br>　　返回数据集中元素的个数</p>
+<p>first()<br>　　返回数据集中的第一个元素</p>
+<p>take(n)<br>　　返回数据集中前n个元素</p>
+<p>takeSample(withReplacement, num, [seed])<br>　　按设定的采样个数进行采样</p>
+<p>takeOrdered(n, [ordering])<br>　　返回前N个RDD中元素的自然顺序或自定义比较器</p>
+<p>saveAsTextFile(path)<br>　　将数据集中的元素存储起来，存在给定的目录中的本地文件系统，或任何其他的Hadoop HDFS 支持的文件系统。Spark可以调用toString将每个元素以每行的形式存在文本中</p>
+<p>savaAsSequenceFile(path)<br>　　将数据集中的RDD以Hadoop SequenceFile的形式存在给定路径本地的文件系统，HDFS或者其他任何Hadoop支持的文件系统中。这个对读取存在Hadoop中健值对十分有用。</p>
+<p>saveAsObjectFile(path)<br>　　使用java序列化将数据集中的元素存储为一个简单的格式，我们可以通过SparkContext.objectFile()进行读取。</p>
+<p>countBykey()<br>　　返回具有不同健的键值对的个数</p>
+<p>foreach(func)<br>　　对RDD中的每个元素应用func函数，不返回RDD和Arry，而是返回Uint。</p>
+<p>#参考书籍<br>《Spark大数据处理：技术、应用与性能优化》</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spark/" rel="tag">#spark</a>
+          
+            <a href="/tags/大数据/" rel="tag">#大数据</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/29/vim命令全集/" rel="next" title="vim命令全集">
+                <i class="fa fa-chevron-left"></i> vim命令全集
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/29/my2015/" rel="prev" title="2015年总结">
+                2015年总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/29/spark/"
+           data-title="spark探秘 " data-url="http://yoursite.com/2016/03/29/spark/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/58.jpg"
+               alt="王谦" />
+          <p class="site-author-name" itemprop="name">王谦</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/allensummer" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1、spark简介"><span class="nav-number">1.</span> <span class="nav-text">1、spark简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-这是什么？"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 这是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-优势"><span class="nav-number">1.2.</span> <span class="nav-text">1.2.优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Spark生态系统BDAS"><span class="nav-number">1.3.</span> <span class="nav-text">1.3.Spark生态系统BDAS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-Spark架构"><span class="nav-number">1.4.</span> <span class="nav-text">1.4.Spark架构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-RDD的Transformations操作"><span class="nav-number">2.</span> <span class="nav-text">2.RDD的Transformations操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1、简介"><span class="nav-number">2.1.</span> <span class="nav-text">2.1、简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2、Translation操作"><span class="nav-number">2.2.</span> <span class="nav-text">2.2、Translation操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Value数据类型"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.1 Value数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Key-value类型"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2 Key-value类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-RDD的action操作"><span class="nav-number">3.</span> <span class="nav-text">3.RDD的action操作</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王谦</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"allensummer"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
