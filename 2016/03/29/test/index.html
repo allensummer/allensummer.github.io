@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="-" 时间序列" -" R" - "ARIMA" - "ARMRA"," />
+  <meta name="keywords" content="时间序列,R,ARMA,ARIMA,时序分析," />
 
 
 
@@ -86,7 +86,7 @@
 <meta property="og:image" content="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/ACF-diff.png?w=872">
 <meta property="og:image" content="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/PACF-diff.png?w=888">
 <meta property="og:image" content="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/predictions.png?w=869">
-<meta property="og:updated_time" content="2016-03-29T12:08:08.393Z">
+<meta property="og:updated_time" content="2016-03-29T13:17:22.602Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="时间序列完全教程（R）">
 <meta name="twitter:description" content="简介在商业应用中，时间是最重要的因素，能够提升成功率。然而绝大多数公司很难跟上时间的脚步。但是随着技术的发展，出现了很多有效的方法，能够让我们预测未来。不要担心，本文并不会讨论时间机器，讨论的都是很实用的东西。本文将要讨论关于预测的方法。有一种预测是跟时间相关的，而这种处理与时间相关数据的方法叫做时间序列模型。这个模型能够在与时间相关的数据中，寻到一些隐藏的信息来辅助决策。当我们处理时序序列数据的">
@@ -103,7 +103,7 @@
     motion: true,
     duoshuo: {
       userId: 0,
-      author: 'Author'
+      author: '博主'
     }
   };
 </script>
@@ -111,7 +111,7 @@
   <title> 时间序列完全教程（R） | 王谦的博客 </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
 
@@ -166,7 +166,7 @@
             
               <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
-            Startseite
+            首页
           </a>
         </li>
       
@@ -176,7 +176,17 @@
             
               <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
             
-            Kategorien
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -186,7 +196,7 @@
             
               <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
-            Archiv
+            归档
           </a>
         </li>
       
@@ -196,7 +206,7 @@
             
               <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
-            Tags
+            标签
           </a>
         </li>
       
@@ -249,12 +259,31 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-03-29T16:07:51+08:00" content="2016-03-29">
               2016-03-29
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据挖掘/" itemprop="url" rel="index">
+                    <span itemprop="name">数据挖掘</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -383,7 +412,15 @@
       
         <div class="post-tags">
           
-            <a href="/tags/时间序列-R-ARIMA-ARMRA/" rel="tag">#-" 时间序列" -" R" - "ARIMA" - "ARMRA"</a>
+            <a href="/tags/时间序列/" rel="tag">#时间序列</a>
+          
+            <a href="/tags/R/" rel="tag">#R</a>
+          
+            <a href="/tags/ARMA/" rel="tag">#ARMA</a>
+          
+            <a href="/tags/ARIMA/" rel="tag">#ARIMA</a>
+          
+            <a href="/tags/时序分析/" rel="tag">#时序分析</a>
           
         </div>
       
@@ -451,10 +488,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            站点概览
           </li>
         </ul>
       
@@ -471,17 +508,24 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">3</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
           
 
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
               </a>
             </div>
           
@@ -554,11 +598,11 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
-  Theme -
+  主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Pisces
   </a>
