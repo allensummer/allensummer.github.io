@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="每次专心一件事情" />
+  <meta name="keywords" content="数据挖掘,优化算法," />
 
 
 
@@ -57,19 +57,28 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="#部分优化算法对比
+
+梯度下降法，基于目标函数梯度的，算法的收敛速度是线性的，并且当问题是病态时或者问题规模较大时，收敛速度尤其慢（几乎不适用）；
+坐标下降法，虽然不用计算目标函数的梯度，但是其收敛速度依然很慢，因此它的适用范围也有局限；
+牛顿法，基于目标函数的二次阶导数（海森矩阵，二阶导数矩阵）的，其收敛速度较快，迭代次数较少，尤其是在最优值附件时，收敛速度是二次的。问题在于当海森矩阵稠密时，每">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2016/03/29/hello-world/index.html">
+<meta property="og:title" content="部分优化算法对比">
+<meta property="og:url" content="http://yoursite.com/2016/03/29/部分优化算法对比/index.html">
 <meta property="og:site_name" content="王谦的博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-03-29T06:55:09.842Z">
+<meta property="og:description" content="#部分优化算法对比
+
+梯度下降法，基于目标函数梯度的，算法的收敛速度是线性的，并且当问题是病态时或者问题规模较大时，收敛速度尤其慢（几乎不适用）；
+坐标下降法，虽然不用计算目标函数的梯度，但是其收敛速度依然很慢，因此它的适用范围也有局限；
+牛顿法，基于目标函数的二次阶导数（海森矩阵，二阶导数矩阵）的，其收敛速度较快，迭代次数较少，尤其是在最优值附件时，收敛速度是二次的。问题在于当海森矩阵稠密时，每">
+<meta property="og:updated_time" content="2016-03-29T14:49:32.398Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="部分优化算法对比">
+<meta name="twitter:description" content="#部分优化算法对比
+
+梯度下降法，基于目标函数梯度的，算法的收敛速度是线性的，并且当问题是病态时或者问题规模较大时，收敛速度尤其慢（几乎不适用）；
+坐标下降法，虽然不用计算目标函数的梯度，但是其收敛速度依然很慢，因此它的适用范围也有局限；
+牛顿法，基于目标函数的二次阶导数（海森矩阵，二阶导数矩阵）的，其收敛速度较快，迭代次数较少，尤其是在最优值附件时，收敛速度是二次的。问题在于当海森矩阵稠密时，每">
 
 
 
@@ -87,7 +96,7 @@ Quick">
   };
 </script>
 
-  <title> Hello World | 王谦的博客 </title>
+  <title> 部分优化算法对比 | 王谦的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -227,7 +236,7 @@ Quick">
             
             
               
-                Hello World
+                部分优化算法对比
               
             
           </h1>
@@ -239,19 +248,38 @@ Quick">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-29T14:55:09+08:00" content="2016-03-29">
+            <time itemprop="dateCreated" datetime="2016-03-29T22:46:13+08:00" content="2016-03-29">
               2016-03-29
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据挖掘/" itemprop="url" rel="index">
+                    <span itemprop="name">数据挖掘</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/29/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/29/hello-world/" itemprop="commentsCount"></span>
+                <a href="/2016/03/29/部分优化算法对比/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/29/部分优化算法对比/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -273,15 +301,14 @@ Quick">
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p>#部分优化算法对比</p>
+<ul>
+<li>梯度下降法，基于目标函数梯度的，算法的收敛速度是线性的，并且当问题是病态时或者问题规模较大时，收敛速度尤其慢（几乎不适用）；</li>
+<li>坐标下降法，虽然不用计算目标函数的梯度，但是其收敛速度依然很慢，因此它的适用范围也有局限；</li>
+<li>牛顿法，基于目标函数的二次阶导数（海森矩阵，二阶导数矩阵）的，其收敛速度较快，迭代次数较少，尤其是在最优值附件时，收敛速度是二次的。<strong>问题</strong>在于当海森矩阵稠密时，每次迭代的计算量比较大时，不仅计算量大（有时大到不可计算）而且需要的存储空间也多，因此牛顿法载面对海量数据时由于每一步迭代的开销巨大而变得不适用。牛顿法在每次迭代时不恩能够综述保证海森矩阵是正定的，一旦海森矩阵不是正定，优化方向就会“跑偏”，从而使得牛顿法失效，也说明了牛顿法的鲁班性较差<a id="more"></a></li>
+<li>拟牛顿法，在牛顿法的基础上引入了海森矩阵的近似矩阵，避免每次迭代都要计算海森矩阵的逆，逆牛顿法的收敛速度介于梯度下降法和牛顿法之间，是超线性的。拟牛顿法的问题也是当问题规模很大时，近似矩阵变得<strong>很稠密</strong>，在计算和存储上也有很大的开销，因此变得不适用。用海森矩阵的逆矩阵来替代还是票矩阵，虽然每次迭代不能保证是最优的优化方向，但是近似矩阵始终是正定的，因此算法总是朝着最优值的方向载搜索。</li>
+<li>L-BFGS算法是对牛顿算法的一个改进，适合实际工程中解决大规模优化问题，L-BFGS算法的基本思想是：算法只保存并利用最近m次迭代的曲率信息来构造海森矩阵的近似距离。</li>
+</ul>
 
       
     </div>
@@ -294,17 +321,29 @@ Quick">
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/数据挖掘/" rel="tag">#数据挖掘</a>
+          
+            <a href="/tags/优化算法/" rel="tag">#优化算法</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/03/29/my2015/" rel="next" title="2015年总结">
+                <i class="fa fa-chevron-left"></i> 2015年总结
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/03/29/test/" rel="prev" title="时间序列完全教程（R）">
-                时间序列完全教程（R） <i class="fa fa-chevron-right"></i>
+              <a href="/2016/03/31/什么是机器学习/" rel="prev" title="什么是机器学习">
+                什么是机器学习 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -331,8 +370,8 @@ Quick">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/29/hello-world/"
-           data-title="Hello World" data-url="http://yoursite.com/2016/03/29/hello-world/">
+      <div class="ds-thread" data-thread-key="2016/03/29/部分优化算法对比/"
+           data-title="部分优化算法对比" data-url="http://yoursite.com/2016/03/29/部分优化算法对比/">
       </div>
     
   </div>
@@ -438,7 +477,7 @@ Quick">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
