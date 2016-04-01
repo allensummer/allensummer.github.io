@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>王谦的博客</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2016-03-31T08:15:35.291Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>王谦</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>learn to detect partially overlapping instance笔记</title>
+    <link href="http://yoursite.com/2016/03/31/learn-to-detect-partially-overlapping-instance%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2016/03/31/learn-to-detect-partially-overlapping-instance笔记/</id>
+    <published>2016-03-31T02:28:03.000Z</published>
+    <updated>2016-03-31T08:15:35.291Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;目的&lt;/strong&gt;：本文的工作就是找到一副图片中某一类（细胞或人类）的所有实例。这些实例可能部分重叠或聚在一起，目前来说这对传统算法很困难，传统的方法主要是找到单个实例。&lt;br&gt;&lt;strong&gt;方法&lt;/strong&gt;：找到候选区域，然后优化全局的分类得分来找到这个选择区域，使这个选择区域满足非重叠的约束。本文新贡献是通过引入对象的元组单独的类到检测过程来扩展标准的对象检测。例如我们的检测器可以挑选含有两个或三个对象实例的区域中，而分配这样的区域适当标签。本文表明，使用结构化输出的SVM框架可以找到这个实例的区域。并且使用数构造区域图上的动态规划完成这个模型的推断。此外，这个学习只需要一个弱创新——每个实例用点表示。&lt;br&gt;&lt;strong&gt;数据&lt;/strong&gt;：荧光显微镜图像和UCSD行人。&lt;/p&gt;
+&lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;大多数计算机视觉方法有两个类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第一类是基于独立物体识别。这类识别主要基于滑动窗口和Hough变换。这些方法有：&lt;ul&gt;
+&lt;li&gt;近似非最大值抑制[3,8,14]&lt;/li&gt;
+&lt;li&gt;随机匹配感兴趣部分或对象模型[9,10,24]&lt;/li&gt;
+&lt;li&gt;基于区域检测[2,18,19]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;第二类不是检测独立实例，而是基于局部或全局上下文分析和外观描述。这些方法有：&lt;ul&gt;
+&lt;li&gt;图片中物体的总体实值计数[5,12,16,22]&lt;/li&gt;
+&lt;li&gt;推测每一个感兴趣区域的局部物体的真实密度[11,15]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;低重叠上述方法可以，但是高密度图像性能表现就会差很多。低密度与高密度共存的情况上述两种方法的性能并不好。这就促使我们在这里提出的方法。这个方法是简历载我们区域探测方法的基础之上的[2]。这主要方法的创新点在于能够分析输入图像，检测不同尺寸的对象（大小为1的“群”是一个特殊的情况）。通过对一组弱注释的训练图像进行训练，所提出的方法根据对象木渎的不痛那个学习不同组的大小。因此，与局部密度估计想死，这样可避免试图当它们成簇一起辨别各个对象。又不像局部密度评估，但是，该方法能够判断每个簇的中对象的数量。&lt;br&gt;与我们最初的方法[2]一样，解析过程是根据有效且精确的推理过程，这个过程检测提供一个最大的解析功能的一组非重叠的极值的区域的。学习是在一个结构化的框架，SVM执行和优化（凸上界）计数的损失。我们观察到这样的学习产生了理想的偏向喜欢最详细的解释，例如，选择最小尺寸的群体，只要对象是明显的，因为这种策略往往会提供最高的计算精度。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;目的&lt;/strong&gt;：本文的工作就是找到一副图片中某一类（细胞或人类）的所有实例。这些实例可能部分重叠或聚在一起，目前来说
+    
+    </summary>
+    
+      <category term="论文笔记" scheme="http://yoursite.com/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="论文" scheme="http://yoursite.com/tags/%E8%AE%BA%E6%96%87/"/>
+    
+      <category term="overlapping" scheme="http://yoursite.com/tags/overlapping/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>什么是机器学习</title>
+    <link href="http://yoursite.com/2016/03/31/%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://yoursite.com/2016/03/31/什么是机器学习/</id>
+    <published>2016-03-31T00:36:30.000Z</published>
+    <updated>2016-04-01T02:23:24.707Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;　　在介绍机器学习之前，我想先列几个关于机器学习的例子：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;垃圾邮件检测：根据邮箱中的邮件，识别哪些是垃圾邮件，哪些不是。这样的模型，可以程序帮助归类垃圾邮件和非垃圾邮件。这个例子，我们应该都不陌生。&lt;/li&gt;
+&lt;li&gt;信用卡欺诈检测：根据用户一个月内的信用卡交易，识别哪些交易是该用户操作的，哪些不是。这样的决策模型，可以帮助程序退还那些欺诈交易。&lt;/li&gt;
+&lt;li&gt;数字识别：根据信封上手写的邮编，识别出每一个手写字符所代表的数字。这样的模型，可以帮助程序阅读和理解手写邮编，并根据地利位置分类信件。&lt;/li&gt;
+&lt;li&gt;语音识别：从一个用户的话语，确定用户提出的具体要求。这样的模型，可以帮助程序能够并尝试自动填充用户需求。带有Siri系统的iPhone就有这种功能。&lt;/li&gt;
+&lt;li&gt;人脸识别：根据相册中的众多数码照片，识别出那些包含某一个人的照片。这样的决策模型，可以帮助程序根据人脸管理照片。某些相机或软件，如iPhoto，就有这种功能。&lt;br&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/7cc829d3gw1eebxsvbwnhj20hc0d2jt6.jpg&quot; alt=&quot;人脸识别&quot;&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;产品推荐：根据一个用户的购物记录和冗长的收藏清单，识别出这其中哪些是该用户真正感兴趣，并且愿意购买的产品。这样的决策模型，可以帮助程序为客户提供建议并鼓励产品消费。登录Facebook或GooglePlus，它们就会推荐可能有关联的用户给你。&lt;/li&gt;
+&lt;li&gt;医学分析：根据病人的症状和一个匿名的病人资料数据库，预测该病人可能患了什么病。这样的决策模型，可以程序为专业医疗人士提供支持。&lt;/li&gt;
+&lt;li&gt;股票交易：根据一支股票现有的和以往的价格波动，判断这支股票是该建仓、持仓还是减仓。这样的决策模型，可以帮助程序为金融分析提供支持。&lt;/li&gt;
+&lt;li&gt;客户细分：根据用户在试用期的的行为模式和所有用户过去的行为，识别出哪些用户会转变成该产品的付款用户，哪些不会。这样的决策模型，可以帮助程序进行用户干预，以说服用户早些付款使用或更好的参与产品试用。&lt;/li&gt;
+&lt;li&gt;形状鉴定：根据用户在触摸屏幕上的手绘和一个已知的形状资料库，判断用户想描绘的形状。这样的决策模型，可以帮助程序显示该形状的理想版本，以绘制清晰的图像。iPhone应用Instaviz就能做到这样。[1]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;机器学习(Machine Learning, ML)&lt;/strong&gt;是一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、算法复杂度理论等多门学科。专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能。它是人工智能的核心，主要使用&lt;strong&gt;归纳、综合而不是演绎&lt;/strong&gt;[2]&lt;/p&gt;
+&lt;p&gt;关于机器学习的定义有很多，一种经常被引用的英文定义是：A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.[3]&lt;/p&gt;
+&lt;p&gt;上面的这个定义如何理解呢？想象一下有一个邮箱过滤程序接受到一封邮件，该程序如何判断这封邮件是不是垃圾邮件呢？首先这封邮件先观察你之前标记过是不是垃圾邮件的邮件，基于这个学习到的经验，该过滤程序为你过滤掉垃圾邮件了。在这个任务中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;判断邮件是不是垃圾邮件,这个&lt;strong&gt;任务T&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;观察到你之前标记过是不是垃圾邮件的邮件，这个是&lt;strong&gt;经验E&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;正确分类垃圾邮件与非垃圾邮件的数量，这个是&lt;strong&gt;性能P&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;http://static.oschina.net/uploads/space/2012/0515/151727_DtZB_260935.jpg&quot; alt=&quot;163邮箱&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;机器学习分类&quot;&gt;&lt;a href=&quot;#机器学习分类&quot; class=&quot;headerlink&quot; title=&quot;机器学习分类&quot;&gt;&lt;/a&gt;机器学习分类&lt;/h1&gt;&lt;p&gt;从最广义的讲，任何涉及机器学习所用的方法，只要它利用了训练样本的信息，都可以认为运用了学习。实践中和有意义的机器学习都是如此困难，以至于根本无法实现猜测出一个最佳的分类判决。因此大部分的时间都运用与研究学习问题。实现一个机器学习算法设计：给定一般的模型或分类器的形式，利用训练样本去学习或评估模型的未知参数。这里的学习指用某种算法来降低训练样本的分类误差。一大类基于梯度下降的算法，能够调节分类器的参数，使它朝着能够降低误差的方向前进，目前已成为机器学习领域的主流学习算法。[4]&lt;br&gt;在一个机器学习的应用中，根据数据类型的不同，对一个问题的建模有不同的方式。在机器学习或者人工智能领域，人们首先会考虑算法的学习方式。在机器学习领域，有几种主要的学习方式。将算法按照学习方式分类是一个不错的想法，这样可以让人们在建模和算法选择的时候考虑能根据输入数据来选择最合适的算法来获得最好的结果。[5]&lt;/p&gt;
+&lt;h2 id=&quot;监督式学习&quot;&gt;&lt;a href=&quot;#监督式学习&quot; class=&quot;headerlink&quot; title=&quot;监督式学习&quot;&gt;&lt;/a&gt;监督式学习&lt;/h2&gt;&lt;center&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/mw690/7cc829d3gw1ekoj9ozt1xj208c06nq31.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;
+
+&lt;p&gt;在监督式学习下，输入数据被称为“训练数据”，每组训练数据有一个明确的标识或结果，如对防垃圾邮件系统中“垃圾邮件”“非垃圾邮件”，对手写数字识别中的“1“，”2“，”3“，”4“等。在建立预测模型的时候，监督式学习建立一个学习过程，将预测结果与“训练数据”的实际结果进行比较，不断的调整预测模型，直到模型的预测结果达到一个预期的准确率。监督式学习的常见应用场景如分类问题和回归问题。常见的算法有：逻辑回归，感知机，SVM支持向量机。&lt;/p&gt;
+&lt;h2 id=&quot;非监督学习&quot;&gt;&lt;a href=&quot;#非监督学习&quot; class=&quot;headerlink&quot; title=&quot;非监督学习&quot;&gt;&lt;/a&gt;非监督学习&lt;/h2&gt;&lt;center&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/mw690/7cc829d3gw1ekoj9pp0wxj208c069mxc.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;
+
+&lt;p&gt;在非监督式学习中，数据并不被特别标识，学习模型是为了推断出数据的一些内在结构。常见的应用场景包括关联规则的学习以及聚类等。常见算法包括：Apriori算法以及k-Means算法。&lt;/p&gt;
+&lt;h2 id=&quot;半监督学习&quot;&gt;&lt;a href=&quot;#半监督学习&quot; class=&quot;headerlink&quot; title=&quot;半监督学习&quot;&gt;&lt;/a&gt;半监督学习&lt;/h2&gt;&lt;center&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/mw690/7cc829d3gw1ekoj9qcia3j208c05kq3b.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;
+
+&lt;p&gt;在此学习方式下，输入数据部分被标识，部分没有被标识，这种学习模型可以用来进行预测，但是模型首先需要学习数据的内在结构以便合理的组织数据来进行预测。应用场景包括分类和回归，算法包括一些对常用监督式学习算法的延伸，这些算法首先试图对未标识数据进行建模，在此基础上再对标识的数据进行预测。如图论推理算法（Graph Inference）或者拉普拉斯支持向量机（Laplacian SVM.）等。&lt;/p&gt;
+&lt;h2 id=&quot;强化学习&quot;&gt;&lt;a href=&quot;#强化学习&quot; class=&quot;headerlink&quot; title=&quot;强化学习&quot;&gt;&lt;/a&gt;强化学习&lt;/h2&gt;&lt;center&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/mw690/7cc829d3gw1ekoj9r0xldj208c04wgls.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;
+
+&lt;p&gt;在这种学习模式下，输入数据作为对模型的反馈，不像监督模型那样，输入数据仅仅是作为一个检查模型对错的方式，在强化学习下，输入数据直接反馈到模型，模型必须对此立刻作出调整。常见的应用场景包括动态系统以及机器人控制等。常见算法包括Q-Learning以及时间差学习（Temporal difference learning）&lt;/p&gt;
+&lt;h1 id=&quot;机器学习框架&quot;&gt;&lt;a href=&quot;#机器学习框架&quot; class=&quot;headerlink&quot; title=&quot;机器学习框架&quot;&gt;&lt;/a&gt;机器学习框架&lt;/h1&gt;&lt;p&gt;在机器学习领域有很&lt;a href=&quot;http://&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;/a&gt;多的框架、库以及软件。比较出名的有：C++的opencv, shark等，java中weka、hadoop的mahout、spark的mllib，matlab中的LibSVM、caffe，python的scikit-learn、NLTK、theano、brain、caffe等。&lt;a href=&quot;https://github.com/josephmisiti/awesome-machine-learning&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;机器学习框架、库与软件列表&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;目录（持续更新）&quot;&gt;&lt;a href=&quot;#目录（持续更新）&quot; class=&quot;headerlink&quot; title=&quot;目录（持续更新）&quot;&gt;&lt;/a&gt;目录（持续更新）&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;基础知识  &lt;!--* 概率论
+  * 模型评估与选择
+  * 维灾难
+  * 决策论
+  * 信息论--&gt;&lt;/li&gt;
+&lt;li&gt;概率分布  &lt;!--* 二项式分布
+  * 多项式分布
+  * 高斯分布
+  * 指数分布族
+  * 非常数分布--&gt;&lt;/li&gt;
+&lt;li&gt;回归&lt;/li&gt;
+&lt;li&gt;分类&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/earl211/article/details/48974865&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;感知机&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;聚类&lt;/li&gt;
+&lt;li&gt;时间序列&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$1_2$&lt;/p&gt;
+&lt;p&gt;#参考资料&lt;br&gt;[1] &lt;a href=&quot;http://blog.jobbole.com/62334&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;机器学习十个实例&lt;/a&gt;&lt;br&gt;[2] &lt;a href=&quot;http://baike.baidu.com/link?url=yeJM3HqBaKfzroNnRkaFt2Uya85p822Ct2Ke6DSQQtono8-JJdfB9iBiiz3uc35WfwuN5vT2FwQgFga4eP6onq&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;百度百科&lt;/a&gt;&lt;br&gt;[3] &lt;a href=&quot;https://www.coursera.org/learn/machine-learning&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;机器学习&lt;/a&gt;&lt;br&gt;[4] 模式分类&lt;br&gt;[5] &lt;a href=&quot;http://blog.jobbole.com/77620/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;机器学习常见分类&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;　　在介绍机器学习之前，我想先列几个关于机器学习的例子：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;垃圾邮件检测：根据邮箱中的邮件，识别哪些是垃圾邮件，哪些不是。这样的模型，可以程序帮助归类垃圾邮件和非垃圾邮件。这个例子，我们应该都不陌生。&lt;/li&gt;
+&lt;li&gt;信用卡欺诈检测：根据用户一个月内的信用卡交易，识别哪些交易是该用户操作的，哪些不是。这样的决策模型，可以帮助程序退还那些欺诈交易。&lt;/li&gt;
+&lt;li&gt;数字识别：根据信封上手写的邮编，识别出每一个手写字符所代表的数字。这样的模型，可以帮助程序阅读和理解手写邮编，并根据地利位置分类信件。&lt;/li&gt;
+&lt;li&gt;语音识别：从一个用户的话语，确定用户提出的具体要求。这样的模型，可以帮助程序能够并尝试自动填充用户需求。带有Siri系统的iPhone就有这种功能。&lt;/li&gt;
+&lt;li&gt;人脸识别：根据相册中的众多数码照片，识别出那些包含某一个人的照片。这样的决策模型，可以帮助程序根据人脸管理照片。某些相机或软件，如iPhoto，就有这种功能。&lt;br&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/7cc829d3gw1eebxsvbwnhj20hc0d2jt6.jpg&quot; alt=&quot;人脸识别&quot;&gt;
+    
+    </summary>
+    
+      <category term="机器学习" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>部分优化算法对比</title>
+    <link href="http://yoursite.com/2016/03/29/%E9%83%A8%E5%88%86%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E5%AF%B9%E6%AF%94/"/>
+    <id>http://yoursite.com/2016/03/29/部分优化算法对比/</id>
+    <published>2016-03-29T14:46:13.000Z</published>
+    <updated>2016-03-29T14:49:32.398Z</updated>
+    
+    <content type="html">&lt;p&gt;#部分优化算法对比&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;梯度下降法，基于目标函数梯度的，算法的收敛速度是线性的，并且当问题是病态时或者问题规模较大时，收敛速度尤其慢（几乎不适用）；&lt;/li&gt;
+&lt;li&gt;坐标下降法，虽然不用计算目标函数的梯度，但是其收敛速度依然很慢，因此它的适用范围也有局限；&lt;/li&gt;
+&lt;li&gt;牛顿法，基于目标函数的二次阶导数（海森矩阵，二阶导数矩阵）的，其收敛速度较快，迭代次数较少，尤其是在最优值附件时，收敛速度是二次的。&lt;strong&gt;问题&lt;/strong&gt;在于当海森矩阵稠密时，每次迭代的计算量比较大时，不仅计算量大（有时大到不可计算）而且需要的存储空间也多，因此牛顿法载面对海量数据时由于每一步迭代的开销巨大而变得不适用。牛顿法在每次迭代时不恩能够综述保证海森矩阵是正定的，一旦海森矩阵不是正定，优化方向就会“跑偏”，从而使得牛顿法失效，也说明了牛顿法的鲁班性较差&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;拟牛顿法，在牛顿法的基础上引入了海森矩阵的近似矩阵，避免每次迭代都要计算海森矩阵的逆，逆牛顿法的收敛速度介于梯度下降法和牛顿法之间，是超线性的。拟牛顿法的问题也是当问题规模很大时，近似矩阵变得&lt;strong&gt;很稠密&lt;/strong&gt;，在计算和存储上也有很大的开销，因此变得不适用。用海森矩阵的逆矩阵来替代还是票矩阵，虽然每次迭代不能保证是最优的优化方向，但是近似矩阵始终是正定的，因此算法总是朝着最优值的方向载搜索。&lt;/li&gt;
+&lt;li&gt;L-BFGS算法是对牛顿算法的一个改进，适合实际工程中解决大规模优化问题，L-BFGS算法的基本思想是：算法只保存并利用最近m次迭代的曲率信息来构造海森矩阵的近似距离。&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;#部分优化算法对比&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;梯度下降法，基于目标函数梯度的，算法的收敛速度是线性的，并且当问题是病态时或者问题规模较大时，收敛速度尤其慢（几乎不适用）；&lt;/li&gt;
+&lt;li&gt;坐标下降法，虽然不用计算目标函数的梯度，但是其收敛速度依然很慢，因此它的适用范围也有局限；&lt;/li&gt;
+&lt;li&gt;牛顿法，基于目标函数的二次阶导数（海森矩阵，二阶导数矩阵）的，其收敛速度较快，迭代次数较少，尤其是在最优值附件时，收敛速度是二次的。&lt;strong&gt;问题&lt;/strong&gt;在于当海森矩阵稠密时，每次迭代的计算量比较大时，不仅计算量大（有时大到不可计算）而且需要的存储空间也多，因此牛顿法载面对海量数据时由于每一步迭代的开销巨大而变得不适用。牛顿法在每次迭代时不恩能够综述保证海森矩阵是正定的，一旦海森矩阵不是正定，优化方向就会“跑偏”，从而使得牛顿法失效，也说明了牛顿法的鲁班性较差
+    
+    </summary>
+    
+      <category term="数据挖掘" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+    
+    
+      <category term="数据挖掘" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+    
+      <category term="优化算法" scheme="http://yoursite.com/tags/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2015年总结</title>
+    <link href="http://yoursite.com/2016/03/29/my2015/"/>
+    <id>http://yoursite.com/2016/03/29/my2015/</id>
+    <published>2016-03-29T14:40:29.000Z</published>
+    <updated>2016-03-29T14:41:59.014Z</updated>
+    
+    <content type="html">&lt;p&gt;在家度过了最寒冷的冬天，再次回到魔都。每次回家都是精神彻底的放松，不管在外面有着多么大的压力，只要回到家就不想思考，不想活动，不想论文、不想将来的工作。但是，就像太阳总是要出来一样，我也还是要回到学校中来了。学校里的梅花都盛开了，学生们都已经回到校园了，而我是时候为对去年做一个总结，对新年开启篇新的展望了。&lt;br&gt;去年一月份的时候，我想抽出时间来写一篇总结，记忆已经模糊，忘了是因为什么而忽略了这份迟早要到来的总结。今天刚刚下完课，就乘着这个时候把我放在显微镜下剖析一下了吧。&lt;br&gt;过去的一年，在我的记忆立总是灰蒙蒙的，大概是受到了雾霾的影响吧。去年主要经历归纳为一条线为：考研——调剂——毕设——暑假学习——开学。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;第一、考研&quot;&gt;&lt;a href=&quot;#第一、考研&quot; class=&quot;headerlink&quot; title=&quot;第一、考研&quot;&gt;&lt;/a&gt;第一、考研&lt;/h1&gt;&lt;p&gt;　　决定的是考华科，15年分数线涨了有二三十分，差一点，最后调剂到了上海大学。虽然最后没有考上一个理想的分数，但是这一年的经历还是让我记忆深刻。&lt;br&gt;　　从最开始的浮躁的准备着数学，英语，到最后慢慢沉下心来一点一点的复习，慢慢专注；做模拟卷子的时候，困难重重，一度认为自己没有希望了，差一点就放弃了，谢谢同伴的鼓励，谢谢女友的支持，同时也要感谢大学期间看的书籍，让我坚持了下来；找一个与你志同道合的人一起做一件事情，这个过程中相互鼓励，相互影响，一起加油。&lt;br&gt;　　当然这其中的问题还是有不少的。特别是数学，遇到问题，看了答案，恩，知道解了。但是下次遇到类似的题目，甚至是一模一样的题目，我还是做不对。这个问题很严重，遇到一个知识点的时候，一定要理解，自己愚钝点，那就把这个知识点的东西背下来，抄下来，将来的某一天总是会理解的。切记贪多嚼不烂！！！把看过的东西，啃完了再进行下一个。日子长着呢，厚积才能薄发！！！！！&lt;br&gt;　　&lt;img src=&quot;http://ww1.sinaimg.cn/large/d1ac17f6jw1e8brr4r4y3j20ez06zq54.jpg&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;br&gt;　　&lt;br&gt;　　选择调剂到上海大学。记得当时复试完了之后，自己的内心是一种失望。是对自己失望，还是对自己没有考上华科失望？其实这个已经不重要了。利用好接下来的每一分钟吧。　　&lt;/p&gt;
+&lt;h1 id=&quot;二、还未起步的创业&quot;&gt;&lt;a href=&quot;#二、还未起步的创业&quot; class=&quot;headerlink&quot; title=&quot;二、还未起步的创业&quot;&gt;&lt;/a&gt;二、还未起步的创业&lt;/h1&gt;&lt;p&gt;　　那时我有一个想法，做一款时间管理软件app，让你的时间能够产生价值。跟勇哥还有斯斯说了这件事情，将我的想法跟他们详细的描述了一下。问问他们这个想法怎么样。他们都觉得不错，于是每周抽出一天来讨论我们开始提需求，试用其他类似产品的app，使用报告，设计功能，功能排序，界面设计。完成上面的几步，就开始着手写代码了。但是我们三个人都没有写app的经验，准备让斯斯学习安卓开发。后来由于课程比较多，慢慢每周也就没有讨论了，也只有勇哥做了一点点网页的部分。&lt;br&gt;    　在刚开始设计的时候，还是很有动力，每天都在学习这，走路都在思考。可是到后来做的时候，因为各种原因，而放弃了。这个事情一定要引起警戒，畅想的那么美好，竟然连第一步都没有迈出去。我感觉创业把第一步迈出去，一定要把第一步迈出去！！！&lt;/p&gt;
+&lt;h1 id=&quot;三、2015年书单&quot;&gt;&lt;a href=&quot;#三、2015年书单&quot; class=&quot;headerlink&quot; title=&quot;三、2015年书单&quot;&gt;&lt;/a&gt;三、2015年书单&lt;/h1&gt;&lt;p&gt;　　“读万卷书，行万里路”，我没有办法到达世界的每一个地方，不能面对面与大牛交谈，不能接受名师的面授，我能做的就是靠读书来“神游”了。&lt;br&gt;　　我阅读的书分为技术与非技术。看书的速度也是时快时慢，有选择性看书。每次选书的时候，我想了解哪一个方面的知识，我就百度这个方面的推荐书籍。买了一个Kindle， 我可以随时随地给自己充电。&lt;br&gt;　　包括以下：&lt;br&gt;技术类：&lt;br&gt;　　《Pattern Recognition and Machine Learning》（在读）&lt;br&gt;　　《统计学习方法》（在读）&lt;br&gt;　　《快学scala》&lt;br&gt;　　《Spark大数据处理计数》&lt;br&gt;　　《R语言实战》&lt;br&gt;　　《使用python进行数据分析》&lt;br&gt;　　《python自然语言处理》（在读）&lt;br&gt;　　《算法导论》（基本算法）&lt;br&gt;非技术：&lt;br&gt;　　《知日-明治维新》&lt;br&gt;　　《九型人格》&lt;br&gt;　　《二胡》&lt;br&gt;　　《牛棚杂记》&lt;br&gt;　　《人类简史》&lt;br&gt;　　《时间简史》&lt;br&gt;　　《史玉柱自述》&lt;br&gt;　　《少年凯哥》&lt;br&gt;　　《21岁当总裁》&lt;br&gt;　　《统计数字会撒谎》&lt;br&gt;　　《奇特的一生》&lt;br&gt;　　《黑天鹅》&lt;br&gt;　　《人人都是产品经理》&lt;br&gt;　　《暗时间》&lt;br&gt;　　《拖延心理学》&lt;br&gt;　　《集装箱改变世界》&lt;br&gt;　　《秘密》&lt;br&gt;　　《IT创业疯魔史》&lt;br&gt;　　《如何阅读一本书》&lt;br&gt;　　《思考：快与慢》&lt;br&gt;　　《番茄工作法》&lt;br&gt;　　《乌合之众》三卷&lt;br&gt;　　《风口上的猪》&lt;br&gt;　　《旁观者》&lt;br&gt;　　《用户体验要素有感》&lt;br&gt;　　《历史的教训》&lt;br&gt;　　《卓有成效的管理者》&lt;br&gt;　　《吃掉那只青蛙》&lt;br&gt;　　《从0到1》&lt;br&gt;　　《我是这样拿到风投》&lt;br&gt;　　《怪诞行为学》&lt;br&gt;　　《精益创业》&lt;/p&gt;
+&lt;h1 id=&quot;2016年期望&quot;&gt;&lt;a href=&quot;#2016年期望&quot; class=&quot;headerlink&quot; title=&quot;2016年期望&quot;&gt;&lt;/a&gt;2016年期望&lt;/h1&gt;&lt;p&gt;1、发表一篇论文&lt;br&gt;2、找到一个好的实习&lt;br&gt;3、常读书&lt;br&gt;4、专心干好每件事（一件一件干好再干下一件事情）&lt;br&gt;5、每天工作看书不少于10个小时&lt;br&gt;6、学习如何挣钱&lt;br&gt;7、学习一门技能：Spark，深入源码&lt;br&gt;8、看过的每一个机器学习算法，写一篇博客，最好使用或者编写过代码。以scikitlearn库为中心！&lt;/p&gt;
+&lt;p&gt;明天的阳光明媚，取决于今天的汗水！！Fighting吧&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在家度过了最寒冷的冬天，再次回到魔都。每次回家都是精神彻底的放松，不管在外面有着多么大的压力，只要回到家就不想思考，不想活动，不想论文、不想将来的工作。但是，就像太阳总是要出来一样，我也还是要回到学校中来了。学校里的梅花都盛开了，学生们都已经回到校园了，而我是时候为对去年做一个总结，对新年开启篇新的展望了。&lt;br&gt;去年一月份的时候，我想抽出时间来写一篇总结，记忆已经模糊，忘了是因为什么而忽略了这份迟早要到来的总结。今天刚刚下完课，就乘着这个时候把我放在显微镜下剖析一下了吧。&lt;br&gt;过去的一年，在我的记忆立总是灰蒙蒙的，大概是受到了雾霾的影响吧。去年主要经历归纳为一条线为：考研——调剂——毕设——暑假学习——开学。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="总结" scheme="http://yoursite.com/categories/%E6%80%BB%E7%BB%93/"/>
+    
+    
+      <category term="总结" scheme="http://yoursite.com/tags/%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spark探秘 </title>
+    <link href="http://yoursite.com/2016/03/29/spark/"/>
+    <id>http://yoursite.com/2016/03/29/spark/</id>
+    <published>2016-03-29T14:28:24.000Z</published>
+    <updated>2016-03-29T14:55:54.558Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;1、spark简介&quot;&gt;&lt;a href=&quot;#1、spark简介&quot; class=&quot;headerlink&quot; title=&quot;1、spark简介&quot;&gt;&lt;/a&gt;1、spark简介&lt;/h1&gt;&lt;h2 id=&quot;1-1-这是什么？&quot;&gt;&lt;a href=&quot;#1-1-这是什么？&quot; class=&quot;headerlink&quot; title=&quot;1.1 这是什么？&quot;&gt;&lt;/a&gt;1.1 这是什么？&lt;/h2&gt;&lt;p&gt;  &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;Spark于2009年诞生于加州大学伯克利分校AMPLab（出身高贵呀）。目前，已经成为Apache软件基金会旗下的顶级项目（后妈同样很强）。Spark是基于内存计算的大数据并行计算架构。这里面有两个概念：内存计算，并行计算架构。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;内存计算，把数据放在内存中，运算的时候从内存中读取数据，而不是从硬盘中读取数据。&lt;/li&gt;
+&lt;li&gt;并行计算框架，使用多台计算机同时工作解决一件计算任务的框架。&lt;h2 id=&quot;1-2-优势&quot;&gt;&lt;a href=&quot;#1-2-优势&quot; class=&quot;headerlink&quot; title=&quot;1.2.优势&quot;&gt;&lt;/a&gt;1.2.优势&lt;/h2&gt;&lt;/li&gt;
+&lt;li&gt;支持复杂查询。（能干的活多）&lt;/li&gt;
+&lt;li&gt;轻量级快速处理。（代码少，速度快）&lt;/li&gt;
+&lt;li&gt;易于使用。支持Scala.java.python编写程序，最新版的Spark1.4还支持R语言。&lt;/li&gt;
+&lt;li&gt;于HDFS等存储层兼容。（Spark只负责计算，存储使用其他存储层）&lt;/li&gt;
+&lt;li&gt;社区活跃程度高。（很多人支持，不怕倒下）&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;1-3-Spark生态系统BDAS&quot;&gt;&lt;a href=&quot;#1-3-Spark生态系统BDAS&quot; class=&quot;headerlink&quot; title=&quot;1.3.Spark生态系统BDAS&quot;&gt;&lt;/a&gt;1.3.Spark生态系统BDAS&lt;/h2&gt;伯克利将Spark的整个生态系统称为伯克利数据分析栈（BDAS).其核心是Spark，围绕着Spark有着一系列的子项目，提供了更高层/更丰富的计算范式。底层同时也有其他重量级的选手，如分布式内存文件系统Tachyon,分布式文件系统HDFS,资源管理框架Mesos。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;http://www.2cto.com/uploadfile/2014/1203/20141203021322155.png&quot; alt=&quot;BDAS项目结构图&quot;&gt;&lt;br&gt;（1）Spark&lt;br&gt;Spark是整个BDAS的核心组件，是一个大数据分布式编程框架，不仅实现了MapReduce的算子map 函数和reduce函数及计算模型，还提供更为丰富的算子，如filter、join、groupByKey等。Spark将分布式数据抽象为弹性分布式数据集（RDD），实现了应用任务调度、RPC、序列化和压缩，并为运行在其上的上层组件提供API。其底层采用Scala这种函数式语言书写而成，并且所提供的API深度借鉴Scala函数式的编程思想，提供与Scala类似的编程接口。&lt;/p&gt;
+&lt;p&gt;（2）Shark&lt;br&gt;Shark是构建在Spark和Hive基础之上的数据仓库。目前，Shark已经完成学术使命，终止开发，但其架构和原理仍具有借鉴意义。它提供了能够查询Hive中所存储数据的一套SQL接口，兼容现有的Hive QL语法。这样，熟悉Hive QL或者SQL的用户可以基于Shark进行快速的Ad-Hoc、Reporting等类型的SQL查询。Shark底层复用Hive的解析器、优化器以及元数据存储和序列化接口。Shark会将Hive QL编译转化为一组Spark任务，进行分布式运算。&lt;/p&gt;
+&lt;p&gt;（3）Spark SQL&lt;br&gt;Spark SQL提供在大数据上的SQL查询功能，类似于Shark在整个生态系统的角色，它们可以统称为SQL on Spark。之前，Shark的查询编译和优化器依赖于Hive，使得Shark不得不维护一套Hive分支，而Spark SQL使用Catalyst做查询解析和优化器，并在底层使用Spark作为执行引擎实现SQL 的Operator。用户可以在Spark上直接书写SQL，相当于为Spark扩充了一套SQL算子，这无疑更加丰富了Spark的算子和功能，同时Spark SQL不断兼容不同的持久化存储（如HDFS、Hive等），为其发展奠定广阔的空间。&lt;/p&gt;
+&lt;p&gt;（4）Spark Streaming&lt;br&gt;Spark Streaming通过将流数据按指定时间片累积为RDD，然后将每个RDD进行批处理，进而实现大规模的流数据处理。其吞吐量能够超越现有主流流处理框架Storm，并提供丰富的API用于流数据计算。&lt;/p&gt;
+&lt;p&gt;（5）GraphX&lt;br&gt;GraphX基于BSP模型，在Spark之上封装类似Pregel的接口，进行大规模同步全局的图计算，尤其是当用户进行多轮迭代时，基于Spark内存计算的优势尤为明显。&lt;/p&gt;
+&lt;p&gt;（6）Tachyon&lt;br&gt;Tachyon是一个分布式内存文件系统，可以理解为内存中的HDFS。为了提供更高的性能，将数据存储剥离Java Heap。用户可以基于Tachyon实现RDD或者文件的跨应用共享，并提供高容错机制，保证数据的可靠性。&lt;/p&gt;
+&lt;p&gt;（7）Mesos&lt;br&gt;Mesos是一个资源管理框架，提供类似于YARN的功能。用户可以在其中插件式地运行Spark、MapReduce、Tez等计算框架的任务。Mesos会对资源和任务进行隔离，并实现高效的资源任务调度。&lt;/p&gt;
+&lt;p&gt;（8）BlinkDB&lt;br&gt;BlinkDB是一个用于在海量数据上进行交互式 SQL 的近似查询引擎。它允许用户通过在查询准确性和查询响应时间之间做出权衡，完成近似查询。其数据的精度被控制在允许的误差范围内。为了达到这个目标，BlinkDB的核心思想是：通过一个自适应优化框架，随着时间的推移，从原始数据建立并维护一组多维样本；通过一个动态样本选择策略，选择一个适当大小的示例，然后基于查询的准确性和响应时间满足用户查询需求。&lt;/p&gt;
+&lt;h2 id=&quot;1-4-Spark架构&quot;&gt;&lt;a href=&quot;#1-4-Spark架构&quot; class=&quot;headerlink&quot; title=&quot;1.4.Spark架构&quot;&gt;&lt;/a&gt;1.4.Spark架构&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://www.2cto.com/uploadfile/2014/1203/20141203022320916.png&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;br&gt;Spark集群成功部署了之后，需要在主节点和从节点分别启动Master进程和Worker进程。Client客户机将计算任务提交到主节点中的master进程，master进程找到一个worker启动Driver，Driver向Master或ClusterManager申请资源，之后将任务转化成RDD DAG，DAGScheduler将RDD DAG转化位Stage的有向无环图图提交给TaskScheduler，再又TaskScheduler提交计算任务给Executor执行。&lt;/p&gt;
+&lt;h1 id=&quot;2-RDD的Transformations操作&quot;&gt;&lt;a href=&quot;#2-RDD的Transformations操作&quot; class=&quot;headerlink&quot; title=&quot;2.RDD的Transformations操作&quot;&gt;&lt;/a&gt;2.RDD的Transformations操作&lt;/h1&gt;&lt;h2 id=&quot;2-1、简介&quot;&gt;&lt;a href=&quot;#2-1、简介&quot; class=&quot;headerlink&quot; title=&quot;2.1、简介&quot;&gt;&lt;/a&gt;2.1、简介&lt;/h2&gt;&lt;p&gt;　　Spark中的核心数据模型是弹性分布式数据集（RDD），而弹性分布式数据集（RDD）是个抽象类，具体的实现是由各个子类实现的。Spark将常用的大数据操作都转换为对RDD的子类操作。&lt;br&gt;　　Transformation操作的对象有两种：Value数据类型，Key-Value数据类型。下面将这两种数据类型的操作列出来：&lt;/p&gt;
+&lt;h2 id=&quot;2-2、Translation操作&quot;&gt;&lt;a href=&quot;#2-2、Translation操作&quot; class=&quot;headerlink&quot; title=&quot;2.2、Translation操作&quot;&gt;&lt;/a&gt;2.2、Translation操作&lt;/h2&gt;&lt;h3 id=&quot;2-1-Value数据类型&quot;&gt;&lt;a href=&quot;#2-1-Value数据类型&quot; class=&quot;headerlink&quot; title=&quot;2.1 Value数据类型&quot;&gt;&lt;/a&gt;2.1 Value数据类型&lt;/h3&gt;&lt;p&gt;map(func)&lt;br&gt;　　将原来RDD中的每个元素通过自定义函数func转换为一个包含新元素的RDD。&lt;/p&gt;
+&lt;p&gt;filter(func)&lt;br&gt;　　对原有RDD中的元素进行过滤，每个元素输入到func函数中，如果func函数返回为true则保留，返回false则丢弃。&lt;/p&gt;
+&lt;p&gt;flatMap(func)&lt;br&gt;　　功能与map相似，但是输出的是一个集合。&lt;/p&gt;
+&lt;p&gt;mapPatitions(func)&lt;br&gt;　　功能与map相似，但是mapPatitions获取的是每个分区的迭代器。&lt;/p&gt;
+&lt;p&gt;mapPationsWithIndex(func)&lt;br&gt;　　功能与mapPatitions相似，但是func函数要返回一个表示分区index的interger类型的值&lt;/p&gt;
+&lt;p&gt;sanple(withReplacement, fraction, seed)&lt;br&gt;　　对数据集中的数据进行采样，想成一个新的RDD&lt;/p&gt;
+&lt;p&gt;union(otherDateset)&lt;br&gt;　　将两个数据类型相同的RDD合并成一个RDD&lt;/p&gt;
+&lt;p&gt;intersection(oterDataset)&lt;br&gt;　　返回一个包含两个数据类型相同的RDD的交集的全新的RDD&lt;/p&gt;
+&lt;p&gt;distinct([numTasks])&lt;br&gt;　　对RDD中的元素进行去重操作&lt;/p&gt;
+&lt;p&gt;cartesian(otherDataset)&lt;br&gt;　　对两个RDD内的所有元素进行笛卡尔积操作。&lt;/p&gt;
+&lt;p&gt;pip(command, [envVars])&lt;br&gt; 　　对RDD的每个分区通过脚本命令，RDD元素可以写入进程的stdin和行输出到标准输出作为字符串返回。&lt;/p&gt;
+&lt;p&gt; coalesce(numPartitions)&lt;br&gt;  　　设置RDD数据的分区数，可以让数据集的操作更加高校。&lt;/p&gt;
+&lt;p&gt;  repartition(numPartitions)&lt;br&gt;  　　修改RDD数据的分区数&lt;/p&gt;
+&lt;p&gt;  repartionAndSortWithinPartitions(pationer)&lt;br&gt;  　　重新设置RDD分区，根据keys值排序，这个比repartition更加高效。&lt;/p&gt;
+&lt;h3 id=&quot;2-2-Key-value类型&quot;&gt;&lt;a href=&quot;#2-2-Key-value类型&quot; class=&quot;headerlink&quot; title=&quot;2.2 Key-value类型&quot;&gt;&lt;/a&gt;2.2 Key-value类型&lt;/h3&gt;&lt;p&gt;groupByKey([numTasks])&lt;br&gt;　　返回一个（k, iterable&lt;v&gt;)键值对&lt;br&gt;　　注意:如果你分组是为了执行一个聚合(比如求和或平均),使用reduceByKey或aggregateByKey将有更好的性能。&lt;br&gt;　　注意:默认情况下,并行输出的分区数取决于父抽样的分区的数量。您可以通过一个可选的numTasks参数设置不同数量的任务。&lt;br&gt;　　&lt;br&gt;reduceByKey(func, [numTasks])&lt;br&gt;　　对k相同的键值对中的值调用func函数，合并产生一个值&lt;br&gt;　　&lt;br&gt;aggregateByKey(zeroValue)(seqOp, combOp, [numTasks])&lt;br&gt;　　当对(K、V)的数据集对调用函数时,返回一个数据集的(K,U)对每个键值聚合使用给定的组合功能和一个中立的“0”值。允许产生的聚合值类型不同于输入值类型,同时避免不必要的配置。而在groupByKey中,需要配置第二个参数。&lt;br&gt;　　&lt;br&gt;sortedByKey([ascending], [numTasks])&lt;br&gt;　　返回一个按照k值进行排序的键值对RDD。&lt;/v&gt;&lt;/p&gt;
+&lt;p&gt;cogroup(oterDataset, [numTasks])&lt;br&gt;　　对两个RDD进行协同划分，每个RDD中形同Key的元素分别聚合为一个集合，并且返回两个RDD中对应key中的元素集合的迭代器。&lt;/p&gt;
+&lt;p&gt;join(otherDataset, [numTasks])&lt;br&gt;　　对俩个需要连接的RDD进行cogroup函数操作，cogroup原理如上，cogroup操作后形成的新的RDD，对每个Key下的元素进行笛卡尔积操作，返回结果在展平。&lt;/p&gt;
+&lt;h1 id=&quot;3-RDD的action操作&quot;&gt;&lt;a href=&quot;#3-RDD的action操作&quot; class=&quot;headerlink&quot; title=&quot;3.RDD的action操作&quot;&gt;&lt;/a&gt;3.RDD的action操作&lt;/h1&gt;&lt;p&gt;本质上，Action通过SparkContext执行提交作业的runjob操作，触发了RDD DAG的执行。&lt;/p&gt;
+&lt;p&gt;reduce(func)&lt;br&gt;　　 将集合中的元素通过func函数合并起来，该函数应该是可交换，结合的，这样才能应用到并行计算中。&lt;/p&gt;
+&lt;p&gt;collect()&lt;br&gt;　　将数据中的元素返回为一个数组，这个函数通常用在filter等其他操作后。&lt;/p&gt;
+&lt;p&gt;count()&lt;br&gt;　　返回数据集中元素的个数&lt;/p&gt;
+&lt;p&gt;first()&lt;br&gt;　　返回数据集中的第一个元素&lt;/p&gt;
+&lt;p&gt;take(n)&lt;br&gt;　　返回数据集中前n个元素&lt;/p&gt;
+&lt;p&gt;takeSample(withReplacement, num, [seed])&lt;br&gt;　　按设定的采样个数进行采样&lt;/p&gt;
+&lt;p&gt;takeOrdered(n, [ordering])&lt;br&gt;　　返回前N个RDD中元素的自然顺序或自定义比较器&lt;/p&gt;
+&lt;p&gt;saveAsTextFile(path)&lt;br&gt;　　将数据集中的元素存储起来，存在给定的目录中的本地文件系统，或任何其他的Hadoop HDFS 支持的文件系统。Spark可以调用toString将每个元素以每行的形式存在文本中&lt;/p&gt;
+&lt;p&gt;savaAsSequenceFile(path)&lt;br&gt;　　将数据集中的RDD以Hadoop SequenceFile的形式存在给定路径本地的文件系统，HDFS或者其他任何Hadoop支持的文件系统中。这个对读取存在Hadoop中健值对十分有用。&lt;/p&gt;
+&lt;p&gt;saveAsObjectFile(path)&lt;br&gt;　　使用java序列化将数据集中的元素存储为一个简单的格式，我们可以通过SparkContext.objectFile()进行读取。&lt;/p&gt;
+&lt;p&gt;countBykey()&lt;br&gt;　　返回具有不同健的键值对的个数&lt;/p&gt;
+&lt;p&gt;foreach(func)&lt;br&gt;　　对RDD中的每个元素应用func函数，不返回RDD和Arry，而是返回Uint。&lt;/p&gt;
+&lt;p&gt;#参考书籍&lt;br&gt;《Spark大数据处理：技术、应用与性能优化》&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1、spark简介&quot;&gt;&lt;a href=&quot;#1、spark简介&quot; class=&quot;headerlink&quot; title=&quot;1、spark简介&quot;&gt;&lt;/a&gt;1、spark简介&lt;/h1&gt;&lt;h2 id=&quot;1-1-这是什么？&quot;&gt;&lt;a href=&quot;#1-1-这是什么？&quot; class=&quot;headerlink&quot; title=&quot;1.1 这是什么？&quot;&gt;&lt;/a&gt;1.1 这是什么？&lt;/h2&gt;&lt;p&gt;  &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;Spark于2009年诞生于加州大学伯克利分校AMPLab（出身高贵呀）。目前，已经成为Apache软件基金会旗下的顶级项目（后妈同样很强）。Spark是基于内存计算的大数据并行计算架构。这里面有两个概念：内存计算，并行计算架构。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;内存计算，把数据放在内存中，运算的时候从内存中读取数据，而不是从硬盘中读取数据。&lt;/li&gt;
+&lt;li&gt;并行计算框架，使用多台计算机同时工作解决一件计算任务的框架。&lt;h2 id=&quot;1-2-优势&quot;&gt;&lt;a href=&quot;#1-2-优势&quot; class=&quot;headerlink&quot; title=&quot;1.2.优势&quot;&gt;&lt;/a&gt;1.2.优势&lt;/h2&gt;&lt;/li&gt;
+&lt;li&gt;支持复杂查询。（能干的活多）&lt;/li&gt;
+&lt;li&gt;轻量级快速处理。（代码少，速度快）&lt;/li&gt;
+&lt;li&gt;易于使用。支持Scala.java.python编写程序，最新版的Spark1.4还支持R语言。&lt;/li&gt;
+&lt;li&gt;于HDFS等存储层兼容。（Spark只负责计算，存储使用其他存储层）&lt;/li&gt;
+&lt;li&gt;社区活跃程度高。（很多人支持，不怕倒下）
+    
+    </summary>
+    
+      <category term="spark" scheme="http://yoursite.com/categories/spark/"/>
+    
+    
+      <category term="spark" scheme="http://yoursite.com/tags/spark/"/>
+    
+      <category term="大数据" scheme="http://yoursite.com/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vim命令全集</title>
+    <link href="http://yoursite.com/2016/03/29/vim%E5%91%BD%E4%BB%A4%E5%85%A8%E9%9B%86/"/>
+    <id>http://yoursite.com/2016/03/29/vim命令全集/</id>
+    <published>2016-03-29T12:21:27.000Z</published>
+    <updated>2016-03-29T13:18:06.950Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;命令历史&quot;&gt;&lt;a href=&quot;#命令历史&quot; class=&quot;headerlink&quot; title=&quot;命令历史&quot;&gt;&lt;/a&gt;命令历史&lt;/h2&gt;&lt;p&gt;以:和/开头的命令都有历史纪录，可以首先键入:或/然后按上下箭头来选择某个历史命令。&lt;/p&gt;
+&lt;h2 id=&quot;启动vim&quot;&gt;&lt;a href=&quot;#启动vim&quot; class=&quot;headerlink&quot; title=&quot;启动vim&quot;&gt;&lt;/a&gt;启动vim&lt;/h2&gt;&lt;p&gt;在命令行窗口中输入以下命令即可&lt;/p&gt;
+&lt;p&gt;vim 直接启动vim&lt;/p&gt;
+&lt;p&gt;vim filename 打开vim并创建名为filename的文件&lt;/p&gt;
+&lt;h2 id=&quot;文件命令&quot;&gt;&lt;a href=&quot;#文件命令&quot; class=&quot;headerlink&quot; title=&quot;文件命令&quot;&gt;&lt;/a&gt;文件命令&lt;/h2&gt;&lt;p&gt;打开单个文件&lt;/p&gt;
+&lt;p&gt;vim file&lt;/p&gt;
+&lt;p&gt;同时打开多个文件&lt;/p&gt;
+&lt;p&gt;vim file1 file2 file3 …&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;在vim窗口中打开一个新文件&lt;/p&gt;
+&lt;p&gt;:open file&lt;/p&gt;
+&lt;p&gt;在新窗口中打开文件&lt;/p&gt;
+&lt;p&gt;:split file&lt;/p&gt;
+&lt;p&gt;切换到下一个文件&lt;/p&gt;
+&lt;p&gt;:bn&lt;/p&gt;
+&lt;p&gt;切换到上一个文件&lt;/p&gt;
+&lt;p&gt;:bp&lt;/p&gt;
+&lt;p&gt;查看当前打开的文件列表，当前正在编辑的文件会用[]括起来。&lt;/p&gt;
+&lt;p&gt;:args&lt;/p&gt;
+&lt;p&gt;打开远程文件，比如ftp或者share folder&lt;/p&gt;
+&lt;p&gt;:e ftp://192.168.10.76/abc.txt&lt;/p&gt;
+&lt;p&gt;:e \qadrive\test\1.txt&lt;/p&gt;
+&lt;h2 id=&quot;vim的模式&quot;&gt;&lt;a href=&quot;#vim的模式&quot; class=&quot;headerlink&quot; title=&quot;vim的模式&quot;&gt;&lt;/a&gt;vim的模式&lt;/h2&gt;&lt;p&gt;正常模式（按Esc或Ctrl+[进入） 左下角显示文件名或为空&lt;br&gt;插入模式（按i键进入） 左下角显示–INSERT–&lt;br&gt;可视模式（不知道如何进入） 左下角显示–VISUAL–&lt;/p&gt;
+&lt;h2 id=&quot;导航命令&quot;&gt;&lt;a href=&quot;#导航命令&quot; class=&quot;headerlink&quot; title=&quot;导航命令&quot;&gt;&lt;/a&gt;导航命令&lt;/h2&gt;&lt;p&gt;% 括号匹配&lt;/p&gt;
+&lt;h2 id=&quot;插入命令&quot;&gt;&lt;a href=&quot;#插入命令&quot; class=&quot;headerlink&quot; title=&quot;插入命令&quot;&gt;&lt;/a&gt;插入命令&lt;/h2&gt;&lt;p&gt;i 在当前位置生前插入&lt;/p&gt;
+&lt;p&gt;I 在当前行首插入&lt;/p&gt;
+&lt;p&gt;a 在当前位置后插入&lt;/p&gt;
+&lt;p&gt;A 在当前行尾插入&lt;/p&gt;
+&lt;p&gt;o 在当前行之后插入一行&lt;/p&gt;
+&lt;p&gt;O 在当前行之前插入一行&lt;/p&gt;
+&lt;h2 id=&quot;查找命令&quot;&gt;&lt;a href=&quot;#查找命令&quot; class=&quot;headerlink&quot; title=&quot;查找命令&quot;&gt;&lt;/a&gt;查找命令&lt;/h2&gt;&lt;p&gt;/text　　查找text，按n健查找下一个，按N健查找前一个。&lt;/p&gt;
+&lt;p&gt;?text　　查找text，反向查找，按n健查找下一个，按N健查找前一个。&lt;/p&gt;
+&lt;p&gt;vim中有一些特殊字符在查找时需要转义　　.*[]^%/?~$&lt;/p&gt;
+&lt;p&gt;:set ignorecase　　忽略大小写的查找&lt;/p&gt;
+&lt;p&gt;:set noignorecase　　不忽略大小写的查找&lt;/p&gt;
+&lt;p&gt;查找很长的词，如果一个词很长，键入麻烦，可以将光标移动到该词上，按*或#键即可以该单词进行搜索，相当于/搜索。而#命令相当于?搜索。&lt;/p&gt;
+&lt;p&gt;:set hlsearch　　高亮搜索结果，所有结果都高亮显示，而不是只显示一个匹配。&lt;/p&gt;
+&lt;p&gt;:set nohlsearch　　关闭高亮搜索显示&lt;/p&gt;
+&lt;p&gt;:nohlsearch　　关闭当前的高亮显示，如果再次搜索或者按下n或N键，则会再次高亮。&lt;/p&gt;
+&lt;p&gt;:set incsearch　　逐步搜索模式，对当前键入的字符进行搜索而不必等待键入完成。&lt;/p&gt;
+&lt;p&gt;:set wrapscan　　重新搜索，在搜索到文件头或尾时，返回继续搜索，默认开启。&lt;/p&gt;
+&lt;h2 id=&quot;替换命令&quot;&gt;&lt;a href=&quot;#替换命令&quot; class=&quot;headerlink&quot; title=&quot;替换命令&quot;&gt;&lt;/a&gt;替换命令&lt;/h2&gt;&lt;p&gt;ra 将当前字符替换为a，当期字符即光标所在字符。&lt;/p&gt;
+&lt;p&gt;s/old/new/ 用old替换new，替换当前行的第一个匹配&lt;/p&gt;
+&lt;p&gt;s/old/new/g 用old替换new，替换当前行的所有匹配&lt;/p&gt;
+&lt;p&gt;%s/old/new/ 用old替换new，替换所有行的第一个匹配&lt;/p&gt;
+&lt;p&gt;%s/old/new/g 用old替换new，替换整个文件的所有匹配&lt;/p&gt;
+&lt;p&gt;:10,20 s/^/    /g 在第10行知第20行每行前面加四个空格，用于缩进。&lt;/p&gt;
+&lt;p&gt;ddp 交换光标所在行和其下紧邻的一行。&lt;/p&gt;
+&lt;h2 id=&quot;移动命令&quot;&gt;&lt;a href=&quot;#移动命令&quot; class=&quot;headerlink&quot; title=&quot;移动命令&quot;&gt;&lt;/a&gt;移动命令&lt;/h2&gt;&lt;p&gt;h 左移一个字符&lt;br&gt;l 右移一个字符，这个命令很少用，一般用w代替。&lt;br&gt;k 上移一个字符&lt;br&gt;j 下移一个字符&lt;br&gt;以上四个命令可以配合数字使用，比如20j就是向下移动20行，5h就是向左移动5个字符，在Vim中，很多命令都可以配合数字使用，比如删除10个字符10x，在当前位置后插入3个！，3a！&lt;esc&gt;，这里的Esc是必须的，否则命令不生效。&lt;/esc&gt;&lt;/p&gt;
+&lt;p&gt;w 向前移动一个单词（光标停在单词首部），如果已到行尾，则转至下一行行首。此命令快，可以代替l命令。&lt;/p&gt;
+&lt;p&gt;b 向后移动一个单词 2b 向后移动2个单词&lt;/p&gt;
+&lt;p&gt;e，同w，只不过是光标停在单词尾部&lt;/p&gt;
+&lt;p&gt;ge，同b，光标停在单词尾部。&lt;/p&gt;
+&lt;p&gt;^ 移动到本行第一个非空白字符上。&lt;/p&gt;
+&lt;p&gt;0（数字0）移动到本行第一个字符上，&lt;/p&gt;
+&lt;p&gt;&lt;home&gt; 移动到本行第一个字符。同0健。&lt;/home&gt;&lt;/p&gt;
+&lt;p&gt;$ 移动到行尾 3$ 移动到下面3行的行尾&lt;/p&gt;
+&lt;p&gt;gg 移动到文件头。 = [[&lt;/p&gt;
+&lt;p&gt;G（shift + g） 移动到文件尾。 = ]]&lt;/p&gt;
+&lt;p&gt;f（find）命令也可以用于移动，fx将找到光标后第一个为x的字符，3fd将找到第三个为d的字符。&lt;/p&gt;
+&lt;p&gt;F 同f，反向查找。&lt;/p&gt;
+&lt;p&gt;跳到指定行，冒号+行号，回车，比如跳到240行就是 :240回车。另一个方法是行号+G，比如230G跳到230行。&lt;/p&gt;
+&lt;p&gt;Ctrl + e 向下滚动一行&lt;/p&gt;
+&lt;p&gt;Ctrl + y 向上滚动一行&lt;/p&gt;
+&lt;p&gt;Ctrl + d 向下滚动半屏&lt;/p&gt;
+&lt;p&gt;Ctrl + u 向上滚动半屏&lt;/p&gt;
+&lt;p&gt;Ctrl + f 向下滚动一屏&lt;/p&gt;
+&lt;p&gt;Ctrl + b 向上滚动一屏&lt;/p&gt;
+&lt;h2 id=&quot;撤销和重做&quot;&gt;&lt;a href=&quot;#撤销和重做&quot; class=&quot;headerlink&quot; title=&quot;撤销和重做&quot;&gt;&lt;/a&gt;撤销和重做&lt;/h2&gt;&lt;p&gt;u 撤销（Undo）&lt;br&gt;U 撤销对整行的操作&lt;br&gt;Ctrl + r 重做（Redo），即撤销的撤销。&lt;/p&gt;
+&lt;h2 id=&quot;删除命令&quot;&gt;&lt;a href=&quot;#删除命令&quot; class=&quot;headerlink&quot; title=&quot;删除命令&quot;&gt;&lt;/a&gt;删除命令&lt;/h2&gt;&lt;p&gt;x 删除当前字符&lt;/p&gt;
+&lt;p&gt;3x 删除当前光标开始向后三个字符&lt;/p&gt;
+&lt;p&gt;X 删除当前字符的前一个字符。X=dh&lt;/p&gt;
+&lt;p&gt;dl 删除当前字符， dl=x&lt;/p&gt;
+&lt;p&gt;dh 删除前一个字符&lt;/p&gt;
+&lt;p&gt;dd 删除当前行&lt;/p&gt;
+&lt;p&gt;dj 删除上一行&lt;/p&gt;
+&lt;p&gt;dk 删除下一行&lt;/p&gt;
+&lt;p&gt;10d 删除当前行开始的10行。&lt;/p&gt;
+&lt;p&gt;D 删除当前字符至行尾。D=d$&lt;/p&gt;
+&lt;p&gt;d$ 删除当前字符之后的所有字符（本行）&lt;/p&gt;
+&lt;p&gt;kdgg 删除当前行之前所有行（不包括当前行）&lt;/p&gt;
+&lt;p&gt;jdG（jd shift + g）   删除当前行之后所有行（不包括当前行）&lt;/p&gt;
+&lt;p&gt;:1,10d 删除1-10行&lt;/p&gt;
+&lt;p&gt;:11,$d 删除11行及以后所有的行&lt;/p&gt;
+&lt;p&gt;:1,$d 删除所有行&lt;/p&gt;
+&lt;p&gt;J(shift + j)　　删除两行之间的空行，实际上是合并两行。&lt;/p&gt;
+&lt;h2 id=&quot;拷贝和粘贴&quot;&gt;&lt;a href=&quot;#拷贝和粘贴&quot; class=&quot;headerlink&quot; title=&quot;拷贝和粘贴&quot;&gt;&lt;/a&gt;拷贝和粘贴&lt;/h2&gt;&lt;p&gt;yy 拷贝当前行&lt;/p&gt;
+&lt;p&gt;nyy 拷贝当前后开始的n行，比如2yy拷贝当前行及其下一行。&lt;/p&gt;
+&lt;p&gt;p  在当前光标后粘贴,如果之前使用了yy命令来复制一行，那么就在当前行的下一行粘贴。&lt;/p&gt;
+&lt;p&gt;shift+p 在当前行前粘贴&lt;/p&gt;
+&lt;p&gt;:1,10 co 20 将1-10行插入到第20行之后。&lt;/p&gt;
+&lt;p&gt;:1,$ co $ 将整个文件复制一份并添加到文件尾部。&lt;/p&gt;
+&lt;p&gt;正常模式下按v（逐字）或V（逐行）进入可视模式，然后用jklh命令移动即可选择某些行或字符，再按y即可复制&lt;/p&gt;
+&lt;p&gt;ddp交换当前行和其下一行&lt;/p&gt;
+&lt;p&gt;xp交换当前字符和其后一个字符&lt;/p&gt;
+&lt;h2 id=&quot;剪切命令&quot;&gt;&lt;a href=&quot;#剪切命令&quot; class=&quot;headerlink&quot; title=&quot;剪切命令&quot;&gt;&lt;/a&gt;剪切命令&lt;/h2&gt;&lt;p&gt;正常模式下按v（逐字）或V（逐行）进入可视模式，然后用jklh命令移动即可选择某些行或字符，再按d即可剪切&lt;/p&gt;
+&lt;p&gt;ndd 剪切当前行之后的n行。利用p命令可以对剪切的内容进行粘贴&lt;/p&gt;
+&lt;p&gt;:1,10d 将1-10行剪切。利用p命令可将剪切后的内容进行粘贴。&lt;/p&gt;
+&lt;p&gt;:1, 10 m 20 将第1-10行移动到第20行之后。&lt;/p&gt;
+&lt;h2 id=&quot;退出命令&quot;&gt;&lt;a href=&quot;#退出命令&quot; class=&quot;headerlink&quot; title=&quot;退出命令&quot;&gt;&lt;/a&gt;退出命令&lt;/h2&gt;&lt;p&gt;:wq 保存并退出&lt;/p&gt;
+&lt;p&gt;ZZ 保存并退出&lt;/p&gt;
+&lt;p&gt;:q! 强制退出并忽略所有更改&lt;/p&gt;
+&lt;p&gt;:e! 放弃所有修改，并打开原来文件。&lt;/p&gt;
+&lt;h2 id=&quot;窗口命令&quot;&gt;&lt;a href=&quot;#窗口命令&quot; class=&quot;headerlink&quot; title=&quot;窗口命令&quot;&gt;&lt;/a&gt;窗口命令&lt;/h2&gt;&lt;p&gt;:split或new 打开一个新窗口，光标停在顶层的窗口上&lt;/p&gt;
+&lt;p&gt;:split file或:new file 用新窗口打开文件&lt;/p&gt;
+&lt;p&gt;split打开的窗口都是横向的，使用vsplit可以纵向打开窗口。&lt;/p&gt;
+&lt;p&gt;Ctrl+ww 移动到下一个窗口&lt;/p&gt;
+&lt;p&gt;Ctrl+wj 移动到下方的窗口&lt;/p&gt;
+&lt;p&gt;Ctrl+wk 移动到上方的窗口&lt;/p&gt;
+&lt;h2 id=&quot;关闭窗口&quot;&gt;&lt;a href=&quot;#关闭窗口&quot; class=&quot;headerlink&quot; title=&quot;关闭窗口&quot;&gt;&lt;/a&gt;关闭窗口&lt;/h2&gt;&lt;p&gt;:close 最后一个窗口不能使用此命令，可以防止意外退出vim。&lt;/p&gt;
+&lt;p&gt;:q 如果是最后一个被关闭的窗口，那么将退出vim。&lt;/p&gt;
+&lt;p&gt;ZZ 保存并退出。&lt;/p&gt;
+&lt;p&gt;关闭所有窗口，只保留当前窗口&lt;/p&gt;
+&lt;p&gt;:only&lt;/p&gt;
+&lt;p&gt;录制宏&lt;/p&gt;
+&lt;p&gt;按q键加任意字母开始录制，再按q键结束录制（这意味着vim中的宏不可嵌套），使用的时候@加宏名，比如qa。。。q录制名为a的宏，@a使用这个宏。&lt;/p&gt;
+&lt;h2 id=&quot;执行shell命令&quot;&gt;&lt;a href=&quot;#执行shell命令&quot; class=&quot;headerlink&quot; title=&quot;执行shell命令&quot;&gt;&lt;/a&gt;执行shell命令&lt;/h2&gt;&lt;p&gt;:!command&lt;/p&gt;
+&lt;p&gt;:!ls 列出当前目录下文件&lt;/p&gt;
+&lt;p&gt;:!perl -c script.pl 检查perl脚本语法，可以不用退出vim，非常方便。&lt;/p&gt;
+&lt;p&gt;:!perl script.pl 执行perl脚本，可以不用退出vim，非常方便。&lt;/p&gt;
+&lt;p&gt;:suspend或Ctrl - Z 挂起vim，回到shell，按fg可以返回vim。&lt;/p&gt;
+&lt;h2 id=&quot;注释命令&quot;&gt;&lt;a href=&quot;#注释命令&quot; class=&quot;headerlink&quot; title=&quot;注释命令&quot;&gt;&lt;/a&gt;注释命令&lt;/h2&gt;&lt;p&gt;perl程序中#开始的行为注释，所以要注释某些行，只需在行首加入#&lt;/p&gt;
+&lt;p&gt;3,5 s/^/#/g 注释第3-5行&lt;/p&gt;
+&lt;p&gt;3,5 s/^#//g 解除3-5行的注释&lt;/p&gt;
+&lt;p&gt;1,$ s/^/#/g 注释整个文档。&lt;/p&gt;
+&lt;p&gt;:%s/^/#/g 注释整个文档，此法更快。&lt;/p&gt;
+&lt;h2 id=&quot;帮助命令&quot;&gt;&lt;a href=&quot;#帮助命令&quot; class=&quot;headerlink&quot; title=&quot;帮助命令&quot;&gt;&lt;/a&gt;帮助命令&lt;/h2&gt;&lt;p&gt;:help or F1 显示整个帮助&lt;br&gt;:help xxx 显示xxx的帮助，比如 :help i, :help CTRL-[（即Ctrl+[的帮助）。&lt;br&gt;:help ‘number’ Vim选项的帮助用单引号括起&lt;br&gt;:help &lt;esc&gt; 特殊键的帮助用&amp;lt;&amp;gt;扩起&lt;br&gt;:help -t Vim启动参数的帮助用-&lt;br&gt;：help i&lt;em&gt;&lt;esc&gt; 插入模式下Esc的帮助，某个模式下的帮助用模式&lt;/esc&gt;&lt;/em&gt;主题的模式&lt;br&gt;帮助文件中位于||之间的内容是超链接，可以用Ctrl+]进入链接，Ctrl+o（Ctrl + t）返回&lt;/esc&gt;&lt;/p&gt;
+&lt;h2 id=&quot;其他非编辑命令&quot;&gt;&lt;a href=&quot;#其他非编辑命令&quot; class=&quot;headerlink&quot; title=&quot;其他非编辑命令&quot;&gt;&lt;/a&gt;其他非编辑命令&lt;/h2&gt;&lt;p&gt;. 重复前一次命令&lt;/p&gt;
+&lt;p&gt;:set ruler?　　查看是否设置了ruler，在.vimrc中，使用set命令设制的选项都可以通过这个命令查看&lt;/p&gt;
+&lt;p&gt;:scriptnames　　查看vim脚本文件的位置，比如.vimrc文件，语法文件及plugin等。&lt;/p&gt;
+&lt;p&gt;:set list 显示非打印字符，如tab，空格，行尾等。如果tab无法显示，请确定用set lcs=tab:&amp;gt;-命令设置了.vimrc文件，并确保你的文件中的确有tab，如果开启了expendtab，那么tab将被扩展为空格。&lt;/p&gt;
+&lt;h2 id=&quot;Vim教程&quot;&gt;&lt;a href=&quot;#Vim教程&quot; class=&quot;headerlink&quot; title=&quot;Vim教程&quot;&gt;&lt;/a&gt;Vim教程&lt;/h2&gt;&lt;p&gt;在Unix系统上&lt;br&gt;$ vimtutor&lt;br&gt;在Windows系统上&lt;br&gt;:help tutor&lt;/p&gt;
+&lt;p&gt;:syntax 列出已经定义的语法项&lt;br&gt;:syntax clear 清除已定义的语法规则&lt;br&gt;:syntax case match 大小写敏感，int和Int将视为不同的语法元素&lt;br&gt;:syntax case ignore 大小写无关，int和Int将视为相同的语法元素，并使用同样的配色方案&lt;/p&gt;
+&lt;p&gt;im提供多窗口编辑的功能，可以简化复合的编辑任务。vim的多窗口并不是说在终端上启动多个vim实例。&lt;/p&gt;
+&lt;h2 id=&quot;启动多窗口编辑&quot;&gt;&lt;a href=&quot;#启动多窗口编辑&quot; class=&quot;headerlink&quot; title=&quot;启动多窗口编辑&quot;&gt;&lt;/a&gt;启动多窗口编辑&lt;/h2&gt;&lt;p&gt;viｍ的多窗口是动态的，可以开始编辑时就打开多窗口，也可以工作时随时增加新窗口，或者删除一个窗口。&lt;br&gt;$ vim  -o  file1 file2  打开一个编辑会话，显示为水平分割成两半的窗口，一个文件占用一个窗口。&lt;br&gt;$ vim  -O  file1 file2  和上面相同，不过是垂直分割两半的窗口&lt;br&gt;如下 图所示：&lt;/p&gt;
+&lt;p&gt;如果画面分割后不足以容纳下所有窗口，那么第一个文件会占用大部分窗口，余下的窗口则载入缓冲区，暂时不能看到，但仍可以取用。&lt;/p&gt;
+&lt;p&gt;-o后面加一个数字n，是预分配窗口的形式打开：&lt;br&gt;$ vim  -o5 file1  file2   将分配5个相同的窗口，有3个是闲置的&lt;/p&gt;
+&lt;h2 id=&quot;vim的多窗口编辑&quot;&gt;&lt;a href=&quot;#vim的多窗口编辑&quot; class=&quot;headerlink&quot; title=&quot;vim的多窗口编辑&quot;&gt;&lt;/a&gt;vim的多窗口编辑&lt;/h2&gt;&lt;p&gt;：split    新建一个窗口，将当前窗口分割成两半，他们显示的是相同缓冲区的内容（同一个文件）。这样就可以在两个窗口中浏览相同的文件了。&lt;/p&gt;
+&lt;p&gt;：vsplit   创建全新的垂直分割的窗口，同样是显示和当前窗口同一个文件内容。效果如下：&lt;/p&gt;
+&lt;p&gt;当多个窗口编辑同一个文件时，在任意一个窗口进行编辑（例如删除一行），那么所有相同文件的窗口上都会同时反应效果，因为他们共享同一个文件缓冲区。&lt;/p&gt;
+&lt;p&gt;如果想编辑或浏览另一个文件，而又不想失去在当前文件中的编辑位置，就用新文件的参数传给：split命令&lt;br&gt;：split  otherfile&lt;/p&gt;
+&lt;p&gt;分割窗口的选项&lt;/p&gt;
+&lt;p&gt;：[n] split(vsplit)  [++opt]  [+cmd]  [file]&lt;/p&gt;
+&lt;p&gt;命令中：&lt;br&gt;n   为vim指定在新窗口中显示的行数，且新窗口的大小刚好容纳该行数，新窗口位于画面顶端&lt;br&gt;opt  传递vim选项信息给新的窗口会话（请注意，它的前面必须加上两个加号）&lt;br&gt;cmd 传入欲在新窗口中执行的命令（请注意，它的前面必须加上一个加号）&lt;br&gt;file  指定在新窗口中编辑的文件&lt;/p&gt;
+&lt;p&gt;：sview  filename  以只读的方式水平分割打开一个新窗口&lt;br&gt;：sfind  [++opt]  [+cmd]  [file]  和split的运作方式相似，但在path中寻找filename，如果vim未找到文件则不显示&lt;/p&gt;
+&lt;h2 id=&quot;在窗口间游走&quot;&gt;&lt;a href=&quot;#在窗口间游走&quot; class=&quot;headerlink&quot; title=&quot;在窗口间游走&quot;&gt;&lt;/a&gt;在窗口间游走&lt;/h2&gt;&lt;p&gt;在gvim或vim中，在窗口中移动其实非常简单，因为gvim已默认支持鼠标点击来换编辑窗口，而vim中，则可以打开mouse选项，&lt;br&gt;：set  mouse = a   为命令、输入、导航都激活鼠标的使用&lt;/p&gt;
+&lt;p&gt;我们知道vim的特色就是可以脱离鼠标而工作，所以可以使用vim提供的全套导航命令，在会话中快速而准确的移动编辑窗口。&lt;/p&gt;
+&lt;p&gt;按住Ctrl + W，然后再加上h, j, k, l，分别表示向左、下、上、右移动窗口&lt;br&gt;Ctrl + w + h：向左移动窗口&lt;br&gt;Ctrl + w + j： 向下移动窗口&lt;br&gt;Ctrl + w + j： 向上移动窗口&lt;br&gt;Ctrl + w + l： 向右移动窗口&lt;/p&gt;
+&lt;p&gt;Ctrl + w + w：这个命令会在所有窗口中循环移动&lt;br&gt;Ctrl + w + t：移动到最左上角的窗口&lt;br&gt;Ctrl + w + b：移动到最右下角的窗口&lt;br&gt;Ctrl + w + p：移动到前一个访问的窗口&lt;/p&gt;
+&lt;h2 id=&quot;移动窗口&quot;&gt;&lt;a href=&quot;#移动窗口&quot; class=&quot;headerlink&quot; title=&quot;移动窗口&quot;&gt;&lt;/a&gt;移动窗口&lt;/h2&gt;&lt;p&gt;vim中有两种移动窗口方式，一种只是简单地在屏幕上切换窗口，尺寸维持不变；另一种则是改变窗口的实际布局，还会调整尺寸，以填充它移动的位置。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;移动窗口本身（轮换或交换）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Ctrl + w + r：向右或向下方交换窗口，而Ctrl + w + R则和它方向相反。&lt;/p&gt;
+&lt;p&gt;光标会随着窗口而移动&lt;/p&gt;
+&lt;p&gt;Ctrl + w + x：交换同列或同行的窗口的位置。vim默认交换当前窗口的与它下一个窗口的位置，如果下方没有窗口，则试着与上一个窗口交换位置。亦可在此命令前加上数量，与制定的窗口交换位置。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;移动窗口并改变其布局&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;注：下面的第三个字母都是大写，按玩Ctrl + w之后，按shif + 相应的字母。后面用^代替Ctrl&lt;br&gt;Ctrl + w + K ：移动当前窗口至屏幕顶端，并占用全部宽度&lt;br&gt;^WJ： 移动窗口至屏幕底端，并占用全部宽度&lt;br&gt;^WH：移动窗口至屏幕左端，并占用全部高度&lt;br&gt;^WL：移动窗口至屏幕右端，并占用全部高度&lt;/p&gt;
+&lt;p&gt;^WT ：移动窗口至屏新的现有分页&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;调整窗口尺寸&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;改变当前窗口的尺寸，同时当然也会影响到其他窗口。&lt;br&gt;在gvim和vim中，可以用鼠标点击窗口的顶部白色条并窗口直接调整尺寸。&lt;/p&gt;
+&lt;p&gt;也可以直接用命令，调整尺寸命令也是以Ctrl + W开头：&lt;br&gt;Ctrl + W + =  ：让所有窗口调整至相同尺寸（平均划分）&lt;br&gt;Ctrl + W + -：将当前窗口的高度减少一行，也可在ex命令中，：resize -4明确指定减少的尺寸&lt;br&gt;Ctrl + W + +：将当前窗口的高度增加一行。同样在ex命令中，：resize +n 明确指定增加尺寸&lt;/p&gt;
+&lt;p&gt;Ctrl + W + &amp;lt; ：将当前窗口的宽度减少&lt;br&gt;Ctrl + W + &amp;gt; ：将当前窗口的宽度增加&lt;/p&gt;
+&lt;p&gt;Ctrl + W + |：将当前窗口的宽度调到最大，也可他哦你通过ex命令：vertical resize n明确指定改变宽度&lt;/p&gt;
+&lt;h2 id=&quot;分页编辑&quot;&gt;&lt;a href=&quot;#分页编辑&quot; class=&quot;headerlink&quot; title=&quot;分页编辑&quot;&gt;&lt;/a&gt;分页编辑&lt;/h2&gt;&lt;p&gt;除了使多窗口编辑外，vim还允许创建多个分页（tab），每个分页各有独自的行为，类似于浏览器firefox或chrome的分页浏览功能。&lt;/p&gt;
+&lt;p&gt;我们可以在vim或gvim中使用分页，但在gvim会更好用。&lt;br&gt;最终要的命令&lt;br&gt;：tabnew filename  打开新分页并编辑新文件（可选的）。如果未指定文件，则只打开新分页，并附上空的缓冲区。&lt;br&gt;：tabclose  关闭当前分页&lt;br&gt; ：tabonly  关闭其他所有的分页。如果其他分页中有修改过的文件，则不会移除该分页，除非设置了autowrite选项。此时，所有修改过的文件都在分页关闭前写入磁盘。&lt;/p&gt;
+&lt;p&gt;游走分页&lt;/p&gt;
+&lt;p&gt;可以直接点鼠标来移动到另一个分页，也可以用命令&lt;br&gt;Ctrl + PageDown：移动到下一个分页&lt;br&gt;Ctrl + PageUp：移动到上一个分页&lt;/p&gt;
+&lt;h2 id=&quot;关闭与离开窗口&quot;&gt;&lt;a href=&quot;#关闭与离开窗口&quot; class=&quot;headerlink&quot; title=&quot;关闭与离开窗口&quot;&gt;&lt;/a&gt;关闭与离开窗口&lt;/h2&gt;&lt;p&gt;有4种关闭窗口的方式，分别是：离开（quit）、关闭（close）、隐藏（hide）、关闭其他窗口&lt;/p&gt;
+&lt;p&gt;^代表Ctrl键&lt;br&gt;^Wq，离开当前窗口&lt;br&gt;^Wc，关闭当前的窗口&lt;br&gt;^Wo，关闭当前窗口以外的所有窗口&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;命令历史&quot;&gt;&lt;a href=&quot;#命令历史&quot; class=&quot;headerlink&quot; title=&quot;命令历史&quot;&gt;&lt;/a&gt;命令历史&lt;/h2&gt;&lt;p&gt;以:和/开头的命令都有历史纪录，可以首先键入:或/然后按上下箭头来选择某个历史命令。&lt;/p&gt;
+&lt;h2 id=&quot;启动vim&quot;&gt;&lt;a href=&quot;#启动vim&quot; class=&quot;headerlink&quot; title=&quot;启动vim&quot;&gt;&lt;/a&gt;启动vim&lt;/h2&gt;&lt;p&gt;在命令行窗口中输入以下命令即可&lt;/p&gt;
+&lt;p&gt;vim 直接启动vim&lt;/p&gt;
+&lt;p&gt;vim filename 打开vim并创建名为filename的文件&lt;/p&gt;
+&lt;h2 id=&quot;文件命令&quot;&gt;&lt;a href=&quot;#文件命令&quot; class=&quot;headerlink&quot; title=&quot;文件命令&quot;&gt;&lt;/a&gt;文件命令&lt;/h2&gt;&lt;p&gt;打开单个文件&lt;/p&gt;
+&lt;p&gt;vim file&lt;/p&gt;
+&lt;p&gt;同时打开多个文件&lt;/p&gt;
+&lt;p&gt;vim file1 file2 file3 …&lt;br&gt;
+    
+    </summary>
+    
+      <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
+    
+    
+      <category term="vim" scheme="http://yoursite.com/tags/vim/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>时间序列完全教程（R）</title>
+    <link href="http://yoursite.com/2016/03/29/test/"/>
+    <id>http://yoursite.com/2016/03/29/test/</id>
+    <published>2016-03-29T08:07:51.000Z</published>
+    <updated>2016-03-29T13:17:22.602Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;在商业应用中，时间是最重要的因素，能够提升成功率。然而绝大多数公司很难跟上时间的脚步。但是随着技术的发展，出现了很多有效的方法，能够让我们预测未来。不要担心，本文并不会讨论时间机器，讨论的都是很实用的东西。&lt;br&gt;本文将要讨论关于预测的方法。有一种预测是跟时间相关的，而这种处理与时间相关数据的方法叫做&lt;strong&gt;时间序列模型&lt;/strong&gt;。这个模型能够在与时间相关的数据中，寻到一些隐藏的信息来辅助决策。&lt;br&gt;当我们处理时序序列数据的时候，时间序列模型是非常有用的模型。大多数公司都是基于时间序列数据来分析第二年的销售量，网站流量，竞争地位和更多的东西。然而很多人并不了解的时间序列分析这个领域。&lt;br&gt;所以，如果你不了解时间序列模型。这篇文章将会想你介绍时间序列模型的处理步骤以及它的相关技术。&lt;br&gt;本文包含的内容如下所示：&lt;br&gt;目录&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1、时间序列模型介绍&lt;/li&gt;
+&lt;li&gt;2、使用R语言来探索时间序列数据&lt;/li&gt;
+&lt;li&gt;3、介绍ARMA时间序列模型&lt;/li&gt;
+&lt;li&gt;4、ARIMA时间序列模型的框架与应用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;让我们开始吧&lt;/p&gt;
+&lt;h1 id=&quot;1、时间序列模型介绍&quot;&gt;&lt;a href=&quot;#1、时间序列模型介绍&quot; class=&quot;headerlink&quot; title=&quot;1、时间序列模型介绍&quot;&gt;&lt;/a&gt;1、时间序列模型介绍&lt;/h1&gt;&lt;p&gt;Let’s begin。本节包括平稳序列，随机游走,Rho系数,Dickey Fuller检验平稳性。如果这些知识你都不知道，不用担心-接下来这些概念本节都会进行详细的介绍，我敢打赌你很喜欢我的介绍的。&lt;/p&gt;
+&lt;h2 id=&quot;平稳序列&quot;&gt;&lt;a href=&quot;#平稳序列&quot; class=&quot;headerlink&quot; title=&quot;平稳序列&quot;&gt;&lt;/a&gt;平稳序列&lt;/h2&gt;&lt;p&gt;判断一个序列是不是平稳序列有三个评判标准：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;均值 ，是与时间t 无关的常数。下图（左）满足平稳序列的条件，下图（右）很明显具有时间依赖。&lt;br&gt;&lt;img src=&quot;http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/Mean_nonstationary.png?w=586&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;方差 ，是与时间t 无关的常数。这个特性叫做方差齐性。下图显示了什么是方差对齐，什么不是方差对齐。（注意右手边途中的不同分布。）&lt;br&gt;&lt;img src=&quot;http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/Var_nonstationary.png?w=577&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;协方差 ，只与时期间隔k有关，与时间t 无关的常数。如下图（右），可以注意到随着时间的增加，曲线变得越来越近。因此红色序列的协方差并不是恒定的。&lt;br&gt;&lt;img src=&quot;http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/Cov_nonstationary.png?w=566&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;我们为什么要关心平稳时间序列呢？&quot;&gt;&lt;a href=&quot;#我们为什么要关心平稳时间序列呢？&quot; class=&quot;headerlink&quot; title=&quot;我们为什么要关心平稳时间序列呢？&quot;&gt;&lt;/a&gt;我们为什么要关心平稳时间序列呢？&lt;/h3&gt;&lt;p&gt;除非你的时间序列是平稳的，否则不能建立一个时间序列模型。在很多案例中时间平稳条件常常是不满足的，所以首先要做的就是让时间序列变得平稳，然后尝试使用随机模型预测这个时间序列。有很多方法来平稳数据，比如消除长期趋势，差分化。&lt;/p&gt;
+&lt;h2 id=&quot;随机游走&quot;&gt;&lt;a href=&quot;#随机游走&quot; class=&quot;headerlink&quot; title=&quot;随机游走&quot;&gt;&lt;/a&gt;随机游走&lt;/h2&gt;&lt;p&gt;这是时间序列最基本的概念。你可能很了解这个概念。但是，很多工业界的人仍然将随机游走看做一个平稳序列。在这一节中，我会使用一些数学工具，帮助理解这个概念。我们先看一个例子&lt;br&gt;&lt;strong&gt;例子&lt;/strong&gt;：想想一个女孩随机的在想象一个女孩在一个巨型棋盘上面随意移动。这里，下一个位置只取决于上一个位置。&lt;br&gt;&lt;img src=&quot;http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/RandomWalk.gif?resize=520%2C224&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;center&gt; (来源: &lt;a href=&quot;http://scifun.chem.wisc.edu/WOP/RandomWalk.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://scifun.chem.wisc.edu/WOP/RandomWalk.html&lt;/a&gt; )&lt;/center&gt;
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;现在想象一下，你在一个封闭的房间里，不能看见这个女孩。但是你想要预测不同时刻这个女孩的位置。怎么才能预测的准一点？当然随着时间的推移你预测的越来越不准。在t=0时刻，你肯定知道这个女孩在哪里。下一个时刻女孩移动到附件8块方格中的一块，这个时候，你预测到的可能性已经降为1/8。继续往下继续预测，现在我们将这个序列公式化：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$X(t) = X(t-1) + Er(t)$&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;这里的$Er_t$代表这这个时间点随机干扰项。这个就是女孩在每一个时间点带来的随机性。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;现在我们递归所有x时间点，最后我们将得到下面的等式：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$X(t) = X(0) + Sum(Er(1),Er(2),Er(3).....Er(t))$&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;现在，让我们尝试验证一下随机游走的平稳性假设：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;是否均值为常数？&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;E[X(t)] = E[X(0)] + Sum(E[Er(1)],E[Er(2)],E[Er(3)].....E[Er(t)])&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我们知道由于随机过程的随机干扰项的期望值为0.到目前为止：E[X(t)] = E[X(0)] = 常数&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;是否方差为常数？&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Var[X(t)] = Var[X(0)] + Sum(Var[Er(1)],Var[Er(2)],Var[Er(3)].....Var[Er(t)])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Var[X(t)] = t * Var(Error) = 时间相关&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;因此，我们推断，随机游走不是一个平稳的过程，因为它有一个时变方差。此外，如果我们检查的协方差，我们看到协方差依赖于时间。&lt;/p&gt;
+&lt;h3 id=&quot;我们看一个更有趣的东西&quot;&gt;&lt;a href=&quot;#我们看一个更有趣的东西&quot; class=&quot;headerlink&quot; title=&quot;我们看一个更有趣的东西&quot;&gt;&lt;/a&gt;我们看一个更有趣的东西&lt;/h3&gt;&lt;p&gt;我们已经知道一个随机游走是一个非平稳的过程。让我们在方程中引入一个新的系数，看看我们是否能制定一个检查平稳性的公式。&lt;br&gt;&lt;strong&gt;Rho系数&lt;/strong&gt;&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;X(t) = Rho * X(t-1) + Er(t)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;现在，我们将改变Rho看看我们可不可以让这个序列变的平稳。这里我们只是看，并不进行平稳性检验。&lt;br&gt;让我们从一个Rho=0的完全平稳序列开始。这里是时间序列的图：&lt;br&gt;&lt;img src=&quot;http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/rho0.png?w=939&quot; alt=&quot;&quot;&gt;&lt;br&gt;将Rho的值增加到0.5，我们将会得到如下图：&lt;br&gt;&lt;img src=&quot;http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/rho5.png?w=941&quot; alt=&quot;&quot;&gt;&lt;br&gt;你可能会注意到，我们的周期变长了，但基本上似乎没有一个严重的违反平稳性假设。现在让我们采取更极端的情况下ρ= 0.9&lt;br&gt;&lt;img src=&quot;http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/rho9.png?w=941&quot; alt=&quot;&quot;&gt;&lt;br&gt;我们仍然看到，在一定的时间间隔后，从极端值返回到零。这一系列也不违反非平稳性明显。现在，让我们用ρ= 1随机游走看看&lt;br&gt;&lt;img src=&quot;http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/rho1.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;这显然是违反固定条件。是什么使rho= 1变得这么特殊的呢？，这种情况并不满足平稳性测试？我们来找找这个数学的原因&lt;br&gt;公式X(t) = Rho * X(t-1) + Er(t)的期望为：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;E[X(t)] = Rho *E[ X(t-1)]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这个公式很有意义。下一个X(或者时间点t)被拉到Rho*上一个x的值。&lt;br&gt;例如，如果x（t–1）= 1，E[X（T）] = 0.5（Rho= 0.5）。现在，如果从零移动到任何方向下一步想要期望为0。唯一可以让期望变得更大的就是错误率。当Rho变成1呢？下一步没有任何可能下降。&lt;/p&gt;
+&lt;h2 id=&quot;Dickey-Fuller-Test平稳性&quot;&gt;&lt;a href=&quot;#Dickey-Fuller-Test平稳性&quot; class=&quot;headerlink&quot; title=&quot;Dickey Fuller Test平稳性&quot;&gt;&lt;/a&gt;Dickey Fuller Test平稳性&lt;/h2&gt;&lt;p&gt;这里学习的最后一个知识点是Dickey Fuller检验。。在统计学里，Dickey-Fuller检验是测试一个自回归模型是否存在单位根。这里根据上面Rho系数有一个调整，将公式转换为Dickey-Fuller检验&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;X(t) = Rho * X(t-1) + Er(t)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;=&amp;gt;  X(t) - X(t-1) = (Rho - 1) X(t - 1) + Er(t)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;我们要测试如果Rho–1=0是否差异显著。如果零假设不成立，我们将得到一个平稳时间序列。&lt;br&gt;平稳性测试和将一个序列转换为平稳性序列是时间序列模型中最重要的部分。因此需要记住本节提到的所有概念方便进入下一节。&lt;br&gt;接下来就看看时间序列的例子。&lt;/p&gt;
+&lt;h1 id=&quot;2、使用R探索时间序列&quot;&gt;&lt;a href=&quot;#2、使用R探索时间序列&quot; class=&quot;headerlink&quot; title=&quot;2、使用R探索时间序列&quot;&gt;&lt;/a&gt;2、使用R探索时间序列&lt;/h1&gt;&lt;p&gt;本节我们将学习如何使用R处理时间序列。这里我们只是探索时间序列，并不会建立时间序列模型。&lt;br&gt;本节使用的数据是R中的内置数据：AirPassengers。这个数据集是1949-1960年每个月国际航空的乘客数量的数据。&lt;/p&gt;
+&lt;h2 id=&quot;在入数据集&quot;&gt;&lt;a href=&quot;#在入数据集&quot; class=&quot;headerlink&quot; title=&quot;在入数据集&quot;&gt;&lt;/a&gt;在入数据集&lt;/h2&gt;&lt;p&gt;下面的代码将帮助我们在入数据集并且能够看到一些少量的数据集。&lt;br&gt;&lt;figure class=&quot;highlight r&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; data(AirPassengers)&lt;span class=&quot;comment&quot;&gt;#在入数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;gt; class(AirPassengers)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; [&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;] &lt;span class=&quot;string&quot;&gt;&quot;ts&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 查看AirPassengers数据类型，这里是时间序列数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;gt; start(AirPassengers)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; [&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;] &lt;span class=&quot;number&quot;&gt;1949&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 这个是Airpassengers数据开始的时间&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; end(AirPassengers)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; [&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;] &lt;span class=&quot;number&quot;&gt;1960&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;12&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#这个是Airpassengers数据结束的时间&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; frequency(AirPassengers)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; [&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;] &lt;span class=&quot;number&quot;&gt;12&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#时间序列的频率是一年12个月&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;gt; summary(AirPassengers)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; Min. 1st Qu. Median Mean 3rd Qu. Max.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;number&quot;&gt;104.0&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;180.0&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;265.5&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;280.3&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;360.5&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;622.0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;矩阵中详细数据&quot;&gt;&lt;a href=&quot;#矩阵中详细数据&quot; class=&quot;headerlink&quot; title=&quot;矩阵中详细数据&quot;&gt;&lt;/a&gt;矩阵中详细数据&lt;/h2&gt;&lt;figure class=&quot;highlight r&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#The number of passengers are distributed across the spectrum&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; plot(AirPassengers)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#绘制出时间序列&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt;abline(reg=lm(AirPassengers~time(AirPassengers)))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 拟合一条直线&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&quot;http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/plot_AP1.png?resize=850%2C367&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;figure class=&quot;highlight r&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; cycle(AirPassengers)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     Jan Feb Mar Apr May Jun Jul Aug Sep Oct  Nov Dec&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;1949&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;7&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;9&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;11&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;12&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;1950&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;7&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;9&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;11&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;12&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;1951&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;7&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;9&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;11&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;12&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;1952&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;7&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;9&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;11&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;12&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;1953&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;7&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;9&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;11&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;12&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;1954&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;7&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;9&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;11&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;12&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;1955&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;7&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;9&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;11&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;12&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;1956&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;7&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;9&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;11&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;12&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;1957&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;7&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;9&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;11&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;12&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;1958&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;7&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;9&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;11&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;12&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;1959&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;7&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;9&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;11&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;12&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;1960&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;7&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;   &lt;span class=&quot;number&quot;&gt;9&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;11&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;12&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 打印每年的周期&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; plot(aggregate(AirPassengers,FUN=mean))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#绘制&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; boxplot(AirPassengers~cycle(AirPassengers))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#绘制盒图&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/plot_aggregate.png?resize=850%2C342&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/plot_month_wise.png?resize=850%2C333&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;重要推论&quot;&gt;&lt;a href=&quot;#重要推论&quot; class=&quot;headerlink&quot; title=&quot;重要推论&quot;&gt;&lt;/a&gt;重要推论&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;每年的趋势显示旅客的数量每年都在增加&lt;/li&gt;
+&lt;li&gt;七八月的均值和方差比其他月份要高很多&lt;/li&gt;
+&lt;li&gt;每个月的平均值并不相同，但是方差差异很小。因此，可以看出具有很强的周期性。，一个周期为12个月或更少。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;查看数据，试探数据是建立时间序列模型最重要的一部-如果没有这一步，你将不知道这个序列是不是平稳序列。就像这个例子一样，我们已经知道了很多关于这个模型的很多细节。&lt;br&gt;接下来我们会建立一些时间序列模型以及这些模型的特征，也会最一些预测。&lt;/p&gt;
+&lt;h1 id=&quot;3、ARMA时间序列模型&quot;&gt;&lt;a href=&quot;#3、ARMA时间序列模型&quot; class=&quot;headerlink&quot; title=&quot;3、ARMA时间序列模型&quot;&gt;&lt;/a&gt;3、ARMA时间序列模型&lt;/h1&gt;&lt;p&gt;ARMA也叫自回归移动平均混合模型。ARMA模型经常在时间序列中使用。在ARMA模型中，AR代表自回归，MA代表移动平均。如果这些术语听起来很复杂，不用担心-下面将会用几分钟的时间简单介绍这些概念。&lt;br&gt;我们现在就会领略这些模型的特点。在开始之前，你首先要记住，AR或者MA并不是应用在非平稳序列上的。&lt;br&gt;在实际应用中可能会得到一个非平稳序列，你首先要做的就是将这个序列变成平稳序列（通过差分化/转换），然后选择可以使用的时间序列模型。&lt;br&gt;首先，本文将介绍分开介绍两个模型（AR&amp;amp;MA）。接下来我们看一看这些模型的特点。&lt;/p&gt;
+&lt;h2 id=&quot;自回归时间序列模型&quot;&gt;&lt;a href=&quot;#自回归时间序列模型&quot; class=&quot;headerlink&quot; title=&quot;自回归时间序列模型&quot;&gt;&lt;/a&gt;自回归时间序列模型&lt;/h2&gt;&lt;p&gt;让我们从下面的例子理解AR模型：&lt;br&gt;现状一个国家的GDP（x(t)）依赖与去年的GDP（x(t-1)).这个假设一个国家今年的GDP总值依赖与去年的GDP总值和今年的新开的工厂和服务。但是GDP的主要依赖与去年去年的GDP。&lt;br&gt;那么，GDP的公式为：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;x(t) = alpha *  x(t – 1) + error (t)       （1）&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这个等式就是AR公式。公式（1）表示下一个点完全依赖与前面一个点。alpha是一个系数，希望能够找到alpha最小化错误率。x(t-1)同样依赖x(t)。&lt;br&gt;例如，x(t)代表一个城市在某一天的果汁的销售量。在冬天，极少的供应商进果汁。突然有一天，温度上升了，果汁的需求猛增到1000.然而过了几天，气温有下降了。但是众所周知，人们在热天会喝果汁，这些人会有50%在冷天仍然喝果汁。在接下来的几天，这个比例降到了25%(50%的50%），然后几天后逐渐降到一个很小的数。下图解释了AR序列的惯性：&lt;br&gt;&lt;img src=&quot;http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/AR1.png?w=488&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;移动平均时间序列模型&quot;&gt;&lt;a href=&quot;#移动平均时间序列模型&quot; class=&quot;headerlink&quot; title=&quot;移动平均时间序列模型&quot;&gt;&lt;/a&gt;移动平均时间序列模型&lt;/h2&gt;&lt;p&gt;接下来另一个关于移动平均的例子。&lt;br&gt;一个公司生成某种类型的包，这个很容易理解。作为一个竞争的市场，包的销售量从零开始增加的。所以，有一天他做了一个实验，设计并制作了不同的包，这种包并不会被随时购买。因此，假设市场上总需求是1000个这种包。在某一天，这个包的需求特别高，很快库存快要完了。这天结束了还有100个包没卖掉。我们把这个误差成为时间点误差。接下来的几天仍有几个客户购买这种包。下面通过一个简单的公式来描述这个场景：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;x(t) = beta *  error(t-1) + error (t)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;尝试把这个图画出来，就是这个样子的：&lt;br&gt;&lt;img src=&quot;http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/MA1.png?w=488&quot; alt=&quot;&quot;&gt;&lt;br&gt;注意到MA和AR模型的不同了没？在MA模型中，噪声/冲击迅速小时。在AR模型中会受到长时间的影响。&lt;/p&gt;
+&lt;h2 id=&quot;AR模型与MA模型的不同&quot;&gt;&lt;a href=&quot;#AR模型与MA模型的不同&quot; class=&quot;headerlink&quot; title=&quot;AR模型与MA模型的不同&quot;&gt;&lt;/a&gt;AR模型与MA模型的不同&lt;/h2&gt;&lt;p&gt;AR与MA模型的主要不同在于时间序列对象在不同时间点的相关性。&lt;br&gt;MA模型用过去各个时期的随机干扰或预测误差的线性组合来表达当前预测值。当n&amp;gt;某一个值时，x(t)与x(t-n)的相关性总为0.AM模型仅通过时间序列变量的自身历史观测值来反映有关因素对预测目标的影响和作用，步骤模型变量相对独立的假设条件约束，所构成的模型可以消除普通回退预测方法中由于自变量选择、多重共线性等造成的困难。即AM模型中x(t)与x(t-1)的相关性随着时间的推移变得越来越小。这个差别要好好利用起来。&lt;/p&gt;
+&lt;h2 id=&quot;利用ACF和PACF绘图&quot;&gt;&lt;a href=&quot;#利用ACF和PACF绘图&quot; class=&quot;headerlink&quot; title=&quot;利用ACF和PACF绘图&quot;&gt;&lt;/a&gt;利用ACF和PACF绘图&lt;/h2&gt;&lt;p&gt;一旦我们得到一个平稳时间序列。我们必须要回答两个最重要的问题；&lt;br&gt;Q1：这个是AR或者MA过程？&lt;br&gt;Q2：我们需要利用的AR或者MA过程的顺序是什么？&lt;/p&gt;
+&lt;p&gt;解决这两个问题我们要借助两个系数：&lt;br&gt;时间序列x(t)滞后k阶的样本自相关系数（ACF）和滞后k期的情况下样本偏自相关系数（PACF）。公式省略。&lt;br&gt;AR模型的ACF和PACF：&lt;br&gt;通过计算证明可知：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AR的ACF为拖尾序列，即无论滞后期k取多大，ACF的计算值均与其1到p阶滞后的自相关函数有关。&lt;/li&gt;
+&lt;li&gt;AR的PACF为截尾序列，即当滞后期k&amp;gt;p时PACF=0的现象。&lt;br&gt;&lt;img src=&quot;http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/Gradual-decline.gif&quot; alt=&quot;&quot;&gt;&lt;img src=&quot;http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/cut-off.gif?resize=318%2C284&quot; alt=&quot;&quot;&gt;&lt;br&gt;上图蓝线显示值与0具有显著的差异。很显然上面PACF图显示截尾于第二个滞后，这意味这是一个AR（2）过程。&lt;br&gt;MA模型的ACF和PACF：&lt;/li&gt;
+&lt;li&gt;MA的ACF为截尾序列，即当滞后期k&amp;gt;p时PACF=0的现象。&lt;/li&gt;
+&lt;li&gt;AR的PACF为拖尾序列，即无论滞后期k取多大，ACF的计算值均与其1到p阶滞后的自相关函数有关。&lt;br&gt;&lt;img src=&quot;http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/cut-off.gif?resize=318%2C284&quot; alt=&quot;&quot;&gt;&lt;img src=&quot;http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/Gradual-decline.gif?resize=318%2C284&quot; alt=&quot;&quot;&gt;&lt;br&gt;很显然，上面ACF图截尾于第二个滞后，这以为这是一个MA（2）过程。&lt;br&gt;目前，本文已经介绍了关于使用ACF&amp;amp;PACF图识别平稳序列的类型。现在，我将介绍一个时间序列模型的整体框架。此外，还将讨论时间序列模型的实际应用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;4、ARIMA时间序列模型的框架与应用&quot;&gt;&lt;a href=&quot;#4、ARIMA时间序列模型的框架与应用&quot; class=&quot;headerlink&quot; title=&quot;4、ARIMA时间序列模型的框架与应用&quot;&gt;&lt;/a&gt;4、ARIMA时间序列模型的框架与应用&lt;/h1&gt;&lt;p&gt;到此，本文快速介绍了时间序列模型的基础概念、使用R探索时间序列和ARMA模型。现在我们将这些零散的东西组织起来，做一件很有趣的事情。&lt;/p&gt;
+&lt;h2 id=&quot;框架&quot;&gt;&lt;a href=&quot;#框架&quot; class=&quot;headerlink&quot; title=&quot;框架&quot;&gt;&lt;/a&gt;框架&lt;/h2&gt;&lt;p&gt;下图的框架展示了如何一步一步的“&lt;strong&gt;做一个时间序列分析&lt;/strong&gt;”&lt;br&gt;&lt;img src=&quot;http://img.blog.csdn.net/20160322174807405&quot; alt=&quot;&quot;&gt;&lt;br&gt;前三步我们在前文意见讨论了。尽管如此，这里还是需要简单说明一下：&lt;/p&gt;
+&lt;h3 id=&quot;第一步：时间序列可视化&quot;&gt;&lt;a href=&quot;#第一步：时间序列可视化&quot; class=&quot;headerlink&quot; title=&quot;第一步：时间序列可视化&quot;&gt;&lt;/a&gt;第一步：时间序列可视化&lt;/h3&gt;&lt;p&gt;在构建任何类型的时间序列模型之前，分析其趋势是至关重要的。我们感兴趣的细节包括序列中的各种趋势、周期\季节性或者随机行为。在本文的第二部分已经介绍了。&lt;/p&gt;
+&lt;h3 id=&quot;第二步：序列平稳&quot;&gt;&lt;a href=&quot;#第二步：序列平稳&quot; class=&quot;headerlink&quot; title=&quot;第二步：序列平稳&quot;&gt;&lt;/a&gt;第二步：序列平稳&lt;/h3&gt;&lt;p&gt;一旦我们知道了模式、趋势、周期。我们就可以检查序列是否平稳。Dicky-Fuller是一种很流行的检验方式。在第一部分意见介绍了这种检验方式。在这里还没有结束！如果发现序列是非平稳序列怎么办？&lt;br&gt;这里有三种比较常用的技术来让一个时间序列平稳。&lt;br&gt;1 &lt;strong&gt;消除趋势&lt;/strong&gt;：这里我们简单的删除时间序列中的趋势成分。例如，我的时间序列的方程是：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;x(t) = (mean + trend * t) + error&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这里我简单的删除上述公式中的trend&lt;em&gt;t部分，建立x(t)=mean+error模型&lt;br&gt;2 &lt;em&gt;*差分&lt;/em&gt;&lt;/em&gt;：这个技术常常用来消除非平稳性。这里我们是对序列的差分的结果建立模型而不是真正的序列。例如：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;x(t) – x(t-1) = ARMA (p ,  q)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这个差分也是ARIMA的部分。现在我们有3个参数了：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;p:AR&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;d:I&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;q:MA&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;3 &lt;strong&gt;季节性&lt;/strong&gt;：季节性直接被纳入ARIMA模型中。下面的应用部分我们再讨论这个。&lt;/p&gt;
+&lt;h3 id=&quot;第三步：找到最优参数&quot;&gt;&lt;a href=&quot;#第三步：找到最优参数&quot; class=&quot;headerlink&quot; title=&quot;第三步：找到最优参数&quot;&gt;&lt;/a&gt;第三步：找到最优参数&lt;/h3&gt;&lt;p&gt;参数p,q可以使用ACF和PACF图发现。除了这种方法，如果相关系数ACF和偏相关系数PACF逐渐减小，这表明我们需要进行时间序列平稳并引入d参数。&lt;/p&gt;
+&lt;h3 id=&quot;第四步：简历ARIMA模型&quot;&gt;&lt;a href=&quot;#第四步：简历ARIMA模型&quot; class=&quot;headerlink&quot; title=&quot;第四步：简历ARIMA模型&quot;&gt;&lt;/a&gt;第四步：简历ARIMA模型&lt;/h3&gt;&lt;p&gt;找到了这些参数，我们现在就可以尝试简历ARIMA模型了。从上一步找到的值可能只是一个近似估计的值，我们需要探索更多(p,d,q）的组合。最小的BIC和AIC的模型参数才是我们要的。我们也可以尝试一些季节性成分。在这里，在ACF/PACF图中我们会注意到一些季节性的东西。&lt;/p&gt;
+&lt;h3 id=&quot;第五步：预测&quot;&gt;&lt;a href=&quot;#第五步：预测&quot; class=&quot;headerlink&quot; title=&quot;第五步：预测&quot;&gt;&lt;/a&gt;第五步：预测&lt;/h3&gt;&lt;p&gt;到这步，我们就有了ARIMA模型，我们现在就可以做预测了。我们也可以将这种趋势可视化，进行交叉验证。&lt;/p&gt;
+&lt;h2 id=&quot;时间序列模型的应用。&quot;&gt;&lt;a href=&quot;#时间序列模型的应用。&quot; class=&quot;headerlink&quot; title=&quot;时间序列模型的应用。&quot;&gt;&lt;/a&gt;时间序列模型的应用。&lt;/h2&gt;&lt;p&gt;这里我们用前面的例子。使用这个时间序列做预测。我们建议你在进行下一步之前，先观察这个数据。&lt;/p&gt;
+&lt;h3 id=&quot;我们从哪里开始呢？&quot;&gt;&lt;a href=&quot;#我们从哪里开始呢？&quot; class=&quot;headerlink&quot; title=&quot;我们从哪里开始呢？&quot;&gt;&lt;/a&gt;我们从哪里开始呢？&lt;/h3&gt;&lt;p&gt;下图是这些年的乘客数的图。在往下看之前，观察这个图。&lt;br&gt;&lt;img src=&quot;http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/plot_AP.png?resize=1024%2C467&quot; alt=&quot;&quot;&gt;&lt;br&gt;这里是我的观察：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;乘客有着逐年增加的趋势。&lt;/li&gt;
+&lt;li&gt;这看起来有季节性，每一个周期不超过12个月。&lt;/li&gt;
+&lt;li&gt;数据的方差逐年增加。&lt;br&gt;在我们进行平稳性测试之前我们需要解决两个问题。第一，我们需要消除方差不齐。这里我们对这个序列做求对数。第二我们需要解决序列的趋势性。我们通过对时序序列做差分。现在，我们来检验最终序列的平稳性。&lt;figure class=&quot;highlight r&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;adf.test(diff(log(AirPassengers)), alternative=&lt;span class=&quot;string&quot;&gt;&quot;stationary&quot;&lt;/span&gt;, k=&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 这里可能会显示没有这个函数，需要安装一下.install.packages(&quot;tseries&quot;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#加在这个包,library(tseries&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	data: diff(log(AirPassengers))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; 	Dickey-Fuller = -&lt;span class=&quot;number&quot;&gt;9.6003&lt;/span&gt;, Lag order = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; 	p-value = &lt;span class=&quot;number&quot;&gt;0.01&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; 	alternative hypothesis: stationary&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我们可以看出这个序列是足够平稳做任何时间序列模型。&lt;br&gt;下一步就是找到ARIMA模型的正确的参数。我们意见知道’d‘是1，因此我们需要做1差分让序列平稳。这里我们绘制出相关图。下面就是这个序列的ACF图。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# ACF图&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;acf(log(AirPassengers))&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/ACF_original.png?w=870&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;从上述表格可以看出什么？&quot;&gt;&lt;a href=&quot;#从上述表格可以看出什么？&quot; class=&quot;headerlink&quot; title=&quot;从上述表格可以看出什么？&quot;&gt;&lt;/a&gt;从上述表格可以看出什么？&lt;/h3&gt;&lt;p&gt;很显然ACF下降的十分的慢，这就意味着乘客的数量并不是平稳的。我们在前面已经讨论了，我们现状准备在序列去对数后的差分上做回归，而不是直接在序列去对数后的数据熵差分。让我们看一下差分后的ACF和PACF曲线吧。&lt;br&gt;&lt;figure class=&quot;highlight r&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; acf(diff(log(AirPassengers)))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; pacf(diff(log(AirPassengers)))&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/ACF-diff.png?w=872&quot; alt=&quot;&quot;&gt;&lt;img src=&quot;http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/PACF-diff.png?w=888&quot; alt=&quot;&quot;&gt;&lt;br&gt;显然ACF截止与第一个滞后，因此我们知道p的值应该是0.而q的值应该是1或者2.几次迭代以后，我们发现(p,d,q)取(0,1,1)时，AIC和BIC最小。&lt;br&gt;&lt;figure class=&quot;highlight r&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; fit &amp;lt;- arima(log(AirPassengers), c(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;),seasonal = list(order = c(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;), period = &lt;span class=&quot;number&quot;&gt;12&lt;/span&gt;))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt; pred &amp;lt;- predict(fit, n.ahead = &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;*&lt;span class=&quot;number&quot;&gt;12&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ts.plot(AirPassengers,&lt;span class=&quot;number&quot;&gt;2.718&lt;/span&gt;^pred$pred, log = &lt;span class=&quot;string&quot;&gt;&quot;y&quot;&lt;/span&gt;, lty = c(&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;))&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/02/predictions.png?w=869&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;后记&quot;&gt;&lt;a href=&quot;#后记&quot; class=&quot;headerlink&quot; title=&quot;后记&quot;&gt;&lt;/a&gt;后记&lt;/h1&gt;&lt;p&gt;我参加一个时间序列的比赛，对时间序列的了解止步与马尔科夫模型。而且马尔科夫模型并不适合解纯时间序列的问题，所以就上网搜索一下时间序列的相关知识。很偶然的发现了这篇文章，文章的逻辑清晰，表达清楚，文字浅显易懂，值得我学习，所以我就尝试翻译了这篇文章。中间很多东西并不是很了解，如有错误的地方，欢迎指正。&lt;/p&gt;
+&lt;h1 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;http://www.analyticsvidhya.com/blog/2015/12/complete-tutorial-time-series-modeling/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;A Complete Tutorial on Time Series Modeling in R&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://wenku.baidu.com/link?url=b34APzBjz-cGLoxsG4-nvbwKy7FLgPk5n4nzC9w-pWQP7pc4MycpyQZil4Oe5I0285cMGz1WX79Q4aExF8Ft-n0okdqgNs4DhkRsSIWZ2zq&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;时间序列&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;wwwd.docin.com/p-682510490.html&quot;&gt;第八章时间序列分析&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;在商业应用中，时间是最重要的因素，能够提升成功率。然而绝大多数公司很难跟上时间的脚步。但是随着技术的发展，出现了很多有效的方法，能够让我们预测未来。不要担心，本文并不会讨论时间机器，讨论的都是很实用的东西。&lt;br&gt;本文将要讨论关于预测的方法。有一种预测是跟时间相关的，而这种处理与时间相关数据的方法叫做&lt;strong&gt;时间序列模型&lt;/strong&gt;。这个模型能够在与时间相关的数据中，寻到一些隐藏的信息来辅助决策。&lt;br&gt;当我们处理时序序列数据的时候，时间序列模型是非常有用的模型。大多数公司都是基于时间序列数据来分析第二年的销售量，网站流量，竞争地位和更多的东西。然而很多人并不了解的时间序列分析这个领域。&lt;br&gt;所以，如果你不了解时间序列模型。这篇文章将会想你介绍时间序列模型的处理步骤以及它的相关技术。&lt;br&gt;本文包含的内容如下所示：&lt;br&gt;目录&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1、时间序列模型介绍&lt;/li&gt;
+&lt;li&gt;2、使用R语言来探索时间序列数据&lt;/li&gt;
+&lt;li&gt;3、介绍ARMA时间序列模型&lt;/li&gt;
+&lt;li&gt;4、ARIMA时间序列模型的框架与应用&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="数据挖掘" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+    
+    
+      <category term="时间序列" scheme="http://yoursite.com/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/"/>
+    
+      <category term="R" scheme="http://yoursite.com/tags/R/"/>
+    
+      <category term="ARMA" scheme="http://yoursite.com/tags/ARMA/"/>
+    
+      <category term="ARIMA" scheme="http://yoursite.com/tags/ARIMA/"/>
+    
+      <category term="时序分析" scheme="http://yoursite.com/tags/%E6%97%B6%E5%BA%8F%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2016/03/29/hello-world/"/>
+    <id>http://yoursite.com/2016/03/29/hello-world/</id>
+    <published>2016-03-29T06:55:09.842Z</published>
+    <updated>2016-03-29T06:55:09.842Z</updated>
+    
+    <content type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/generating.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Generating&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Deploy-to-remote-sites&quot;&gt;&lt;a href=&quot;#Deploy-to-remote-sites&quot; class=&quot;headerlink&quot; title=&quot;Deploy to remote sites&quot;&gt;&lt;/a&gt;Deploy to remote sites&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/deployment.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
