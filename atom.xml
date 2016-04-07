@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-31T08:15:35.291Z</updated>
+  <updated>2016-04-07T16:59:35.238Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,528 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>c++ 迭代器</title>
+    <link href="http://yoursite.com/2016/04/08/c-%E8%BF%AD%E4%BB%A3%E5%99%A8/"/>
+    <id>http://yoursite.com/2016/04/08/c-迭代器/</id>
+    <published>2016-04-07T16:54:36.000Z</published>
+    <updated>2016-04-07T16:59:35.238Z</updated>
+    
+    <content type="html">&lt;p&gt;本科的时候，主要使用的是c语言做嵌入式以及python，重新学习c++,阅读《c++ primer》，同时在网上查找资料，阅读并记录下来，方便下次查阅。看到c++中的迭代器，跟python中的迭代器的概念好学差不多。&lt;/p&gt;
+&lt;p&gt;迭代器的递增运算令迭代器每次移动一个元素，所有的标准库容器都支持递增运算的迭代器。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;迭代器-iterator-是一中检查容器内元素并遍历元素的数据类型。&quot;&gt;&lt;a href=&quot;#迭代器-iterator-是一中检查容器内元素并遍历元素的数据类型。&quot; class=&quot;headerlink&quot; title=&quot;迭代器(iterator)是一中检查容器内元素并遍历元素的数据类型。&quot;&gt;&lt;/a&gt;迭代器(iterator)是一中检查容器内元素并遍历元素的数据类型。&lt;/h1&gt;&lt;p&gt;(1) 每种容器类型都定义了自己的迭代器类型，如vector:&lt;br&gt;vector&lt;int&gt;::iterator iter;这条语句定义了一个名为iter的变量，它的数据类型是由vector&lt;int&gt;定义的iterator类型。&lt;br&gt;(2) 使用迭代器读取vector中的每一个元素：&lt;br&gt;vector&lt;int&gt; ivec(10,1);&lt;br&gt;for(vector&lt;int&gt;::iterator iter=ivec.begin();iter!=ivec.end();++iter)&lt;br&gt;{&lt;br&gt;&lt;em&gt;iter=2; //使用 &lt;/em&gt; 访问迭代器所指向的元素&lt;br&gt;}&lt;br&gt;const_iterator:&lt;br&gt;只能读取容器中的元素，而不能修改。&lt;br&gt;for(vector&lt;int&gt;::const_iterator citer=ivec.begin();citer!=ivec.end();citer++)&lt;br&gt;{&lt;br&gt;cout&amp;lt;&amp;lt;&lt;em&gt;citer;&lt;br&gt;//&lt;/em&gt;citer=3; error&lt;br&gt;}&lt;br&gt;vector&lt;int&gt;::const_iterator 和 const vector&lt;int&gt;::iterator的区别&lt;br&gt;const vector&lt;int&gt;::iterator newiter=ivec.begin();&lt;br&gt;&lt;em&gt;newiter=11; //可以修改指向容器的元素&lt;br&gt;//newiter++; //迭代器本身不能被修改&lt;br&gt;(3) iterator的算术操作：&lt;br&gt;iterator除了进行++,–操作，可以将iter+n,iter-n赋给一个新的iteraor对象。还可以使用一个iterator减去另外一个iterator.&lt;br&gt;const vector&lt;int&gt;::iterator newiter=ivec.begin();&lt;br&gt;vector&lt;int&gt;::iterator newiter2=ivec.end();&lt;br&gt;cout&amp;lt;&amp;lt;”\n”&amp;lt;&lt;newiter2-newiter; 1=&quot;&quot; 一個很典型使用vector的stl程式:=&quot;&quot; #include=&quot;&quot; &lt;vector=&quot;&quot;&gt;&lt;br&gt;2 #include &lt;iostream&gt;&lt;br&gt;3&lt;br&gt;4 using namespace std;&lt;br&gt;5&lt;br&gt;6 int main() {&lt;br&gt;7 vector&lt;int&gt; ivec;&lt;br&gt;8 ivec.push_back(1);&lt;br&gt;9 ivec.push_back(2);&lt;br&gt;10 ivec.push_back(3);&lt;br&gt;11 ivec.push_back(4);&lt;br&gt;12&lt;br&gt;13 for(vector&lt;int&gt;::iterator iter = ivec.begin();1. iter != ivec.end(); ++iter)&lt;br&gt;14 cout &amp;lt;&amp;lt; &lt;/int&gt;&lt;/int&gt;&lt;/iostream&gt;&lt;/newiter2-newiter;&gt;&lt;/int&gt;&lt;/int&gt;&lt;/em&gt;iter &amp;lt;&amp;lt; endl;&lt;br&gt;15 }&lt;/int&gt;&lt;/int&gt;&lt;/int&gt;&lt;/int&gt;&lt;/int&gt;&lt;/int&gt;&lt;/int&gt;&lt;/int&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Iterator（迭代器）模式&lt;br&gt;一、概述&lt;br&gt; Iterator（迭代器）模式又称Cursor（游标）模式，用于提供一种方法顺序访问一个聚合对象中各个元素, 而又不需暴露该对象的内部表示。或者这样说可能更容易理解：Iterator模式是运用于聚合对象的一种模式，通过运用该模式，使得我们可以在不知道对象内部表示的情况下，按照一定顺序（由iterator提供的方法）访问聚合对象中的各个元素。&lt;br&gt; 由于Iterator模式的以上特性：与聚合对象耦合，在一定程度上限制了它的广泛运用，一般仅用于底层聚合支持类，如STL的list、vector、stack等容器类及ostream_iterator等扩展iterator。&lt;br&gt; 根据STL中的分类，iterator包括：&lt;br&gt;Input Iterator：只能单步向前迭代元素，不允许修改由该类迭代器引用的元素。&lt;br&gt;Output Iterator：该类迭代器和Input Iterator极其相似，也只能单步向前迭代元素，不同的是该类迭代器对元素只有写的权力。&lt;br&gt;Forward Iterator：该类迭代器可以在一个正确的区间中进行读写操作，它拥有Input Iterator的所有特性，和Output Iterator的部分特性，以及单步向前迭代元素的能力。&lt;br&gt;Bidirectional Iterator：该类迭代器是在Forward Iterator的基础上提供了单步向后迭代元素的能力。&lt;br&gt;Random Access Iterator：该类迭代器能完成上面所有迭代器的工作，它自己独有的特性就是可以像指针那样进行算术计算，而不是仅仅只有单步向前或向后迭代。&lt;br&gt; 这五类迭代器的从属关系，如下图所示，其中箭头A→B表示，A是B的强化类型，这也说明了如果一个算法要求B，那么A也可以应用于其中。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;input output&lt;br&gt;      \ /&lt;br&gt;forward&lt;br&gt;       |&lt;br&gt;bidirectional&lt;br&gt;       |&lt;br&gt;random access&lt;br&gt; 图1、五种迭代器之间的关系&lt;br&gt;    vector 和deque提供的是RandomAccessIterator，list提供的是BidirectionalIterator，set和map提供的 iterators是 ForwardIterator，关于STL中iterator迭代器的操作如下：&lt;br&gt;说明：每种迭代器均可进行包括表中前一种迭代器可进行的操作。&lt;br&gt;迭代器操作                      说明&lt;br&gt;(1)所有迭代器&lt;br&gt;p++                              后置自增迭代器&lt;br&gt;++p                              前置自增迭代器&lt;br&gt;(2)输入迭代器&lt;br&gt;&lt;em&gt;p                                 复引用迭代器，作为右值&lt;br&gt;p=p1                             将一个迭代器赋给另一个迭代器&lt;br&gt;p==p1                           比较迭代器的相等性&lt;br&gt;p!=p1                            比较迭代器的不等性&lt;br&gt;(3)输出迭代器
+&lt;/em&gt;p                                 复引用迭代器，作为左值&lt;br&gt;p=p1                             将一个迭代器赋给另一个迭代器&lt;br&gt;(4)正向迭代器&lt;br&gt;提供输入输出迭代器的所有功能&lt;br&gt;(5)双向迭代器&lt;br&gt;–p                                前置自减迭代器&lt;br&gt;p–                                后置自减迭代器&lt;br&gt;(6)随机迭代器&lt;br&gt;p+=i                              将迭代器递增i位&lt;br&gt;p-=i                               将迭代器递减i位&lt;br&gt;p+i                                在p位加i位后的迭代器&lt;br&gt;p-i                                 在p位减i位后的迭代器&lt;br&gt;p[i]                                返回p位元素偏离i位的元素引用&lt;br&gt;p&lt;p1 如果迭代器p的位置在p1前，返回true，否则返回false=&quot;&quot; p&lt;=&quot;p1&quot; p的位置在p1的前面或同一位置时返回true，否则返回false=&quot;&quot; p=&quot;&quot;&gt;p1                             如果迭代器p的位置在p1后，返回true，否则返回false&lt;br&gt;p&amp;gt;=p1                           p的位置在p1的后面或同一位置时返回true，否则返回false&lt;br&gt;    只有顺序容器和关联容器支持迭代器遍历，各容器支持的迭代器的类别如下：&lt;br&gt;容器                 支持的迭代器类别            容器               支持的迭代器类别            容器                 支持的迭代器类别&lt;br&gt;vector              随机访问                      deque              随机访问                       list                   双向&lt;br&gt;set                   双向                            multiset            双向                           map                 双向&lt;br&gt;multimap          双向                             stack                不支持                        queue              不支持&lt;br&gt;priority_queue   不支持&lt;br&gt;二、结构&lt;br&gt;Iterator模式的结构如下图所示：&lt;/p1&gt;&lt;/p&gt;
+&lt;p&gt;图2、Iterator模式类图示意&lt;br&gt;三、应用&lt;br&gt;    Iterator模式有三个重要的作用：&lt;br&gt;1）它支持以不同的方式遍历一个聚合.复杂的聚合可用多种方式进行遍历，如二叉树的遍历，可以采用前序、中序或后序遍历。迭代器模式使得改变遍历算法变得很容易: 仅需用一个不同的迭代器的实例代替原先的实例即可，你也可以自己定义迭代器的子类以支持新的遍历，或者可以在遍历中增加一些逻辑，如有条件的遍历等。&lt;br&gt;2）迭代器简化了聚合的接口. 有了迭代器的遍历接口，聚合本身就不再需要类似的遍历接口了，这样就简化了聚合的接口。&lt;br&gt;3）在同一个聚合上可以有多个遍历 每个迭代器保持它自己的遍历状态，因此你可以同时进行多个遍历。&lt;br&gt;4）此外，Iterator模式可以为遍历不同的聚合结构（需拥有相同的基类）提供一个统一的接口，即支持多态迭代。&lt;br&gt;    简单说来，迭代器模式也是Delegate原则的一个应用，它将对集合进行遍历的功能封装成独立的Iterator，不但简化了集合的接口，也使得修改、增 加遍历方式变得简单。从这一点讲，该模式与Bridge模式、Strategy模式有一定的相似性，但Iterator模式所讨论的问题与集合密切相关， 造成在Iterator在实现上具有一定的特殊性，具体将在示例部分进行讨论。&lt;br&gt;四、优缺点&lt;br&gt;     正如前面所说，与集合密切相关，限制了 Iterator模式的广泛使用，就个人而言，我不大认同将Iterator作为模式提出的观点，但它又确实符合模式“经常出现的特定问题的解决方案”的 特质，以至于我又不得不承认它是个模式。在一般的底层集合支持类中，我们往往不愿“避轻就重”将集合设计成集合 + Iterator 的形式，而是将遍历的功能直接交由集合完成，以免犯了“过度设计”的诟病，但是，如果我们的集合类确实需要支持多种遍历方式（仅此一点仍不一定需要考虑 Iterator模式，直接交由集合完成往往更方便），或者，为了与系统提供或使用的其它机制，如STL算法，保持一致时，Iterator模式才值得考 虑。&lt;br&gt;五、举例&lt;br&gt;    可以考虑使用两种方式来实现Iterator模式：内嵌类或者友元类。通常迭代类需访问集合类中的内部数据结构，为此，可在集合类中设置迭代类为friend class，但这不利于添加新的迭代类，因为需要修改集合类，添加friend class语句。也可以在抽象迭代类中定义protected型的存取集合类内部数据的函数，这样迭代子类就可以访问集合类数据了，这种方式比较容易添加新的迭代方式，但这种方式也存在明显的缺点：这些函数只能用于特定聚合类，并且，不可避免造成代码更加复杂。&lt;br&gt;    STL的list::iterator、deque::iterator、rbtree::iterator等采用的都是外部Iterator类的形式，虽然STL的集合类的iterator分散在各个集合类中，但由于各Iterator类具有相同的基类，保持了相同的对外的接口（包括一些traits及tags等，感兴趣者请认真阅读参考1、2），从而使得它们看起来仍然像一个整体，同时也使得应用algorithm成为可能。我们如果要扩展STL的iterator，也需要注意这一点，否则，我们扩展的iterator将可能无法应用于各algorithm。&lt;br&gt;以下是一个遍历二叉树的Iterator的例子，为了方便支持多种遍历方式，并便于遍历方式的扩展，其中还使用了Strategy模式（见笔记21）：&lt;br&gt;（注：1、虽然下面这个示例是本系列所有示例中花费我时间最多的一个，但我不得不承认，它非常不完善，感兴趣的朋友，可以考虑参考下面的参考材料将其补充完善，或提出宝贵改进意见。2、 我本想考虑将其封装成与STL风格一致的形式，使得我们遍历二叉树必须通过Iterator来进行，但由于二叉树在结构上较线性存储结构复杂，使访问必须 通过Iterator来进行，但这不可避免使得BinaryTree的访问变得异常麻烦，在具体应用中还需要认真考虑。3、以下只提供了Inorder&amp;lt;中序&amp;gt;遍历iterator的实现。）&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本科的时候，主要使用的是c语言做嵌入式以及python，重新学习c++,阅读《c++ primer》，同时在网上查找资料，阅读并记录下来，方便下次查阅。看到c++中的迭代器，跟python中的迭代器的概念好学差不多。&lt;/p&gt;
+&lt;p&gt;迭代器的递增运算令迭代器每次移动一个元素，所有的标准库容器都支持递增运算的迭代器。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="c++" scheme="http://yoursite.com/categories/c/"/>
+    
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="迭代器" scheme="http://yoursite.com/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vector用法总结</title>
+    <link href="http://yoursite.com/2016/04/08/vector%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2016/04/08/vector用法总结/</id>
+    <published>2016-04-07T16:36:35.000Z</published>
+    <updated>2016-04-07T16:38:51.418Z</updated>
+    
+    <content type="html">&lt;p&gt;本科的时候，主要使用的是c语言做嵌入式以及python，重新学习c++,阅读《c++ primer》，同时在网上查找资料，阅读并记录下来，方便下次查阅。看到STL中的vector类的时候，其中的很多方法与python中list很类似。&lt;br&gt; vector(向量): C++中的一种数据结构,确切的说是一个类.它相当于一个动态的数组,当程序员无法知道自己需要的数组的规模多大时,用其来解决问题可以达到最大节约空间的目的.&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;     用法:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1.文件包含:     
+
+ 首先在程序开头处加上#include&amp;lt;vector&amp;gt;以包含所需要的类文件vector
+
+还有一定要加上using namespace std;
+
+
+
+2.变量声明:
+
+     2.1 例:声明一个int向量以替代一维的数组:vector &amp;lt;int&amp;gt; a;(等于声明了一个int数组a[],大小没有指定,可以动态的向里面添加删除)。
+
+     2.2 例:用vector代替二维数组.其实只要声明一个一维数组向量即可,而一个数组的名字其实代表的是它的首地址,所以只要声明一个地址的向量即可,即:vector &amp;lt;int *&amp;gt; a.同理想用向量代替三维数组也是一样,vector &amp;lt;int**&amp;gt;a;再往上面依此类推.
+
+
+
+3.具体的用法以及函数调用:
+
+3.1 如何得到向量中的元素?其用法和数组一样:
+
+例如:
+
+vector &amp;lt;int *&amp;gt; a
+
+int b = 5;
+
+a.push_back(b);//该函数下面有详解
+
+cout&amp;lt;&amp;lt;a[0];       //输出结果为5
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;1.push_back   在数组的最后添加一个数据&lt;br&gt;2.pop_back    去掉数组的最后一个数据&lt;br&gt;3.at                得到编号位置的数据&lt;br&gt;4.begin           得到数组头的指针&lt;br&gt;5.end             得到数组的最后一个单元+1的指针&lt;br&gt;6．front        得到数组头的引用&lt;br&gt;7.back            得到数组的最后一个单元的引用&lt;br&gt;8.max_size     得到vector最大可以是多大&lt;br&gt;9.capacity       当前vector分配的大小&lt;br&gt;10.size           当前使用数据的大小&lt;br&gt;11.resize         改变当前使用数据的大小，如果它比当前使用的大，者填充默认值&lt;br&gt;12.reserve      改变当前vecotr所分配空间的大小&lt;br&gt;13.erase         删除指针指向的数据项&lt;br&gt;14.clear          清空当前的vector&lt;br&gt;15.rbegin        将vector反转后的开始指针返回(其实就是原来的end-1)&lt;br&gt;16.rend          将vector反转构的结束指针返回(其实就是原来的begin-1)&lt;br&gt;17.empty        判断vector是否为空&lt;br&gt;18.swap         与另一个vector交换数据&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;   3.2  详细的函数实现功能：其中vector&amp;lt;int&amp;gt; c.
+
+                       c.clear()         移除容器中所有数据。
+
+                       c.empty()         判断容器是否为空。
+
+                       c.erase(pos)        删除pos位置的数据
+
+                       c.erase(beg,end) 删除[beg,end)区间的数据
+
+                       c.front()         传回第一个数据。
+
+                       c.insert(pos,elem)  在pos位置插入一个elem拷贝
+
+                       c.pop_back()     删除最后一个数据。
+
+                       c.push_back(elem) 在尾部加入一个数据。
+
+                       c.resize(num)     重新设置该容器的大小
+
+                       c.size()         回容器中实际数据的个数。
+
+                       c.begin()           返回指向容器第一个元素的迭代器
+
+                       c.end()             返回指向容器最后一个元素的迭代器
+
+
+         4.内存管理与效率
+
+1》使用reserve()函数提前设定容量大小，避免多次容量扩充操作导致效率低下。
+
+  关于STL容器，最令人称赞的特性之一就是是只要不超过它们的最大大小，它们就可以自动增长到足以容纳你放进去的数据。（要知道这个最大值，只要调用名叫max_size的成员函数。）对于vector和string，如果需要更多空间，就以类似realloc的思想来增长大小。vector容器支持随机访问，因此为了提高效率，它内部使用动态数组的方式实现的。在通过 reserve() 来申请特定大小的时候总是按指数边界来增大其内部缓冲区。当进行insert或push_back等增加元素的操作时，如果此时动态数组的内存不够用，就要动态的重新分配当前大小的1.5~2倍的新内存区，再把原数组的内容复制过去。所以，在一般情况下，其访问速度同一般数组，只有在重新分配发生时，其性能才会下降。正如上面的代码告诉你的那样。而进行pop_back操作时，capacity并不会因为vector容器里的元素减少而有所下降，还会维持操作之前的大小。对于vector容器来说，如果有大量的数据需要进行push_back，应当使用reserve()函数提前设定其容量大小，否则会出现许多次容量扩充操作，导致效率低下。
+
+reserve成员函数允许你最小化必须进行的重新分配的次数，因而可以避免真分配的开销和迭代器/指针/引用失效。但在我解释reserve为什么可以那么做之前，让我简要介绍有时候令人困惑的四个相关成员函数。在标准容器中，只有vector和string提供了所有这些函数。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;(1) size()告诉你容器中有多少元素。它没有告诉你容器为它容纳的元素分配了多少内存。&lt;br&gt;(2) capacity()告诉你容器在它已经分配的内存中可以容纳多少元素。那是容器在那块内存中总共可以容纳多少元素，而不是还可以容纳多少元素。如果你想知道一个vector或string中有多少没有被占用的内存，你必须从capacity()中减去size()。如果size和capacity返回同样的值，容器中就没有剩余空间了，而下一次插入（通过insert或push_back等）会引发上面的重新分配步骤。&lt;br&gt;(3) resize(Container::size_type n)强制把容器改为容纳n个元素。调用resize之后，size将会返回n。如果n小于当前大小，容器尾部的元素会被销毁。如果n大于当前大小，新默认构造的元素会添加到容器尾部。如果n大于当前容量，在元素加入之前会发生重新分配。&lt;br&gt;(4) reserve(Container::size_type n)强制容器把它的容量改为至少n，提供的n不小于当前大小。这一般强迫进行一次重新分配，因为容量需要增加。（如果n小于当前容量，vector忽略它，这个调用什么都不做，string可能把它的容量减少为size()和n中大的数，但string的大小没有改变。在我的经验中，使用reserve来从一个string中修整多余容量一般不如使用“交换技巧”，那是条款17的主题。）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;这个简介表示了只要有元素需要插入而且容器的容量不足时就会发生重新分配（包括它们维护的原始内存分配和回收，对象的拷贝和析构和迭代器、指针和引用的失效）。所以，避免重新分配的关键是使用reserve尽快把容器的容量设置为足够大，最好在容器被构造之后立刻进行。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;例如，假定你想建立一个容纳1-1000值的vector&lt;int&gt;。没有使用reserve，你可以像这样来做：&lt;/int&gt;&lt;/p&gt;
+&lt;p&gt;vector&lt;int&gt; v;&lt;br&gt;for (int i = 1; i &amp;lt;= 1000; ++i) v.push_back(i);&lt;br&gt;在大多数STL实现中，这段代码在循环过程中将会导致2到10次重新分配。（10这个数没什么奇怪的。记住vector在重新分配发生时一般把容量翻倍，而1000约等于210。）&lt;/int&gt;&lt;/p&gt;
+&lt;p&gt;把代码改为使用reserve，我们得到这个：&lt;/p&gt;
+&lt;p&gt;vector&lt;int&gt; v;&lt;br&gt;v.reserve(1000);&lt;br&gt;for (int i = 1; i &amp;lt;= 1000; ++i) v.push_back(i);&lt;br&gt;这在循环中不会发生重新分配。&lt;/int&gt;&lt;/p&gt;
+&lt;p&gt;在大小和容量之间的关系让我们可以预言什么时候插入将引起vector或string执行重新分配，而且，可以预言什么时候插入会使指向容器中的迭代器、指针和引用失效。例如，给出这段代码，&lt;/p&gt;
+&lt;p&gt;string s;&lt;br&gt;…&lt;br&gt;if (s.size() &amp;lt; s.capacity()) {&lt;br&gt;s.push_back(‘x’);&lt;br&gt;}&lt;br&gt;push_back的调用不会使指向这个string中的迭代器、指针或引用失效，因为string的容量保证大于它的大小。如果不是执行push_back，代码在string的任意位置进行一个insert，我们仍然可以保证在插入期间没有发生重新分配，但是，与伴随string插入时迭代器失效的一般规则一致，所有从插入位置到string结尾的迭代器/指针/引用将失效。&lt;/p&gt;
+&lt;p&gt;回到本条款的主旨，通常有两情况使用reserve来避免不必要的重新分配。第一个可用的情况是当你确切或者大约知道有多少元素将最后出现在容器中。那样的话，就像上面的vector代码，你只是提前reserve适当数量的空间。第二种情况是保留你可能需要的最大的空间，然后，一旦你添加完全部数据，修整掉任何多余的容量。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; 2》使用“交换技巧”来修整vector过剩空间/内存
+
+有一种方法来把它从曾经最大的容量减少到它现在需要的容量。这样减少容量的方法常常被称为“收缩到合适（shrink to fit）”。该方法只需一条语句：vector&amp;lt;int&amp;gt;(ivec).swap(ivec);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;表达式vector&lt;int&gt;(ivec)建立一个临时vector，它是ivec的一份拷贝：vector的拷贝构造函数做了这个工作。但是，vector的拷贝构造函数只分配拷贝的元素需要的内存，所以这个临时vector没有多余的容量。然后我们让临时vector和ivec交换数据，这时我们完成了，ivec只有临时变量的修整过的容量，而这个临时变量则持有了曾经在ivec中的没用到的过剩容量。在这里（这个语句结尾），临时vector被销毁，因此释放了以前ivec使用的内存，收缩到合适。&lt;/int&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;3》用swap方法强行释放STL Vector所占内存
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;template &amp;lt; class T&amp;gt; void ClearVector( vector&lt;t&gt;&amp;amp; v )&lt;br&gt;{&lt;br&gt;    vector&lt;t&gt;vtTemp;&lt;br&gt;    vtTemp.swap( v );&lt;br&gt;}&lt;br&gt;如&lt;br&gt;    vector&lt;int&gt; v ;&lt;br&gt;    nums.push_back(1);&lt;br&gt;    nums.push_back(3);&lt;br&gt;    nums.push_back(2);&lt;br&gt;    nums.push_back(4);&lt;br&gt;    vector&lt;int&gt;().swap(v);&lt;/int&gt;&lt;/int&gt;&lt;/t&gt;&lt;/t&gt;&lt;/p&gt;
+&lt;p&gt;/&lt;em&gt; 或者v.swap(vector&lt;int&gt;()); &lt;/int&gt;&lt;/em&gt;/&lt;/p&gt;
+&lt;p&gt;/&lt;em&gt;或者{ std::vector&lt;int&gt; tmp = v;   v.swap(tmp);   }; //加大括号{ }是让tmp退出{ }时自动析构&lt;/int&gt;&lt;/em&gt;/&lt;/p&gt;
+&lt;p&gt;5.Vector 内存管理成员函数的行为测试&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;C++ STL的vector使用非常广泛，但是对其内存的管理模型一直有多种猜测，下面用实例代码测试来了解其内存管理方式，测试代码如下：
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;#include &lt;iostream&gt;&lt;/iostream&gt;&lt;/p&gt;
+&lt;p&gt;#include &lt;vector&gt;&lt;br&gt;using namespace std;&lt;/vector&gt;&lt;/p&gt;
+&lt;p&gt;int main()&lt;br&gt;{&lt;br&gt;vector&lt;int&gt; iVec;&lt;br&gt;cout &amp;lt;&amp;lt; “容器 大小为: “ &amp;lt;&amp;lt; iVec.size() &amp;lt;&amp;lt; endl;&lt;br&gt;cout &amp;lt;&amp;lt; “容器 容量为: “ &amp;lt;&amp;lt; iVec.capacity() &amp;lt;&amp;lt; endl; //1个元素， 容器容量为1&lt;/int&gt;&lt;/p&gt;
+&lt;p&gt;iVec.push_back(1);&lt;br&gt;cout &amp;lt;&amp;lt; “容器 大小为: “ &amp;lt;&amp;lt; iVec.size() &amp;lt;&amp;lt; endl;&lt;br&gt;cout &amp;lt;&amp;lt; “容器 容量为: “ &amp;lt;&amp;lt; iVec.capacity() &amp;lt;&amp;lt; endl; //2个元素， 容器容量为2&lt;/p&gt;
+&lt;p&gt;iVec.push_back(2);&lt;br&gt;cout &amp;lt;&amp;lt; “容器 大小为: “ &amp;lt;&amp;lt; iVec.size() &amp;lt;&amp;lt; endl;&lt;br&gt;cout &amp;lt;&amp;lt; “容器 容量为: “ &amp;lt;&amp;lt; iVec.capacity() &amp;lt;&amp;lt; endl; //3个元素， 容器容量为4&lt;/p&gt;
+&lt;p&gt;iVec.push_back(3);&lt;br&gt;cout &amp;lt;&amp;lt; “容器 大小为: “ &amp;lt;&amp;lt; iVec.size() &amp;lt;&amp;lt; endl;&lt;br&gt;cout &amp;lt;&amp;lt; “容器 容量为: “ &amp;lt;&amp;lt; iVec.capacity() &amp;lt;&amp;lt; endl; //4个元素， 容器容量为4&lt;/p&gt;
+&lt;p&gt;iVec.push_back(4);&lt;br&gt;iVec.push_back(5);&lt;br&gt;cout &amp;lt;&amp;lt; “容器 大小为: “ &amp;lt;&amp;lt; iVec.size() &amp;lt;&amp;lt; endl;&lt;br&gt;cout &amp;lt;&amp;lt; “容器 容量为: “ &amp;lt;&amp;lt; iVec.capacity() &amp;lt;&amp;lt; endl; //5个元素， 容器容量为8&lt;/p&gt;
+&lt;p&gt;iVec.push_back(6);&lt;br&gt;cout &amp;lt;&amp;lt; “容器 大小为: “ &amp;lt;&amp;lt; iVec.size() &amp;lt;&amp;lt; endl;&lt;br&gt;cout &amp;lt;&amp;lt; “容器 容量为: “ &amp;lt;&amp;lt; iVec.capacity() &amp;lt;&amp;lt; endl; //6个元素， 容器容量为8&lt;/p&gt;
+&lt;p&gt;iVec.push_back(7);&lt;br&gt;cout &amp;lt;&amp;lt; “容器 大小为: “ &amp;lt;&amp;lt; iVec.size() &amp;lt;&amp;lt; endl;&lt;br&gt;cout &amp;lt;&amp;lt; “容器 容量为: “ &amp;lt;&amp;lt; iVec.capacity() &amp;lt;&amp;lt; endl; //7个元素， 容器容量为8&lt;/p&gt;
+&lt;p&gt;iVec.push_back(8);&lt;br&gt;cout &amp;lt;&amp;lt; “容器 大小为: “ &amp;lt;&amp;lt; iVec.size() &amp;lt;&amp;lt; endl;&lt;br&gt;cout &amp;lt;&amp;lt; “容器 容量为: “ &amp;lt;&amp;lt; iVec.capacity() &amp;lt;&amp;lt; endl; //8个元素， 容器容量为8&lt;/p&gt;
+&lt;p&gt;iVec.push_back(9);&lt;br&gt;cout &amp;lt;&amp;lt; “容器 大小为: “ &amp;lt;&amp;lt; iVec.size() &amp;lt;&amp;lt; endl;&lt;br&gt;cout &amp;lt;&amp;lt; “容器 容量为: “ &amp;lt;&amp;lt; iVec.capacity() &amp;lt;&amp;lt; endl; //9个元素， 容器容量为16&lt;br&gt;/&lt;em&gt; vs2005/8 容量增长不是翻倍的，如&lt;br&gt;    9个元素   容量9&lt;br&gt;    10个元素 容量13 &lt;/em&gt;/&lt;/p&gt;
+&lt;p&gt;/&lt;em&gt; 测试effective stl中的特殊的交换 swap() &lt;/em&gt;/&lt;br&gt;cout &amp;lt;&amp;lt; “当前vector 的大小为: “ &amp;lt;&amp;lt; iVec.size() &amp;lt;&amp;lt; endl;&lt;br&gt;cout &amp;lt;&amp;lt; “当前vector 的容量为: “ &amp;lt;&amp;lt; iVec.capacity() &amp;lt;&amp;lt; endl;&lt;br&gt;vector&lt;int&gt;(iVec).swap(iVec);&lt;/int&gt;&lt;/p&gt;
+&lt;p&gt;cout &amp;lt;&amp;lt; “临时的vector&lt;int&gt;对象 的大小为: “ &amp;lt;&amp;lt; (vector&lt;int&gt;(iVec)).size() &amp;lt;&amp;lt; endl;&lt;br&gt;cout &amp;lt;&amp;lt; “临时的vector&lt;int&gt;对象 的容量为: “ &amp;lt;&amp;lt; (vector&lt;int&gt;(iVec)).capacity() &amp;lt;&amp;lt; endl;&lt;br&gt;cout &amp;lt;&amp;lt; “交换后，当前vector 的大小为: “ &amp;lt;&amp;lt; iVec.size() &amp;lt;&amp;lt; endl;&lt;br&gt;cout &amp;lt;&amp;lt; “交换后，当前vector 的容量为: “ &amp;lt;&amp;lt; iVec.capacity() &amp;lt;&amp;lt; endl;&lt;/int&gt;&lt;/int&gt;&lt;/int&gt;&lt;/int&gt;&lt;/p&gt;
+&lt;p&gt;return 0;&lt;br&gt;}&lt;/p&gt;
+&lt;p&gt;6.vector的其他成员函数&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;c.assign(beg,end)：将[beg; end)区间中的数据赋值给c。
+c.assign(n,elem)：将n个elem的拷贝赋值给c。 
+c.at(idx)：传回索引idx所指的数据，如果idx越界，抛出out_of_range。 
+c.back()：传回最后一个数据，不检查这个数据是否存在。
+c.front()：传回地一个数据。 
+get_allocator：使用构造函数返回一个拷贝。 
+c.rbegin()：传回一个逆向队列的第一个数据。 
+c.rend()：传回一个逆向队列的最后一个数据的下一个位置。 
+c.~ vector &amp;lt;Elem&amp;gt;()：销毁所有数据，释放内存。    
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;7.备注:在用vector的过程中的一些问题,特此列出讨论:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1)
+
+     vector &amp;lt;int &amp;gt; a;
+
+     int  b = 5;
+
+     a.push_back(b);
+
+     此时若对b另外赋值时不会影响a[0]的值
+
+ 2)
+
+     vector &amp;lt;int*&amp;gt; a;
+      int *b;
+      b= new int[4];
+      b[0]=0;
+      b[1]=1;
+      b[2]=2;
+      a.push_back(b);
+      delete b;          //释放b的地址空间
+      for(int i=0 ; i &amp;lt;3 ; i++)
+      {
+            cout&amp;lt;&amp;lt;a[0][i]&amp;lt;&amp;lt;endl;
+      }
+
+      此时输出的值并不是一开始b数组初始化的值,而是一些无法预计的值.
+
+     分析:根据1) 2)的结果,可以想到,在1)中,  往a向量中压入的是b的值,即a[0]=b,此时a[0]和b是存储在两个不同的地址中的.因此改变b的值不会影响a[0];而在2)中,因为是把一个地址(指针)压入向量a,即a[0]=b,因此释放了b的地址也就释放了a[0]的地址,因此a[0]数组中存放的数值也就不得而知了.   
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本科的时候，主要使用的是c语言做嵌入式以及python，重新学习c++,阅读《c++ primer》，同时在网上查找资料，阅读并记录下来，方便下次查阅。看到STL中的vector类的时候，其中的很多方法与python中list很类似。&lt;br&gt; vector(向量): C++中的一种数据结构,确切的说是一个类.它相当于一个动态的数组,当程序员无法知道自己需要的数组的规模多大时,用其来解决问题可以达到最大节约空间的目的.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="c++" scheme="http://yoursite.com/categories/c/"/>
+    
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="vector" scheme="http://yoursite.com/tags/vector/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c++ string类的用法总结</title>
+    <link href="http://yoursite.com/2016/04/08/c-string%E7%B1%BB%E7%9A%84%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2016/04/08/c-string类的用法总结/</id>
+    <published>2016-04-07T16:14:15.000Z</published>
+    <updated>2016-04-07T16:33:10.118Z</updated>
+    
+    <content type="html">&lt;p&gt;本科的时候，主要使用的是c语言做嵌入式以及python，重新学习c++,阅读《c++ primer》，同时在网上查找资料，阅读并记录下来，方便下次查阅。看到STL中的string类的时候，其中的很多方法与python中list很类似。&lt;br&gt;要想使用标准C++中string类，必须要包含&lt;/p&gt;
+&lt;p&gt;#include &lt;string&gt;// 注意是&lt;string&gt;，不是&lt;string.h&gt;，带.h的是C语言中的头文件&lt;/string.h&gt;&lt;/string&gt;&lt;/string&gt;&lt;/p&gt;
+&lt;p&gt;using  std::string;&lt;/p&gt;
+&lt;p&gt;using  std::wstring;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;或&lt;/p&gt;
+&lt;p&gt;using namespace std;&lt;/p&gt;
+&lt;p&gt;下面你就可以使用string/wstring了，它们两分别对应着char和wchar_t。&lt;/p&gt;
+&lt;p&gt;string和wstring的用法是一样的，以下只用string作介绍：&lt;/p&gt;
+&lt;h1 id=&quot;string类的构造函数：&quot;&gt;&lt;a href=&quot;#string类的构造函数：&quot; class=&quot;headerlink&quot; title=&quot;string类的构造函数：&quot;&gt;&lt;/a&gt;string类的构造函数：&lt;/h1&gt;&lt;p&gt;string(const char *s);    //用c字符串s初始化&lt;br&gt;string(int n,char c);     //用n个字符c初始化&lt;br&gt;此外，string类还支持默认构造函数和复制构造函数，如string s1；string s2=”hello”；都是正确的写法。当构造的string太长而无法表达时会抛出length_error异常 ；&lt;/p&gt;
+&lt;h1 id=&quot;string类的字符操作：&quot;&gt;&lt;a href=&quot;#string类的字符操作：&quot; class=&quot;headerlink&quot; title=&quot;string类的字符操作：&quot;&gt;&lt;/a&gt;string类的字符操作：&lt;/h1&gt;&lt;p&gt;const char &amp;amp;operator&lt;a href=&quot;int n&quot;&gt;&lt;/a&gt;const;&lt;br&gt;const char &amp;amp;at(int n)const;&lt;br&gt;char &amp;amp;operator&lt;a href=&quot;int n&quot;&gt;&lt;/a&gt;;&lt;br&gt;char &amp;amp;at(int n);&lt;br&gt;operator[]和at()均返回当前字符串中第n个字符的位置，但at函数提供范围检查，当越界时会抛出out_of_range异常，下标运算符[]不提供检查访问。&lt;br&gt;const char &lt;em&gt;data()const;//返回一个非null终止的c字符数组&lt;br&gt;const char &lt;/em&gt;c_str()const;//返回一个以null终止的c字符串&lt;br&gt;int copy(char *s, int n, int pos = 0) const;//把当前串中以pos开始的n个字符拷贝到以s为起始位置的字符数组中，返回实际拷贝的数目&lt;/p&gt;
+&lt;h1 id=&quot;string的特性描述&quot;&gt;&lt;a href=&quot;#string的特性描述&quot; class=&quot;headerlink&quot; title=&quot;string的特性描述:&quot;&gt;&lt;/a&gt;string的特性描述:&lt;/h1&gt;&lt;p&gt;int capacity()const;    //返回当前容量（即string中不必增加内存即可存放的元素个数）&lt;br&gt;int max_size()const;    //返回string对象中可存放的最大字符串的长度&lt;br&gt;int size()const;        //返回当前字符串的大小&lt;br&gt;int length()const;       //返回当前字符串的长度&lt;br&gt;bool empty()const;        //当前字符串是否为空&lt;br&gt;void resize(int len,char c);//把字符串当前大小置为len，并用字符c填充不足的部分&lt;/p&gt;
+&lt;h1 id=&quot;string类的输入输出操作&quot;&gt;&lt;a href=&quot;#string类的输入输出操作&quot; class=&quot;headerlink&quot; title=&quot;string类的输入输出操作:&quot;&gt;&lt;/a&gt;string类的输入输出操作:&lt;/h1&gt;&lt;p&gt;string类重载运算符operator&amp;gt;&amp;gt;用于输入，同样重载运算符operator&amp;lt;&amp;lt;用于输出操作。&lt;br&gt;函数getline(istream &amp;amp;in,string &amp;amp;s);用于从输入流in中读取字符串到s中，以换行符’\n’分开。&lt;/p&gt;
+&lt;h1 id=&quot;string的赋值：&quot;&gt;&lt;a href=&quot;#string的赋值：&quot; class=&quot;headerlink&quot; title=&quot;string的赋值：&quot;&gt;&lt;/a&gt;string的赋值：&lt;/h1&gt;&lt;p&gt;string &amp;amp;operator=(const string &amp;amp;s);//把字符串s赋给当前字符串&lt;br&gt;string &amp;amp;assign(const char &lt;em&gt;s);//用c类型字符串s赋值&lt;br&gt;string &amp;amp;assign(const char &lt;/em&gt;s,int n);//用c字符串s开始的n个字符赋值&lt;br&gt;string &amp;amp;assign(const string &amp;amp;s);//把字符串s赋给当前字符串&lt;br&gt;string &amp;amp;assign(int n,char c);//用n个字符c赋值给当前字符串&lt;br&gt;string &amp;amp;assign(const string &amp;amp;s,int start,int n);//把字符串s中从start开始的n个字符赋给当前字符串&lt;br&gt;string &amp;amp;assign(const_iterator first,const_itertor last);//把first和last迭代器之间的部分赋给字符串&lt;/p&gt;
+&lt;h1 id=&quot;string的连接：&quot;&gt;&lt;a href=&quot;#string的连接：&quot; class=&quot;headerlink&quot; title=&quot;string的连接：&quot;&gt;&lt;/a&gt;string的连接：&lt;/h1&gt;&lt;p&gt;string &amp;amp;operator+=(const string &amp;amp;s);//把字符串s连接到当前字符串的结尾&lt;br&gt;string &amp;amp;append(const char &lt;em&gt;s);            //把c类型字符串s连接到当前字符串结尾&lt;br&gt;string &amp;amp;append(const char &lt;/em&gt;s,int n);//把c类型字符串s的前n个字符连接到当前字符串结尾&lt;br&gt;string &amp;amp;append(const string &amp;amp;s);    //同operator+=()&lt;br&gt;string &amp;amp;append(const string &amp;amp;s,int pos,int n);//把字符串s中从pos开始的n个字符连接到当前字符串的结尾&lt;br&gt;string &amp;amp;append(int n,char c);        //在当前字符串结尾添加n个字符c&lt;br&gt;string &amp;amp;append(const_iterator first,const_iterator last);//把迭代器first和last之间的部分连接到当前字符串的结尾&lt;/p&gt;
+&lt;h1 id=&quot;string的比较：&quot;&gt;&lt;a href=&quot;#string的比较：&quot; class=&quot;headerlink&quot; title=&quot;string的比较：&quot;&gt;&lt;/a&gt;string的比较：&lt;/h1&gt;&lt;p&gt;bool operator==(const string &amp;amp;s1,const string &amp;amp;s2)const;//比较两个字符串是否相等&lt;br&gt;运算符”&amp;gt;”,”&amp;lt;”,”&amp;gt;=”,”&amp;lt;=”,”!=”均被重载用于字符串的比较；&lt;br&gt;int compare(const string &amp;amp;s) const;//比较当前字符串和s的大小&lt;br&gt;int compare(int pos, int n,const string &amp;amp;s)const;//比较当前字符串从pos开始的n个字符组成的字符串与s的大小&lt;br&gt;int compare(int pos, int n,const string &amp;amp;s,int pos2,int n2)const;//比较当前字符串从pos开始的n个字符组成的字符串与s中&lt;/p&gt;
+&lt;p&gt;　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　//pos2开始的n2个字符组成的字符串的大小&lt;br&gt;int compare(const char &lt;em&gt;s) const;&lt;br&gt;int compare(int pos, int n,const char &lt;/em&gt;s) const;&lt;br&gt;int compare(int pos, int n,const char *s, int pos2) const;&lt;br&gt;compare函数在&amp;gt;时返回1，&amp;lt;时返回-1，==时返回0  &lt;/p&gt;
+&lt;h1 id=&quot;string的子串：&quot;&gt;&lt;a href=&quot;#string的子串：&quot; class=&quot;headerlink&quot; title=&quot;string的子串：&quot;&gt;&lt;/a&gt;string的子串：&lt;/h1&gt;&lt;p&gt;string substr(int pos = 0,int n = npos) const;//返回pos开始的n个字符组成的字符串&lt;/p&gt;
+&lt;h1 id=&quot;string的交换：&quot;&gt;&lt;a href=&quot;#string的交换：&quot; class=&quot;headerlink&quot; title=&quot;string的交换：&quot;&gt;&lt;/a&gt;string的交换：&lt;/h1&gt;&lt;p&gt;void swap(string &amp;amp;s2);    //交换当前字符串与s2的值&lt;/p&gt;
+&lt;h1 id=&quot;string类的查找函数：&quot;&gt;&lt;a href=&quot;#string类的查找函数：&quot; class=&quot;headerlink&quot; title=&quot;string类的查找函数：&quot;&gt;&lt;/a&gt;string类的查找函数：&lt;/h1&gt;&lt;p&gt;int find(char c, int pos = 0) const;//从pos开始查找字符c在当前字符串的位置&lt;br&gt;int find(const char &lt;em&gt;s, int pos = 0) const;//从pos开始查找字符串s在当前串中的位置&lt;br&gt;int find(const char &lt;/em&gt;s, int pos, int n) const;//从pos开始查找字符串s中前n个字符在当前串中的位置&lt;br&gt;int find(const string &amp;amp;s, int pos = 0) const;//从pos开始查找字符串s在当前串中的位置&lt;br&gt;//查找成功时返回所在位置，失败返回string::npos的值&lt;br&gt;int rfind(char c, int pos = npos) const;//从pos开始从后向前查找字符c在当前串中的位置&lt;br&gt;int rfind(const char &lt;em&gt;s, int pos = npos) const;&lt;br&gt;int rfind(const char &lt;/em&gt;s, int pos, int n = npos) const;&lt;br&gt;int rfind(const string &amp;amp;s,int pos = npos) const;&lt;br&gt;//从pos开始从后向前查找字符串s中前n个字符组成的字符串在当前串中的位置，成功返回所在位置，失败时返回string::npos的值&lt;br&gt;int find_first_of(char c, int pos = 0) const;//从pos开始查找字符c第一次出现的位置&lt;br&gt;int find_first_of(const char &lt;em&gt;s, int pos = 0) const;&lt;br&gt;int find_first_of(const char &lt;/em&gt;s, int pos, int n) const;&lt;br&gt;int find_first_of(const string &amp;amp;s,int pos = 0) const;&lt;br&gt;//从pos开始查找当前串中第一个在s的前n个字符组成的数组里的字符的位置。查找失败返回string::npos&lt;br&gt;int find_first_not_of(char c, int pos = 0) const;&lt;br&gt;int find_first_not_of(const char &lt;em&gt;s, int pos = 0) const;&lt;br&gt;int find_first_not_of(const char &lt;/em&gt;s, int pos,int n) const;&lt;br&gt;int find_first_not_of(const string &amp;amp;s,int pos = 0) const;&lt;br&gt;//从当前串中查找第一个不在串s中的字符出现的位置，失败返回string::npos&lt;br&gt;int find_last_of(char c, int pos = npos) const;&lt;br&gt;int find_last_of(const char &lt;em&gt;s, int pos = npos) const;&lt;br&gt;int find_last_of(const char &lt;/em&gt;s, int pos, int n = npos) const;&lt;br&gt;int find_last_of(const string &amp;amp;s,int pos = npos) const;&lt;br&gt;int find_last_not_of(char c, int pos = npos) const;&lt;br&gt;int find_last_not_of(const char &lt;em&gt;s, int pos = npos) const;&lt;br&gt;int find_last_not_of(const char &lt;/em&gt;s, int pos, int n) const;&lt;br&gt;int find_last_not_of(const string &amp;amp;s,int pos = npos) const;&lt;br&gt;//find_last_of和find_last_not_of与find_first_of和find_first_not_of相似，只不过是从后向前查找&lt;/p&gt;
+&lt;h1 id=&quot;string类的替换函数：&quot;&gt;&lt;a href=&quot;#string类的替换函数：&quot; class=&quot;headerlink&quot; title=&quot;string类的替换函数：&quot;&gt;&lt;/a&gt;string类的替换函数：&lt;/h1&gt;&lt;p&gt;string &amp;amp;replace(int p0, int n0,const char &lt;em&gt;s);//删除从p0开始的n0个字符，然后在p0处插入串s&lt;br&gt;string &amp;amp;replace(int p0, int n0,const char &lt;/em&gt;s, int n);//删除p0开始的n0个字符，然后在p0处插入字符串s的前n个字符&lt;br&gt;string &amp;amp;replace(int p0, int n0,const string &amp;amp;s);//删除从p0开始的n0个字符，然后在p0处插入串s&lt;br&gt;string &amp;amp;replace(int p0, int n0,const string &amp;amp;s, int pos, int n);//删除p0开始的n0个字符，然后在p0处插入串s中从pos开始的n个字符&lt;br&gt;string &amp;amp;replace(int p0, int n0,int n, char c);//删除p0开始的n0个字符，然后在p0处插入n个字符c&lt;br&gt;string &amp;amp;replace(iterator first0, iterator last0,const char &lt;em&gt;s);//把[first0，last0）之间的部分替换为字符串s&lt;br&gt;string &amp;amp;replace(iterator first0, iterator last0,const char &lt;/em&gt;s, int n);//把[first0，last0）之间的部分替换为s的前n个字符&lt;br&gt;string &amp;amp;replace(iterator first0, iterator last0,const string &amp;amp;s);//把[first0，last0）之间的部分替换为串s&lt;br&gt;string &amp;amp;replace(iterator first0, iterator last0,int n, char c);//把[first0，last0）之间的部分替换为n个字符c&lt;br&gt;string &amp;amp;replace(iterator first0, iterator last0,const_iterator first, const_iterator last);//把[first0，last0）之间的部分替换成[first，last）之间的字符串&lt;/p&gt;
+&lt;h1 id=&quot;string类的插入函数：&quot;&gt;&lt;a href=&quot;#string类的插入函数：&quot; class=&quot;headerlink&quot; title=&quot;string类的插入函数：&quot;&gt;&lt;/a&gt;string类的插入函数：&lt;/h1&gt;&lt;p&gt;string &amp;amp;insert(int p0, const char &lt;em&gt;s);&lt;br&gt;string &amp;amp;insert(int p0, const char &lt;/em&gt;s, int n);&lt;br&gt;string &amp;amp;insert(int p0,const string &amp;amp;s);&lt;br&gt;string &amp;amp;insert(int p0,const string &amp;amp;s, int pos, int n);&lt;br&gt;//前4个函数在p0位置插入字符串s中pos开始的前n个字符&lt;br&gt;string &amp;amp;insert(int p0, int n, char c);//此函数在p0处插入n个字符c&lt;br&gt;iterator insert(iterator it, char c);//在it处插入字符c，返回插入后迭代器的位置&lt;br&gt;void insert(iterator it, const_iterator first, const_iterator last);//在it处插入[first，last）之间的字符&lt;br&gt;void insert(iterator it, int n, char c);//在it处插入n个字符c&lt;/p&gt;
+&lt;h1 id=&quot;string类的删除函数&quot;&gt;&lt;a href=&quot;#string类的删除函数&quot; class=&quot;headerlink&quot; title=&quot;string类的删除函数&quot;&gt;&lt;/a&gt;string类的删除函数&lt;/h1&gt;&lt;p&gt;iterator erase(iterator first, iterator last);//删除[first，last）之间的所有字符，返回删除后迭代器的位置&lt;br&gt;iterator erase(it&lt;img src=&quot;http://&quot; alt=&quot;&quot;&gt;erator it);//删除it指向的字符，返回删除后迭代器的位置&lt;br&gt;string &amp;amp;erase(int pos = 0, int n = npos);//删除pos开始的n个字符，返回修改后的字符串&lt;/p&gt;
+&lt;h1 id=&quot;string类的迭代器处理：&quot;&gt;&lt;a href=&quot;#string类的迭代器处理：&quot; class=&quot;headerlink&quot; title=&quot;string类的迭代器处理：&quot;&gt;&lt;/a&gt;string类的迭代器处理：&lt;/h1&gt;&lt;p&gt;string类提供了向前和向后遍历的迭代器iterator，迭代器提供了访问各个字符的语法，类似于指针操作，迭代器不检查范围。&lt;br&gt;用string::iterator或string::const_iterator声明迭代器变量，const_iterator不允许改变迭代的内容。常用迭代器函数有：&lt;br&gt;const_iterator begin()const;&lt;br&gt;iterator begin();                //返回string的起始位置&lt;br&gt;const_iterator end()const;&lt;br&gt;iterator end();                    //返回string的最后一个字符后面的位置&lt;br&gt;const_iterator rbegin()const;&lt;br&gt;iterator rbegin();                //返回string的最后一个字符的位置&lt;br&gt;const_iterator rend()const;&lt;br&gt;iterator rend();                    //返回string第一个字符位置的前面&lt;br&gt;rbegin和rend用于从后向前的迭代访问，通过设置迭代器string::reverse_iterator,string::const_reverse_iterator实现&lt;/p&gt;
+&lt;h1 id=&quot;字符串流处理：&quot;&gt;&lt;a href=&quot;#字符串流处理：&quot; class=&quot;headerlink&quot; title=&quot;字符串流处理：&quot;&gt;&lt;/a&gt;字符串流处理：&lt;/h1&gt;&lt;p&gt;通过定义ostringstream和istringstream变量实现，#include &lt;sstream&gt;头文件中&lt;br&gt;例如：&lt;br&gt;    string input(“hello,this is a test”);&lt;br&gt;    istringstream is(input);&lt;br&gt;    string s1,s2,s3,s4;&lt;br&gt;    is&amp;gt;&amp;gt;s1&amp;gt;&amp;gt;s2&amp;gt;&amp;gt;s3&amp;gt;&amp;gt;s4;//s1=”hello,this”,s2=”is”,s3=”a”,s4=”test”&lt;br&gt;    ostringstream os;&lt;br&gt;    os&amp;lt;&amp;lt;s1&amp;lt;&amp;lt;s2&amp;lt;&amp;lt;s3&amp;lt;&amp;lt;s4;&lt;br&gt;    cout&amp;lt;&amp;lt;os.str();&lt;/sstream&gt;&lt;/p&gt;
+&lt;h1 id=&quot;处理string对象中的字符&quot;&gt;&lt;a href=&quot;#处理string对象中的字符&quot; class=&quot;headerlink&quot; title=&quot;处理string对象中的字符&quot;&gt;&lt;/a&gt;处理string对象中的字符&lt;/h1&gt;&lt;h2 id=&quot;字符测试&quot;&gt;&lt;a href=&quot;#字符测试&quot; class=&quot;headerlink&quot; title=&quot;字符测试&quot;&gt;&lt;/a&gt;字符测试&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://p.blog.csdn.net/images/p_blog_csdn_net/akof1314/EntryImages/20091001/3.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;字符映射&quot;&gt;&lt;a href=&quot;#字符映射&quot; class=&quot;headerlink&quot; title=&quot;字符映射&quot;&gt;&lt;/a&gt;字符映射&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://p.blog.csdn.net/images/p_blog_csdn_net/akof1314/EntryImages/20091001/2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本科的时候，主要使用的是c语言做嵌入式以及python，重新学习c++,阅读《c++ primer》，同时在网上查找资料，阅读并记录下来，方便下次查阅。看到STL中的string类的时候，其中的很多方法与python中list很类似。&lt;br&gt;要想使用标准C++中string类，必须要包含&lt;/p&gt;
+&lt;p&gt;#include &lt;string&gt;// 注意是&lt;string&gt;，不是&lt;string.h&gt;，带.h的是C语言中的头文件&lt;/p&gt;
+&lt;p&gt;using  std::string;&lt;/p&gt;
+&lt;p&gt;using  std::wstring;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="c++" scheme="http://yoursite.com/categories/c/"/>
+    
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="string" scheme="http://yoursite.com/tags/string/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>值得推荐的c/c++框架和库</title>
+    <link href="http://yoursite.com/2016/04/07/%E5%80%BC%E5%BE%97%E6%8E%A8%E8%8D%90%E7%9A%84c-c-%E6%A1%86%E6%9E%B6%E5%92%8C%E5%BA%93/"/>
+    <id>http://yoursite.com/2016/04/07/值得推荐的c-c-框架和库/</id>
+    <published>2016-04-07T15:57:57.000Z</published>
+    <updated>2016-04-07T16:00:31.734Z</updated>
+    
+    <content type="html">&lt;p&gt;【本文系外部转贴，原文地址：&lt;a href=&quot;http://coolshell.info/c/c++/2014/12/13/c-open-project.htm】留作存档&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://coolshell.info/c/c++/2014/12/13/c-open-project.htm】留作存档&lt;/a&gt;&lt;br&gt;下次造轮子前先看看现有的轮子吧&lt;/p&gt;
+&lt;h1 id=&quot;值得学习的C语言开源项目&quot;&gt;&lt;a href=&quot;#值得学习的C语言开源项目&quot; class=&quot;headerlink&quot; title=&quot;值得学习的C语言开源项目&quot;&gt;&lt;/a&gt;值得学习的C语言开源项目&lt;/h1&gt;&lt;h2 id=&quot;Webbench&quot;&gt;&lt;a href=&quot;#Webbench&quot; class=&quot;headerlink&quot; title=&quot;Webbench&quot;&gt;&lt;/a&gt;Webbench&lt;/h2&gt;&lt;p&gt;Webbench是一个在linux下使用的非常简单的网站压测工具。它使用fork()模拟多个客户端同时访问我们设定的URL，测试网站在压力下工作的性能，最多可以模拟3万个并发连接去测试网站的负载能力。Webbench使用C语言编写, 代码实在太简洁，源码加起来不到600行。&lt;/p&gt;
+&lt;p&gt;下载链接：&lt;a href=&quot;http://home.tiscali.cz/~cz210552/webbench.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://home.tiscali.cz/~cz210552/webbench.html&lt;/a&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;2-Tinyhttpd&quot;&gt;&lt;a href=&quot;#2-Tinyhttpd&quot; class=&quot;headerlink&quot; title=&quot;2. Tinyhttpd&quot;&gt;&lt;/a&gt;2. Tinyhttpd&lt;/h2&gt;&lt;p&gt;tinyhttpd是一个超轻量型Http Server，使用C语言开发，全部代码只有502行(包括注释)，附带一个简单的Client，可以通过阅读这段代码理解一个 Http Server 的本质。&lt;/p&gt;
+&lt;p&gt;下载链接：&lt;a href=&quot;http://sourceforge.net/projects/tinyhttpd/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://sourceforge.net/projects/tinyhttpd/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;3-cJSON&quot;&gt;&lt;a href=&quot;#3-cJSON&quot; class=&quot;headerlink&quot; title=&quot;3. cJSON&quot;&gt;&lt;/a&gt;3. cJSON&lt;/h2&gt;&lt;p&gt;cJSON是C语言中的一个JSON编解码器，非常轻量级，C文件只有500多行，速度也非常理想。&lt;/p&gt;
+&lt;p&gt;cJSON也存在几个弱点，虽然功能不是非常强大，但cJSON的小身板和速度是最值得赞赏的。其代码被非常好地维护着，结构也简单易懂，可以作为一个非常好的C语言项目进行学习。&lt;/p&gt;
+&lt;p&gt;项目主页:&lt;a href=&quot;http://sourceforge.net/projects/cjson/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://sourceforge.net/projects/cjson/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;4-CMockery&quot;&gt;&lt;a href=&quot;#4-CMockery&quot; class=&quot;headerlink&quot; title=&quot;4. CMockery&quot;&gt;&lt;/a&gt;4. CMockery&lt;/h2&gt;&lt;p&gt;cmockery是google发布的用于C单元测试的一个轻量级的框架。它很小巧，对其他开源包没有依赖，对被测试代码侵入性小。cmockery的源代码行数不到3K，你阅读一下will_return和mock的源代码就一目了然了。&lt;/p&gt;
+&lt;p&gt;主要特点：&lt;/p&gt;
+&lt;p&gt;免费且开源，google提供技术支持；&lt;br&gt;轻量级的框架，使测试更加快速简单；&lt;br&gt;避免使用复杂的编译器特性，对老版本的编译器来讲，兼容性好;&lt;br&gt;并不强制要求待测代码必须依赖C99标准，这一特性对许多嵌入式系统的开发很有用&lt;br&gt;下载链接：&lt;a href=&quot;http://code.google.com/p/cmockery/downloads/list&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://code.google.com/p/cmockery/downloads/list&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;5-Libev&quot;&gt;&lt;a href=&quot;#5-Libev&quot; class=&quot;headerlink&quot; title=&quot;5. Libev&quot;&gt;&lt;/a&gt;5. Libev&lt;/h2&gt;&lt;p&gt;libev是一个开源的事件驱动库，基于epoll，kqueue等OS提供的基础设施。其以高效出名，它可以将IO事件，定时器，和信号统一起来，统一放在事件处理这一套框架下处理。基于Reactor模式，效率较高，并且代码精简（4.15版本8000多行），是学习事件驱动编程的很好的资源。&lt;/p&gt;
+&lt;p&gt;下载链接：&lt;a href=&quot;http://software.schmorp.de/pkg/libev.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://software.schmorp.de/pkg/libev.html&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;6-Memcached&quot;&gt;&lt;a href=&quot;#6-Memcached&quot; class=&quot;headerlink&quot; title=&quot;6. Memcached&quot;&gt;&lt;/a&gt;6. Memcached&lt;/h2&gt;&lt;p&gt;Memcached 是一个高性能的分布式内存对象缓存系统，用于动态Web应用以减轻数据库负载。它通过在内存中缓存数据和对象来减少读取数据库的次数，从而提供动态数据库驱动网站的速度。Memcached 基于一个存储键/值对的 hashmap。Memcached-1.4.7的代码量还是可以接受的，只有10K行左右。&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a href=&quot;http://memcached.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://memcached.org/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;7-Lua&quot;&gt;&lt;a href=&quot;#7-Lua&quot; class=&quot;headerlink&quot; title=&quot;7. Lua&quot;&gt;&lt;/a&gt;7. Lua&lt;/h2&gt;&lt;p&gt;Lua很棒，Lua是巴西人发明的，这些都令我不爽，但是还不至于脸红，最多眼红。&lt;/p&gt;
+&lt;p&gt;让我脸红的是Lua的源代码，百分之一百的ANSI C，一点都不掺杂。在任何支持ANSI C编译器的平台上都可以轻松编译通过。我试过，真是一点废话都没有。Lua的代码数量足够小，5.1.4仅仅1.5W行，去掉空白行和注释估计能到1W行。&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a href=&quot;http://www.lua.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.lua.org/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;8-SQLite&quot;&gt;&lt;a href=&quot;#8-SQLite&quot; class=&quot;headerlink&quot; title=&quot;8. SQLite&quot;&gt;&lt;/a&gt;8. SQLite&lt;/h2&gt;&lt;p&gt;SQLite是一个开源的嵌入式关系数据库，实现自包容、零配置、支持事务的SQL数据库引擎。 其特点是高度便携、使用方便、结构紧凑、高效、可靠。足够小，大致3万行C代码，250K。&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a href=&quot;http://www.sqlite.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.sqlite.org/&lt;/a&gt; 。&lt;/p&gt;
+&lt;h2 id=&quot;9-UNIX-v6&quot;&gt;&lt;a href=&quot;#9-UNIX-v6&quot; class=&quot;headerlink&quot; title=&quot;9. UNIX v6&quot;&gt;&lt;/a&gt;9. UNIX v6&lt;/h2&gt;&lt;p&gt;UNIX V6 的内核源代码包括设备驱动程序在内 约有1 万行，这个数量的源代码，初学者是能够充分理解的。有一种说法是一个人所能理解的代码量上限为1 万行，UNIX V6的内核源代码从数量上看正好在这个范围之内。看到这里，大家是不是也有“如果只有1万行的话没准儿我也能学会”的想法呢？&lt;/p&gt;
+&lt;p&gt;另一方面，最近的操作系统，例如Linux 最新版的内核源代码据说超过了1000 万行。就算不是初学者，想完全理解全部代码基本上也是不可能的。&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a href=&quot;http://minnie.tuhs.org/cgi-bin/utree.pl?file=V6&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://minnie.tuhs.org/cgi-bin/utree.pl?file=V6&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;10-NETBSD&quot;&gt;&lt;a href=&quot;#10-NETBSD&quot; class=&quot;headerlink&quot; title=&quot;10. NETBSD&quot;&gt;&lt;/a&gt;10. NETBSD&lt;/h2&gt;&lt;p&gt;NetBSD是一个免费的，具有高度移植性的 UNIX-like 操作系统，是现行可移植平台最多的操作系统，可以在许多平台上执行，从 64bit alpha 服务器到手持设备和嵌入式设备。NetBSD计划的口号是：”Of course it runs NetBSD”。它设计简洁，代码规范，拥有众多先进特性，使得它在业界和学术界广受好评。由于简洁的设计和先进的特征，使得它在生产和研究方面，都有卓越的表现，而且它也有受使用者支持的完整的源代码。许多程序都可以很容易地通过NetBSD Packages Collection获得。&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a href=&quot;http://www.netbsd.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.netbsd.org/&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;C-资源大全&quot;&gt;&lt;a href=&quot;#C-资源大全&quot; class=&quot;headerlink&quot; title=&quot;C++ 资源大全&quot;&gt;&lt;/a&gt;C++ 资源大全&lt;/h1&gt;&lt;p&gt;关于 C++ 框架、库和资源的一些汇总列表，内容包括：标准库、Web应用框架、人工智能、数据库、图片处理、机器学习、日志、代码分析等。&lt;/p&gt;
+&lt;p&gt;标准库&lt;/p&gt;
+&lt;p&gt;C++标准库，包括了STL容器，算法和函数等。&lt;/p&gt;
+&lt;p&gt;C++ Standard Library：是一系列类和函数的集合，使用核心语言编写，也是C++ISO自身标准的一部分。&lt;br&gt;Standard Template Library：标准模板库&lt;br&gt;C POSIX library ： POSIX系统的C标准库规范&lt;br&gt;ISO C++ Standards Committee ：C++标准委员会&lt;/p&gt;
+&lt;p&gt;框架&lt;/p&gt;
+&lt;p&gt;C++通用框架和库&lt;/p&gt;
+&lt;p&gt;Apache C++ Standard Library：是一系列算法，容器，迭代器和其他基本组件的集合&lt;br&gt;ASL ：Adobe源代码库提供了同行的评审和可移植的C++源代码库。&lt;br&gt;Boost ：大量通用C++库的集合。&lt;br&gt;BDE ：来自于彭博资讯实验室的开发环境。&lt;br&gt;Cinder：提供专业品质创造性编码的开源开发社区。&lt;br&gt;Cxxomfort：轻量级的，只包含头文件的库，将C++ 11的一些新特性移植到C++03中。&lt;br&gt;Dlib：使用契约式编程和现代C++科技设计的通用的跨平台的C++库。&lt;br&gt;EASTL ：EA-STL公共部分&lt;br&gt;ffead-cpp ：企业应用程序开发框架&lt;br&gt;Folly：由Facebook开发和使用的开源C++库&lt;br&gt;JUCE ：包罗万象的C++类库，用于开发跨平台软件&lt;br&gt;libPhenom：用于构建高性能和高度可扩展性系统的事件框架。&lt;br&gt;LibSourcey ：用于实时的视频流和高性能网络应用程序的C++11 evented IO&lt;br&gt;LibU ： C语言写的多平台工具库&lt;br&gt;Loki ：C++库的设计，包括常见的设计模式和习语的实现。&lt;br&gt;MiLi ：只含头文件的小型C++库&lt;br&gt;openFrameworks ：开发C++工具包，用于创意性编码。&lt;br&gt;Qt ：跨平台的应用程序和用户界面框架&lt;br&gt;Reason ：跨平台的框架，使开发者能够更容易地使用Java，.Net和Python，同时也满足了他们对C++性能和优势的需求。&lt;br&gt;ROOT ：具备所有功能的一系列面向对象的框架，能够非常高效地处理和分析大量的数据，为欧洲原子能研究机构所用。&lt;br&gt;STLport：是STL具有代表性的版本&lt;br&gt;STXXL：用于额外的大型数据集的标准模板库。&lt;br&gt;Ultimate++ ：C++跨平台快速应用程序开发框架&lt;br&gt;Windows Template Library：用于开发Windows应用程序和UI组件的C++库&lt;br&gt;Yomm11 ：C++11的开放multi-methods.&lt;/p&gt;
+&lt;p&gt;人工智能&lt;/p&gt;
+&lt;p&gt;btsk ：游戏行为树启动器工具&lt;br&gt;Evolving Objects：基于模板的，ANSI C++演化计算库，能够帮助你非常快速地编写出自己的随机优化算法。&lt;br&gt;Neu：C++11框架，编程语言集，用于创建人工智能应用程序的多用途软件系统。&lt;/p&gt;
+&lt;p&gt;异步事件循环&lt;/p&gt;
+&lt;p&gt;Boost.Asio：用于网络和底层I/O编程的跨平台的C++库。&lt;br&gt;libev ：功能齐全，高性能的时间循环，轻微地仿效libevent，但是不再像libevent一样有局限性，也修复了它的一些bug。&lt;br&gt;libevent ：事件通知库&lt;br&gt;libuv ：跨平台异步I/O。&lt;/p&gt;
+&lt;p&gt;音频&lt;/p&gt;
+&lt;p&gt;音频，声音，音乐，数字化音乐库&lt;/p&gt;
+&lt;p&gt;FMOD ：易于使用的跨平台的音频引擎和音频内容的游戏创作工具。&lt;br&gt;Maximilian ：C++音频和音乐数字信号处理库&lt;br&gt;OpenAL ：开源音频库—跨平台的音频API&lt;br&gt;Opus：一个完全开放的，免版税的，高度通用的音频编解码器&lt;br&gt;Speex：免费编解码器，为Opus所废弃&lt;br&gt;Tonic： C++易用和高效的音频合成&lt;br&gt;Vorbis： Ogg Vorbis是一种完全开放的，非专有的，免版税的通用压缩音频格式。&lt;/p&gt;
+&lt;p&gt;生态学&lt;/p&gt;
+&lt;p&gt;生物信息，基因组学和生物技术&lt;/p&gt;
+&lt;p&gt;libsequence：用于表示和分析群体遗传学数据的C++库。&lt;br&gt;SeqAn：专注于生物数据序列分析的算法和数据结构。&lt;br&gt;Vcflib ：用于解析和处理VCF文件的C++库&lt;br&gt;Wham：直接把联想测试应用到BAM文件的基因结构变异。&lt;/p&gt;
+&lt;p&gt;压缩&lt;/p&gt;
+&lt;p&gt;压缩和归档库&lt;/p&gt;
+&lt;p&gt;bzip2：一个完全免费，免费专利和高质量的数据压缩&lt;br&gt;doboz：能够快速解压缩的压缩库&lt;br&gt;PhysicsFS：对各种归档提供抽象访问的库，主要用于视频游戏，设计灵感部分来自于Quake3的文件子系统。&lt;br&gt;KArchive：用于创建，读写和操作文件档案（例如zip和 tar）的库，它通过QIODevice的一系列子类，使用gzip格式，提供了透明的压缩和解压缩的数据。&lt;br&gt;LZ4 ：非常快速的压缩算法&lt;br&gt;LZHAM ：无损压缩数据库，压缩比率跟LZMA接近，但是解压缩速度却要快得多。&lt;br&gt;LZMA ：7z格式默认和通用的压缩方法。&lt;br&gt;LZMAT ：及其快速的实时无损数据压缩库&lt;br&gt;miniz：单一的C源文件，紧缩/膨胀压缩库，使用zlib兼容API，ZIP归档读写，PNG写方式。&lt;br&gt;Minizip：Zlib最新bug修复，支持PKWARE磁盘跨越，AES加密和IO缓冲。&lt;br&gt;Snappy ：快速压缩和解压缩&lt;br&gt;ZLib ：非常紧凑的数据流压缩库&lt;br&gt;ZZIPlib：提供ZIP归档的读权限。&lt;/p&gt;
+&lt;p&gt;并发性&lt;/p&gt;
+&lt;p&gt;并发执行和多线程&lt;/p&gt;
+&lt;p&gt;Boost.Compute ：用于OpenCL的C++GPU计算库&lt;br&gt;Bolt ：针对GPU进行优化的C++模板库&lt;br&gt;C++React ：用于C++11的反应性编程库&lt;br&gt;Intel TBB ：Intel线程构件块&lt;br&gt;Libclsph：基于OpenCL的GPU加速SPH流体仿真库&lt;br&gt;OpenCL ：并行编程的异构系统的开放标准&lt;br&gt;OpenMP：OpenMP API&lt;br&gt;Thrust ：类似于C++标准模板库的并行算法库&lt;br&gt;HPX ：用于任何规模的并行和分布式应用程序的通用C++运行时系统&lt;br&gt;VexCL ：用于OpenCL/CUDA 的C++向量表达式模板库。&lt;/p&gt;
+&lt;p&gt;容器&lt;/p&gt;
+&lt;p&gt;C++ B-tree ：基于B树数据结构，实现命令内存容器的模板库&lt;br&gt;Hashmaps： C++中开放寻址哈希表算法的实现&lt;/p&gt;
+&lt;p&gt;密码学&lt;/p&gt;
+&lt;p&gt;Bcrypt ：一个跨平台的文件加密工具，加密文件可以移植到所有可支持的操作系统和处理器中。&lt;br&gt;BeeCrypt：&lt;br&gt;Botan： C++加密库&lt;br&gt;Crypto++：一个有关加密方案的免费的C++库&lt;br&gt;GnuPG： OpenPGP标准的完整实现&lt;br&gt;GnuTLS ：实现了SSL，TLS和DTLS协议的安全通信库&lt;br&gt;Libgcrypt&lt;br&gt;libmcrypt&lt;br&gt;LibreSSL：免费的SSL/TLS协议，属于2014 OpenSSL的一个分支&lt;br&gt;LibTomCrypt：一个非常全面的，模块化的，可移植的加密工具&lt;br&gt;libsodium：基于NaCI的加密库，固执己见，容易使用&lt;br&gt;Nettle 底层的加密库&lt;br&gt;OpenSSL ： 一个强大的，商用的，功能齐全的，开放源代码的加密库。&lt;br&gt;Tiny AES128 in C ：用C实现的一个小巧，可移植的实现了AES128ESB的加密算法&lt;/p&gt;
+&lt;p&gt;数据库&lt;/p&gt;
+&lt;p&gt;数据库，SQL服务器，ODBC驱动程序和工具&lt;/p&gt;
+&lt;p&gt;hiberlite ：用于Sqlite3的C++对象关系映射&lt;br&gt;Hiredis： 用于Redis数据库的很简单的C客户端库&lt;br&gt;LevelDB： 快速键值存储库&lt;br&gt;LMDB：符合数据库四大基本元素的嵌入键值存储&lt;br&gt;MySQL++：封装了MySql的C API的C++ 包装器&lt;br&gt;RocksDB：来自Facebook的嵌入键值的快速存储&lt;br&gt;SQLite：一个完全嵌入式的，功能齐全的关系数据库，只有几百KB，可以正确包含到你的项目中。&lt;/p&gt;
+&lt;p&gt;调试&lt;/p&gt;
+&lt;p&gt;调试库， 内存和资源泄露检测，单元测试&lt;/p&gt;
+&lt;p&gt;Boost.Test：Boost测试库&lt;br&gt;Catch：一个很时尚的，C++原生的框架，只包含头文件，用于单元测试，测试驱动开发和行为驱动开发。&lt;br&gt;CppUnit：由JUnit移植过来的C++测试框架&lt;br&gt;CTest：CMake测试驱动程序&lt;br&gt;googletest：谷歌C++测试框架&lt;br&gt;ig-debugheap：用于跟踪内存错误的多平台调试堆&lt;br&gt;libtap：用C语言编写测试&lt;br&gt;MemTrack —用于C++跟踪内存分配&lt;br&gt;microprofile- 跨平台的网络试图分析器&lt;br&gt;minUnit ：使用C写的迷你单元测试框架，只使用了两个宏&lt;br&gt;Remotery：用于web视图的单一C文件分析器&lt;br&gt;UnitTest++：轻量级的C++单元测试框架&lt;/p&gt;
+&lt;p&gt;游戏引擎&lt;/p&gt;
+&lt;p&gt;Cocos2d-x ：一个跨平台框架，用于构建2D游戏，互动图书，演示和其他图形应用程序。&lt;br&gt;Grit ：社区项目，用于构建一个免费的游戏引擎，实现开放的世界3D游戏。&lt;br&gt;Irrlicht ：C++语言编写的开源高性能的实时#D引擎&lt;br&gt;Polycode：C++实现的用于创建游戏的开源框架（与Lua绑定）。&lt;/p&gt;
+&lt;p&gt;图形用户界面&lt;/p&gt;
+&lt;p&gt;CEGUI ： 很灵活的跨平台GUI库&lt;br&gt;FLTK ：快速，轻量级的跨平台的C++GUI工具包。&lt;br&gt;GTK+： 用于创建图形用户界面的跨平台工具包&lt;br&gt;gtkmm ：用于受欢迎的GUI库GTK+的官方C++接口。&lt;br&gt;imgui：拥有最小依赖关系的立即模式图形用户界面&lt;br&gt;libRocket ：libRocket 是一个C++ HTML/CSS 游戏接口中间件&lt;br&gt;MyGUI ：快速，灵活，简单的GUI&lt;br&gt;Ncurses：终端用户界面&lt;br&gt;QCustomPlot ：没有更多依赖关系的Qt绘图控件&lt;br&gt;Qwt ：用户与技术应用的Qt 控件&lt;br&gt;QwtPlot3D ：功能丰富的基于Qt/OpenGL的C++编程库，本质上提供了一群3D控件&lt;br&gt;OtterUI ：OtterUI 是用于嵌入式系统和互动娱乐软件的用户界面开发解决方案&lt;br&gt;PDCurses 包含源代码和预编译库的公共图形函数库&lt;br&gt;wxWidgets C++库，允许开发人员使用一个代码库可以为widows， Mac OS X，Linux和其他平台创建应用程序&lt;/p&gt;
+&lt;p&gt;图形&lt;/p&gt;
+&lt;p&gt;bgfx：跨平台的渲染库&lt;br&gt;Cairo：支持多种输出设备的2D图形库&lt;br&gt;Horde3D 一个小型的3D渲染和动画引擎&lt;br&gt;magnum C++11和OpenGL 2D/3D 图形引擎&lt;br&gt;Ogre 3D 用C++编写的一个面向场景，实时，灵活的3D渲染引擎（并非游戏引擎）&lt;br&gt;OpenSceneGraph 具有高性能的开源3D图形工具包&lt;br&gt;Panda3D 用于3D渲染和游戏开发的框架，用Python和C++编写。&lt;br&gt;Skia 用于绘制文字，图形和图像的完整的2D图形库&lt;br&gt;urho3d 跨平台的渲染和游戏引擎。&lt;/p&gt;
+&lt;p&gt;图像处理&lt;/p&gt;
+&lt;p&gt;Boost.GIL：通用图像库&lt;br&gt;CImg ：用于图像处理的小型开源C++工具包&lt;br&gt;CxImage ：用于加载，保存，显示和转换的图像处理和转换库，可以处理的图片格式包括 BMP, JPEG, GIF, PNG, TIFF, MNG, ICO, PCX, TGA, WMF, WBMP, JBG, J2K。&lt;br&gt;FreeImage ：开源库，支持现在多媒体应用所需的通用图片格式和其他格式。&lt;br&gt;GDCM：Grassroots DICOM 库&lt;br&gt;ITK：跨平台的开源图像分析系统&lt;br&gt;Magick++：ImageMagick程序的C++接口&lt;br&gt;MagickWnd：ImageMagick程序的C++接口&lt;br&gt;OpenCV ： 开源计算机视觉类库&lt;br&gt;tesseract-ocr：OCR引擎&lt;br&gt;VIGRA ：用于图像分析通用C++计算机视觉库&lt;br&gt;VTK ：用于3D计算机图形学，图像处理和可视化的开源免费软件系统。&lt;/p&gt;
+&lt;p&gt;国际化&lt;/p&gt;
+&lt;p&gt;gettext ：GNU `gettext’&lt;br&gt;IBM ICU：提供Unicode 和全球化支持的C、C++ 和Java库&lt;br&gt;libiconv ：用于不同字符编码之间的编码转换库&lt;/p&gt;
+&lt;p&gt;Jason&lt;/p&gt;
+&lt;p&gt;frozen ： C/C++的Jason解析生成器&lt;br&gt;Jansson ：进行编解码和处理Jason数据的C语言库&lt;br&gt;jbson ：C++14中构建和迭代BSON data,和Json 文档的库&lt;br&gt;JeayeSON：非常健全的C++ JSON库，只包含头文件&lt;br&gt;JSON++ ： C++ JSON 解析器&lt;br&gt;json-parser：用可移植的ANSI C编写的JSON解析器，占用内存非常少&lt;br&gt;json11 ：一个迷你的C++11 JSON库&lt;br&gt;jute ：非常简单的C++ JSON解析器&lt;br&gt;ibjson：C语言中的JSON解析和打印库，很容易和任何模型集成。&lt;br&gt;libjson：轻量级的JSON库&lt;br&gt;PicoJSON：C++中JSON解析序列化，只包含头文件&lt;br&gt;qt-json ：用于JSON数据和 QVariant层次间的相互解析的简单类&lt;br&gt;QJson：将JSON数据映射到QVariant对象的基于Qt的库&lt;br&gt;RapidJSON： 用于C++的快速JSON 解析生成器，包含SAX和DOM两种风格的API&lt;br&gt;YAJL ：C语言中快速流JSON解析库&lt;/p&gt;
+&lt;p&gt;日志&lt;/p&gt;
+&lt;p&gt;Boost.Log ：设计非常模块化，并且具有扩展性&lt;br&gt;easyloggingpp：C++日志库，只包含单一的头文件。&lt;br&gt;Log4cpp ：一系列C++类库，灵活添加日志到文件，系统日志，IDSA和其他地方。&lt;br&gt;templog：轻量级C++库，可以添加日志到你的C++应用程序中&lt;/p&gt;
+&lt;p&gt;机器学习&lt;/p&gt;
+&lt;p&gt;Caffe ：快速的神经网络框架&lt;br&gt;CCV ：以C语言为核心的现代计算机视觉库&lt;br&gt;mlpack ：可扩展的C++机器学习库&lt;br&gt;OpenCV：开源计算机视觉库&lt;br&gt;Recommender：使用协同过滤进行产品推荐/建议的C语言库。&lt;br&gt;SHOGUN：Shogun 机器学习工具&lt;br&gt;sofia-ml ：用于机器学习的快速增量算法套件&lt;/p&gt;
+&lt;p&gt;数学&lt;/p&gt;
+&lt;p&gt;Armadillo ：高质量的C++线性代数库，速度和易用性做到了很好的平衡。语法和MatlAB很相似&lt;br&gt;blaze：高性能的C++数学库，用于密集和稀疏算法。&lt;br&gt;ceres-solver ：来自谷歌的C++库，用于建模和解决大型复杂非线性最小平方问题。&lt;br&gt;CGal： 高效，可靠的集合算法集合&lt;br&gt;cml ：用于游戏和图形的免费C++数学库&lt;br&gt;Eigen ：高级C++模板头文件库，包括线性代数，矩阵，向量操作，数值解决和其他相关的算法。&lt;br&gt;GMTL：数学图形模板库是一组广泛实现基本图形的工具。&lt;br&gt;GMP：用于个高精度计算的C/C++库，处理有符号整数，有理数和浮点数。&lt;/p&gt;
+&lt;p&gt;多媒体&lt;/p&gt;
+&lt;p&gt;GStreamer ：构建媒体处理组件图形的库&lt;br&gt;LIVE555 Streaming Media ：使用开放标准协议(RTP/RTCP, RTSP, SIP) 的多媒体流库&lt;br&gt;libVLC ：libVLC (VLC SDK)媒体框架&lt;br&gt;QtAv：基于Qt和FFmpeg的多媒体播放框架，能够帮助你轻而易举地编写出一个播放器&lt;br&gt;SDL ：简单直控媒体层&lt;br&gt;SFML ：快速，简单的多媒体库&lt;/p&gt;
+&lt;p&gt;网络&lt;/p&gt;
+&lt;p&gt;ACE：C++面向对象网络变成工具包&lt;br&gt;Boost.Asio：用于网络和底层I/O编程的跨平台的C++库&lt;br&gt;Casablanca：C++ REST SDK&lt;br&gt;cpp-netlib：高级网络编程的开源库集合&lt;br&gt;Dyad.c：C语言的异步网络&lt;br&gt;libcurl :多协议文件传输库&lt;br&gt;Mongoose：非常轻量级的网络服务器&lt;br&gt;Muduo ：用于Linux多线程服务器的C++非阻塞网络库&lt;br&gt;net_skeleton ：C/C++的TCP 客户端/服务器库&lt;br&gt;nope.c ：基于C语言的超轻型软件平台，用于可扩展的服务器端和网络应用。 对于C编程人员，可以考虑node.js&lt;br&gt;Onion :C语言HTTP服务器库，其设计为轻量级，易使用。&lt;br&gt;POCO：用于构建网络和基于互联网应用程序的C++类库，可以运行在桌面，服务器，移动和嵌入式系统。&lt;br&gt;RakNet：为游戏开发人员提供的跨平台的开源C++网络引擎。&lt;br&gt;Tuf o ：用于Qt之上的C++构建的异步Web框架。&lt;br&gt;WebSocket++ ：基于C++/Boost Aiso的websocket 客户端/服务器库&lt;br&gt;ZeroMQ ：高速，模块化的异步通信库&lt;/p&gt;
+&lt;p&gt;物理学&lt;/p&gt;
+&lt;p&gt;动力学仿真引擎&lt;/p&gt;
+&lt;p&gt;Box2D：2D的游戏物理引擎。&lt;br&gt;Bullet ：3D的游戏物理引擎。&lt;br&gt;Chipmunk ：快速，轻量级的2D游戏物理库&lt;br&gt;LiquidFun：2D的游戏物理引擎&lt;br&gt;ODE ：开放动力学引擎-开源，高性能库，模拟刚体动力学。&lt;br&gt;ofxBox2d：Box2D开源框架包装器。&lt;br&gt;Simbody ：高性能C++多体动力学/物理库，模拟关节生物力学和机械系统，像车辆，机器人和人体骨骼。&lt;/p&gt;
+&lt;p&gt;机器人学&lt;/p&gt;
+&lt;p&gt;MOOS-IvP ：一组开源C++模块，提供机器人平台的自主权，尤其是自主的海洋车辆。&lt;br&gt;MRPT：移动机器人编程工具包&lt;br&gt;PCL ：点云库是一个独立的，大规模的开放项目，用于2D/3D图像和点云处理。&lt;br&gt;Robotics Library (RL)： 一个独立的C++库，包括机器人动力学，运动规划和控制。&lt;br&gt;RobWork：一组C++库的集合，用于机器人系统的仿真和控制。&lt;br&gt;ROS ：机器人操作系统，提供了一些库和工具帮助软件开发人员创建机器人应用程序。&lt;/p&gt;
+&lt;p&gt;科学计算&lt;/p&gt;
+&lt;p&gt;FFTW :用一维或者多维计算DFT的C语言库。&lt;br&gt;GSL：GNU科学库。&lt;/p&gt;
+&lt;p&gt;脚本&lt;/p&gt;
+&lt;p&gt;ChaiScript ：用于C++的易于使用的嵌入式脚本语言。&lt;br&gt;Lua ：用于配置文件和基本应用程序脚本的小型快速脚本引擎。&lt;br&gt;luacxx：用于创建Lua绑定的C++ 11 API&lt;br&gt;SWIG ：一个可以让你的C++代码链接到JavaScript，Perl，PHP，Python，Tcl和Ruby的包装器/接口生成器&lt;br&gt;V7：嵌入式的JavaScript 引擎。&lt;br&gt;V8 ：谷歌的快速JavaScript引擎，可以被嵌入到任何C++应用程序中。&lt;/p&gt;
+&lt;p&gt;序列化&lt;/p&gt;
+&lt;p&gt;Cap’n Proto ：快速数据交换格式和RPC系统。&lt;br&gt;cereal ：C++11 序列化库&lt;br&gt;FlatBuffers ：内存高效的序列化库&lt;br&gt;MessagePack ：C/C++的高效二进制序列化库，例如 JSON&lt;br&gt;protobuf ：协议缓冲，谷歌的数据交换格式。&lt;br&gt;protobuf-c ：C语言的协议缓冲实现&lt;br&gt;SimpleBinaryEncoding：用于低延迟应用程序的对二进制格式的应用程序信息的编码和解码。&lt;br&gt;Thrift ：高效的跨语言IPC/RPC，用于C++，Java，Python，PHP，C#和其它多种语言中，最初由Twitter开发。注：原文有误，应该是 facebook 在2007年开发的，现在是 Apache 在维护&lt;/p&gt;
+&lt;p&gt;视频&lt;/p&gt;
+&lt;p&gt;libvpx ：VP8/VP9编码解码SDK&lt;br&gt;FFmpeg ：一个完整的，跨平台的解决方案，用于记录，转换视频和音频流。&lt;br&gt;libde265 ：开放的h.265视频编解码器的实现。&lt;br&gt;OpenH264：开源H.364 编解码器。&lt;br&gt;Theora ：免费开源的视频压缩格式。&lt;/p&gt;
+&lt;p&gt;虚拟机&lt;/p&gt;
+&lt;p&gt;CarpVM：C中有趣的VM，让我们一起来看看这个。&lt;br&gt;MicroPython ：旨在实现单片机上Python3.x的实现&lt;br&gt;TinyVM：用纯粹的ANSI C编写的小型，快速，轻量级的虚拟机。&lt;/p&gt;
+&lt;p&gt;Web应用框架&lt;/p&gt;
+&lt;p&gt;Civetweb ：提供易于使用，强大的，C/C++嵌入式Web服务器，带有可选的CGI，SSL和Lua支持。&lt;br&gt;CppCMS ：免费高性能的Web开发框架（不是 CMS）.&lt;br&gt;Crow ：一个C++微型web框架（灵感来自于Python Flask）&lt;br&gt;Kore :使用C语言开发的用于web应用程序的超快速和灵活的web服务器/框架。&lt;br&gt;libOnion：轻量级的库，帮助你使用C编程语言创建web服务器。&lt;br&gt;QDjango：使用C++编写的，基于Qt库的web框架，试图效仿Django API，因此得此名。&lt;br&gt;Wt ：开发Web应用的C++库。&lt;/p&gt;
+&lt;p&gt;XML&lt;/p&gt;
+&lt;p&gt;XML就是个垃圾，xml的解析很烦人，对于计算机它也是个灾难。这种糟糕的东西完全没有存在的理由了。-Linus Torvalds&lt;/p&gt;
+&lt;p&gt;Expat ：用C语言编写的xml解析库&lt;br&gt;Libxml2 ：Gnome的xml C解析器和工具包&lt;br&gt;libxml++ ：C++的xml解析器&lt;br&gt;PugiXML ：用于C++的，支持XPath的轻量级，简单快速的XML解析器。&lt;br&gt;RapidXml ：试图创建最快速的XML解析器，同时保持易用性，可移植性和合理的W3C兼容性。&lt;br&gt;TinyXML ：简单小型的C++XML解析器，可以很容易地集成到其它项目中。&lt;br&gt;TinyXML2：简单快速的C++CML解析器，可以很容易集成到其它项目中。&lt;br&gt;TinyXML++：TinyXML的一个全新的接口，使用了C++的许多许多优势，模板，异常和更好的异常处理。&lt;br&gt;Xerces-C++ ：用可移植的C++的子集编写的XML验证解析器。&lt;/p&gt;
+&lt;p&gt;多项混杂&lt;/p&gt;
+&lt;p&gt;一些有用的库或者工具，但是不适合上面的分类，或者还没有分类。&lt;/p&gt;
+&lt;p&gt;C++ Format ：C++的小型，安全和快速格式化库&lt;br&gt;casacore ：从aips++ 派生的一系列C++核心库&lt;br&gt;cxx-prettyprint：用于C++容器的打印库&lt;br&gt;DynaPDF ：易于使用的PDF生成库&lt;br&gt;gcc-poison ：帮助开发人员禁止应用程序中的不安全的C/C++函数的简单的头文件。&lt;br&gt;googlemock：编写和使用C++模拟类的库&lt;br&gt;HTTP Parser ：C的http请求/响应解析器&lt;br&gt;libcpuid ：用于x86 CPU检测盒特征提取的小型C库&lt;br&gt;libevil ：许可证管理器&lt;br&gt;libusb：允许移动访问USB设备的通用USB库&lt;br&gt;PCRE：正则表达式C库，灵感来自于Perl中正则表达式的功能。&lt;br&gt;Remote Call Framework ：C++的进程间通信框架。&lt;br&gt;Scintilla ：开源的代码编辑控件&lt;br&gt;Serial Communication Library ：C++语言编写的跨平台，串口库。&lt;br&gt;SDS：C的简单动态字符串库&lt;br&gt;SLDR ：超轻的DNS解析器&lt;br&gt;SLRE： 超轻的正则表达式库&lt;br&gt;Stage ：移动机器人模拟器&lt;br&gt;VarTypes：C++/Qt4功能丰富，面向对象的管理变量的框架。&lt;br&gt;ZBar：‘条形码扫描器’库，可以扫描照片，图片和视频流中的条形码，并返回结果。&lt;br&gt;CppVerbalExpressions ：易于使用的C++正则表达式&lt;br&gt;QtVerbalExpressions：基于C++ VerbalExpressions 库的Qt库&lt;br&gt;PHP-CPP：使用C++来构建PHP扩展的库&lt;br&gt;Better String ：C的另一个字符串库，功能更丰富，但是没有缓冲溢出问题，还包含了一个C++包装器。&lt;/p&gt;
+&lt;p&gt;软件&lt;/p&gt;
+&lt;p&gt;用于创建开发环境的软件&lt;/p&gt;
+&lt;p&gt;编译器&lt;/p&gt;
+&lt;p&gt;C/C++编译器列表&lt;/p&gt;
+&lt;p&gt;Clang :由苹果公司开发的&lt;br&gt;GCC：GNU编译器集合&lt;br&gt;Intel C++ Compiler ：由英特尔公司开发&lt;br&gt;LLVM ：模块化和可重用编译器和工具链技术的集合&lt;br&gt;Microsoft Visual C++ ：MSVC，由微软公司开发&lt;br&gt;Open WatCom ：Watcom，C，C++和Fortran交叉编译器和工具&lt;br&gt;TCC ：轻量级的C语言编译器&lt;/p&gt;
+&lt;p&gt;在线编译器&lt;/p&gt;
+&lt;p&gt;在线C/C++编译器列表&lt;/p&gt;
+&lt;p&gt;codepad ：在线编译器/解释器，一个简单的协作工具&lt;br&gt;CodeTwist：一个简单的在线编译器/解释器，你可以粘贴的C,C++或者Java代码，在线执行并查看结果&lt;br&gt;coliru ：在线编译器/shell， 支持各种C++编译器&lt;br&gt;Compiler Explorer：交互式编译器，可以进行汇编输出&lt;br&gt;CompileOnline：Linux上在线编译和执行C++程序&lt;br&gt;Ideone ：一个在线编译器和调试工具，允许你在线编译源代码并执行，支持60多种编程语言。&lt;/p&gt;
+&lt;p&gt;调试器&lt;/p&gt;
+&lt;p&gt;C/C++调试器列表&lt;/p&gt;
+&lt;p&gt;Comparison of debuggers ：来自维基百科的调试器列表&lt;br&gt;GDB ：GNU调试器&lt;br&gt;Valgrind：内存调试，内存泄露检测，性能分析工具。&lt;/p&gt;
+&lt;p&gt;集成开发环境（IDE）&lt;/p&gt;
+&lt;p&gt;C/C++集成开发环境列表&lt;/p&gt;
+&lt;p&gt;AppCode ：构建与JetBrains’ IntelliJ IDEA 平台上的用于Objective-C，C,C++，Java和Java开发的集成开发环境&lt;br&gt;CLion：来自JetBrains的跨平台的C/C++的集成开发环境&lt;br&gt;Code::Blocks ：免费C，C++和Fortran的集成开发环境&lt;br&gt;CodeLite ：另一个跨平台的免费的C/C++集成开发环境&lt;br&gt;Dev-C++：可移植的C/C++/C++11集成开发环境&lt;br&gt;Eclipse CDT：基于Eclipse平台的功能齐全的C和C++集成开发环境&lt;br&gt;Geany ：轻量级的快速，跨平台的集成开发环境。&lt;br&gt;IBM VisualAge ：来自IBM的家庭计算机集成开发环境。&lt;br&gt;Irony-mode：由libclang驱动的用于Emacs的C/C++微模式&lt;br&gt;KDevelop：免费开源集成开发环境&lt;br&gt;Microsoft Visual Studio ：来自微软的集成开发环境&lt;br&gt;NetBeans ：主要用于Java开发的的集成开发环境，也支持其他语言，尤其是PHP，C/C++和HTML5。&lt;br&gt;Qt Creator：跨平台的C++，Javascript和QML集成开发环境，也是Qt SDK的一部分。&lt;br&gt;rtags：C/C++的客户端服务器索引，用于 跟基于clang的emacs的集成&lt;br&gt;Xcode ：由苹果公司开发&lt;br&gt;YouCompleteMe：一个用于Vim的根据你敲的代码快速模糊搜索并进行代码补全的引擎。&lt;/p&gt;
+&lt;p&gt;构建系统&lt;/p&gt;
+&lt;p&gt;Bear ：用于为clang工具生成编译数据库的工具&lt;br&gt;Biicode：基于文件的简单依赖管理器。&lt;br&gt;CMake ：跨平台的免费开源软件用于管理软件使用独立编译的方法进行构建的过程。&lt;br&gt;CPM：基于CMake和Git的C++包管理器&lt;br&gt;FASTBuild：高性能，开源的构建系统，支持高度可扩展性的编译，缓冲和网络分布。&lt;br&gt;Ninja ：专注于速度的小型构建系统&lt;br&gt;Scons ：使用Python scipt 配置的软件构建工具&lt;br&gt;tundra ：高性能的代码构建系统，甚至对于非常大型的软件项目，也能提供最好的增量构建次数。&lt;br&gt;tup：基于文件的构建系统，用于后台监控变化的文件。&lt;/p&gt;
+&lt;p&gt;静态代码分析&lt;/p&gt;
+&lt;p&gt;提高质量，减少瑕疵的代码分析工具列表&lt;/p&gt;
+&lt;p&gt;Cppcheck ：静态C/C++代码分析工具&lt;br&gt;include-what-you-use ：使用clang进行代码分析的工具，可以#include在C和C++文件中。&lt;br&gt;OCLint ：用于C，C++和Objective-C的静态源代码分析工具，用于提高质量，减少瑕疵。&lt;br&gt;Clang Static Analyzer：查找C，C++和Objective-C程序bug的源代码分析工具&lt;br&gt;List of tools for static code analysis ：来自维基百科的静态代码分析工具列表&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;【本文系外部转贴，原文地址：&lt;a href=&quot;http://coolshell.info/c/c++/2014/12/13/c-open-project.htm】留作存档&quot;&gt;http://coolshell.info/c/c++/2014/12/13/c-open-project.htm】留作存档&lt;/a&gt;&lt;br&gt;下次造轮子前先看看现有的轮子吧&lt;/p&gt;
+&lt;h1 id=&quot;值得学习的C语言开源项目&quot;&gt;&lt;a href=&quot;#值得学习的C语言开源项目&quot; class=&quot;headerlink&quot; title=&quot;值得学习的C语言开源项目&quot;&gt;&lt;/a&gt;值得学习的C语言开源项目&lt;/h1&gt;&lt;h2 id=&quot;Webbench&quot;&gt;&lt;a href=&quot;#Webbench&quot; class=&quot;headerlink&quot; title=&quot;Webbench&quot;&gt;&lt;/a&gt;Webbench&lt;/h2&gt;&lt;p&gt;Webbench是一个在linux下使用的非常简单的网站压测工具。它使用fork()模拟多个客户端同时访问我们设定的URL，测试网站在压力下工作的性能，最多可以模拟3万个并发连接去测试网站的负载能力。Webbench使用C语言编写, 代码实在太简洁，源码加起来不到600行。&lt;/p&gt;
+&lt;p&gt;下载链接：&lt;a href=&quot;http://home.tiscali.cz/~cz210552/webbench.html&quot;&gt;http://home.tiscali.cz/~cz210552/webbench.html&lt;/a&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="c++" scheme="http://yoursite.com/categories/c/"/>
+    
+    
+      <category term="推荐框架和库" scheme="http://yoursite.com/tags/%E6%8E%A8%E8%8D%90%E6%A1%86%E6%9E%B6%E5%92%8C%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>const用法总结</title>
+    <link href="http://yoursite.com/2016/04/07/const%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2016/04/07/const用法总结/</id>
+    <published>2016-04-07T15:21:41.000Z</published>
+    <updated>2016-04-07T16:39:43.906Z</updated>
+    
+    <content type="html">&lt;p&gt;【原文&lt;a href=&quot;http://blog.csdn.net/Eric_Jo/article/details/4138548】&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/Eric_Jo/article/details/4138548】&lt;/a&gt;&lt;br&gt;C++中的const关键字的用法非常灵活，而使用const将大大改善程序的健壮性，本人根据各方面查到的资料进行总结如下，期望对朋友们有所帮助。&lt;br&gt;Const 是C++中常用的类型修饰符,常类型是指使用类型修饰符const说明的类型，常类型的变量或对象的值是不能被更新的。&lt;/p&gt;
+&lt;h1 id=&quot;Const作用&quot;&gt;&lt;a href=&quot;#Const作用&quot; class=&quot;headerlink&quot; title=&quot;Const作用&quot;&gt;&lt;/a&gt;Const作用&lt;/h1&gt;&lt;p&gt;   如下图所示：&lt;br&gt;&lt;img src=&quot;http://v2.freep.cn/3tb_160407234443rs9v512293.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;Const的使用&quot;&gt;&lt;a href=&quot;#Const的使用&quot; class=&quot;headerlink&quot; title=&quot;Const的使用&quot;&gt;&lt;/a&gt;Const的使用&lt;/h1&gt;&lt;h2 id=&quot;定义常量&quot;&gt;&lt;a href=&quot;#定义常量&quot; class=&quot;headerlink&quot; title=&quot;定义常量&quot;&gt;&lt;/a&gt;定义常量&lt;/h2&gt;&lt;p&gt;(1)const修饰变量，以下两种定义形式在本质上是一样的。它的含义是：const修饰的类型为TYPE的变量value是不可变的。&lt;/p&gt;
+&lt;p&gt; TYPE const ValueName = value;&lt;br&gt;     const TYPE ValueName = value;&lt;/p&gt;
+&lt;p&gt;(2)将const改为外部连接,作用于扩大至全局,编译时会分配内存,并且可以不进行初始化,仅仅作为声明,编译器认为在程序其他地方进行了定义.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;extend const int ValueName = value;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;指针使用CONST&quot;&gt;&lt;a href=&quot;#指针使用CONST&quot; class=&quot;headerlink&quot; title=&quot;指针使用CONST&quot;&gt;&lt;/a&gt;指针使用CONST&lt;/h2&gt;&lt;p&gt;(1)指针本身是常量不可变&lt;br&gt;     (char&lt;em&gt;) const pContent;&lt;br&gt;     const (char&lt;/em&gt;) pContent; &lt;/p&gt;
+&lt;p&gt;(2)指针所指向的内容是常量不可变&lt;br&gt;     const (char) &lt;em&gt;pContent;&lt;br&gt;     (char) const &lt;/em&gt;pContent; &lt;/p&gt;
+&lt;p&gt;(3)两者都不可变&lt;br&gt;      const char* const pContent; &lt;/p&gt;
+&lt;p&gt;(4)还有其中区别方法，沿着&lt;em&gt;号划一条线：&lt;br&gt;如果const位于&lt;/em&gt;的左侧，则const就是用来修饰指针所指向的变量，即指针指向为常量；&lt;br&gt;如果const位于*的右侧，const就是修饰指针本身，即指针本身是常量。&lt;/p&gt;
+&lt;h2 id=&quot;函数中使用CONST&quot;&gt;&lt;a href=&quot;#函数中使用CONST&quot; class=&quot;headerlink&quot; title=&quot;函数中使用CONST&quot;&gt;&lt;/a&gt;函数中使用CONST&lt;/h2&gt;&lt;p&gt;(1)const修饰函数参数&lt;br&gt;a.传递过来的参数在函数内不可以改变(无意义，因为Var本身就是形参)&lt;/p&gt;
+&lt;p&gt;void function(const int Var);&lt;/p&gt;
+&lt;p&gt;b.参数指针所指内容为常量不可变&lt;/p&gt;
+&lt;p&gt;void function(const char* Var);&lt;/p&gt;
+&lt;p&gt;c.参数指针本身为常量不可变(也无意义，因为char* Var也是形参)&lt;/p&gt;
+&lt;p&gt;void function(char* const Var);&lt;/p&gt;
+&lt;p&gt;d.参数为引用，为了增加效率同时防止修改。修饰引用参数时：&lt;/p&gt;
+&lt;p&gt;void function(const Class&amp;amp; Var); //引用参数在函数内不可以改变&lt;/p&gt;
+&lt;p&gt;void function(const TYPE&amp;amp; Var); //引用参数在函数内为常量不可变&lt;/p&gt;
+&lt;p&gt;这样的一个const引用传递和最普通的函数按值传递的效果是一模一样的,他禁止对引用的对象的一切修改,唯一不同的是按值传递会先建立一个类对象的副本, 然后传递过去,而它直接传递地址,所以这种传递比按值传递更有效.另外只有引用的const传递可以传递一个临时对象,因为临时对象都是const属性, 且是不可见的,他短时间存在一个局部域中,所以不能使用指针,只有引用的const传递能够捕捉到这个家伙.&lt;/p&gt;
+&lt;p&gt;(2)const 修饰函数返回值&lt;br&gt;    const修饰函数返回值其实用的并不是很多，它的含义和const修饰普通变量以及指针的含义基本相同。&lt;br&gt;    a.const int fun1() //这个其实无意义，因为参数返回本身就是赋值。&lt;br&gt;    b. const int &lt;em&gt; fun2() //调用时 const int &lt;/em&gt;pValue = fun2();&lt;br&gt;                          //我们可以把fun2()看作成一个变量，即指针内容不可变。&lt;br&gt;    c.int&lt;em&gt; const fun3()   //调用时 int &lt;/em&gt; const pValue = fun2();&lt;br&gt;                          //我们可以把fun2()看作成一个变量，即指针本身不可变。&lt;/p&gt;
+&lt;p&gt;一般情况下，函数的返回值为某个对象时，如果将其声明为const时，多用于操作符的重载。通常，不建议用const修饰函数的返回值类型为某个对象或对某个对象引用的情况。原因如下：如果返回值为某个对象为const（const A test = A 实例）或某个对象的引用为const（const A&amp;amp; test = A实例） ，则返回值具有const属性，则返回实例只能访问类A中的公有（保护）数据成员和const成员函数，并且不允许对其进行赋值操作，这在一般情况下很少用到。&lt;/p&gt;
+&lt;h2 id=&quot;类相关CONST&quot;&gt;&lt;a href=&quot;#类相关CONST&quot; class=&quot;headerlink&quot; title=&quot;类相关CONST&quot;&gt;&lt;/a&gt;类相关CONST&lt;/h2&gt;&lt;p&gt;(1)const修饰成员变量&lt;br&gt;const修饰类的成员函数，表示成员常量，不能被修改，同时它只能在初始化列表中赋值。&lt;br&gt;    class A&lt;br&gt;    {&lt;br&gt;        …&lt;br&gt;        const int nValue;         //成员常量不能被修改&lt;br&gt;        …&lt;br&gt;        A(int x): nValue(x) { } ; //只能在初始化列表中赋值&lt;br&gt;     } &lt;/p&gt;
+&lt;p&gt;(2)const修饰成员函数&lt;br&gt;const修饰类的成员函数，则该成员函数不能修改类中任何非const成员函数。一般写在函数的最后来修饰。&lt;br&gt;    class A&lt;br&gt;    {&lt;br&gt;        …&lt;br&gt;       void function()const; //常成员函数, 它不改变对象的成员变量.                        &lt;/p&gt;
+&lt;p&gt;//也不能调用类中任何非const成员函数。&lt;br&gt;}&lt;/p&gt;
+&lt;p&gt;对于const类对象/指针/引用，只能调用类的const成员函数，因此，const修饰成员函数的最重要作用就是限制对于const对象的使用。&lt;/p&gt;
+&lt;p&gt;a. const成员函数不被允许修改它所在对象的任何一个数据成员。&lt;/p&gt;
+&lt;p&gt;b. const成员函数能够访问对象的const成员，而其他成员函数不可以。&lt;/p&gt;
+&lt;p&gt;(3)const修饰类对象/对象指针/对象引用&lt;/p&gt;
+&lt;p&gt;·             const修饰类对象表示该对象为常量对象，其中的任何成员都不能被修改。对于对象指针和对象引用也是一样。&lt;/p&gt;
+&lt;p&gt;·             const修饰的对象，该对象的任何非const成员函数都不能被调用，因为任何非const成员函数会有修改成员变量的企图。&lt;br&gt;例如：&lt;br&gt;class AAA&lt;br&gt;{&lt;br&gt;    void func1();&lt;br&gt;void func2() const;&lt;br&gt;}&lt;br&gt;const AAA aObj;&lt;br&gt;aObj.func1(); ×&lt;br&gt;aObj.func2(); 正确&lt;/p&gt;
+&lt;p&gt;const AAA* aObj = new AAA();&lt;br&gt;aObj-&amp;gt; func1(); ×&lt;br&gt;aObj-&amp;gt; func2(); 正确&lt;/p&gt;
+&lt;h1 id=&quot;将Const类型转化为非Const类型的方法&quot;&gt;&lt;a href=&quot;#将Const类型转化为非Const类型的方法&quot; class=&quot;headerlink&quot; title=&quot;将Const类型转化为非Const类型的方法&quot;&gt;&lt;/a&gt;将Const类型转化为非Const类型的方法&lt;/h1&gt;&lt;p&gt;采用const_cast 进行转换。&lt;br&gt;用法：const_cast &lt;type_id&gt;  (expression)&lt;br&gt;该运算符用来修改类型的const或volatile属性。除了const 或volatile修饰之外， type_id和expression的类型是一样的。&lt;/type_id&gt;&lt;/p&gt;
+&lt;p&gt;·             常量指针被转化成非常量指针，并且仍然指向原来的对象；&lt;/p&gt;
+&lt;p&gt;·             常量引用被转换成非常量引用，并且仍然指向原来的对象；&lt;/p&gt;
+&lt;p&gt;·             常量对象被转换成非常量对象。&lt;/p&gt;
+&lt;h1 id=&quot;使用const的一些建议&quot;&gt;&lt;a href=&quot;#使用const的一些建议&quot; class=&quot;headerlink&quot; title=&quot;使用const的一些建议&quot;&gt;&lt;/a&gt;使用const的一些建议&lt;/h1&gt;&lt;p&gt;·             要大胆的使用const，这将给你带来无尽的益处，但前提是你必须搞清楚原委；&lt;br&gt;·             要避免最一般的赋值操作错误，如将const变量赋值，具体可见思考题；&lt;br&gt;·             在参数中使用const应该使用引用或指针，而不是一般的对象实例，原因同上；&lt;br&gt;·             const在成员函数中的三种用法（参数、返回值、函数）要很好的使用；&lt;br&gt;·             不要轻易的将函数的返回值类型定为const;&lt;br&gt;·             除了重载操作符外一般不要将返回值类型定为对某个对象的const引用;&lt;br&gt;·             任何不会修改数据成员的函数都应该声明为const 类型。&lt;/p&gt;
+&lt;h1 id=&quot;补充重要说明&quot;&gt;&lt;a href=&quot;#补充重要说明&quot; class=&quot;headerlink&quot; title=&quot;补充重要说明&quot;&gt;&lt;/a&gt;补充重要说明&lt;/h1&gt;&lt;p&gt;·             类内部的常量限制：使用这种类内部的初始化语法的时候，常量必须是被一个常量表达式&lt;/p&gt;
+&lt;p&gt;初始化的整型或枚举类型，而且必须是static和const形式。&lt;/p&gt;
+&lt;p&gt;·             如何初始化类内部的常量：一种方法就是static 和 const 并用，在外部初始化，例如：&lt;/p&gt;
+&lt;p&gt;class A { public: A() {} private: static const int i; file://注意必须是静态的！ }；&lt;/p&gt;
+&lt;p&gt;const int A::i=3;另一个很常见的方法就是初始化列表： class A { public: A(int&lt;/p&gt;
+&lt;p&gt;i=0):test(i) {} private: const int i; }； 还有一种方式就是在外部初始化，&lt;/p&gt;
+&lt;p&gt;·             如果在非const成员函数中，this指针只是一个类类型的；如果在const成员函数中，&lt;/p&gt;
+&lt;p&gt;this指针是一个const类类型的；如果在volatile成员函数中,this指针就是一个&lt;/p&gt;
+&lt;p&gt;volatile类类型的。&lt;/p&gt;
+&lt;p&gt;·             new返回的指针必须是const类型的。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;【原文&lt;a href=&quot;http://blog.csdn.net/Eric_Jo/article/details/4138548】&quot;&gt;http://blog.csdn.net/Eric_Jo/article/details/4138548】&lt;/a&gt;&lt;br&gt;C++中的const关键字的用法非常灵活，而使用const将大大改善程序的健壮性，本人根据各方面查到的资料进行总结如下，期望对朋友们有所帮助。&lt;br&gt;Const 是C++中常用的类型修饰符,常类型是指使用类型修饰符const说明的类型，常类型的变量或对象的值是不能被更新的。&lt;/p&gt;
+&lt;h1 id=&quot;Const作用&quot;&gt;&lt;a href=&quot;#Const作用&quot; class=&quot;headerlink&quot; title=&quot;Const作用&quot;&gt;&lt;/a&gt;Const作用&lt;/h1&gt;&lt;p&gt;   如下图所示：&lt;br&gt;&lt;img src=&quot;http://v2.freep.cn/3tb_160407234443rs9v512293.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="c++" scheme="http://yoursite.com/categories/c/"/>
+    
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="const" scheme="http://yoursite.com/tags/const/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c++资源汇总</title>
+    <link href="http://yoursite.com/2016/04/01/c-%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/"/>
+    <id>http://yoursite.com/2016/04/01/c-资源汇总/</id>
+    <published>2016-04-01T13:48:14.000Z</published>
+    <updated>2016-04-01T13:49:20.579Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;a href=&quot;http://www.cnblogs.com/zhixing/archive/2013/06/04/3116814.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;c++ char&lt;em&gt;, const char&lt;/em&gt;, string 的相互转换&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;http://www.cnblogs.com/zhixing/archive/2013/06/04/3116814.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;c++ char&lt;em&gt;, const char&lt;/em&gt;, st
+    
+    </summary>
+    
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>大话逻辑斯蒂（Logistic)回归</title>
+    <link href="http://yoursite.com/2016/04/01/%E9%80%BB%E8%BE%91%E6%96%AF%E8%92%82%EF%BC%88Logistic-%E5%9B%9E%E5%BD%92/"/>
+    <id>http://yoursite.com/2016/04/01/逻辑斯蒂（Logistic-回归/</id>
+    <published>2016-04-01T03:49:37.000Z</published>
+    <updated>2016-04-01T13:34:33.219Z</updated>
+    
+    <content type="html">&lt;p&gt;在Machine Learning中，逻辑斯蒂回归（Logistic Regression）是十分经典的方法,简称LR，虽然名字叫回归，但是这是线性分类模型而不是回归模型。这里面涉及到一些知识点，包括极大似然估计，损失函数，梯度下降，正则化等&lt;!--逻辑斯特回归是对条件概率密度$P(x|C/_K)$建模的，也就是后验概率$P(C/_k)$,使用它们通过贝叶斯理论来计算后验概率$P(C/_k|x).--&gt;&lt;br&gt;这篇文章的主要目的，就是通过理论与实践相结合的方式讲解LR模型，在讲解的过程中，加深对LR的理解、相关概念的梳理和应用。这篇文章中需要一些基础的数学知识，如果我没有讲到的请自行百度。这篇文章以《统计学习方法》和AndrewNg的视频为基础，加上《PR&amp;amp;MR》以及网上的资料、论文整理而成。文章题目有“大话”两字，我希望像大话系列图书一样，通过诙谐、自由、天马行空的方式描述。细节处理上难免有不严谨的地方或者叙述不清的地方，请留言或者发邮件wang_qian010@163.com&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;逻辑斯蒂（logistic-分布&quot;&gt;&lt;a href=&quot;#逻辑斯蒂（logistic-分布&quot; class=&quot;headerlink&quot; title=&quot;逻辑斯蒂（logistic)分布&quot;&gt;&lt;/a&gt;逻辑斯蒂（logistic)分布&lt;/h1&gt;&lt;h2 id=&quot;逻辑斯蒂分布诞生记&quot;&gt;&lt;a href=&quot;#逻辑斯蒂分布诞生记&quot; class=&quot;headerlink&quot; title=&quot;逻辑斯蒂分布诞生记&quot;&gt;&lt;/a&gt;逻辑斯蒂分布诞生记&lt;/h2&gt;&lt;p&gt;在数学界有各种各样的分布，比如Gamma分布，二项分布，高斯分布等。利用这些分布的性质，可以解决很多的问题。这里将介绍一种函数，叫逻辑斯蒂函数或逻辑斯蒂曲线，这是一种是一种S型曲线。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;  设$X$是连续随机变量，$X$服从逻辑斯蒂分布是指$X$具有下列分布函数和密度函数&lt;br&gt;$$F(x) = P(X\leq x) = \frac{1}{1+e^{-(x-u）/\gamma)} }$$&lt;br&gt;$$f(x) = F’(x) = \frac{e^{-(x-u)/\gamma}}{\gamma(1+e^{-(x-u)}/\gamma)^{2}}$$&lt;br&gt;式中，$\mu$为位置参数，$\gamma$为形状参数。看到这是不是想到，高斯、二项等其他分布。均值控制位置，方差控制形状。&lt;br&gt;逻辑斯蒂分布的密度函数$f(x)和分布函数$F(x)$的图形如下图&lt;br&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/6cbb8645gw1ewjejmez18j20jw08dq3g.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;看了逻辑斯蒂分布，我有两个疑问：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;这个分布是怎么发现？&lt;/li&gt;
+&lt;li&gt;有什么用？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h1&gt;&lt;p&gt;[1]《统计学习方法》&lt;br&gt;[2] AngrewNG 《机器学习》&lt;br&gt;[3] Christopher M. Bishop: Pattern Recognition and Machine Learning, chapter4.3&lt;br&gt;[4] &lt;a href=&quot;https://www.douban.com/note/323644915/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;听课笔记（第十讲）： 逻辑斯蒂回归 (台大机器学习）&lt;/a&gt;&lt;br&gt;[5] &lt;a href=&quot;http://www.tuicool.com/articles/auQFju&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;逻辑回归模型(Logistic Regression, LR)基础&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在Machine Learning中，逻辑斯蒂回归（Logistic Regression）是十分经典的方法,简称LR，虽然名字叫回归，但是这是线性分类模型而不是回归模型。这里面涉及到一些知识点，包括极大似然估计，损失函数，梯度下降，正则化等&lt;!--逻辑斯特回归是对条件概率密度$P(x|C/_K)$建模的，也就是后验概率$P(C/_k)$,使用它们通过贝叶斯理论来计算后验概率$P(C/_k|x).--&gt;&lt;br&gt;这篇文章的主要目的，就是通过理论与实践相结合的方式讲解LR模型，在讲解的过程中，加深对LR的理解、相关概念的梳理和应用。这篇文章中需要一些基础的数学知识，如果我没有讲到的请自行百度。这篇文章以《统计学习方法》和AndrewNg的视频为基础，加上《PR&amp;amp;MR》以及网上的资料、论文整理而成。文章题目有“大话”两字，我希望像大话系列图书一样，通过诙谐、自由、天马行空的方式描述。细节处理上难免有不严谨的地方或者叙述不清的地方，请留言或者发邮件wang_qian010@163.com&lt;br&gt;
+    
+    </summary>
+    
+      <category term="机器学习" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="逻辑斯蒂回退" scheme="http://yoursite.com/tags/%E9%80%BB%E8%BE%91%E6%96%AF%E8%92%82%E5%9B%9E%E9%80%80/"/>
+    
+      <category term="Logistic regression" scheme="http://yoursite.com/tags/Logistic-regression/"/>
+    
+  </entry>
   
   <entry>
     <title>learn to detect partially overlapping instance笔记</title>
@@ -60,7 +582,7 @@
     <link href="http://yoursite.com/2016/03/31/%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     <id>http://yoursite.com/2016/03/31/什么是机器学习/</id>
     <published>2016-03-31T00:36:30.000Z</published>
-    <updated>2016-04-01T02:23:24.707Z</updated>
+    <updated>2016-04-01T03:29:24.487Z</updated>
     
     <content type="html">&lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;　　在介绍机器学习之前，我想先列几个关于机器学习的例子：&lt;/p&gt;
 &lt;ul&gt;

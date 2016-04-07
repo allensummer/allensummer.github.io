@@ -1,0 +1,905 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="推荐框架和库," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="王谦的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/58.jpg?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="【本文系外部转贴，原文地址：http://coolshell.info/c/c++/2014/12/13/c-open-project.htm】留作存档下次造轮子前先看看现有的轮子吧
+值得学习的C语言开源项目WebbenchWebbench是一个在linux下使用的非常简单的网站压测工具。它使用fork()模拟多个客户端同时访问我们设定的URL，测试网站在压力下工作的性能，最多可以模拟3万个并发连">
+<meta property="og:type" content="article">
+<meta property="og:title" content="值得推荐的c/c++框架和库">
+<meta property="og:url" content="http://yoursite.com/2016/04/07/值得推荐的c-c-框架和库/index.html">
+<meta property="og:site_name" content="王谦的博客">
+<meta property="og:description" content="【本文系外部转贴，原文地址：http://coolshell.info/c/c++/2014/12/13/c-open-project.htm】留作存档下次造轮子前先看看现有的轮子吧
+值得学习的C语言开源项目WebbenchWebbench是一个在linux下使用的非常简单的网站压测工具。它使用fork()模拟多个客户端同时访问我们设定的URL，测试网站在压力下工作的性能，最多可以模拟3万个并发连">
+<meta property="og:updated_time" content="2016-04-07T16:00:31.734Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="值得推荐的c/c++框架和库">
+<meta name="twitter:description" content="【本文系外部转贴，原文地址：http://coolshell.info/c/c++/2014/12/13/c-open-project.htm】留作存档下次造轮子前先看看现有的轮子吧
+值得学习的C语言开源项目WebbenchWebbench是一个在linux下使用的非常简单的网站压测工具。它使用fork()模拟多个客户端同时访问我们设定的URL，测试网站在压力下工作的性能，最多可以模拟3万个并发连">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 2520238585,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 值得推荐的c/c++框架和库 | 王谦的博客 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">王谦的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                值得推荐的c/c++框架和库
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-07T23:57:57+08:00" content="2016-04-07">
+              2016-04-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index">
+                    <span itemprop="name">c++</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/07/值得推荐的c-c-框架和库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/07/值得推荐的c-c-框架和库/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>【本文系外部转贴，原文地址：<a href="http://coolshell.info/c/c++/2014/12/13/c-open-project.htm】留作存档" target="_blank" rel="external">http://coolshell.info/c/c++/2014/12/13/c-open-project.htm】留作存档</a><br>下次造轮子前先看看现有的轮子吧</p>
+<h1 id="值得学习的C语言开源项目"><a href="#值得学习的C语言开源项目" class="headerlink" title="值得学习的C语言开源项目"></a>值得学习的C语言开源项目</h1><h2 id="Webbench"><a href="#Webbench" class="headerlink" title="Webbench"></a>Webbench</h2><p>Webbench是一个在linux下使用的非常简单的网站压测工具。它使用fork()模拟多个客户端同时访问我们设定的URL，测试网站在压力下工作的性能，最多可以模拟3万个并发连接去测试网站的负载能力。Webbench使用C语言编写, 代码实在太简洁，源码加起来不到600行。</p>
+<p>下载链接：<a href="http://home.tiscali.cz/~cz210552/webbench.html" target="_blank" rel="external">http://home.tiscali.cz/~cz210552/webbench.html</a><br><a id="more"></a></p>
+<h2 id="2-Tinyhttpd"><a href="#2-Tinyhttpd" class="headerlink" title="2. Tinyhttpd"></a>2. Tinyhttpd</h2><p>tinyhttpd是一个超轻量型Http Server，使用C语言开发，全部代码只有502行(包括注释)，附带一个简单的Client，可以通过阅读这段代码理解一个 Http Server 的本质。</p>
+<p>下载链接：<a href="http://sourceforge.net/projects/tinyhttpd/" target="_blank" rel="external">http://sourceforge.net/projects/tinyhttpd/</a></p>
+<h2 id="3-cJSON"><a href="#3-cJSON" class="headerlink" title="3. cJSON"></a>3. cJSON</h2><p>cJSON是C语言中的一个JSON编解码器，非常轻量级，C文件只有500多行，速度也非常理想。</p>
+<p>cJSON也存在几个弱点，虽然功能不是非常强大，但cJSON的小身板和速度是最值得赞赏的。其代码被非常好地维护着，结构也简单易懂，可以作为一个非常好的C语言项目进行学习。</p>
+<p>项目主页:<a href="http://sourceforge.net/projects/cjson/" target="_blank" rel="external">http://sourceforge.net/projects/cjson/</a></p>
+<h2 id="4-CMockery"><a href="#4-CMockery" class="headerlink" title="4. CMockery"></a>4. CMockery</h2><p>cmockery是google发布的用于C单元测试的一个轻量级的框架。它很小巧，对其他开源包没有依赖，对被测试代码侵入性小。cmockery的源代码行数不到3K，你阅读一下will_return和mock的源代码就一目了然了。</p>
+<p>主要特点：</p>
+<p>免费且开源，google提供技术支持；<br>轻量级的框架，使测试更加快速简单；<br>避免使用复杂的编译器特性，对老版本的编译器来讲，兼容性好;<br>并不强制要求待测代码必须依赖C99标准，这一特性对许多嵌入式系统的开发很有用<br>下载链接：<a href="http://code.google.com/p/cmockery/downloads/list" target="_blank" rel="external">http://code.google.com/p/cmockery/downloads/list</a></p>
+<h2 id="5-Libev"><a href="#5-Libev" class="headerlink" title="5. Libev"></a>5. Libev</h2><p>libev是一个开源的事件驱动库，基于epoll，kqueue等OS提供的基础设施。其以高效出名，它可以将IO事件，定时器，和信号统一起来，统一放在事件处理这一套框架下处理。基于Reactor模式，效率较高，并且代码精简（4.15版本8000多行），是学习事件驱动编程的很好的资源。</p>
+<p>下载链接：<a href="http://software.schmorp.de/pkg/libev.html" target="_blank" rel="external">http://software.schmorp.de/pkg/libev.html</a></p>
+<h2 id="6-Memcached"><a href="#6-Memcached" class="headerlink" title="6. Memcached"></a>6. Memcached</h2><p>Memcached 是一个高性能的分布式内存对象缓存系统，用于动态Web应用以减轻数据库负载。它通过在内存中缓存数据和对象来减少读取数据库的次数，从而提供动态数据库驱动网站的速度。Memcached 基于一个存储键/值对的 hashmap。Memcached-1.4.7的代码量还是可以接受的，只有10K行左右。</p>
+<p>下载地址：<a href="http://memcached.org/" target="_blank" rel="external">http://memcached.org/</a></p>
+<h2 id="7-Lua"><a href="#7-Lua" class="headerlink" title="7. Lua"></a>7. Lua</h2><p>Lua很棒，Lua是巴西人发明的，这些都令我不爽，但是还不至于脸红，最多眼红。</p>
+<p>让我脸红的是Lua的源代码，百分之一百的ANSI C，一点都不掺杂。在任何支持ANSI C编译器的平台上都可以轻松编译通过。我试过，真是一点废话都没有。Lua的代码数量足够小，5.1.4仅仅1.5W行，去掉空白行和注释估计能到1W行。</p>
+<p>下载地址：<a href="http://www.lua.org/" target="_blank" rel="external">http://www.lua.org/</a></p>
+<h2 id="8-SQLite"><a href="#8-SQLite" class="headerlink" title="8. SQLite"></a>8. SQLite</h2><p>SQLite是一个开源的嵌入式关系数据库，实现自包容、零配置、支持事务的SQL数据库引擎。 其特点是高度便携、使用方便、结构紧凑、高效、可靠。足够小，大致3万行C代码，250K。</p>
+<p>下载地址：<a href="http://www.sqlite.org/" target="_blank" rel="external">http://www.sqlite.org/</a> 。</p>
+<h2 id="9-UNIX-v6"><a href="#9-UNIX-v6" class="headerlink" title="9. UNIX v6"></a>9. UNIX v6</h2><p>UNIX V6 的内核源代码包括设备驱动程序在内 约有1 万行，这个数量的源代码，初学者是能够充分理解的。有一种说法是一个人所能理解的代码量上限为1 万行，UNIX V6的内核源代码从数量上看正好在这个范围之内。看到这里，大家是不是也有“如果只有1万行的话没准儿我也能学会”的想法呢？</p>
+<p>另一方面，最近的操作系统，例如Linux 最新版的内核源代码据说超过了1000 万行。就算不是初学者，想完全理解全部代码基本上也是不可能的。</p>
+<p>下载地址：<a href="http://minnie.tuhs.org/cgi-bin/utree.pl?file=V6" target="_blank" rel="external">http://minnie.tuhs.org/cgi-bin/utree.pl?file=V6</a></p>
+<h2 id="10-NETBSD"><a href="#10-NETBSD" class="headerlink" title="10. NETBSD"></a>10. NETBSD</h2><p>NetBSD是一个免费的，具有高度移植性的 UNIX-like 操作系统，是现行可移植平台最多的操作系统，可以在许多平台上执行，从 64bit alpha 服务器到手持设备和嵌入式设备。NetBSD计划的口号是：”Of course it runs NetBSD”。它设计简洁，代码规范，拥有众多先进特性，使得它在业界和学术界广受好评。由于简洁的设计和先进的特征，使得它在生产和研究方面，都有卓越的表现，而且它也有受使用者支持的完整的源代码。许多程序都可以很容易地通过NetBSD Packages Collection获得。</p>
+<p>下载地址：<a href="http://www.netbsd.org/" target="_blank" rel="external">http://www.netbsd.org/</a></p>
+<h1 id="C-资源大全"><a href="#C-资源大全" class="headerlink" title="C++ 资源大全"></a>C++ 资源大全</h1><p>关于 C++ 框架、库和资源的一些汇总列表，内容包括：标准库、Web应用框架、人工智能、数据库、图片处理、机器学习、日志、代码分析等。</p>
+<p>标准库</p>
+<p>C++标准库，包括了STL容器，算法和函数等。</p>
+<p>C++ Standard Library：是一系列类和函数的集合，使用核心语言编写，也是C++ISO自身标准的一部分。<br>Standard Template Library：标准模板库<br>C POSIX library ： POSIX系统的C标准库规范<br>ISO C++ Standards Committee ：C++标准委员会</p>
+<p>框架</p>
+<p>C++通用框架和库</p>
+<p>Apache C++ Standard Library：是一系列算法，容器，迭代器和其他基本组件的集合<br>ASL ：Adobe源代码库提供了同行的评审和可移植的C++源代码库。<br>Boost ：大量通用C++库的集合。<br>BDE ：来自于彭博资讯实验室的开发环境。<br>Cinder：提供专业品质创造性编码的开源开发社区。<br>Cxxomfort：轻量级的，只包含头文件的库，将C++ 11的一些新特性移植到C++03中。<br>Dlib：使用契约式编程和现代C++科技设计的通用的跨平台的C++库。<br>EASTL ：EA-STL公共部分<br>ffead-cpp ：企业应用程序开发框架<br>Folly：由Facebook开发和使用的开源C++库<br>JUCE ：包罗万象的C++类库，用于开发跨平台软件<br>libPhenom：用于构建高性能和高度可扩展性系统的事件框架。<br>LibSourcey ：用于实时的视频流和高性能网络应用程序的C++11 evented IO<br>LibU ： C语言写的多平台工具库<br>Loki ：C++库的设计，包括常见的设计模式和习语的实现。<br>MiLi ：只含头文件的小型C++库<br>openFrameworks ：开发C++工具包，用于创意性编码。<br>Qt ：跨平台的应用程序和用户界面框架<br>Reason ：跨平台的框架，使开发者能够更容易地使用Java，.Net和Python，同时也满足了他们对C++性能和优势的需求。<br>ROOT ：具备所有功能的一系列面向对象的框架，能够非常高效地处理和分析大量的数据，为欧洲原子能研究机构所用。<br>STLport：是STL具有代表性的版本<br>STXXL：用于额外的大型数据集的标准模板库。<br>Ultimate++ ：C++跨平台快速应用程序开发框架<br>Windows Template Library：用于开发Windows应用程序和UI组件的C++库<br>Yomm11 ：C++11的开放multi-methods.</p>
+<p>人工智能</p>
+<p>btsk ：游戏行为树启动器工具<br>Evolving Objects：基于模板的，ANSI C++演化计算库，能够帮助你非常快速地编写出自己的随机优化算法。<br>Neu：C++11框架，编程语言集，用于创建人工智能应用程序的多用途软件系统。</p>
+<p>异步事件循环</p>
+<p>Boost.Asio：用于网络和底层I/O编程的跨平台的C++库。<br>libev ：功能齐全，高性能的时间循环，轻微地仿效libevent，但是不再像libevent一样有局限性，也修复了它的一些bug。<br>libevent ：事件通知库<br>libuv ：跨平台异步I/O。</p>
+<p>音频</p>
+<p>音频，声音，音乐，数字化音乐库</p>
+<p>FMOD ：易于使用的跨平台的音频引擎和音频内容的游戏创作工具。<br>Maximilian ：C++音频和音乐数字信号处理库<br>OpenAL ：开源音频库—跨平台的音频API<br>Opus：一个完全开放的，免版税的，高度通用的音频编解码器<br>Speex：免费编解码器，为Opus所废弃<br>Tonic： C++易用和高效的音频合成<br>Vorbis： Ogg Vorbis是一种完全开放的，非专有的，免版税的通用压缩音频格式。</p>
+<p>生态学</p>
+<p>生物信息，基因组学和生物技术</p>
+<p>libsequence：用于表示和分析群体遗传学数据的C++库。<br>SeqAn：专注于生物数据序列分析的算法和数据结构。<br>Vcflib ：用于解析和处理VCF文件的C++库<br>Wham：直接把联想测试应用到BAM文件的基因结构变异。</p>
+<p>压缩</p>
+<p>压缩和归档库</p>
+<p>bzip2：一个完全免费，免费专利和高质量的数据压缩<br>doboz：能够快速解压缩的压缩库<br>PhysicsFS：对各种归档提供抽象访问的库，主要用于视频游戏，设计灵感部分来自于Quake3的文件子系统。<br>KArchive：用于创建，读写和操作文件档案（例如zip和 tar）的库，它通过QIODevice的一系列子类，使用gzip格式，提供了透明的压缩和解压缩的数据。<br>LZ4 ：非常快速的压缩算法<br>LZHAM ：无损压缩数据库，压缩比率跟LZMA接近，但是解压缩速度却要快得多。<br>LZMA ：7z格式默认和通用的压缩方法。<br>LZMAT ：及其快速的实时无损数据压缩库<br>miniz：单一的C源文件，紧缩/膨胀压缩库，使用zlib兼容API，ZIP归档读写，PNG写方式。<br>Minizip：Zlib最新bug修复，支持PKWARE磁盘跨越，AES加密和IO缓冲。<br>Snappy ：快速压缩和解压缩<br>ZLib ：非常紧凑的数据流压缩库<br>ZZIPlib：提供ZIP归档的读权限。</p>
+<p>并发性</p>
+<p>并发执行和多线程</p>
+<p>Boost.Compute ：用于OpenCL的C++GPU计算库<br>Bolt ：针对GPU进行优化的C++模板库<br>C++React ：用于C++11的反应性编程库<br>Intel TBB ：Intel线程构件块<br>Libclsph：基于OpenCL的GPU加速SPH流体仿真库<br>OpenCL ：并行编程的异构系统的开放标准<br>OpenMP：OpenMP API<br>Thrust ：类似于C++标准模板库的并行算法库<br>HPX ：用于任何规模的并行和分布式应用程序的通用C++运行时系统<br>VexCL ：用于OpenCL/CUDA 的C++向量表达式模板库。</p>
+<p>容器</p>
+<p>C++ B-tree ：基于B树数据结构，实现命令内存容器的模板库<br>Hashmaps： C++中开放寻址哈希表算法的实现</p>
+<p>密码学</p>
+<p>Bcrypt ：一个跨平台的文件加密工具，加密文件可以移植到所有可支持的操作系统和处理器中。<br>BeeCrypt：<br>Botan： C++加密库<br>Crypto++：一个有关加密方案的免费的C++库<br>GnuPG： OpenPGP标准的完整实现<br>GnuTLS ：实现了SSL，TLS和DTLS协议的安全通信库<br>Libgcrypt<br>libmcrypt<br>LibreSSL：免费的SSL/TLS协议，属于2014 OpenSSL的一个分支<br>LibTomCrypt：一个非常全面的，模块化的，可移植的加密工具<br>libsodium：基于NaCI的加密库，固执己见，容易使用<br>Nettle 底层的加密库<br>OpenSSL ： 一个强大的，商用的，功能齐全的，开放源代码的加密库。<br>Tiny AES128 in C ：用C实现的一个小巧，可移植的实现了AES128ESB的加密算法</p>
+<p>数据库</p>
+<p>数据库，SQL服务器，ODBC驱动程序和工具</p>
+<p>hiberlite ：用于Sqlite3的C++对象关系映射<br>Hiredis： 用于Redis数据库的很简单的C客户端库<br>LevelDB： 快速键值存储库<br>LMDB：符合数据库四大基本元素的嵌入键值存储<br>MySQL++：封装了MySql的C API的C++ 包装器<br>RocksDB：来自Facebook的嵌入键值的快速存储<br>SQLite：一个完全嵌入式的，功能齐全的关系数据库，只有几百KB，可以正确包含到你的项目中。</p>
+<p>调试</p>
+<p>调试库， 内存和资源泄露检测，单元测试</p>
+<p>Boost.Test：Boost测试库<br>Catch：一个很时尚的，C++原生的框架，只包含头文件，用于单元测试，测试驱动开发和行为驱动开发。<br>CppUnit：由JUnit移植过来的C++测试框架<br>CTest：CMake测试驱动程序<br>googletest：谷歌C++测试框架<br>ig-debugheap：用于跟踪内存错误的多平台调试堆<br>libtap：用C语言编写测试<br>MemTrack —用于C++跟踪内存分配<br>microprofile- 跨平台的网络试图分析器<br>minUnit ：使用C写的迷你单元测试框架，只使用了两个宏<br>Remotery：用于web视图的单一C文件分析器<br>UnitTest++：轻量级的C++单元测试框架</p>
+<p>游戏引擎</p>
+<p>Cocos2d-x ：一个跨平台框架，用于构建2D游戏，互动图书，演示和其他图形应用程序。<br>Grit ：社区项目，用于构建一个免费的游戏引擎，实现开放的世界3D游戏。<br>Irrlicht ：C++语言编写的开源高性能的实时#D引擎<br>Polycode：C++实现的用于创建游戏的开源框架（与Lua绑定）。</p>
+<p>图形用户界面</p>
+<p>CEGUI ： 很灵活的跨平台GUI库<br>FLTK ：快速，轻量级的跨平台的C++GUI工具包。<br>GTK+： 用于创建图形用户界面的跨平台工具包<br>gtkmm ：用于受欢迎的GUI库GTK+的官方C++接口。<br>imgui：拥有最小依赖关系的立即模式图形用户界面<br>libRocket ：libRocket 是一个C++ HTML/CSS 游戏接口中间件<br>MyGUI ：快速，灵活，简单的GUI<br>Ncurses：终端用户界面<br>QCustomPlot ：没有更多依赖关系的Qt绘图控件<br>Qwt ：用户与技术应用的Qt 控件<br>QwtPlot3D ：功能丰富的基于Qt/OpenGL的C++编程库，本质上提供了一群3D控件<br>OtterUI ：OtterUI 是用于嵌入式系统和互动娱乐软件的用户界面开发解决方案<br>PDCurses 包含源代码和预编译库的公共图形函数库<br>wxWidgets C++库，允许开发人员使用一个代码库可以为widows， Mac OS X，Linux和其他平台创建应用程序</p>
+<p>图形</p>
+<p>bgfx：跨平台的渲染库<br>Cairo：支持多种输出设备的2D图形库<br>Horde3D 一个小型的3D渲染和动画引擎<br>magnum C++11和OpenGL 2D/3D 图形引擎<br>Ogre 3D 用C++编写的一个面向场景，实时，灵活的3D渲染引擎（并非游戏引擎）<br>OpenSceneGraph 具有高性能的开源3D图形工具包<br>Panda3D 用于3D渲染和游戏开发的框架，用Python和C++编写。<br>Skia 用于绘制文字，图形和图像的完整的2D图形库<br>urho3d 跨平台的渲染和游戏引擎。</p>
+<p>图像处理</p>
+<p>Boost.GIL：通用图像库<br>CImg ：用于图像处理的小型开源C++工具包<br>CxImage ：用于加载，保存，显示和转换的图像处理和转换库，可以处理的图片格式包括 BMP, JPEG, GIF, PNG, TIFF, MNG, ICO, PCX, TGA, WMF, WBMP, JBG, J2K。<br>FreeImage ：开源库，支持现在多媒体应用所需的通用图片格式和其他格式。<br>GDCM：Grassroots DICOM 库<br>ITK：跨平台的开源图像分析系统<br>Magick++：ImageMagick程序的C++接口<br>MagickWnd：ImageMagick程序的C++接口<br>OpenCV ： 开源计算机视觉类库<br>tesseract-ocr：OCR引擎<br>VIGRA ：用于图像分析通用C++计算机视觉库<br>VTK ：用于3D计算机图形学，图像处理和可视化的开源免费软件系统。</p>
+<p>国际化</p>
+<p>gettext ：GNU `gettext’<br>IBM ICU：提供Unicode 和全球化支持的C、C++ 和Java库<br>libiconv ：用于不同字符编码之间的编码转换库</p>
+<p>Jason</p>
+<p>frozen ： C/C++的Jason解析生成器<br>Jansson ：进行编解码和处理Jason数据的C语言库<br>jbson ：C++14中构建和迭代BSON data,和Json 文档的库<br>JeayeSON：非常健全的C++ JSON库，只包含头文件<br>JSON++ ： C++ JSON 解析器<br>json-parser：用可移植的ANSI C编写的JSON解析器，占用内存非常少<br>json11 ：一个迷你的C++11 JSON库<br>jute ：非常简单的C++ JSON解析器<br>ibjson：C语言中的JSON解析和打印库，很容易和任何模型集成。<br>libjson：轻量级的JSON库<br>PicoJSON：C++中JSON解析序列化，只包含头文件<br>qt-json ：用于JSON数据和 QVariant层次间的相互解析的简单类<br>QJson：将JSON数据映射到QVariant对象的基于Qt的库<br>RapidJSON： 用于C++的快速JSON 解析生成器，包含SAX和DOM两种风格的API<br>YAJL ：C语言中快速流JSON解析库</p>
+<p>日志</p>
+<p>Boost.Log ：设计非常模块化，并且具有扩展性<br>easyloggingpp：C++日志库，只包含单一的头文件。<br>Log4cpp ：一系列C++类库，灵活添加日志到文件，系统日志，IDSA和其他地方。<br>templog：轻量级C++库，可以添加日志到你的C++应用程序中</p>
+<p>机器学习</p>
+<p>Caffe ：快速的神经网络框架<br>CCV ：以C语言为核心的现代计算机视觉库<br>mlpack ：可扩展的C++机器学习库<br>OpenCV：开源计算机视觉库<br>Recommender：使用协同过滤进行产品推荐/建议的C语言库。<br>SHOGUN：Shogun 机器学习工具<br>sofia-ml ：用于机器学习的快速增量算法套件</p>
+<p>数学</p>
+<p>Armadillo ：高质量的C++线性代数库，速度和易用性做到了很好的平衡。语法和MatlAB很相似<br>blaze：高性能的C++数学库，用于密集和稀疏算法。<br>ceres-solver ：来自谷歌的C++库，用于建模和解决大型复杂非线性最小平方问题。<br>CGal： 高效，可靠的集合算法集合<br>cml ：用于游戏和图形的免费C++数学库<br>Eigen ：高级C++模板头文件库，包括线性代数，矩阵，向量操作，数值解决和其他相关的算法。<br>GMTL：数学图形模板库是一组广泛实现基本图形的工具。<br>GMP：用于个高精度计算的C/C++库，处理有符号整数，有理数和浮点数。</p>
+<p>多媒体</p>
+<p>GStreamer ：构建媒体处理组件图形的库<br>LIVE555 Streaming Media ：使用开放标准协议(RTP/RTCP, RTSP, SIP) 的多媒体流库<br>libVLC ：libVLC (VLC SDK)媒体框架<br>QtAv：基于Qt和FFmpeg的多媒体播放框架，能够帮助你轻而易举地编写出一个播放器<br>SDL ：简单直控媒体层<br>SFML ：快速，简单的多媒体库</p>
+<p>网络</p>
+<p>ACE：C++面向对象网络变成工具包<br>Boost.Asio：用于网络和底层I/O编程的跨平台的C++库<br>Casablanca：C++ REST SDK<br>cpp-netlib：高级网络编程的开源库集合<br>Dyad.c：C语言的异步网络<br>libcurl :多协议文件传输库<br>Mongoose：非常轻量级的网络服务器<br>Muduo ：用于Linux多线程服务器的C++非阻塞网络库<br>net_skeleton ：C/C++的TCP 客户端/服务器库<br>nope.c ：基于C语言的超轻型软件平台，用于可扩展的服务器端和网络应用。 对于C编程人员，可以考虑node.js<br>Onion :C语言HTTP服务器库，其设计为轻量级，易使用。<br>POCO：用于构建网络和基于互联网应用程序的C++类库，可以运行在桌面，服务器，移动和嵌入式系统。<br>RakNet：为游戏开发人员提供的跨平台的开源C++网络引擎。<br>Tuf o ：用于Qt之上的C++构建的异步Web框架。<br>WebSocket++ ：基于C++/Boost Aiso的websocket 客户端/服务器库<br>ZeroMQ ：高速，模块化的异步通信库</p>
+<p>物理学</p>
+<p>动力学仿真引擎</p>
+<p>Box2D：2D的游戏物理引擎。<br>Bullet ：3D的游戏物理引擎。<br>Chipmunk ：快速，轻量级的2D游戏物理库<br>LiquidFun：2D的游戏物理引擎<br>ODE ：开放动力学引擎-开源，高性能库，模拟刚体动力学。<br>ofxBox2d：Box2D开源框架包装器。<br>Simbody ：高性能C++多体动力学/物理库，模拟关节生物力学和机械系统，像车辆，机器人和人体骨骼。</p>
+<p>机器人学</p>
+<p>MOOS-IvP ：一组开源C++模块，提供机器人平台的自主权，尤其是自主的海洋车辆。<br>MRPT：移动机器人编程工具包<br>PCL ：点云库是一个独立的，大规模的开放项目，用于2D/3D图像和点云处理。<br>Robotics Library (RL)： 一个独立的C++库，包括机器人动力学，运动规划和控制。<br>RobWork：一组C++库的集合，用于机器人系统的仿真和控制。<br>ROS ：机器人操作系统，提供了一些库和工具帮助软件开发人员创建机器人应用程序。</p>
+<p>科学计算</p>
+<p>FFTW :用一维或者多维计算DFT的C语言库。<br>GSL：GNU科学库。</p>
+<p>脚本</p>
+<p>ChaiScript ：用于C++的易于使用的嵌入式脚本语言。<br>Lua ：用于配置文件和基本应用程序脚本的小型快速脚本引擎。<br>luacxx：用于创建Lua绑定的C++ 11 API<br>SWIG ：一个可以让你的C++代码链接到JavaScript，Perl，PHP，Python，Tcl和Ruby的包装器/接口生成器<br>V7：嵌入式的JavaScript 引擎。<br>V8 ：谷歌的快速JavaScript引擎，可以被嵌入到任何C++应用程序中。</p>
+<p>序列化</p>
+<p>Cap’n Proto ：快速数据交换格式和RPC系统。<br>cereal ：C++11 序列化库<br>FlatBuffers ：内存高效的序列化库<br>MessagePack ：C/C++的高效二进制序列化库，例如 JSON<br>protobuf ：协议缓冲，谷歌的数据交换格式。<br>protobuf-c ：C语言的协议缓冲实现<br>SimpleBinaryEncoding：用于低延迟应用程序的对二进制格式的应用程序信息的编码和解码。<br>Thrift ：高效的跨语言IPC/RPC，用于C++，Java，Python，PHP，C#和其它多种语言中，最初由Twitter开发。注：原文有误，应该是 facebook 在2007年开发的，现在是 Apache 在维护</p>
+<p>视频</p>
+<p>libvpx ：VP8/VP9编码解码SDK<br>FFmpeg ：一个完整的，跨平台的解决方案，用于记录，转换视频和音频流。<br>libde265 ：开放的h.265视频编解码器的实现。<br>OpenH264：开源H.364 编解码器。<br>Theora ：免费开源的视频压缩格式。</p>
+<p>虚拟机</p>
+<p>CarpVM：C中有趣的VM，让我们一起来看看这个。<br>MicroPython ：旨在实现单片机上Python3.x的实现<br>TinyVM：用纯粹的ANSI C编写的小型，快速，轻量级的虚拟机。</p>
+<p>Web应用框架</p>
+<p>Civetweb ：提供易于使用，强大的，C/C++嵌入式Web服务器，带有可选的CGI，SSL和Lua支持。<br>CppCMS ：免费高性能的Web开发框架（不是 CMS）.<br>Crow ：一个C++微型web框架（灵感来自于Python Flask）<br>Kore :使用C语言开发的用于web应用程序的超快速和灵活的web服务器/框架。<br>libOnion：轻量级的库，帮助你使用C编程语言创建web服务器。<br>QDjango：使用C++编写的，基于Qt库的web框架，试图效仿Django API，因此得此名。<br>Wt ：开发Web应用的C++库。</p>
+<p>XML</p>
+<p>XML就是个垃圾，xml的解析很烦人，对于计算机它也是个灾难。这种糟糕的东西完全没有存在的理由了。-Linus Torvalds</p>
+<p>Expat ：用C语言编写的xml解析库<br>Libxml2 ：Gnome的xml C解析器和工具包<br>libxml++ ：C++的xml解析器<br>PugiXML ：用于C++的，支持XPath的轻量级，简单快速的XML解析器。<br>RapidXml ：试图创建最快速的XML解析器，同时保持易用性，可移植性和合理的W3C兼容性。<br>TinyXML ：简单小型的C++XML解析器，可以很容易地集成到其它项目中。<br>TinyXML2：简单快速的C++CML解析器，可以很容易集成到其它项目中。<br>TinyXML++：TinyXML的一个全新的接口，使用了C++的许多许多优势，模板，异常和更好的异常处理。<br>Xerces-C++ ：用可移植的C++的子集编写的XML验证解析器。</p>
+<p>多项混杂</p>
+<p>一些有用的库或者工具，但是不适合上面的分类，或者还没有分类。</p>
+<p>C++ Format ：C++的小型，安全和快速格式化库<br>casacore ：从aips++ 派生的一系列C++核心库<br>cxx-prettyprint：用于C++容器的打印库<br>DynaPDF ：易于使用的PDF生成库<br>gcc-poison ：帮助开发人员禁止应用程序中的不安全的C/C++函数的简单的头文件。<br>googlemock：编写和使用C++模拟类的库<br>HTTP Parser ：C的http请求/响应解析器<br>libcpuid ：用于x86 CPU检测盒特征提取的小型C库<br>libevil ：许可证管理器<br>libusb：允许移动访问USB设备的通用USB库<br>PCRE：正则表达式C库，灵感来自于Perl中正则表达式的功能。<br>Remote Call Framework ：C++的进程间通信框架。<br>Scintilla ：开源的代码编辑控件<br>Serial Communication Library ：C++语言编写的跨平台，串口库。<br>SDS：C的简单动态字符串库<br>SLDR ：超轻的DNS解析器<br>SLRE： 超轻的正则表达式库<br>Stage ：移动机器人模拟器<br>VarTypes：C++/Qt4功能丰富，面向对象的管理变量的框架。<br>ZBar：‘条形码扫描器’库，可以扫描照片，图片和视频流中的条形码，并返回结果。<br>CppVerbalExpressions ：易于使用的C++正则表达式<br>QtVerbalExpressions：基于C++ VerbalExpressions 库的Qt库<br>PHP-CPP：使用C++来构建PHP扩展的库<br>Better String ：C的另一个字符串库，功能更丰富，但是没有缓冲溢出问题，还包含了一个C++包装器。</p>
+<p>软件</p>
+<p>用于创建开发环境的软件</p>
+<p>编译器</p>
+<p>C/C++编译器列表</p>
+<p>Clang :由苹果公司开发的<br>GCC：GNU编译器集合<br>Intel C++ Compiler ：由英特尔公司开发<br>LLVM ：模块化和可重用编译器和工具链技术的集合<br>Microsoft Visual C++ ：MSVC，由微软公司开发<br>Open WatCom ：Watcom，C，C++和Fortran交叉编译器和工具<br>TCC ：轻量级的C语言编译器</p>
+<p>在线编译器</p>
+<p>在线C/C++编译器列表</p>
+<p>codepad ：在线编译器/解释器，一个简单的协作工具<br>CodeTwist：一个简单的在线编译器/解释器，你可以粘贴的C,C++或者Java代码，在线执行并查看结果<br>coliru ：在线编译器/shell， 支持各种C++编译器<br>Compiler Explorer：交互式编译器，可以进行汇编输出<br>CompileOnline：Linux上在线编译和执行C++程序<br>Ideone ：一个在线编译器和调试工具，允许你在线编译源代码并执行，支持60多种编程语言。</p>
+<p>调试器</p>
+<p>C/C++调试器列表</p>
+<p>Comparison of debuggers ：来自维基百科的调试器列表<br>GDB ：GNU调试器<br>Valgrind：内存调试，内存泄露检测，性能分析工具。</p>
+<p>集成开发环境（IDE）</p>
+<p>C/C++集成开发环境列表</p>
+<p>AppCode ：构建与JetBrains’ IntelliJ IDEA 平台上的用于Objective-C，C,C++，Java和Java开发的集成开发环境<br>CLion：来自JetBrains的跨平台的C/C++的集成开发环境<br>Code::Blocks ：免费C，C++和Fortran的集成开发环境<br>CodeLite ：另一个跨平台的免费的C/C++集成开发环境<br>Dev-C++：可移植的C/C++/C++11集成开发环境<br>Eclipse CDT：基于Eclipse平台的功能齐全的C和C++集成开发环境<br>Geany ：轻量级的快速，跨平台的集成开发环境。<br>IBM VisualAge ：来自IBM的家庭计算机集成开发环境。<br>Irony-mode：由libclang驱动的用于Emacs的C/C++微模式<br>KDevelop：免费开源集成开发环境<br>Microsoft Visual Studio ：来自微软的集成开发环境<br>NetBeans ：主要用于Java开发的的集成开发环境，也支持其他语言，尤其是PHP，C/C++和HTML5。<br>Qt Creator：跨平台的C++，Javascript和QML集成开发环境，也是Qt SDK的一部分。<br>rtags：C/C++的客户端服务器索引，用于 跟基于clang的emacs的集成<br>Xcode ：由苹果公司开发<br>YouCompleteMe：一个用于Vim的根据你敲的代码快速模糊搜索并进行代码补全的引擎。</p>
+<p>构建系统</p>
+<p>Bear ：用于为clang工具生成编译数据库的工具<br>Biicode：基于文件的简单依赖管理器。<br>CMake ：跨平台的免费开源软件用于管理软件使用独立编译的方法进行构建的过程。<br>CPM：基于CMake和Git的C++包管理器<br>FASTBuild：高性能，开源的构建系统，支持高度可扩展性的编译，缓冲和网络分布。<br>Ninja ：专注于速度的小型构建系统<br>Scons ：使用Python scipt 配置的软件构建工具<br>tundra ：高性能的代码构建系统，甚至对于非常大型的软件项目，也能提供最好的增量构建次数。<br>tup：基于文件的构建系统，用于后台监控变化的文件。</p>
+<p>静态代码分析</p>
+<p>提高质量，减少瑕疵的代码分析工具列表</p>
+<p>Cppcheck ：静态C/C++代码分析工具<br>include-what-you-use ：使用clang进行代码分析的工具，可以#include在C和C++文件中。<br>OCLint ：用于C，C++和Objective-C的静态源代码分析工具，用于提高质量，减少瑕疵。<br>Clang Static Analyzer：查找C，C++和Objective-C程序bug的源代码分析工具<br>List of tools for static code analysis ：来自维基百科的静态代码分析工具列表</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/推荐框架和库/" rel="tag">#推荐框架和库</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/07/const用法总结/" rel="next" title="const用法总结">
+                <i class="fa fa-chevron-left"></i> const用法总结
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/08/c-string类的用法总结/" rel="prev" title="c++ string类的用法总结">
+                c++ string类的用法总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/07/值得推荐的c-c-框架和库/"
+           data-title="值得推荐的c/c++框架和库" data-url="http://yoursite.com/2016/04/07/值得推荐的c-c-框架和库/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/58.jpg"
+               alt="王谦" />
+          <p class="site-author-name" itemprop="name">王谦</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/allensummer" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#值得学习的C语言开源项目"><span class="nav-number">1.</span> <span class="nav-text">值得学习的C语言开源项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Webbench"><span class="nav-number">1.1.</span> <span class="nav-text">Webbench</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Tinyhttpd"><span class="nav-number">1.2.</span> <span class="nav-text">2. Tinyhttpd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-cJSON"><span class="nav-number">1.3.</span> <span class="nav-text">3. cJSON</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-CMockery"><span class="nav-number">1.4.</span> <span class="nav-text">4. CMockery</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Libev"><span class="nav-number">1.5.</span> <span class="nav-text">5. Libev</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Memcached"><span class="nav-number">1.6.</span> <span class="nav-text">6. Memcached</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Lua"><span class="nav-number">1.7.</span> <span class="nav-text">7. Lua</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-SQLite"><span class="nav-number">1.8.</span> <span class="nav-text">8. SQLite</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-UNIX-v6"><span class="nav-number">1.9.</span> <span class="nav-text">9. UNIX v6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-NETBSD"><span class="nav-number">1.10.</span> <span class="nav-text">10. NETBSD</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-资源大全"><span class="nav-number">2.</span> <span class="nav-text">C++ 资源大全</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王谦</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"allensummer"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js"></script>
+      <script src="/js/src/hook-duoshuo.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

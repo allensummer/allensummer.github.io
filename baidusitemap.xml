@@ -4,8 +4,157 @@
 
     
   <url>
+    <loc>http://yoursite.com/2016/04/08/c-%E8%BF%AD%E4%BB%A3%E5%99%A8/</loc>
+    <lastmod>2016-04-07T16:59:35.238Z</lastmod>
+    <data>
+        <display>
+        <title>c++ 迭代器</title>
+        <pubTime>2016-04-07T16:54:36.000Z</pubTime>
+        
+        <tag>c++</tag>
+         
+        <tag>迭代器</tag>
+         
+         
+           
+             
+              <breadCrumb title="c++" url="http://yoursite.com/categories/c/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/04/07/const%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2016-04-07T16:39:43.906Z</lastmod>
+    <data>
+        <display>
+        <title>const用法总结</title>
+        <pubTime>2016-04-07T15:21:41.000Z</pubTime>
+        
+        <tag>c++</tag>
+         
+        <tag>const</tag>
+         
+         
+           
+             
+              <breadCrumb title="c++" url="http://yoursite.com/categories/c/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/04/08/vector%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2016-04-07T16:38:51.418Z</lastmod>
+    <data>
+        <display>
+        <title>vector用法总结</title>
+        <pubTime>2016-04-07T16:36:35.000Z</pubTime>
+        
+        <tag>c++</tag>
+         
+        <tag>vector</tag>
+         
+         
+           
+             
+              <breadCrumb title="c++" url="http://yoursite.com/categories/c/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/04/08/c-string%E7%B1%BB%E7%9A%84%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2016-04-07T16:33:10.118Z</lastmod>
+    <data>
+        <display>
+        <title>c++ string类的用法总结</title>
+        <pubTime>2016-04-07T16:14:15.000Z</pubTime>
+        
+        <tag>c++</tag>
+         
+        <tag>string</tag>
+         
+         
+           
+             
+              <breadCrumb title="c++" url="http://yoursite.com/categories/c/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/04/07/%E5%80%BC%E5%BE%97%E6%8E%A8%E8%8D%90%E7%9A%84c-c-%E6%A1%86%E6%9E%B6%E5%92%8C%E5%BA%93/</loc>
+    <lastmod>2016-04-07T16:00:31.734Z</lastmod>
+    <data>
+        <display>
+        <title>值得推荐的c/c++框架和库</title>
+        <pubTime>2016-04-07T15:57:57.000Z</pubTime>
+        
+        <tag>推荐框架和库</tag>
+         
+         
+           
+             
+              <breadCrumb title="c++" url="http://yoursite.com/categories/c/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/04/01/c-%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/</loc>
+    <lastmod>2016-04-01T13:49:20.579Z</lastmod>
+    <data>
+        <display>
+        <title>c++资源汇总</title>
+        <pubTime>2016-04-01T13:48:14.000Z</pubTime>
+        
+        <tag>c++</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/04/01/%E9%80%BB%E8%BE%91%E6%96%AF%E8%92%82%EF%BC%88Logistic-%E5%9B%9E%E5%BD%92/</loc>
+    <lastmod>2016-04-01T13:34:33.219Z</lastmod>
+    <data>
+        <display>
+        <title>大话逻辑斯蒂（Logistic)回归</title>
+        <pubTime>2016-04-01T03:49:37.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>逻辑斯蒂回退</tag>
+         
+        <tag>Logistic regression</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2016/03/31/%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2016-04-01T02:23:24.707Z</lastmod>
+    <lastmod>2016-04-01T03:29:24.487Z</lastmod>
     <data>
         <display>
         <title>什么是机器学习</title>

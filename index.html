@@ -7,7 +7,7 @@
 
 <html class="theme-next pisces use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -85,7 +85,7 @@
   };
 </script>
 
-  <title> 王谦的博客 </title>
+  <title> 王谦的博客 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -106,7 +106,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left 
    page-home 
  ">
     <div class="headband"></div>
@@ -218,8 +218,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/31/learn-to-detect-partially-overlapping-instance笔记/" itemprop="url">
-                  learn to detect partially overlapping instance笔记
+                <a class="post-title-link" href="/2016/04/08/c-迭代器/" itemprop="url">
+                  c++ 迭代器
                 </a>
               
             
@@ -232,8 +232,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-31T10:28:03+08:00" content="2016-03-31">
-              2016-03-31
+            <time itemprop="dateCreated" datetime="2016-04-08T00:54:36+08:00" content="2016-04-08">
+              2016-04-08
             </time>
           </span>
 
@@ -246,8 +246,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/论文笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">论文笔记</span>
+                  <a href="/categories/c/" itemprop="url" rel="index">
+                    <span itemprop="name">c++</span>
                   </a>
                 </span>
 
@@ -262,8 +262,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/31/learn-to-detect-partially-overlapping-instance笔记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/31/learn-to-detect-partially-overlapping-instance笔记/" itemprop="commentsCount"></span>
+                <a href="/2016/04/08/c-迭代器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/08/c-迭代器/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -286,151 +286,10 @@
 
       
         
-          
-            <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p><strong>目的</strong>：本文的工作就是找到一副图片中某一类（细胞或人类）的所有实例。这些实例可能部分重叠或聚在一起，目前来说这对传统算法很困难，传统的方法主要是找到单个实例。<br><strong>方法</strong>：找到候选区域，然后优化全局的分类得分来找到这个选择区域，使这个选择区域满足非重叠的约束。本文新贡献是通过引入对象的元组单独的类到检测过程来扩展标准的对象检测。例如我们的检测器可以挑选含有两个或三个对象实例的区域中，而分配这样的区域适当标签。本文表明，使用结构化输出的SVM框架可以找到这个实例的区域。并且使用数构造区域图上的动态规划完成这个模型的推断。此外，这个学习只需要一个弱创新——每个实例用点表示。<br><strong>数据</strong>：荧光显微镜图像和UCSD行人。</p>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>大多数计算机视觉方法有两个类：</p>
-<ul>
-<li>第一类是基于独立物体识别。这类识别主要基于滑动窗口和Hough变换。这些方法有：<ul>
-<li>近似非最大值抑制[3,8,14]</li>
-<li>随机匹配感兴趣部分或对象模型[9,10,24]</li>
-<li>基于区域检测[2,18,19]</li>
-</ul>
-</li>
-<li>第二类不是检测独立实例，而是基于局部或全局上下文分析和外观描述。这些方法有：<ul>
-<li>图片中物体的总体实值计数[5,12,16,22]</li>
-<li>推测每一个感兴趣区域的局部物体的真实密度[11,15]</li>
-</ul>
-</li>
-</ul>
-<p>低重叠上述方法可以，但是高密度图像性能表现就会差很多。低密度与高密度共存的情况上述两种方法的性能并不好。这就促使我们在这里提出的方法。这个方法是简历载我们区域探测方法的基础之上的[2]。这主要方法的创新点在于能够分析输入图像，检测不同尺寸的对象（大小为1的“群”是一个特殊的情况）。通过对一组弱注释的训练图像进行训练，所提出的方法根据对象木渎的不痛那个学习不同组的大小。因此，与局部密度估计想死，这样可避免试图当它们成簇一起辨别各个对象。又不像局部密度评估，但是，该方法能够判断每个簇的中对象的数量。<br>与我们最初的方法[2]一样，解析过程是根据有效且精确的推理过程，这个过程检测提供一个最大的解析功能的一组非重叠的极值的区域的。学习是在一个结构化的框架，SVM执行和优化（凸上界）计数的损失。我们观察到这样的学习产生了理想的偏向喜欢最详细的解释，例如，选择最小尺寸的群体，只要对象是明显的，因为这种策略往往会提供最高的计算精度。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-    
-  
-
-  <article class="post post-type-normal  post-sticky" itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                  <span class="post-sticky-flag" title="置顶">
-                    <i class="fa fa-thumb-tack"></i>
-                  </span>
-                
-                <a class="post-title-link" href="/2016/03/31/什么是机器学习/" itemprop="url">
-                  什么是机器学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-31T08:36:30+08:00" content="2016-03-31">
-              2016-03-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/31/什么是机器学习/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/31/什么是机器学习/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>　　在介绍机器学习之前，我想先列几个关于机器学习的例子：</p>
-<ul>
-<li>垃圾邮件检测：根据邮箱中的邮件，识别哪些是垃圾邮件，哪些不是。这样的模型，可以程序帮助归类垃圾邮件和非垃圾邮件。这个例子，我们应该都不陌生。</li>
-<li>信用卡欺诈检测：根据用户一个月内的信用卡交易，识别哪些交易是该用户操作的，哪些不是。这样的决策模型，可以帮助程序退还那些欺诈交易。</li>
-<li>数字识别：根据信封上手写的邮编，识别出每一个手写字符所代表的数字。这样的模型，可以帮助程序阅读和理解手写邮编，并根据地利位置分类信件。</li>
-<li>语音识别：从一个用户的话语，确定用户提出的具体要求。这样的模型，可以帮助程序能够并尝试自动填充用户需求。带有Siri系统的iPhone就有这种功能。</li>
-<li>人脸识别：根据相册中的众多数码照片，识别出那些包含某一个人的照片。这样的决策模型，可以帮助程序根据人脸管理照片。某些相机或软件，如iPhoto，就有这种功能。<br><img src="http://ww2.sinaimg.cn/large/7cc829d3gw1eebxsvbwnhj20hc0d2jt6.jpg" alt="人脸识别">
+          <p>本科的时候，主要使用的是c语言做嵌入式以及python，重新学习c++,阅读《c++ primer》，同时在网上查找资料，阅读并记录下来，方便下次查阅。看到c++中的迭代器，跟python中的迭代器的概念好学差不多。</p>
+<p>迭代器的递增运算令迭代器每次移动一个元素，所有的标准库容器都支持递增运算的迭代器。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/31/什么是机器学习/#more" rel="contents">
+            <a class="btn" href="/2016/04/08/c-迭代器/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -477,8 +336,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/29/部分优化算法对比/" itemprop="url">
-                  部分优化算法对比
+                <a class="post-title-link" href="/2016/04/08/vector用法总结/" itemprop="url">
+                  vector用法总结
                 </a>
               
             
@@ -491,8 +350,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-29T22:46:13+08:00" content="2016-03-29">
-              2016-03-29
+            <time itemprop="dateCreated" datetime="2016-04-08T00:36:35+08:00" content="2016-04-08">
+              2016-04-08
             </time>
           </span>
 
@@ -505,8 +364,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/数据挖掘/" itemprop="url" rel="index">
-                    <span itemprop="name">数据挖掘</span>
+                  <a href="/categories/c/" itemprop="url" rel="index">
+                    <span itemprop="name">c++</span>
                   </a>
                 </span>
 
@@ -521,8 +380,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/29/部分优化算法对比/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/29/部分优化算法对比/" itemprop="commentsCount"></span>
+                <a href="/2016/04/08/vector用法总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/08/vector用法总结/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -545,13 +404,9 @@
 
       
         
-          <p>#部分优化算法对比</p>
-<ul>
-<li>梯度下降法，基于目标函数梯度的，算法的收敛速度是线性的，并且当问题是病态时或者问题规模较大时，收敛速度尤其慢（几乎不适用）；</li>
-<li>坐标下降法，虽然不用计算目标函数的梯度，但是其收敛速度依然很慢，因此它的适用范围也有局限；</li>
-<li>牛顿法，基于目标函数的二次阶导数（海森矩阵，二阶导数矩阵）的，其收敛速度较快，迭代次数较少，尤其是在最优值附件时，收敛速度是二次的。<strong>问题</strong>在于当海森矩阵稠密时，每次迭代的计算量比较大时，不仅计算量大（有时大到不可计算）而且需要的存储空间也多，因此牛顿法载面对海量数据时由于每一步迭代的开销巨大而变得不适用。牛顿法在每次迭代时不恩能够综述保证海森矩阵是正定的，一旦海森矩阵不是正定，优化方向就会“跑偏”，从而使得牛顿法失效，也说明了牛顿法的鲁班性较差
+          <p>本科的时候，主要使用的是c语言做嵌入式以及python，重新学习c++,阅读《c++ primer》，同时在网上查找资料，阅读并记录下来，方便下次查阅。看到STL中的vector类的时候，其中的很多方法与python中list很类似。<br> vector(向量): C++中的一种数据结构,确切的说是一个类.它相当于一个动态的数组,当程序员无法知道自己需要的数组的规模多大时,用其来解决问题可以达到最大节约空间的目的.<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/29/部分优化算法对比/#more" rel="contents">
+            <a class="btn" href="/2016/04/08/vector用法总结/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -598,8 +453,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/29/my2015/" itemprop="url">
-                  2015年总结
+                <a class="post-title-link" href="/2016/04/08/c-string类的用法总结/" itemprop="url">
+                  c++ string类的用法总结
                 </a>
               
             
@@ -612,8 +467,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-29T22:40:29+08:00" content="2016-03-29">
-              2016-03-29
+            <time itemprop="dateCreated" datetime="2016-04-08T00:14:15+08:00" content="2016-04-08">
+              2016-04-08
             </time>
           </span>
 
@@ -626,8 +481,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/总结/" itemprop="url" rel="index">
-                    <span itemprop="name">总结</span>
+                  <a href="/categories/c/" itemprop="url" rel="index">
+                    <span itemprop="name">c++</span>
                   </a>
                 </span>
 
@@ -642,8 +497,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/29/my2015/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/29/my2015/" itemprop="commentsCount"></span>
+                <a href="/2016/04/08/c-string类的用法总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/08/c-string类的用法总结/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -666,9 +521,12 @@
 
       
         
-          <p>在家度过了最寒冷的冬天，再次回到魔都。每次回家都是精神彻底的放松，不管在外面有着多么大的压力，只要回到家就不想思考，不想活动，不想论文、不想将来的工作。但是，就像太阳总是要出来一样，我也还是要回到学校中来了。学校里的梅花都盛开了，学生们都已经回到校园了，而我是时候为对去年做一个总结，对新年开启篇新的展望了。<br>去年一月份的时候，我想抽出时间来写一篇总结，记忆已经模糊，忘了是因为什么而忽略了这份迟早要到来的总结。今天刚刚下完课，就乘着这个时候把我放在显微镜下剖析一下了吧。<br>过去的一年，在我的记忆立总是灰蒙蒙的，大概是受到了雾霾的影响吧。去年主要经历归纳为一条线为：考研——调剂——毕设——暑假学习——开学。<br>
+          <p>本科的时候，主要使用的是c语言做嵌入式以及python，重新学习c++,阅读《c++ primer》，同时在网上查找资料，阅读并记录下来，方便下次查阅。看到STL中的string类的时候，其中的很多方法与python中list很类似。<br>要想使用标准C++中string类，必须要包含</p>
+<p>#include <string>// 注意是<string>，不是<string.h>，带.h的是C语言中的头文件</p>
+<p>using  std::string;</p>
+<p>using  std::wstring;<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/29/my2015/#more" rel="contents">
+            <a class="btn" href="/2016/04/08/c-string类的用法总结/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -715,8 +573,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/29/spark/" itemprop="url">
-                  spark探秘 
+                <a class="post-title-link" href="/2016/04/07/值得推荐的c-c-框架和库/" itemprop="url">
+                  值得推荐的c/c++框架和库
                 </a>
               
             
@@ -729,8 +587,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-29T22:28:24+08:00" content="2016-03-29">
-              2016-03-29
+            <time itemprop="dateCreated" datetime="2016-04-07T23:57:57+08:00" content="2016-04-07">
+              2016-04-07
             </time>
           </span>
 
@@ -743,8 +601,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/spark/" itemprop="url" rel="index">
-                    <span itemprop="name">spark</span>
+                  <a href="/categories/c/" itemprop="url" rel="index">
+                    <span itemprop="name">c++</span>
                   </a>
                 </span>
 
@@ -759,8 +617,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/29/spark/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/29/spark/" itemprop="commentsCount"></span>
+                <a href="/2016/04/07/值得推荐的c-c-框架和库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/07/值得推荐的c-c-框架和库/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -780,36 +638,132 @@
 
       
       
-        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+
+      
+        
+          <p>【本文系外部转贴，原文地址：<a href="http://coolshell.info/c/c++/2014/12/13/c-open-project.htm】留作存档">http://coolshell.info/c/c++/2014/12/13/c-open-project.htm】留作存档</a><br>下次造轮子前先看看现有的轮子吧</p>
+<h1 id="值得学习的C语言开源项目"><a href="#值得学习的C语言开源项目" class="headerlink" title="值得学习的C语言开源项目"></a>值得学习的C语言开源项目</h1><h2 id="Webbench"><a href="#Webbench" class="headerlink" title="Webbench"></a>Webbench</h2><p>Webbench是一个在linux下使用的非常简单的网站压测工具。它使用fork()模拟多个客户端同时访问我们设定的URL，测试网站在压力下工作的性能，最多可以模拟3万个并发连接去测试网站的负载能力。Webbench使用C语言编写, 代码实在太简洁，源码加起来不到600行。</p>
+<p>下载链接：<a href="http://home.tiscali.cz/~cz210552/webbench.html">http://home.tiscali.cz/~cz210552/webbench.html</a><br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/07/值得推荐的c-c-框架和库/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/07/const用法总结/" itemprop="url">
+                  const用法总结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-07T23:21:41+08:00" content="2016-04-07">
+              2016-04-07
+            </time>
+          </span>
+
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index">
+                    <span itemprop="name">c++</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
-            <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox"
-                 href="http://www.2cto.com/uploadfile/2014/1203/20141203021322155.png" rel="gallery_cimh4d9ug0008u2zk0mhyvavg"
-                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="http://www.2cto.com/uploadfile/2014/1203/20141203021322155.png" itemprop="contentUrl"/>
-              </a>
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/07/const用法总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/07/const用法总结/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
           
-          </div>
+
+          
+          
+
         </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
       
         
-          <h1 id="1、spark简介"><a href="#1、spark简介" class="headerlink" title="1、spark简介"></a>1、spark简介</h1><h2 id="1-1-这是什么？"><a href="#1-1-这是什么？" class="headerlink" title="1.1 这是什么？"></a>1.1 这是什么？</h2><p>  &ensp;&ensp;&ensp;&ensp;Spark于2009年诞生于加州大学伯克利分校AMPLab（出身高贵呀）。目前，已经成为Apache软件基金会旗下的顶级项目（后妈同样很强）。Spark是基于内存计算的大数据并行计算架构。这里面有两个概念：内存计算，并行计算架构。</p>
-<ul>
-<li>内存计算，把数据放在内存中，运算的时候从内存中读取数据，而不是从硬盘中读取数据。</li>
-<li>并行计算框架，使用多台计算机同时工作解决一件计算任务的框架。<h2 id="1-2-优势"><a href="#1-2-优势" class="headerlink" title="1.2.优势"></a>1.2.优势</h2></li>
-<li>支持复杂查询。（能干的活多）</li>
-<li>轻量级快速处理。（代码少，速度快）</li>
-<li>易于使用。支持Scala.java.python编写程序，最新版的Spark1.4还支持R语言。</li>
-<li>于HDFS等存储层兼容。（Spark只负责计算，存储使用其他存储层）</li>
-<li>社区活跃程度高。（很多人支持，不怕倒下）
+          <p>【原文<a href="http://blog.csdn.net/Eric_Jo/article/details/4138548】">http://blog.csdn.net/Eric_Jo/article/details/4138548】</a><br>C++中的const关键字的用法非常灵活，而使用const将大大改善程序的健壮性，本人根据各方面查到的资料进行总结如下，期望对朋友们有所帮助。<br>Const 是C++中常用的类型修饰符,常类型是指使用类型修饰符const说明的类型，常类型的变量或对象的值是不能被更新的。</p>
+<h1 id="Const作用"><a href="#Const作用" class="headerlink" title="Const作用"></a>Const作用</h1><p>   如下图所示：<br><img src="http://v2.freep.cn/3tb_160407234443rs9v512293.jpg" alt=""></p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/29/spark/#more" rel="contents">
+            <a class="btn" href="/2016/04/07/const用法总结/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -839,7 +793,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -880,7 +834,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -888,7 +842,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -897,7 +851,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1059,7 +1013,7 @@
   
     
       <script src="/vendors/ua-parser-js/dist/ua-parser.min.js"></script>
-      <script src="/js/src/hook-duoshuo.js"></script>
+      <script src="/js/src/hook-duoshuo.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
   
 
