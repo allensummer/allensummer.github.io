@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="逻辑斯蒂回退,Logistic regression,机器学习," />
+  <meta name="keywords" content="机器学习,逻辑斯蒂回退,Logistic regression," />
 
 
 
@@ -72,7 +72,7 @@
 <meta property="og:image" content="http://scikit-learn.org/stable/_images/math/96fe247fe9465d26af15706141dc22e598ac7826.png">
 <meta property="og:image" content="http://scikit-learn.org/stable/_images/math/3fb9bab302e67df4a9f00b8df259d326e01837fd.png">
 <meta property="og:image" content="http://i4.piimg.com/f83cad9cfe6687fc.png">
-<meta property="og:updated_time" content="2016-04-08T14:45:10.495Z">
+<meta property="og:updated_time" content="2016-04-08T14:53:37.267Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大话逻辑回归">
 <meta name="twitter:description" content="在Machine Learning中，逻辑斯蒂回归（Logistic Regression）是十分经典的方法,简称LR，虽然名字叫回归，但是这是线性分类模型而不是回归模型。这里面涉及到一些知识点，包括极大似然估计，损失函数，梯度下降，正则化等这篇文章的主要目的，就是通过理论与实践相结合的方式讲解LR模型，在讲解的过程中，加深对LR的理解、相关概念的梳理和应用。这篇文章中需要一些基础的数学知识，如果">
@@ -301,18 +301,18 @@
 <h1 id="二项逻辑斯蒂回归模型"><a href="#二项逻辑斯蒂回归模型" class="headerlink" title="二项逻辑斯蒂回归模型"></a>二项逻辑斯蒂回归模型</h1><p>现在我们仅仅考虑二分类问题。就拿AndrewNG的讲义里面的例子，如下图所示，x表示数据点的特征——肿瘤的大小，Y为观测值——是否是恶性肿瘤。通过构建线性回归模型，如h θ (x)所示，构建线性回归模型后，即可以根据肿瘤大小，预测是否为恶性肿瘤h θ (x)≥.05为恶性，h θ (x)&lt;0.5为良性。<br><img src="http://52opencourse.com/?qa=blob&amp;qa_blobid=28151414763210940" alt=""></p>
 <p>如果上述问题使用线性分类器，效果并不好（如上图），分类效果可以用差来形容。然后你再看着这个图，是不是感觉观测值类似第一幅图？<br>在解决上诉问题之前，接下来我们先看看逻辑回归模型：<br>将逻辑回归模型定义为：<br>$$log\frac{\pi(X)}{1-\pi(X)}=w_1x_1+…+w_nx_p+b$$<br>$$=X^t\beta$$<br>这里<br>$$W=(w^1, w^2, …, w^n, b)$$</p>
 <p>$$X=(x^1, x^2, …, x^n, 1)$$</p>
-<p>$$P(Y=1|X)=\pi(X$$<br>这里的$\pi(X)%是逻辑回归中的标准表示.进过简单推导，就可以得到标准的逻辑回归模型。</p>
-<p><strong>定义（逻辑斯蒂回归模型）</strong>  二项逻辑斯蒂回归模型是如下的条件概率分布：</p>
+<p>$$P(Y=1|X)=\pi(X）这里的$\pi(X)%是逻辑回归中的标准表示.$$</p>
+<p>逻辑回归可以这么理解，考虑对输入X进行分类的线性函数$WX$,其至于为实数域，通过逻辑斯蒂函数，可以将线性函数$WX$转换为概率。<br>换一个角度，逻辑斯蒂回归模型的特点就是已经事情的发生概率是指该只见发生的概率与该事件不发生的概率的比值。一个事件的几率是p，那么该事件发生的几率是$\frac{p}{1-p}$,该事件可以理解为该事件的对数几率或logit函数是</p>
+<p>$$logit(p)=log(\frac{p}{1-p})$$</p>
+<p>经过简单推导，就可以得到标准的逻辑回归模型。<br><strong>定义（逻辑斯蒂回归模型）</strong>  二项逻辑斯蒂回归模型是如下的条件概率分布：</p>
 <p>$$P(Y=1|X) = \frac{exp(WX)}{1+exp(WX)}$$</p>
 <p>$$P(Y=0|X) = \frac{1}{1+exp(WX)}$$</p>
-<p>逻辑斯蒂回归模型的特点就是已经事情的发生概率是指该只见发生的概率与该事件不发生的概率的比值。一个事件的几率是p，那么该事件发生的几率是$\frac{p}{1-p}$,该事件可以理解为该事件的对数几率或logit函数是<br>$$logit(p)=log(\frac{p}{1-p})$$</p>
-<p>换一个角度看，考虑对输入x进行分类的线性函数$wx$,其至于为实数域， 通过逻辑斯蒂回归定义，可以将线性函数$w*x$转换为概率：<br>    $$P(Y=1|X) = \frac{exp(WX)}{1+exp^{WX}}$$</p>
 <p>逻辑斯特回归模型也可以说是建立在条件概率密度$p(x|C_k)$和先验概率$P(C_k)$的基础上，使用贝叶斯理论计算后验概率密度$P(C_k|x)的模型。利用贝叶斯后验概率求解该问题，则</p>
 <p>$$P(Y=1|x) = \frac{P(x|Y=1)P(Y=1)}{p(x|Y=1)P(Y=1)+P(x|Y=0)P(Y=0)}$$<br>$$=\frac{1}{1+e^{ln(\frac{P(x|Y=0)P(Y=0))}{P(x|Y=1)P(Y=1)}}}$$ </p>
 <p>到这里是不是感觉后验概率$P(Y=1|x)$与逻辑斯蒂函数很像？其实从（1）式可以推导到逻辑斯蒂函数的，《PR&amp;ML》这本书中借助高斯分布有一点介绍，这里就不说了。</p>
 <h1 id="模型参数估计"><a href="#模型参数估计" class="headerlink" title="模型参数估计"></a>模型参数估计</h1><p>对于上面患病问题，对给定的数据集$T={(x^1, y^1), (x^2, y^2), .., x^N, y^N)}$$，可以应用极大私人估计模型参数，从而得到逻辑回归模型。<br>这里使用极大似然估计求解，极大似然估计的理解是根据现有数据，选择使模型得到现有训练集可能性最大的参数。参数估计我就直接贴出《统计学习方法》中的原文。<br><img src="http://i4.piimg.com/0d6d163d711f0ca0.png" alt=""></p>
 <p>上面列出了将逻辑回归问题通过极大似然的方法转换成了最优化的问题，最优化问题有多种解决方案，这里给出使用梯度下降的完整的逻辑回归算法如下，关于最优化问题的求解请链接到<a href="">最优化问题(待更新）)</a><br><img src="http://i3.piimg.com/0ddf886f38c92b17.jpg" alt=""></p>
-<h1 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h1><p>在模型参数估计这，已经将问题变为目标函数的最优化问题。为了让降低模型的复杂度，更好的泛化，可以在使用梯度下降的时候，添加一个正则项。二分类问题的L2乘法回归最小化如下：<br><img src="http://scikit-learn.org/stable/_images/math/96fe247fe9465d26af15706141dc22e598ac7826.png" alt=""><br>同样，L1正则化逻辑回归解决的优化问题如下：</p>
+<h1 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h1><p>在模型参数估计这，已经将问题变为目标函数的最优化问题。为了让降低模型的复杂度，更好的泛化，可以在使用梯度下降的时候，添加一个正则项。二分类问题的L2乘法回归最小化如下（正则化链接-等待更新）：<br><img src="http://scikit-learn.org/stable/_images/math/96fe247fe9465d26af15706141dc22e598ac7826.png" alt=""><br>同样，L1正则化逻辑回归解决的优化问题如下：</p>
 <p><img src="http://scikit-learn.org/stable/_images/math/3fb9bab302e67df4a9f00b8df259d326e01837fd.png" alt=""></p>
 <h1 id="多分类问题"><a href="#多分类问题" class="headerlink" title="多分类问题"></a>多分类问题</h1><p>在实际应用中，我们常常碰见多分类问题，我们如何将逻辑回归应用到上面呢？其实这里可以这样想，N分类问题，对于每一类都可以将他转换为二分类问题：是该类和非该类，每一类的逻辑模型是：<br><img src="http://i4.piimg.com/f83cad9cfe6687fc.png" alt=""><br>在进行分类的时候，对每一个输入的特征向量求的该类的该类，取概率最大的分类。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1]《统计学习方法》<br>[2] AngrewNG 《机器学习》<br>[3] Christopher M. Bishop: Pattern Recognition and Machine Learning, chapter4.3<br>[4] <a href="https://www.douban.com/note/323644915/" target="_blank" rel="external">听课笔记（第十讲）： 逻辑斯蒂回归 (台大机器学习）</a><br>[5] <a href="http://www.tuicool.com/articles/auQFju" target="_blank" rel="external">逻辑回归模型(Logistic Regression, LR)基础</a><br>[6] <a href="http://www.eas-journal.org/articles/eas/pdf/2014/02/eas1466008.pdf" target="_blank" rel="external">logistic regression</a></p>
@@ -330,11 +330,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
             <a href="/tags/逻辑斯蒂回退/" rel="tag">#逻辑斯蒂回退</a>
           
             <a href="/tags/Logistic-regression/" rel="tag">#Logistic regression</a>
-          
-            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
           
         </div>
       
