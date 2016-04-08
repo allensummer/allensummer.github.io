@@ -4,6 +4,72 @@
 
     
   <url>
+    <loc>http://yoursite.com/2016/04/08/%E9%80%BB%E8%BE%91%E6%96%AF%E8%92%82%EF%BC%88Logistic-%E5%9B%9E%E5%BD%92/</loc>
+    <lastmod>2016-04-08T14:45:10.495Z</lastmod>
+    <data>
+        <display>
+        <title>大话逻辑回归</title>
+        <pubTime>2016-04-08T03:49:37.000Z</pubTime>
+        
+        <tag>逻辑斯蒂回退</tag>
+         
+        <tag>Logistic regression</tag>
+         
+        <tag>机器学习</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/08/01/%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2016-04-08T13:59:10.751Z</lastmod>
+    <data>
+        <display>
+        <title>什么是机器学习</title>
+        <pubTime>2016-08-01T00:00:00.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/04/08/LDA%E6%B5%85%E6%98%BE%E7%90%86%E8%A7%A3/</loc>
+    <lastmod>2016-04-08T13:57:35.991Z</lastmod>
+    <data>
+        <display>
+        <title>LDA浅显理解</title>
+        <pubTime>2016-04-08T13:52:25.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>LDA</tag>
+         
+         
+           
+             
+              <breadCrumb title="-机器学习" url="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2016/04/08/c-%E8%BF%AD%E4%BB%A3%E5%99%A8/</loc>
     <lastmod>2016-04-07T16:59:35.238Z</lastmod>
     <data>
@@ -123,50 +189,6 @@
          
          
            
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2016/04/01/%E9%80%BB%E8%BE%91%E6%96%AF%E8%92%82%EF%BC%88Logistic-%E5%9B%9E%E5%BD%92/</loc>
-    <lastmod>2016-04-01T13:34:33.219Z</lastmod>
-    <data>
-        <display>
-        <title>大话逻辑斯蒂（Logistic)回归</title>
-        <pubTime>2016-04-01T03:49:37.000Z</pubTime>
-        
-        <tag>机器学习</tag>
-         
-        <tag>逻辑斯蒂回退</tag>
-         
-        <tag>Logistic regression</tag>
-         
-         
-           
-             
-              <breadCrumb title="机器学习" url="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2016/03/31/%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2016-04-01T03:29:24.487Z</lastmod>
-    <data>
-        <display>
-        <title>什么是机器学习</title>
-        <pubTime>2016-03-31T00:36:30.000Z</pubTime>
-        
-        <tag>机器学习</tag>
-         
-         
-           
-             
-              <breadCrumb title="机器学习" url="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-          
         </display>
     </data>
     </url>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-07T16:59:35.238Z</updated>
+  <updated>2016-04-08T13:59:10.751Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,216 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>什么是机器学习</title>
+    <link href="http://yoursite.com/2016/08/01/%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://yoursite.com/2016/08/01/什么是机器学习/</id>
+    <published>2016-08-01T00:00:00.000Z</published>
+    <updated>2016-04-08T13:59:10.751Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;　　在介绍机器学习之前，我想先列几个关于机器学习的例子：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;垃圾邮件检测：根据邮箱中的邮件，识别哪些是垃圾邮件，哪些不是。这样的模型，可以程序帮助归类垃圾邮件和非垃圾邮件。这个例子，我们应该都不陌生。&lt;/li&gt;
+&lt;li&gt;信用卡欺诈检测：根据用户一个月内的信用卡交易，识别哪些交易是该用户操作的，哪些不是。这样的决策模型，可以帮助程序退还那些欺诈交易。&lt;/li&gt;
+&lt;li&gt;数字识别：根据信封上手写的邮编，识别出每一个手写字符所代表的数字。这样的模型，可以帮助程序阅读和理解手写邮编，并根据地利位置分类信件。&lt;/li&gt;
+&lt;li&gt;语音识别：从一个用户的话语，确定用户提出的具体要求。这样的模型，可以帮助程序能够并尝试自动填充用户需求。带有Siri系统的iPhone就有这种功能。&lt;/li&gt;
+&lt;li&gt;人脸识别：根据相册中的众多数码照片，识别出那些包含某一个人的照片。这样的决策模型，可以帮助程序根据人脸管理照片。某些相机或软件，如iPhoto，就有这种功能。&lt;br&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/7cc829d3gw1eebxsvbwnhj20hc0d2jt6.jpg&quot; alt=&quot;人脸识别&quot;&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;产品推荐：根据一个用户的购物记录和冗长的收藏清单，识别出这其中哪些是该用户真正感兴趣，并且愿意购买的产品。这样的决策模型，可以帮助程序为客户提供建议并鼓励产品消费。登录Facebook或GooglePlus，它们就会推荐可能有关联的用户给你。&lt;/li&gt;
+&lt;li&gt;医学分析：根据病人的症状和一个匿名的病人资料数据库，预测该病人可能患了什么病。这样的决策模型，可以程序为专业医疗人士提供支持。&lt;/li&gt;
+&lt;li&gt;股票交易：根据一支股票现有的和以往的价格波动，判断这支股票是该建仓、持仓还是减仓。这样的决策模型，可以帮助程序为金融分析提供支持。&lt;/li&gt;
+&lt;li&gt;客户细分：根据用户在试用期的的行为模式和所有用户过去的行为，识别出哪些用户会转变成该产品的付款用户，哪些不会。这样的决策模型，可以帮助程序进行用户干预，以说服用户早些付款使用或更好的参与产品试用。&lt;/li&gt;
+&lt;li&gt;形状鉴定：根据用户在触摸屏幕上的手绘和一个已知的形状资料库，判断用户想描绘的形状。这样的决策模型，可以帮助程序显示该形状的理想版本，以绘制清晰的图像。iPhone应用Instaviz就能做到这样。[1]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;机器学习(Machine Learning, ML)&lt;/strong&gt;是一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、算法复杂度理论等多门学科。专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能。它是人工智能的核心，主要使用&lt;strong&gt;归纳、综合而不是演绎&lt;/strong&gt;[2]&lt;/p&gt;
+&lt;p&gt;关于机器学习的定义有很多，一种经常被引用的英文定义是：A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.[3]&lt;/p&gt;
+&lt;p&gt;上面的这个定义如何理解呢？想象一下有一个邮箱过滤程序接受到一封邮件，该程序如何判断这封邮件是不是垃圾邮件呢？首先这封邮件先观察你之前标记过是不是垃圾邮件的邮件，基于这个学习到的经验，该过滤程序为你过滤掉垃圾邮件了。在这个任务中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;判断邮件是不是垃圾邮件,这个&lt;strong&gt;任务T&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;观察到你之前标记过是不是垃圾邮件的邮件，这个是&lt;strong&gt;经验E&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;正确分类垃圾邮件与非垃圾邮件的数量，这个是&lt;strong&gt;性能P&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;http://static.oschina.net/uploads/space/2012/0515/151727_DtZB_260935.jpg&quot; alt=&quot;163邮箱&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;机器学习分类&quot;&gt;&lt;a href=&quot;#机器学习分类&quot; class=&quot;headerlink&quot; title=&quot;机器学习分类&quot;&gt;&lt;/a&gt;机器学习分类&lt;/h1&gt;&lt;p&gt;从最广义的讲，任何涉及机器学习所用的方法，只要它利用了训练样本的信息，都可以认为运用了学习。实践中和有意义的机器学习都是如此困难，以至于根本无法实现猜测出一个最佳的分类判决。因此大部分的时间都运用与研究学习问题。实现一个机器学习算法设计：给定一般的模型或分类器的形式，利用训练样本去学习或评估模型的未知参数。这里的学习指用某种算法来降低训练样本的分类误差。一大类基于梯度下降的算法，能够调节分类器的参数，使它朝着能够降低误差的方向前进，目前已成为机器学习领域的主流学习算法。[4]&lt;br&gt;在一个机器学习的应用中，根据数据类型的不同，对一个问题的建模有不同的方式。在机器学习或者人工智能领域，人们首先会考虑算法的学习方式。在机器学习领域，有几种主要的学习方式。将算法按照学习方式分类是一个不错的想法，这样可以让人们在建模和算法选择的时候考虑能根据输入数据来选择最合适的算法来获得最好的结果。[5]&lt;/p&gt;
+&lt;h2 id=&quot;监督式学习&quot;&gt;&lt;a href=&quot;#监督式学习&quot; class=&quot;headerlink&quot; title=&quot;监督式学习&quot;&gt;&lt;/a&gt;监督式学习&lt;/h2&gt;&lt;center&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/mw690/7cc829d3gw1ekoj9ozt1xj208c06nq31.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;
+
+&lt;p&gt;在监督式学习下，输入数据被称为“训练数据”，每组训练数据有一个明确的标识或结果，如对防垃圾邮件系统中“垃圾邮件”“非垃圾邮件”，对手写数字识别中的“1“，”2“，”3“，”4“等。在建立预测模型的时候，监督式学习建立一个学习过程，将预测结果与“训练数据”的实际结果进行比较，不断的调整预测模型，直到模型的预测结果达到一个预期的准确率。监督式学习的常见应用场景如分类问题和回归问题。常见的算法有：逻辑回归，感知机，SVM支持向量机。&lt;/p&gt;
+&lt;h2 id=&quot;非监督学习&quot;&gt;&lt;a href=&quot;#非监督学习&quot; class=&quot;headerlink&quot; title=&quot;非监督学习&quot;&gt;&lt;/a&gt;非监督学习&lt;/h2&gt;&lt;center&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/mw690/7cc829d3gw1ekoj9pp0wxj208c069mxc.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;
+
+&lt;p&gt;在非监督式学习中，数据并不被特别标识，学习模型是为了推断出数据的一些内在结构。常见的应用场景包括关联规则的学习以及聚类等。常见算法包括：Apriori算法以及k-Means算法。&lt;/p&gt;
+&lt;h2 id=&quot;半监督学习&quot;&gt;&lt;a href=&quot;#半监督学习&quot; class=&quot;headerlink&quot; title=&quot;半监督学习&quot;&gt;&lt;/a&gt;半监督学习&lt;/h2&gt;&lt;center&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/mw690/7cc829d3gw1ekoj9qcia3j208c05kq3b.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;
+
+&lt;p&gt;在此学习方式下，输入数据部分被标识，部分没有被标识，这种学习模型可以用来进行预测，但是模型首先需要学习数据的内在结构以便合理的组织数据来进行预测。应用场景包括分类和回归，算法包括一些对常用监督式学习算法的延伸，这些算法首先试图对未标识数据进行建模，在此基础上再对标识的数据进行预测。如图论推理算法（Graph Inference）或者拉普拉斯支持向量机（Laplacian SVM.）等。&lt;/p&gt;
+&lt;h2 id=&quot;强化学习&quot;&gt;&lt;a href=&quot;#强化学习&quot; class=&quot;headerlink&quot; title=&quot;强化学习&quot;&gt;&lt;/a&gt;强化学习&lt;/h2&gt;&lt;center&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/mw690/7cc829d3gw1ekoj9r0xldj208c04wgls.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;
+
+&lt;p&gt;在这种学习模式下，输入数据作为对模型的反馈，不像监督模型那样，输入数据仅仅是作为一个检查模型对错的方式，在强化学习下，输入数据直接反馈到模型，模型必须对此立刻作出调整。常见的应用场景包括动态系统以及机器人控制等。常见算法包括Q-Learning以及时间差学习（Temporal difference learning）&lt;/p&gt;
+&lt;h1 id=&quot;机器学习框架&quot;&gt;&lt;a href=&quot;#机器学习框架&quot; class=&quot;headerlink&quot; title=&quot;机器学习框架&quot;&gt;&lt;/a&gt;机器学习框架&lt;/h1&gt;&lt;p&gt;在机器学习领域有很&lt;a href=&quot;http://&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;/a&gt;多的框架、库以及软件。比较出名的有：C++的opencv, shark等，java中weka、hadoop的mahout、spark的mllib，matlab中的LibSVM、caffe，python的scikit-learn、NLTK、theano、brain、caffe等。&lt;a href=&quot;https://github.com/josephmisiti/awesome-machine-learning&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;机器学习框架、库与软件列表&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;目录（持续更新）&quot;&gt;&lt;a href=&quot;#目录（持续更新）&quot; class=&quot;headerlink&quot; title=&quot;目录（持续更新）&quot;&gt;&lt;/a&gt;目录（持续更新）&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;基础知识  &lt;!--* 概率论
+  * 模型评估与选择
+  * 维灾难
+  * 决策论
+  * 信息论--&gt;&lt;/li&gt;
+&lt;li&gt;概率分布  &lt;!--* 二项式分布
+  * 多项式分布
+  * 高斯分布
+  * 指数分布族
+  * 非常数分布--&gt;&lt;/li&gt;
+&lt;li&gt;回归&lt;/li&gt;
+&lt;li&gt;分类&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/earl211/article/details/48974865&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;感知机&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/2016/04/08/逻辑斯蒂（Logistic-回归/#more&quot;&gt;逻辑回归&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;聚类&lt;/li&gt;
+&lt;li&gt;时间序列&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/2016/03/29/test/&quot;&gt;时间序列完全教程（R）&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;降维&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/2016/04/08/LDA浅显理解/&quot;&gt;LDA&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;#参考资料&lt;br&gt;[1] &lt;a href=&quot;http://blog.jobbole.com/62334&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;机器学习十个实例&lt;/a&gt;&lt;br&gt;[2] &lt;a href=&quot;http://baike.baidu.com/link?url=yeJM3HqBaKfzroNnRkaFt2Uya85p822Ct2Ke6DSQQtono8-JJdfB9iBiiz3uc35WfwuN5vT2FwQgFga4eP6onq&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;百度百科&lt;/a&gt;&lt;br&gt;[3] &lt;a href=&quot;https://www.coursera.org/learn/machine-learning&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;机器学习&lt;/a&gt;&lt;br&gt;[4] 模式分类&lt;br&gt;[5] &lt;a href=&quot;http://blog.jobbole.com/77620/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;机器学习常见分类&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;　　在介绍机器学习之前，我想先列几个关于机器学习的例子：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;垃圾邮件检测：根据邮箱中的邮件，识别哪些是垃圾邮件，哪些不是。这样的模型，可以程序帮助归类垃圾邮件和非垃圾邮件。这个例子，我们应该都不陌生。&lt;/li&gt;
+&lt;li&gt;信用卡欺诈检测：根据用户一个月内的信用卡交易，识别哪些交易是该用户操作的，哪些不是。这样的决策模型，可以帮助程序退还那些欺诈交易。&lt;/li&gt;
+&lt;li&gt;数字识别：根据信封上手写的邮编，识别出每一个手写字符所代表的数字。这样的模型，可以帮助程序阅读和理解手写邮编，并根据地利位置分类信件。&lt;/li&gt;
+&lt;li&gt;语音识别：从一个用户的话语，确定用户提出的具体要求。这样的模型，可以帮助程序能够并尝试自动填充用户需求。带有Siri系统的iPhone就有这种功能。&lt;/li&gt;
+&lt;li&gt;人脸识别：根据相册中的众多数码照片，识别出那些包含某一个人的照片。这样的决策模型，可以帮助程序根据人脸管理照片。某些相机或软件，如iPhoto，就有这种功能。&lt;br&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/7cc829d3gw1eebxsvbwnhj20hc0d2jt6.jpg&quot; alt=&quot;人脸识别&quot;&gt;
+    
+    </summary>
+    
+      <category term="机器学习" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LDA浅显理解</title>
+    <link href="http://yoursite.com/2016/04/08/LDA%E6%B5%85%E6%98%BE%E7%90%86%E8%A7%A3/"/>
+    <id>http://yoursite.com/2016/04/08/LDA浅显理解/</id>
+    <published>2016-04-08T13:52:25.000Z</published>
+    <updated>2016-04-08T13:57:35.991Z</updated>
+    
+    <content type="html">&lt;p&gt;这一段时间在看LDA主题模型，这里说一下我对LDA的理解，抛开复杂的数学、概率论、机器机器学习算法，只说思路，其他内容以后再更加详细的写。&lt;br&gt;假设有一个机器人，他想写一篇文章,每篇文章包含N个词，那么他怎么写呢？？？&lt;br&gt;&lt;img src=&quot;http://img.blog.csdn.net/20151224215521383&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;Unigram-model&quot;&gt;&lt;a href=&quot;#Unigram-model&quot; class=&quot;headerlink&quot; title=&quot;Unigram model&quot;&gt;&lt;/a&gt;Unigram model&lt;/h1&gt;&lt;p&gt;科学家A一开始这么设计，先给机器人读大量的文章，这样这个机器人的大脑中会有S个词，这些词组成了词向量$W=[w_1, w_2, w_3 …… w_S]$，每一个词都有相对应的概率$P=[p(w_1), p(w_2), p(w_3) …… p(w_S)$  。&lt;br&gt;算法如下：&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;for i = 1 to N:&lt;br&gt; 　　choose a word $w_i～ p(W)$ &lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;数学表示即：&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;$p(w) = ∏ p(w n )$&lt;br&gt;&lt;img src=&quot;http://img.my.csdn.net/uploads/201209/03/1346652013_8454.PNG&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Mixture-of-unigrams&quot;&gt;&lt;a href=&quot;#Mixture-of-unigrams&quot; class=&quot;headerlink&quot; title=&quot;Mixture of unigrams&quot;&gt;&lt;/a&gt;Mixture of unigrams&lt;/h1&gt;&lt;p&gt;科学家B觉得不应该这样，他认为机器人读的这些文章分成不同的主题$Z=[z_1, z_2 …… z_t]$，每个主题的概率为$P(Z)=[p(z_1), p(z_2), …… p(z_t))]$,第i主题下又有S个高频词向量$W=[w_1, w_2, w_3 …… w_S]$，每一个词都有相对应的概率$P=[p(w_1|z_i), p(w_2|z_i), p(w_3|z_i) …… p(w_S|z_i)$。&lt;br&gt;算法描述如下：&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;choose a topic $z_i～p(Z);  &lt;/p&gt;
+&lt;p&gt;for i = 1 to N&lt;br&gt;　　choose a word $w_i～ p(W|z_i)$&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;数学表示为：&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;$p(w) = ∑ p(z) ∏ p(w n | z)&lt;br&gt;&lt;img src=&quot;http://img.blog.csdn.net/20151230194155151&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;br&gt;&lt;/center&gt;&lt;br&gt;也就是说按照学习到的概率选择一个Topic,按照这个Topic下词的概率选择N个词。&lt;/p&gt;
+&lt;h1 id=&quot;Probabilistic-lantent-semantic-indexinal-pLSI&quot;&gt;&lt;a href=&quot;#Probabilistic-lantent-semantic-indexinal-pLSI&quot; class=&quot;headerlink&quot; title=&quot;Probabilistic lantent semantic indexinal(pLSI)&quot;&gt;&lt;/a&gt;Probabilistic lantent semantic indexinal(pLSI)&lt;/h1&gt;&lt;p&gt;科学家C（Hoffman）认为应该一篇文档可以由多个主题（topic $Z=[z_1, z_2 …… z_t]$）混合而成，每个主题的概率为$P(Z)=[p(z_1), p(z_2), …… p(z_t))]$，而每个Topic都是词汇上的概率分布$P=[p(w_1|z_i), p(w_2|z_i), p(w_3|z_i) …… p(w_S|z_i)]$，文章中的每一个词都有固定的topic。&lt;br&gt;算法描述：&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Choose parameter θ ～ p(θ)             #θ为选择出来的主题向量&lt;br&gt;for i = 1 to N&lt;br&gt;　　choose a topic $z_j ～ p(z|θ)$&lt;br&gt; 　　choose a word $w_k ～ p(w|z_j)$&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;数学表示即：&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;img src=&quot;http://img.blog.csdn.net/20151230193416158&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://img.blog.csdn.net/20151230194255120&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://img.blog.csdn.net/20151230200824920&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;br&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Lanton-Dirichlet-Allocation-LDA&quot;&gt;&lt;a href=&quot;#Lanton-Dirichlet-Allocation-LDA&quot; class=&quot;headerlink&quot; title=&quot;Lanton Dirichlet Allocation(LDA)&quot;&gt;&lt;/a&gt;Lanton Dirichlet Allocation(LDA)&lt;/h1&gt;&lt;p&gt;科学家D（David M. Blei）认为这个主题的概率分布、词汇的概率分布并不是固定的（与pLSA相比），应该是符合某一个分布，选取主题或词汇的时候，这个概率是动态变化的。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;initialize $φ_{ni}^0$  := 1/k for all i and n&lt;br&gt;initialize $γ_i := α&lt;em&gt;i + N/k$ for all i and n&lt;br&gt;repeat&lt;br&gt;　for n = 1 to N&lt;br&gt;　　for i = 1 to k&lt;br&gt;　　　 $φ^{t+1}&lt;/em&gt;{ni} = β_{iw_n}exp(Ψ(γ_i^t ))$&lt;br&gt;　　normalize $φ&lt;em&gt;n^{t+1}$ to sum to 1.&lt;br&gt;　$γ&lt;/em&gt;{t+1} = α + ∑^N_{n=1} φ_n^{t+1}$&lt;br&gt;until convergence&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;数学公式如下：&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;br&gt;&lt;img src=&quot;http://img.blog.csdn.net/20151230201004940&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://img.blog.csdn.net/20151230201044552&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://img.blog.csdn.net/20151230201221551&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;br&gt;&lt;/center&gt;&lt;br&gt;上述是我理解的LDA，一个机器人想要写一篇文章，那么先按照Dirichlet分布选择出主题向量，载这个主题向量的基础上，生成词汇。&lt;br&gt;使用LDA模型进行推断的时候，是倒过来的，由文档的词汇生成主题。因此LDA常常也用来做&lt;strong&gt;降维工具&lt;/strong&gt;。使用在语义分析，图像、文本分类等等&lt;/p&gt;
+&lt;h1 id=&quot;pLSA与LDA对比&quot;&gt;&lt;a href=&quot;#pLSA与LDA对比&quot; class=&quot;headerlink&quot; title=&quot;pLSA与LDA对比&quot;&gt;&lt;/a&gt;pLSA与LDA对比&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;LDA&lt;/strong&gt;：假定语料库中共有M篇文章，每篇文章下的Topic的主题分布是一个从参数为的Dirichlet先验分布中采样得到的Multinomial分布，每个Topic下的词分布是一个从参数为的Dirichlet先验分布中采样得到的Multinomial分布。&lt;br&gt;&lt;img src=&quot;http://img.blog.csdn.net/20151230201221551&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pLSA&lt;/strong&gt;：对于某篇文章中的第n个词，首先从该文章中出现的每个主题的Multinomial分布（主题分布）中选择或采样一个主题，然后再在这个主题对应的词的Multinomial分布（词分布）中选择或采样一个词。不断重复这个随机生成过程，直到M篇文章全部生成完成。&lt;br&gt;&lt;img src=&quot;http://img.blog.csdn.net/20151230200824920&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;相关知识点&quot;&gt;&lt;a href=&quot;#相关知识点&quot; class=&quot;headerlink&quot; title=&quot;相关知识点&quot;&gt;&lt;/a&gt;相关知识点&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;gamma函数&lt;/li&gt;
+&lt;li&gt;Dirichlet分布&lt;/li&gt;
+&lt;li&gt;共轭先验和贝叶斯框架&lt;/li&gt;
+&lt;li&gt;EM模型&lt;/li&gt;
+&lt;li&gt;MCMC、Gibbs采样&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;训练和推断&quot;&gt;&lt;a href=&quot;#训练和推断&quot; class=&quot;headerlink&quot; title=&quot;训练和推断&quot;&gt;&lt;/a&gt;训练和推断&lt;/h1&gt;&lt;p&gt;对于LDA模型，有两个目标：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;估计模型中的语料库中的主题Dirichlet分布和每个主题下的词汇的Dirichlet分布&lt;/li&gt;
+&lt;li&gt;对于一篇新的文档，计算这篇文档的topic分布&lt;br&gt;训练过程：&lt;br&gt;&lt;img src=&quot;http://img.blog.csdn.net/20151230202705096&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;br&gt;推断过程：&lt;br&gt;&lt;img src=&quot;http://img.blog.csdn.net/20151230202758668&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;br&gt;###参考资料&lt;br&gt;1、Blei, David M.; Ng, Andrew Y.; Jordan, Michael I. Latent Dirichlet allocation（LDA原始论文）：&lt;a href=&quot;http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf&lt;/a&gt;&lt;br&gt;2、rickjin的LDA数学八卦（力荐，本文部分图片和公式来自于此文档）&lt;br&gt;网页版：&lt;a href=&quot;http://www.flickering.cn/tag/lda/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.flickering.cn/tag/lda/&lt;/a&gt;&lt;br&gt;PDF：&lt;a href=&quot;http://emma.memect.com/t/9756da9a47744de993d8df13a26e04e38286c9bc1c5a0d2b259c4564c6613298/LDA；&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://emma.memect.com/t/9756da9a47744de993d8df13a26e04e38286c9bc1c5a0d2b259c4564c6613298/LDA；&lt;/a&gt;&lt;br&gt;3、搜索背后的奥秘——浅谈语义主题计算：&lt;a href=&quot;http://www.semgle.com/search-engine-algorithms-mystery-behind-search-on-the-calculation-of-semantic-topic；&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.semgle.com/search-engine-algorithms-mystery-behind-search-on-the-calculation-of-semantic-topic；&lt;/a&gt;&lt;br&gt;4、LDA的相关论文、工具库：&lt;a href=&quot;http://site.douban.com/204776/widget/notes/12599608/note/287085506/；&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://site.douban.com/204776/widget/notes/12599608/note/287085506/；&lt;/a&gt;&lt;br&gt;5、LDA实现 &lt;a href=&quot;http://www.cs.princeton.edu/~blei/topicmodeling.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cs.princeton.edu/~blei/topicmodeling.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这一段时间在看LDA主题模型，这里说一下我对LDA的理解，抛开复杂的数学、概率论、机器机器学习算法，只说思路，其他内容以后再更加详细的写。&lt;br&gt;假设有一个机器人，他想写一篇文章,每篇文章包含N个词，那么他怎么写呢？？？&lt;br&gt;&lt;img src=&quot;http://img.blog.csdn.net/20151224215521383&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="-机器学习" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="LDA" scheme="http://yoursite.com/tags/LDA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>大话逻辑回归</title>
+    <link href="http://yoursite.com/2016/04/08/%E9%80%BB%E8%BE%91%E6%96%AF%E8%92%82%EF%BC%88Logistic-%E5%9B%9E%E5%BD%92/"/>
+    <id>http://yoursite.com/2016/04/08/逻辑斯蒂（Logistic-回归/</id>
+    <published>2016-04-08T03:49:37.000Z</published>
+    <updated>2016-04-08T14:45:10.495Z</updated>
+    
+    <content type="html">&lt;p&gt;在Machine Learning中，逻辑斯蒂回归（Logistic Regression）是十分经典的方法,简称LR，虽然名字叫回归，但是这是线性分类模型而不是回归模型。这里面涉及到一些知识点，包括极大似然估计，损失函数，梯度下降，正则化等&lt;!--逻辑斯特回归是对条件概率密度$P(x|C/_K)$建模的，也就是后验概率$P(C/_k)$,使用它们通过贝叶斯理论来计算后验概率$P(C/_k|x).--&gt;&lt;br&gt;这篇文章的主要目的，就是通过理论与实践相结合的方式讲解LR模型，在讲解的过程中，加深对LR的理解、相关概念的梳理和应用。这篇文章中需要一些基础的数学知识，如果我没有讲到的请自行百度。这篇文章以《统计学习方法》和AndrewNg的视频为基础，加上《PR&amp;amp;MR》以及网上的资料、论文整理而成。本人能力有限，细节处理上难免有不严谨的地方或者叙述不清的地方，请留言或者发邮件wang_qian010@163.com&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;逻辑斯蒂（logistic-函数&quot;&gt;&lt;a href=&quot;#逻辑斯蒂（logistic-函数&quot; class=&quot;headerlink&quot; title=&quot;逻辑斯蒂（logistic)函数&quot;&gt;&lt;/a&gt;逻辑斯蒂（logistic)函数&lt;/h1&gt;&lt;h2 id=&quot;逻辑斯蒂函数&quot;&gt;&lt;a href=&quot;#逻辑斯蒂函数&quot; class=&quot;headerlink&quot; title=&quot;逻辑斯蒂函数&quot;&gt;&lt;/a&gt;逻辑斯蒂函数&lt;/h2&gt;&lt;p&gt;在数学界有各种各样的分布，比如Gamma分布，二项分布，高斯分布等。利用这些分布的性质，可以解决很多的问题。这里将介绍一种函数，叫逻辑斯蒂函数或逻辑斯蒂曲线，这是一种是一种S型曲线。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;  设$X$是连续随机变量，$X$服从逻辑斯蒂分布是指$X$具有下列分布函数和密度函数&lt;br&gt;$$F(x) = P(X\leq x) = \frac{1}{1+e^{-(x-u）/\gamma)} }$$&lt;br&gt;$$f(x) = F’(x) = \frac{e^{-(x-u)/\gamma}}{\gamma(1+e^{-(x-u)}/\gamma)^{2}}$$&lt;br&gt;式中，$\mu$为位置参数，$\gamma$为形状参数。看到这是不是想到，高斯、二项等其他分布。均值控制位置，方差控制形状。&lt;br&gt;逻辑斯蒂分布的密度函数$f(x)和分布函数$F(x)$的图形如下图&lt;br&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/6cbb8645gw1ewjejmez18j20jw08dq3g.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;看了逻辑斯蒂分布，我有两个疑问：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;这个分布是怎么发现？&lt;/li&gt;
+&lt;li&gt;在机器学习中什么用？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;上网查了一下，并没有找到这个分布是怎么发现的。最早的记录是1833年，菲尔许尔斯特使用逻辑斯蒂曲线描述了人口增长速度与人口密度的关系，把数学方法引入生态学。我大一的时候参加一个数学建模入门赛的时候，就是拟合了逻辑斯特函数，模型太简单，所以就很傻很天真的看着别人载比赛喽。&lt;br&gt;到了十九世纪末，法国的社会学家塔尔德观察到，一种新思想（就比如和谐社会）的采纳率随着时间的变化遵循一种S型曲线，也有人说塔尔德实际是提出了经济增长的S型曲线。&lt;br&gt;随后的一段时间，S曲线在各个行业都大杀四方，从物种迁移数量增长到工程进展，从城市化进程到经济学的前景理论等等。&lt;br&gt;随后可能有一位天才，正在研究分类问题，猛然看到了S曲线，突然想到，咦，这个曲线(如上右图）左边随着x的变小F(x)趋近于0，右边随着想的增大F(x)趋近与一个定值，不是正好可以用来做做二分类嘛。（仅供娱乐，如有雷同纯属巧合）&lt;/p&gt;
+&lt;h1 id=&quot;二项逻辑斯蒂回归模型&quot;&gt;&lt;a href=&quot;#二项逻辑斯蒂回归模型&quot; class=&quot;headerlink&quot; title=&quot;二项逻辑斯蒂回归模型&quot;&gt;&lt;/a&gt;二项逻辑斯蒂回归模型&lt;/h1&gt;&lt;p&gt;现在我们仅仅考虑二分类问题。就拿AndrewNG的讲义里面的例子，如下图所示，x表示数据点的特征——肿瘤的大小，Y为观测值——是否是恶性肿瘤。通过构建线性回归模型，如h θ (x)所示，构建线性回归模型后，即可以根据肿瘤大小，预测是否为恶性肿瘤h θ (x)≥.05为恶性，h θ (x)&amp;lt;0.5为良性。&lt;br&gt;&lt;img src=&quot;http://52opencourse.com/?qa=blob&amp;amp;qa_blobid=28151414763210940&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如果上述问题使用线性分类器，效果并不好（如上图），分类效果可以用差来形容。然后你再看着这个图，是不是感觉观测值类似第一幅图？&lt;br&gt;在解决上诉问题之前，接下来我们先看看逻辑回归模型：&lt;br&gt;将逻辑回归模型定义为：&lt;br&gt;$$log\frac{\pi(X)}{1-\pi(X)}=w_1x_1+…+w_nx_p+b$$&lt;br&gt;$$=X^t\beta$$&lt;br&gt;这里&lt;br&gt;$$W=(w^1, w^2, …, w^n, b)$$&lt;/p&gt;
+&lt;p&gt;$$X=(x^1, x^2, …, x^n, 1)$$&lt;/p&gt;
+&lt;p&gt;$$P(Y=1|X)=\pi(X$$&lt;br&gt;这里的$\pi(X)%是逻辑回归中的标准表示.进过简单推导，就可以得到标准的逻辑回归模型。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;定义（逻辑斯蒂回归模型）&lt;/strong&gt;  二项逻辑斯蒂回归模型是如下的条件概率分布：&lt;/p&gt;
+&lt;p&gt;$$P(Y=1|X) = \frac{exp(WX)}{1+exp(WX)}$$&lt;/p&gt;
+&lt;p&gt;$$P(Y=0|X) = \frac{1}{1+exp(WX)}$$&lt;/p&gt;
+&lt;p&gt;逻辑斯蒂回归模型的特点就是已经事情的发生概率是指该只见发生的概率与该事件不发生的概率的比值。一个事件的几率是p，那么该事件发生的几率是$\frac{p}{1-p}$,该事件可以理解为该事件的对数几率或logit函数是&lt;br&gt;$$logit(p)=log(\frac{p}{1-p})$$&lt;/p&gt;
+&lt;p&gt;换一个角度看，考虑对输入x进行分类的线性函数$wx$,其至于为实数域， 通过逻辑斯蒂回归定义，可以将线性函数$w*x$转换为概率：&lt;br&gt;    $$P(Y=1|X) = \frac{exp(WX)}{1+exp^{WX}}$$&lt;/p&gt;
+&lt;p&gt;逻辑斯特回归模型也可以说是建立在条件概率密度$p(x|C_k)$和先验概率$P(C_k)$的基础上，使用贝叶斯理论计算后验概率密度$P(C_k|x)的模型。利用贝叶斯后验概率求解该问题，则&lt;/p&gt;
+&lt;p&gt;$$P(Y=1|x) = \frac{P(x|Y=1)P(Y=1)}{p(x|Y=1)P(Y=1)+P(x|Y=0)P(Y=0)}$$&lt;br&gt;$$=\frac{1}{1+e^{ln(\frac{P(x|Y=0)P(Y=0))}{P(x|Y=1)P(Y=1)}}}$$ &lt;/p&gt;
+&lt;p&gt;到这里是不是感觉后验概率$P(Y=1|x)$与逻辑斯蒂函数很像？其实从（1）式可以推导到逻辑斯蒂函数的，《PR&amp;amp;ML》这本书中借助高斯分布有一点介绍，这里就不说了。&lt;/p&gt;
+&lt;h1 id=&quot;模型参数估计&quot;&gt;&lt;a href=&quot;#模型参数估计&quot; class=&quot;headerlink&quot; title=&quot;模型参数估计&quot;&gt;&lt;/a&gt;模型参数估计&lt;/h1&gt;&lt;p&gt;对于上面患病问题，对给定的数据集$T={(x^1, y^1), (x^2, y^2), .., x^N, y^N)}$$，可以应用极大私人估计模型参数，从而得到逻辑回归模型。&lt;br&gt;这里使用极大似然估计求解，极大似然估计的理解是根据现有数据，选择使模型得到现有训练集可能性最大的参数。参数估计我就直接贴出《统计学习方法》中的原文。&lt;br&gt;&lt;img src=&quot;http://i4.piimg.com/0d6d163d711f0ca0.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;上面列出了将逻辑回归问题通过极大似然的方法转换成了最优化的问题，最优化问题有多种解决方案，这里给出使用梯度下降的完整的逻辑回归算法如下，关于最优化问题的求解请链接到&lt;a href=&quot;&quot;&gt;最优化问题(待更新）)&lt;/a&gt;&lt;br&gt;&lt;img src=&quot;http://i3.piimg.com/0ddf886f38c92b17.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;正则化&quot;&gt;&lt;a href=&quot;#正则化&quot; class=&quot;headerlink&quot; title=&quot;正则化&quot;&gt;&lt;/a&gt;正则化&lt;/h1&gt;&lt;p&gt;在模型参数估计这，已经将问题变为目标函数的最优化问题。为了让降低模型的复杂度，更好的泛化，可以在使用梯度下降的时候，添加一个正则项。二分类问题的L2乘法回归最小化如下：&lt;br&gt;&lt;img src=&quot;http://scikit-learn.org/stable/_images/math/96fe247fe9465d26af15706141dc22e598ac7826.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;同样，L1正则化逻辑回归解决的优化问题如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://scikit-learn.org/stable/_images/math/3fb9bab302e67df4a9f00b8df259d326e01837fd.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;多分类问题&quot;&gt;&lt;a href=&quot;#多分类问题&quot; class=&quot;headerlink&quot; title=&quot;多分类问题&quot;&gt;&lt;/a&gt;多分类问题&lt;/h1&gt;&lt;p&gt;在实际应用中，我们常常碰见多分类问题，我们如何将逻辑回归应用到上面呢？其实这里可以这样想，N分类问题，对于每一类都可以将他转换为二分类问题：是该类和非该类，每一类的逻辑模型是：&lt;br&gt;&lt;img src=&quot;http://i4.piimg.com/f83cad9cfe6687fc.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;在进行分类的时候，对每一个输入的特征向量求的该类的该类，取概率最大的分类。&lt;/p&gt;
+&lt;h1 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h1&gt;&lt;p&gt;[1]《统计学习方法》&lt;br&gt;[2] AngrewNG 《机器学习》&lt;br&gt;[3] Christopher M. Bishop: Pattern Recognition and Machine Learning, chapter4.3&lt;br&gt;[4] &lt;a href=&quot;https://www.douban.com/note/323644915/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;听课笔记（第十讲）： 逻辑斯蒂回归 (台大机器学习）&lt;/a&gt;&lt;br&gt;[5] &lt;a href=&quot;http://www.tuicool.com/articles/auQFju&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;逻辑回归模型(Logistic Regression, LR)基础&lt;/a&gt;&lt;br&gt;[6] &lt;a href=&quot;http://www.eas-journal.org/articles/eas/pdf/2014/02/eas1466008.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;logistic regression&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在Machine Learning中，逻辑斯蒂回归（Logistic Regression）是十分经典的方法,简称LR，虽然名字叫回归，但是这是线性分类模型而不是回归模型。这里面涉及到一些知识点，包括极大似然估计，损失函数，梯度下降，正则化等&lt;!--逻辑斯特回归是对条件概率密度$P(x|C/_K)$建模的，也就是后验概率$P(C/_k)$,使用它们通过贝叶斯理论来计算后验概率$P(C/_k|x).--&gt;&lt;br&gt;这篇文章的主要目的，就是通过理论与实践相结合的方式讲解LR模型，在讲解的过程中，加深对LR的理解、相关概念的梳理和应用。这篇文章中需要一些基础的数学知识，如果我没有讲到的请自行百度。这篇文章以《统计学习方法》和AndrewNg的视频为基础，加上《PR&amp;amp;MR》以及网上的资料、论文整理而成。本人能力有限，细节处理上难免有不严谨的地方或者叙述不清的地方，请留言或者发邮件wang_qian010@163.com&lt;br&gt;
+    
+    </summary>
+    
+      <category term="机器学习" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="逻辑斯蒂回退" scheme="http://yoursite.com/tags/%E9%80%BB%E8%BE%91%E6%96%AF%E8%92%82%E5%9B%9E%E9%80%80/"/>
+    
+      <category term="Logistic regression" scheme="http://yoursite.com/tags/Logistic-regression/"/>
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>c++ 迭代器</title>
@@ -503,41 +713,6 @@ c.~ vector &amp;lt;Elem&amp;gt;()：销毁所有数据，释放内存。
   </entry>
   
   <entry>
-    <title>大话逻辑斯蒂（Logistic)回归</title>
-    <link href="http://yoursite.com/2016/04/01/%E9%80%BB%E8%BE%91%E6%96%AF%E8%92%82%EF%BC%88Logistic-%E5%9B%9E%E5%BD%92/"/>
-    <id>http://yoursite.com/2016/04/01/逻辑斯蒂（Logistic-回归/</id>
-    <published>2016-04-01T03:49:37.000Z</published>
-    <updated>2016-04-01T13:34:33.219Z</updated>
-    
-    <content type="html">&lt;p&gt;在Machine Learning中，逻辑斯蒂回归（Logistic Regression）是十分经典的方法,简称LR，虽然名字叫回归，但是这是线性分类模型而不是回归模型。这里面涉及到一些知识点，包括极大似然估计，损失函数，梯度下降，正则化等&lt;!--逻辑斯特回归是对条件概率密度$P(x|C/_K)$建模的，也就是后验概率$P(C/_k)$,使用它们通过贝叶斯理论来计算后验概率$P(C/_k|x).--&gt;&lt;br&gt;这篇文章的主要目的，就是通过理论与实践相结合的方式讲解LR模型，在讲解的过程中，加深对LR的理解、相关概念的梳理和应用。这篇文章中需要一些基础的数学知识，如果我没有讲到的请自行百度。这篇文章以《统计学习方法》和AndrewNg的视频为基础，加上《PR&amp;amp;MR》以及网上的资料、论文整理而成。文章题目有“大话”两字，我希望像大话系列图书一样，通过诙谐、自由、天马行空的方式描述。细节处理上难免有不严谨的地方或者叙述不清的地方，请留言或者发邮件wang_qian010@163.com&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&quot;逻辑斯蒂（logistic-分布&quot;&gt;&lt;a href=&quot;#逻辑斯蒂（logistic-分布&quot; class=&quot;headerlink&quot; title=&quot;逻辑斯蒂（logistic)分布&quot;&gt;&lt;/a&gt;逻辑斯蒂（logistic)分布&lt;/h1&gt;&lt;h2 id=&quot;逻辑斯蒂分布诞生记&quot;&gt;&lt;a href=&quot;#逻辑斯蒂分布诞生记&quot; class=&quot;headerlink&quot; title=&quot;逻辑斯蒂分布诞生记&quot;&gt;&lt;/a&gt;逻辑斯蒂分布诞生记&lt;/h2&gt;&lt;p&gt;在数学界有各种各样的分布，比如Gamma分布，二项分布，高斯分布等。利用这些分布的性质，可以解决很多的问题。这里将介绍一种函数，叫逻辑斯蒂函数或逻辑斯蒂曲线，这是一种是一种S型曲线。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;  设$X$是连续随机变量，$X$服从逻辑斯蒂分布是指$X$具有下列分布函数和密度函数&lt;br&gt;$$F(x) = P(X\leq x) = \frac{1}{1+e^{-(x-u）/\gamma)} }$$&lt;br&gt;$$f(x) = F’(x) = \frac{e^{-(x-u)/\gamma}}{\gamma(1+e^{-(x-u)}/\gamma)^{2}}$$&lt;br&gt;式中，$\mu$为位置参数，$\gamma$为形状参数。看到这是不是想到，高斯、二项等其他分布。均值控制位置，方差控制形状。&lt;br&gt;逻辑斯蒂分布的密度函数$f(x)和分布函数$F(x)$的图形如下图&lt;br&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/6cbb8645gw1ewjejmez18j20jw08dq3g.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;看了逻辑斯蒂分布，我有两个疑问：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;这个分布是怎么发现？&lt;/li&gt;
-&lt;li&gt;有什么用？&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;参考资料&quot;&gt;&lt;a href=&quot;#参考资料&quot; class=&quot;headerlink&quot; title=&quot;参考资料&quot;&gt;&lt;/a&gt;参考资料&lt;/h1&gt;&lt;p&gt;[1]《统计学习方法》&lt;br&gt;[2] AngrewNG 《机器学习》&lt;br&gt;[3] Christopher M. Bishop: Pattern Recognition and Machine Learning, chapter4.3&lt;br&gt;[4] &lt;a href=&quot;https://www.douban.com/note/323644915/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;听课笔记（第十讲）： 逻辑斯蒂回归 (台大机器学习）&lt;/a&gt;&lt;br&gt;[5] &lt;a href=&quot;http://www.tuicool.com/articles/auQFju&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;逻辑回归模型(Logistic Regression, LR)基础&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在Machine Learning中，逻辑斯蒂回归（Logistic Regression）是十分经典的方法,简称LR，虽然名字叫回归，但是这是线性分类模型而不是回归模型。这里面涉及到一些知识点，包括极大似然估计，损失函数，梯度下降，正则化等&lt;!--逻辑斯特回归是对条件概率密度$P(x|C/_K)$建模的，也就是后验概率$P(C/_k)$,使用它们通过贝叶斯理论来计算后验概率$P(C/_k|x).--&gt;&lt;br&gt;这篇文章的主要目的，就是通过理论与实践相结合的方式讲解LR模型，在讲解的过程中，加深对LR的理解、相关概念的梳理和应用。这篇文章中需要一些基础的数学知识，如果我没有讲到的请自行百度。这篇文章以《统计学习方法》和AndrewNg的视频为基础，加上《PR&amp;amp;MR》以及网上的资料、论文整理而成。文章题目有“大话”两字，我希望像大话系列图书一样，通过诙谐、自由、天马行空的方式描述。细节处理上难免有不严谨的地方或者叙述不清的地方，请留言或者发邮件wang_qian010@163.com&lt;br&gt;
-    
-    </summary>
-    
-      <category term="机器学习" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="逻辑斯蒂回退" scheme="http://yoursite.com/tags/%E9%80%BB%E8%BE%91%E6%96%AF%E8%92%82%E5%9B%9E%E9%80%80/"/>
-    
-      <category term="Logistic regression" scheme="http://yoursite.com/tags/Logistic-regression/"/>
-    
-  </entry>
-  
-  <entry>
     <title>learn to detect partially overlapping instance笔记</title>
     <link href="http://yoursite.com/2016/03/31/learn-to-detect-partially-overlapping-instance%E7%AC%94%E8%AE%B0/"/>
     <id>http://yoursite.com/2016/03/31/learn-to-detect-partially-overlapping-instance笔记/</id>
@@ -574,91 +749,6 @@ c.~ vector &amp;lt;Elem&amp;gt;()：销毁所有数据，释放内存。
       <category term="论文" scheme="http://yoursite.com/tags/%E8%AE%BA%E6%96%87/"/>
     
       <category term="overlapping" scheme="http://yoursite.com/tags/overlapping/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>什么是机器学习</title>
-    <link href="http://yoursite.com/2016/03/31/%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    <id>http://yoursite.com/2016/03/31/什么是机器学习/</id>
-    <published>2016-03-31T00:36:30.000Z</published>
-    <updated>2016-04-01T03:29:24.487Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;　　在介绍机器学习之前，我想先列几个关于机器学习的例子：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;垃圾邮件检测：根据邮箱中的邮件，识别哪些是垃圾邮件，哪些不是。这样的模型，可以程序帮助归类垃圾邮件和非垃圾邮件。这个例子，我们应该都不陌生。&lt;/li&gt;
-&lt;li&gt;信用卡欺诈检测：根据用户一个月内的信用卡交易，识别哪些交易是该用户操作的，哪些不是。这样的决策模型，可以帮助程序退还那些欺诈交易。&lt;/li&gt;
-&lt;li&gt;数字识别：根据信封上手写的邮编，识别出每一个手写字符所代表的数字。这样的模型，可以帮助程序阅读和理解手写邮编，并根据地利位置分类信件。&lt;/li&gt;
-&lt;li&gt;语音识别：从一个用户的话语，确定用户提出的具体要求。这样的模型，可以帮助程序能够并尝试自动填充用户需求。带有Siri系统的iPhone就有这种功能。&lt;/li&gt;
-&lt;li&gt;人脸识别：根据相册中的众多数码照片，识别出那些包含某一个人的照片。这样的决策模型，可以帮助程序根据人脸管理照片。某些相机或软件，如iPhoto，就有这种功能。&lt;br&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/7cc829d3gw1eebxsvbwnhj20hc0d2jt6.jpg&quot; alt=&quot;人脸识别&quot;&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;产品推荐：根据一个用户的购物记录和冗长的收藏清单，识别出这其中哪些是该用户真正感兴趣，并且愿意购买的产品。这样的决策模型，可以帮助程序为客户提供建议并鼓励产品消费。登录Facebook或GooglePlus，它们就会推荐可能有关联的用户给你。&lt;/li&gt;
-&lt;li&gt;医学分析：根据病人的症状和一个匿名的病人资料数据库，预测该病人可能患了什么病。这样的决策模型，可以程序为专业医疗人士提供支持。&lt;/li&gt;
-&lt;li&gt;股票交易：根据一支股票现有的和以往的价格波动，判断这支股票是该建仓、持仓还是减仓。这样的决策模型，可以帮助程序为金融分析提供支持。&lt;/li&gt;
-&lt;li&gt;客户细分：根据用户在试用期的的行为模式和所有用户过去的行为，识别出哪些用户会转变成该产品的付款用户，哪些不会。这样的决策模型，可以帮助程序进行用户干预，以说服用户早些付款使用或更好的参与产品试用。&lt;/li&gt;
-&lt;li&gt;形状鉴定：根据用户在触摸屏幕上的手绘和一个已知的形状资料库，判断用户想描绘的形状。这样的决策模型，可以帮助程序显示该形状的理想版本，以绘制清晰的图像。iPhone应用Instaviz就能做到这样。[1]&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;机器学习(Machine Learning, ML)&lt;/strong&gt;是一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、算法复杂度理论等多门学科。专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能。它是人工智能的核心，主要使用&lt;strong&gt;归纳、综合而不是演绎&lt;/strong&gt;[2]&lt;/p&gt;
-&lt;p&gt;关于机器学习的定义有很多，一种经常被引用的英文定义是：A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.[3]&lt;/p&gt;
-&lt;p&gt;上面的这个定义如何理解呢？想象一下有一个邮箱过滤程序接受到一封邮件，该程序如何判断这封邮件是不是垃圾邮件呢？首先这封邮件先观察你之前标记过是不是垃圾邮件的邮件，基于这个学习到的经验，该过滤程序为你过滤掉垃圾邮件了。在这个任务中：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;判断邮件是不是垃圾邮件,这个&lt;strong&gt;任务T&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;观察到你之前标记过是不是垃圾邮件的邮件，这个是&lt;strong&gt;经验E&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;正确分类垃圾邮件与非垃圾邮件的数量，这个是&lt;strong&gt;性能P&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;http://static.oschina.net/uploads/space/2012/0515/151727_DtZB_260935.jpg&quot; alt=&quot;163邮箱&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;机器学习分类&quot;&gt;&lt;a href=&quot;#机器学习分类&quot; class=&quot;headerlink&quot; title=&quot;机器学习分类&quot;&gt;&lt;/a&gt;机器学习分类&lt;/h1&gt;&lt;p&gt;从最广义的讲，任何涉及机器学习所用的方法，只要它利用了训练样本的信息，都可以认为运用了学习。实践中和有意义的机器学习都是如此困难，以至于根本无法实现猜测出一个最佳的分类判决。因此大部分的时间都运用与研究学习问题。实现一个机器学习算法设计：给定一般的模型或分类器的形式，利用训练样本去学习或评估模型的未知参数。这里的学习指用某种算法来降低训练样本的分类误差。一大类基于梯度下降的算法，能够调节分类器的参数，使它朝着能够降低误差的方向前进，目前已成为机器学习领域的主流学习算法。[4]&lt;br&gt;在一个机器学习的应用中，根据数据类型的不同，对一个问题的建模有不同的方式。在机器学习或者人工智能领域，人们首先会考虑算法的学习方式。在机器学习领域，有几种主要的学习方式。将算法按照学习方式分类是一个不错的想法，这样可以让人们在建模和算法选择的时候考虑能根据输入数据来选择最合适的算法来获得最好的结果。[5]&lt;/p&gt;
-&lt;h2 id=&quot;监督式学习&quot;&gt;&lt;a href=&quot;#监督式学习&quot; class=&quot;headerlink&quot; title=&quot;监督式学习&quot;&gt;&lt;/a&gt;监督式学习&lt;/h2&gt;&lt;center&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/mw690/7cc829d3gw1ekoj9ozt1xj208c06nq31.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;
-
-&lt;p&gt;在监督式学习下，输入数据被称为“训练数据”，每组训练数据有一个明确的标识或结果，如对防垃圾邮件系统中“垃圾邮件”“非垃圾邮件”，对手写数字识别中的“1“，”2“，”3“，”4“等。在建立预测模型的时候，监督式学习建立一个学习过程，将预测结果与“训练数据”的实际结果进行比较，不断的调整预测模型，直到模型的预测结果达到一个预期的准确率。监督式学习的常见应用场景如分类问题和回归问题。常见的算法有：逻辑回归，感知机，SVM支持向量机。&lt;/p&gt;
-&lt;h2 id=&quot;非监督学习&quot;&gt;&lt;a href=&quot;#非监督学习&quot; class=&quot;headerlink&quot; title=&quot;非监督学习&quot;&gt;&lt;/a&gt;非监督学习&lt;/h2&gt;&lt;center&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/mw690/7cc829d3gw1ekoj9pp0wxj208c069mxc.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;
-
-&lt;p&gt;在非监督式学习中，数据并不被特别标识，学习模型是为了推断出数据的一些内在结构。常见的应用场景包括关联规则的学习以及聚类等。常见算法包括：Apriori算法以及k-Means算法。&lt;/p&gt;
-&lt;h2 id=&quot;半监督学习&quot;&gt;&lt;a href=&quot;#半监督学习&quot; class=&quot;headerlink&quot; title=&quot;半监督学习&quot;&gt;&lt;/a&gt;半监督学习&lt;/h2&gt;&lt;center&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/mw690/7cc829d3gw1ekoj9qcia3j208c05kq3b.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;
-
-&lt;p&gt;在此学习方式下，输入数据部分被标识，部分没有被标识，这种学习模型可以用来进行预测，但是模型首先需要学习数据的内在结构以便合理的组织数据来进行预测。应用场景包括分类和回归，算法包括一些对常用监督式学习算法的延伸，这些算法首先试图对未标识数据进行建模，在此基础上再对标识的数据进行预测。如图论推理算法（Graph Inference）或者拉普拉斯支持向量机（Laplacian SVM.）等。&lt;/p&gt;
-&lt;h2 id=&quot;强化学习&quot;&gt;&lt;a href=&quot;#强化学习&quot; class=&quot;headerlink&quot; title=&quot;强化学习&quot;&gt;&lt;/a&gt;强化学习&lt;/h2&gt;&lt;center&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/mw690/7cc829d3gw1ekoj9r0xldj208c04wgls.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;
-
-&lt;p&gt;在这种学习模式下，输入数据作为对模型的反馈，不像监督模型那样，输入数据仅仅是作为一个检查模型对错的方式，在强化学习下，输入数据直接反馈到模型，模型必须对此立刻作出调整。常见的应用场景包括动态系统以及机器人控制等。常见算法包括Q-Learning以及时间差学习（Temporal difference learning）&lt;/p&gt;
-&lt;h1 id=&quot;机器学习框架&quot;&gt;&lt;a href=&quot;#机器学习框架&quot; class=&quot;headerlink&quot; title=&quot;机器学习框架&quot;&gt;&lt;/a&gt;机器学习框架&lt;/h1&gt;&lt;p&gt;在机器学习领域有很&lt;a href=&quot;http://&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;/a&gt;多的框架、库以及软件。比较出名的有：C++的opencv, shark等，java中weka、hadoop的mahout、spark的mllib，matlab中的LibSVM、caffe，python的scikit-learn、NLTK、theano、brain、caffe等。&lt;a href=&quot;https://github.com/josephmisiti/awesome-machine-learning&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;机器学习框架、库与软件列表&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&quot;目录（持续更新）&quot;&gt;&lt;a href=&quot;#目录（持续更新）&quot; class=&quot;headerlink&quot; title=&quot;目录（持续更新）&quot;&gt;&lt;/a&gt;目录（持续更新）&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;基础知识  &lt;!--* 概率论
-  * 模型评估与选择
-  * 维灾难
-  * 决策论
-  * 信息论--&gt;&lt;/li&gt;
-&lt;li&gt;概率分布  &lt;!--* 二项式分布
-  * 多项式分布
-  * 高斯分布
-  * 指数分布族
-  * 非常数分布--&gt;&lt;/li&gt;
-&lt;li&gt;回归&lt;/li&gt;
-&lt;li&gt;分类&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/earl211/article/details/48974865&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;感知机&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;聚类&lt;/li&gt;
-&lt;li&gt;时间序列&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;$1_2$&lt;/p&gt;
-&lt;p&gt;#参考资料&lt;br&gt;[1] &lt;a href=&quot;http://blog.jobbole.com/62334&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;机器学习十个实例&lt;/a&gt;&lt;br&gt;[2] &lt;a href=&quot;http://baike.baidu.com/link?url=yeJM3HqBaKfzroNnRkaFt2Uya85p822Ct2Ke6DSQQtono8-JJdfB9iBiiz3uc35WfwuN5vT2FwQgFga4eP6onq&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;百度百科&lt;/a&gt;&lt;br&gt;[3] &lt;a href=&quot;https://www.coursera.org/learn/machine-learning&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;机器学习&lt;/a&gt;&lt;br&gt;[4] 模式分类&lt;br&gt;[5] &lt;a href=&quot;http://blog.jobbole.com/77620/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;机器学习常见分类&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;　　在介绍机器学习之前，我想先列几个关于机器学习的例子：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;垃圾邮件检测：根据邮箱中的邮件，识别哪些是垃圾邮件，哪些不是。这样的模型，可以程序帮助归类垃圾邮件和非垃圾邮件。这个例子，我们应该都不陌生。&lt;/li&gt;
-&lt;li&gt;信用卡欺诈检测：根据用户一个月内的信用卡交易，识别哪些交易是该用户操作的，哪些不是。这样的决策模型，可以帮助程序退还那些欺诈交易。&lt;/li&gt;
-&lt;li&gt;数字识别：根据信封上手写的邮编，识别出每一个手写字符所代表的数字。这样的模型，可以帮助程序阅读和理解手写邮编，并根据地利位置分类信件。&lt;/li&gt;
-&lt;li&gt;语音识别：从一个用户的话语，确定用户提出的具体要求。这样的模型，可以帮助程序能够并尝试自动填充用户需求。带有Siri系统的iPhone就有这种功能。&lt;/li&gt;
-&lt;li&gt;人脸识别：根据相册中的众多数码照片，识别出那些包含某一个人的照片。这样的决策模型，可以帮助程序根据人脸管理照片。某些相机或软件，如iPhoto，就有这种功能。&lt;br&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/7cc829d3gw1eebxsvbwnhj20hc0d2jt6.jpg&quot; alt=&quot;人脸识别&quot;&gt;
-    
-    </summary>
-    
-      <category term="机器学习" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   

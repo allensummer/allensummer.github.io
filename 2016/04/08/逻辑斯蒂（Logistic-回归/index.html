@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="总结," />
+  <meta name="keywords" content="逻辑斯蒂回退,Logistic regression,机器学习," />
 
 
 
@@ -59,18 +59,24 @@
 
 
 
-<meta name="description" content="在家度过了最寒冷的冬天，再次回到魔都。每次回家都是精神彻底的放松，不管在外面有着多么大的压力，只要回到家就不想思考，不想活动，不想论文、不想将来的工作。但是，就像太阳总是要出来一样，我也还是要回到学校中来了。学校里的梅花都盛开了，学生们都已经回到校园了，而我是时候为对去年做一个总结，对新年开启篇新的展望了。去年一月份的时候，我想抽出时间来写一篇总结，记忆已经模糊，忘了是因为什么而忽略了这份迟早要到">
+<meta name="description" content="在Machine Learning中，逻辑斯蒂回归（Logistic Regression）是十分经典的方法,简称LR，虽然名字叫回归，但是这是线性分类模型而不是回归模型。这里面涉及到一些知识点，包括极大似然估计，损失函数，梯度下降，正则化等这篇文章的主要目的，就是通过理论与实践相结合的方式讲解LR模型，在讲解的过程中，加深对LR的理解、相关概念的梳理和应用。这篇文章中需要一些基础的数学知识，如果">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2015年总结">
-<meta property="og:url" content="http://yoursite.com/2016/03/29/my2015/index.html">
+<meta property="og:title" content="大话逻辑回归">
+<meta property="og:url" content="http://yoursite.com/2016/04/08/逻辑斯蒂（Logistic-回归/index.html">
 <meta property="og:site_name" content="王谦的博客">
-<meta property="og:description" content="在家度过了最寒冷的冬天，再次回到魔都。每次回家都是精神彻底的放松，不管在外面有着多么大的压力，只要回到家就不想思考，不想活动，不想论文、不想将来的工作。但是，就像太阳总是要出来一样，我也还是要回到学校中来了。学校里的梅花都盛开了，学生们都已经回到校园了，而我是时候为对去年做一个总结，对新年开启篇新的展望了。去年一月份的时候，我想抽出时间来写一篇总结，记忆已经模糊，忘了是因为什么而忽略了这份迟早要到">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/d1ac17f6jw1e8brr4r4y3j20ez06zq54.jpg">
-<meta property="og:updated_time" content="2016-03-29T14:41:59.014Z">
+<meta property="og:description" content="在Machine Learning中，逻辑斯蒂回归（Logistic Regression）是十分经典的方法,简称LR，虽然名字叫回归，但是这是线性分类模型而不是回归模型。这里面涉及到一些知识点，包括极大似然估计，损失函数，梯度下降，正则化等这篇文章的主要目的，就是通过理论与实践相结合的方式讲解LR模型，在讲解的过程中，加深对LR的理解、相关概念的梳理和应用。这篇文章中需要一些基础的数学知识，如果">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/6cbb8645gw1ewjejmez18j20jw08dq3g.jpg">
+<meta property="og:image" content="http://52opencourse.com/?qa=blob&qa_blobid=28151414763210940">
+<meta property="og:image" content="http://i4.piimg.com/0d6d163d711f0ca0.png">
+<meta property="og:image" content="http://i3.piimg.com/0ddf886f38c92b17.jpg">
+<meta property="og:image" content="http://scikit-learn.org/stable/_images/math/96fe247fe9465d26af15706141dc22e598ac7826.png">
+<meta property="og:image" content="http://scikit-learn.org/stable/_images/math/3fb9bab302e67df4a9f00b8df259d326e01837fd.png">
+<meta property="og:image" content="http://i4.piimg.com/f83cad9cfe6687fc.png">
+<meta property="og:updated_time" content="2016-04-08T14:45:10.495Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2015年总结">
-<meta name="twitter:description" content="在家度过了最寒冷的冬天，再次回到魔都。每次回家都是精神彻底的放松，不管在外面有着多么大的压力，只要回到家就不想思考，不想活动，不想论文、不想将来的工作。但是，就像太阳总是要出来一样，我也还是要回到学校中来了。学校里的梅花都盛开了，学生们都已经回到校园了，而我是时候为对去年做一个总结，对新年开启篇新的展望了。去年一月份的时候，我想抽出时间来写一篇总结，记忆已经模糊，忘了是因为什么而忽略了这份迟早要到">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/d1ac17f6jw1e8brr4r4y3j20ez06zq54.jpg">
+<meta name="twitter:title" content="大话逻辑回归">
+<meta name="twitter:description" content="在Machine Learning中，逻辑斯蒂回归（Logistic Regression）是十分经典的方法,简称LR，虽然名字叫回归，但是这是线性分类模型而不是回归模型。这里面涉及到一些知识点，包括极大似然估计，损失函数，梯度下降，正则化等这篇文章的主要目的，就是通过理论与实践相结合的方式讲解LR模型，在讲解的过程中，加深对LR的理解、相关概念的梳理和应用。这篇文章中需要一些基础的数学知识，如果">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/6cbb8645gw1ewjejmez18j20jw08dq3g.jpg">
 
 
 
@@ -88,7 +94,7 @@
   };
 </script>
 
-  <title> 2015年总结 | 王谦的博客 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 大话逻辑回归 | 王谦的博客 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -218,7 +224,7 @@
             
             
               
-                2015年总结
+                大话逻辑回归
               
             
           </h1>
@@ -230,8 +236,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-29T22:40:29+08:00" content="2016-03-29">
-              2016-03-29
+            <time itemprop="dateCreated" datetime="2016-04-08T11:49:37+08:00" content="2016-04-08">
+              2016-04-08
             </time>
           </span>
 
@@ -244,8 +250,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/总结/" itemprop="url" rel="index">
-                    <span itemprop="name">总结</span>
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
                   </a>
                 </span>
 
@@ -260,8 +266,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/29/my2015/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/29/my2015/" itemprop="commentsCount"></span>
+                <a href="/2016/04/08/逻辑斯蒂（Logistic-回归/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/08/逻辑斯蒂（Logistic-回归/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -283,12 +289,33 @@
       
 
       
-        <p>在家度过了最寒冷的冬天，再次回到魔都。每次回家都是精神彻底的放松，不管在外面有着多么大的压力，只要回到家就不想思考，不想活动，不想论文、不想将来的工作。但是，就像太阳总是要出来一样，我也还是要回到学校中来了。学校里的梅花都盛开了，学生们都已经回到校园了，而我是时候为对去年做一个总结，对新年开启篇新的展望了。<br>去年一月份的时候，我想抽出时间来写一篇总结，记忆已经模糊，忘了是因为什么而忽略了这份迟早要到来的总结。今天刚刚下完课，就乘着这个时候把我放在显微镜下剖析一下了吧。<br>过去的一年，在我的记忆立总是灰蒙蒙的，大概是受到了雾霾的影响吧。去年主要经历归纳为一条线为：考研——调剂——毕设——暑假学习——开学。<br><a id="more"></a></p>
-<h1 id="第一、考研"><a href="#第一、考研" class="headerlink" title="第一、考研"></a>第一、考研</h1><p>　　决定的是考华科，15年分数线涨了有二三十分，差一点，最后调剂到了上海大学。虽然最后没有考上一个理想的分数，但是这一年的经历还是让我记忆深刻。<br>　　从最开始的浮躁的准备着数学，英语，到最后慢慢沉下心来一点一点的复习，慢慢专注；做模拟卷子的时候，困难重重，一度认为自己没有希望了，差一点就放弃了，谢谢同伴的鼓励，谢谢女友的支持，同时也要感谢大学期间看的书籍，让我坚持了下来；找一个与你志同道合的人一起做一件事情，这个过程中相互鼓励，相互影响，一起加油。<br>　　当然这其中的问题还是有不少的。特别是数学，遇到问题，看了答案，恩，知道解了。但是下次遇到类似的题目，甚至是一模一样的题目，我还是做不对。这个问题很严重，遇到一个知识点的时候，一定要理解，自己愚钝点，那就把这个知识点的东西背下来，抄下来，将来的某一天总是会理解的。切记贪多嚼不烂！！！把看过的东西，啃完了再进行下一个。日子长着呢，厚积才能薄发！！！！！<br>　　<img src="http://ww1.sinaimg.cn/large/d1ac17f6jw1e8brr4r4y3j20ez06zq54.jpg" alt="这里写图片描述"><br>　　<br>　　选择调剂到上海大学。记得当时复试完了之后，自己的内心是一种失望。是对自己失望，还是对自己没有考上华科失望？其实这个已经不重要了。利用好接下来的每一分钟吧。　　</p>
-<h1 id="二、还未起步的创业"><a href="#二、还未起步的创业" class="headerlink" title="二、还未起步的创业"></a>二、还未起步的创业</h1><p>　　那时我有一个想法，做一款时间管理软件app，让你的时间能够产生价值。跟勇哥还有斯斯说了这件事情，将我的想法跟他们详细的描述了一下。问问他们这个想法怎么样。他们都觉得不错，于是每周抽出一天来讨论我们开始提需求，试用其他类似产品的app，使用报告，设计功能，功能排序，界面设计。完成上面的几步，就开始着手写代码了。但是我们三个人都没有写app的经验，准备让斯斯学习安卓开发。后来由于课程比较多，慢慢每周也就没有讨论了，也只有勇哥做了一点点网页的部分。<br>    　在刚开始设计的时候，还是很有动力，每天都在学习这，走路都在思考。可是到后来做的时候，因为各种原因，而放弃了。这个事情一定要引起警戒，畅想的那么美好，竟然连第一步都没有迈出去。我感觉创业把第一步迈出去，一定要把第一步迈出去！！！</p>
-<h1 id="三、2015年书单"><a href="#三、2015年书单" class="headerlink" title="三、2015年书单"></a>三、2015年书单</h1><p>　　“读万卷书，行万里路”，我没有办法到达世界的每一个地方，不能面对面与大牛交谈，不能接受名师的面授，我能做的就是靠读书来“神游”了。<br>　　我阅读的书分为技术与非技术。看书的速度也是时快时慢，有选择性看书。每次选书的时候，我想了解哪一个方面的知识，我就百度这个方面的推荐书籍。买了一个Kindle， 我可以随时随地给自己充电。<br>　　包括以下：<br>技术类：<br>　　《Pattern Recognition and Machine Learning》（在读）<br>　　《统计学习方法》（在读）<br>　　《快学scala》<br>　　《Spark大数据处理计数》<br>　　《R语言实战》<br>　　《使用python进行数据分析》<br>　　《python自然语言处理》（在读）<br>　　《算法导论》（基本算法）<br>非技术：<br>　　《知日-明治维新》<br>　　《九型人格》<br>　　《二胡》<br>　　《牛棚杂记》<br>　　《人类简史》<br>　　《时间简史》<br>　　《史玉柱自述》<br>　　《少年凯哥》<br>　　《21岁当总裁》<br>　　《统计数字会撒谎》<br>　　《奇特的一生》<br>　　《黑天鹅》<br>　　《人人都是产品经理》<br>　　《暗时间》<br>　　《拖延心理学》<br>　　《集装箱改变世界》<br>　　《秘密》<br>　　《IT创业疯魔史》<br>　　《如何阅读一本书》<br>　　《思考：快与慢》<br>　　《番茄工作法》<br>　　《乌合之众》三卷<br>　　《风口上的猪》<br>　　《旁观者》<br>　　《用户体验要素有感》<br>　　《历史的教训》<br>　　《卓有成效的管理者》<br>　　《吃掉那只青蛙》<br>　　《从0到1》<br>　　《我是这样拿到风投》<br>　　《怪诞行为学》<br>　　《精益创业》</p>
-<h1 id="2016年期望"><a href="#2016年期望" class="headerlink" title="2016年期望"></a>2016年期望</h1><p>1、发表一篇论文<br>2、找到一个好的实习<br>3、常读书<br>4、专心干好每件事（一件一件干好再干下一件事情）<br>5、每天工作看书不少于10个小时<br>6、学习如何挣钱<br>7、学习一门技能：Spark，深入源码<br>8、看过的每一个机器学习算法，写一篇博客，最好使用或者编写过代码。以scikitlearn库为中心！</p>
-<p>明天的阳光明媚，取决于今天的汗水！！Fighting吧</p>
+        <p>在Machine Learning中，逻辑斯蒂回归（Logistic Regression）是十分经典的方法,简称LR，虽然名字叫回归，但是这是线性分类模型而不是回归模型。这里面涉及到一些知识点，包括极大似然估计，损失函数，梯度下降，正则化等<!--逻辑斯特回归是对条件概率密度$P(x|C/_K)$建模的，也就是后验概率$P(C/_k)$,使用它们通过贝叶斯理论来计算后验概率$P(C/_k|x).--><br>这篇文章的主要目的，就是通过理论与实践相结合的方式讲解LR模型，在讲解的过程中，加深对LR的理解、相关概念的梳理和应用。这篇文章中需要一些基础的数学知识，如果我没有讲到的请自行百度。这篇文章以《统计学习方法》和AndrewNg的视频为基础，加上《PR&amp;MR》以及网上的资料、论文整理而成。本人能力有限，细节处理上难免有不严谨的地方或者叙述不清的地方，请留言或者发邮件wang_qian010@163.com<br><a id="more"></a></p>
+<h1 id="逻辑斯蒂（logistic-函数"><a href="#逻辑斯蒂（logistic-函数" class="headerlink" title="逻辑斯蒂（logistic)函数"></a>逻辑斯蒂（logistic)函数</h1><h2 id="逻辑斯蒂函数"><a href="#逻辑斯蒂函数" class="headerlink" title="逻辑斯蒂函数"></a>逻辑斯蒂函数</h2><p>在数学界有各种各样的分布，比如Gamma分布，二项分布，高斯分布等。利用这些分布的性质，可以解决很多的问题。这里将介绍一种函数，叫逻辑斯蒂函数或逻辑斯蒂曲线，这是一种是一种S型曲线。</p>
+<p><strong>定义</strong>  设$X$是连续随机变量，$X$服从逻辑斯蒂分布是指$X$具有下列分布函数和密度函数<br>$$F(x) = P(X\leq x) = \frac{1}{1+e^{-(x-u）/\gamma)} }$$<br>$$f(x) = F’(x) = \frac{e^{-(x-u)/\gamma}}{\gamma(1+e^{-(x-u)}/\gamma)^{2}}$$<br>式中，$\mu$为位置参数，$\gamma$为形状参数。看到这是不是想到，高斯、二项等其他分布。均值控制位置，方差控制形状。<br>逻辑斯蒂分布的密度函数$f(x)和分布函数$F(x)$的图形如下图<br><img src="http://ww1.sinaimg.cn/large/6cbb8645gw1ewjejmez18j20jw08dq3g.jpg" alt=""></p>
+<p>看了逻辑斯蒂分布，我有两个疑问：</p>
+<ol>
+<li>这个分布是怎么发现？</li>
+<li>在机器学习中什么用？</li>
+</ol>
+<p>上网查了一下，并没有找到这个分布是怎么发现的。最早的记录是1833年，菲尔许尔斯特使用逻辑斯蒂曲线描述了人口增长速度与人口密度的关系，把数学方法引入生态学。我大一的时候参加一个数学建模入门赛的时候，就是拟合了逻辑斯特函数，模型太简单，所以就很傻很天真的看着别人载比赛喽。<br>到了十九世纪末，法国的社会学家塔尔德观察到，一种新思想（就比如和谐社会）的采纳率随着时间的变化遵循一种S型曲线，也有人说塔尔德实际是提出了经济增长的S型曲线。<br>随后的一段时间，S曲线在各个行业都大杀四方，从物种迁移数量增长到工程进展，从城市化进程到经济学的前景理论等等。<br>随后可能有一位天才，正在研究分类问题，猛然看到了S曲线，突然想到，咦，这个曲线(如上右图）左边随着x的变小F(x)趋近于0，右边随着想的增大F(x)趋近与一个定值，不是正好可以用来做做二分类嘛。（仅供娱乐，如有雷同纯属巧合）</p>
+<h1 id="二项逻辑斯蒂回归模型"><a href="#二项逻辑斯蒂回归模型" class="headerlink" title="二项逻辑斯蒂回归模型"></a>二项逻辑斯蒂回归模型</h1><p>现在我们仅仅考虑二分类问题。就拿AndrewNG的讲义里面的例子，如下图所示，x表示数据点的特征——肿瘤的大小，Y为观测值——是否是恶性肿瘤。通过构建线性回归模型，如h θ (x)所示，构建线性回归模型后，即可以根据肿瘤大小，预测是否为恶性肿瘤h θ (x)≥.05为恶性，h θ (x)&lt;0.5为良性。<br><img src="http://52opencourse.com/?qa=blob&amp;qa_blobid=28151414763210940" alt=""></p>
+<p>如果上述问题使用线性分类器，效果并不好（如上图），分类效果可以用差来形容。然后你再看着这个图，是不是感觉观测值类似第一幅图？<br>在解决上诉问题之前，接下来我们先看看逻辑回归模型：<br>将逻辑回归模型定义为：<br>$$log\frac{\pi(X)}{1-\pi(X)}=w_1x_1+…+w_nx_p+b$$<br>$$=X^t\beta$$<br>这里<br>$$W=(w^1, w^2, …, w^n, b)$$</p>
+<p>$$X=(x^1, x^2, …, x^n, 1)$$</p>
+<p>$$P(Y=1|X)=\pi(X$$<br>这里的$\pi(X)%是逻辑回归中的标准表示.进过简单推导，就可以得到标准的逻辑回归模型。</p>
+<p><strong>定义（逻辑斯蒂回归模型）</strong>  二项逻辑斯蒂回归模型是如下的条件概率分布：</p>
+<p>$$P(Y=1|X) = \frac{exp(WX)}{1+exp(WX)}$$</p>
+<p>$$P(Y=0|X) = \frac{1}{1+exp(WX)}$$</p>
+<p>逻辑斯蒂回归模型的特点就是已经事情的发生概率是指该只见发生的概率与该事件不发生的概率的比值。一个事件的几率是p，那么该事件发生的几率是$\frac{p}{1-p}$,该事件可以理解为该事件的对数几率或logit函数是<br>$$logit(p)=log(\frac{p}{1-p})$$</p>
+<p>换一个角度看，考虑对输入x进行分类的线性函数$wx$,其至于为实数域， 通过逻辑斯蒂回归定义，可以将线性函数$w*x$转换为概率：<br>    $$P(Y=1|X) = \frac{exp(WX)}{1+exp^{WX}}$$</p>
+<p>逻辑斯特回归模型也可以说是建立在条件概率密度$p(x|C_k)$和先验概率$P(C_k)$的基础上，使用贝叶斯理论计算后验概率密度$P(C_k|x)的模型。利用贝叶斯后验概率求解该问题，则</p>
+<p>$$P(Y=1|x) = \frac{P(x|Y=1)P(Y=1)}{p(x|Y=1)P(Y=1)+P(x|Y=0)P(Y=0)}$$<br>$$=\frac{1}{1+e^{ln(\frac{P(x|Y=0)P(Y=0))}{P(x|Y=1)P(Y=1)}}}$$ </p>
+<p>到这里是不是感觉后验概率$P(Y=1|x)$与逻辑斯蒂函数很像？其实从（1）式可以推导到逻辑斯蒂函数的，《PR&amp;ML》这本书中借助高斯分布有一点介绍，这里就不说了。</p>
+<h1 id="模型参数估计"><a href="#模型参数估计" class="headerlink" title="模型参数估计"></a>模型参数估计</h1><p>对于上面患病问题，对给定的数据集$T={(x^1, y^1), (x^2, y^2), .., x^N, y^N)}$$，可以应用极大私人估计模型参数，从而得到逻辑回归模型。<br>这里使用极大似然估计求解，极大似然估计的理解是根据现有数据，选择使模型得到现有训练集可能性最大的参数。参数估计我就直接贴出《统计学习方法》中的原文。<br><img src="http://i4.piimg.com/0d6d163d711f0ca0.png" alt=""></p>
+<p>上面列出了将逻辑回归问题通过极大似然的方法转换成了最优化的问题，最优化问题有多种解决方案，这里给出使用梯度下降的完整的逻辑回归算法如下，关于最优化问题的求解请链接到<a href="">最优化问题(待更新）)</a><br><img src="http://i3.piimg.com/0ddf886f38c92b17.jpg" alt=""></p>
+<h1 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h1><p>在模型参数估计这，已经将问题变为目标函数的最优化问题。为了让降低模型的复杂度，更好的泛化，可以在使用梯度下降的时候，添加一个正则项。二分类问题的L2乘法回归最小化如下：<br><img src="http://scikit-learn.org/stable/_images/math/96fe247fe9465d26af15706141dc22e598ac7826.png" alt=""><br>同样，L1正则化逻辑回归解决的优化问题如下：</p>
+<p><img src="http://scikit-learn.org/stable/_images/math/3fb9bab302e67df4a9f00b8df259d326e01837fd.png" alt=""></p>
+<h1 id="多分类问题"><a href="#多分类问题" class="headerlink" title="多分类问题"></a>多分类问题</h1><p>在实际应用中，我们常常碰见多分类问题，我们如何将逻辑回归应用到上面呢？其实这里可以这样想，N分类问题，对于每一类都可以将他转换为二分类问题：是该类和非该类，每一类的逻辑模型是：<br><img src="http://i4.piimg.com/f83cad9cfe6687fc.png" alt=""><br>在进行分类的时候，对每一个输入的特征向量求的该类的该类，取概率最大的分类。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1]《统计学习方法》<br>[2] AngrewNG 《机器学习》<br>[3] Christopher M. Bishop: Pattern Recognition and Machine Learning, chapter4.3<br>[4] <a href="https://www.douban.com/note/323644915/" target="_blank" rel="external">听课笔记（第十讲）： 逻辑斯蒂回归 (台大机器学习）</a><br>[5] <a href="http://www.tuicool.com/articles/auQFju" target="_blank" rel="external">逻辑回归模型(Logistic Regression, LR)基础</a><br>[6] <a href="http://www.eas-journal.org/articles/eas/pdf/2014/02/eas1466008.pdf" target="_blank" rel="external">logistic regression</a></p>
 
       
     </div>
@@ -303,7 +330,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/总结/" rel="tag">#总结</a>
+            <a href="/tags/逻辑斯蒂回退/" rel="tag">#逻辑斯蒂回退</a>
+          
+            <a href="/tags/Logistic-regression/" rel="tag">#Logistic regression</a>
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
           
         </div>
       
@@ -312,16 +343,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/29/spark/" rel="next" title="spark探秘 ">
-                <i class="fa fa-chevron-left"></i> spark探秘 
+              <a href="/2016/04/08/c-迭代器/" rel="next" title="c++ 迭代器">
+                <i class="fa fa-chevron-left"></i> c++ 迭代器
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/03/29/部分优化算法对比/" rel="prev" title="部分优化算法对比">
-                部分优化算法对比 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/08/LDA浅显理解/" rel="prev" title="LDA浅显理解">
+                LDA浅显理解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -348,8 +379,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/29/my2015/"
-           data-title="2015年总结" data-url="http://yoursite.com/2016/03/29/my2015/">
+      <div class="ds-thread" data-thread-key="2016/04/08/逻辑斯蒂（Logistic-回归/"
+           data-title="大话逻辑回归" data-url="http://yoursite.com/2016/04/08/逻辑斯蒂（Logistic-回归/">
       </div>
     
   </div>
@@ -462,7 +493,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一、考研"><span class="nav-number">1.</span> <span class="nav-text">第一、考研</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、还未起步的创业"><span class="nav-number">2.</span> <span class="nav-text">二、还未起步的创业</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、2015年书单"><span class="nav-number">3.</span> <span class="nav-text">三、2015年书单</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2016年期望"><span class="nav-number">4.</span> <span class="nav-text">2016年期望</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#逻辑斯蒂（logistic-函数"><span class="nav-number">1.</span> <span class="nav-text">逻辑斯蒂（logistic)函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑斯蒂函数"><span class="nav-number">1.1.</span> <span class="nav-text">逻辑斯蒂函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二项逻辑斯蒂回归模型"><span class="nav-number">2.</span> <span class="nav-text">二项逻辑斯蒂回归模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模型参数估计"><span class="nav-number">3.</span> <span class="nav-text">模型参数估计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正则化"><span class="nav-number">4.</span> <span class="nav-text">正则化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多分类问题"><span class="nav-number">5.</span> <span class="nav-text">多分类问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

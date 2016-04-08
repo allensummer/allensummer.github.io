@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="总结," />
+  <meta name="keywords" content="机器学习,LDA," />
 
 
 
@@ -59,18 +59,30 @@
 
 
 
-<meta name="description" content="在家度过了最寒冷的冬天，再次回到魔都。每次回家都是精神彻底的放松，不管在外面有着多么大的压力，只要回到家就不想思考，不想活动，不想论文、不想将来的工作。但是，就像太阳总是要出来一样，我也还是要回到学校中来了。学校里的梅花都盛开了，学生们都已经回到校园了，而我是时候为对去年做一个总结，对新年开启篇新的展望了。去年一月份的时候，我想抽出时间来写一篇总结，记忆已经模糊，忘了是因为什么而忽略了这份迟早要到">
+<meta name="description" content="这一段时间在看LDA主题模型，这里说一下我对LDA的理解，抛开复杂的数学、概率论、机器机器学习算法，只说思路，其他内容以后再更加详细的写。假设有一个机器人，他想写一篇文章,每篇文章包含N个词，那么他怎么写呢？？？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2015年总结">
-<meta property="og:url" content="http://yoursite.com/2016/03/29/my2015/index.html">
+<meta property="og:title" content="LDA浅显理解">
+<meta property="og:url" content="http://yoursite.com/2016/04/08/LDA浅显理解/index.html">
 <meta property="og:site_name" content="王谦的博客">
-<meta property="og:description" content="在家度过了最寒冷的冬天，再次回到魔都。每次回家都是精神彻底的放松，不管在外面有着多么大的压力，只要回到家就不想思考，不想活动，不想论文、不想将来的工作。但是，就像太阳总是要出来一样，我也还是要回到学校中来了。学校里的梅花都盛开了，学生们都已经回到校园了，而我是时候为对去年做一个总结，对新年开启篇新的展望了。去年一月份的时候，我想抽出时间来写一篇总结，记忆已经模糊，忘了是因为什么而忽略了这份迟早要到">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/d1ac17f6jw1e8brr4r4y3j20ez06zq54.jpg">
-<meta property="og:updated_time" content="2016-03-29T14:41:59.014Z">
+<meta property="og:description" content="这一段时间在看LDA主题模型，这里说一下我对LDA的理解，抛开复杂的数学、概率论、机器机器学习算法，只说思路，其他内容以后再更加详细的写。假设有一个机器人，他想写一篇文章,每篇文章包含N个词，那么他怎么写呢？？？">
+<meta property="og:image" content="http://img.blog.csdn.net/20151224215521383">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201209/03/1346652013_8454.PNG">
+<meta property="og:image" content="http://img.blog.csdn.net/20151230194155151">
+<meta property="og:image" content="http://img.blog.csdn.net/20151230193416158">
+<meta property="og:image" content="http://img.blog.csdn.net/20151230194255120">
+<meta property="og:image" content="http://img.blog.csdn.net/20151230200824920">
+<meta property="og:image" content="http://img.blog.csdn.net/20151230201004940">
+<meta property="og:image" content="http://img.blog.csdn.net/20151230201044552">
+<meta property="og:image" content="http://img.blog.csdn.net/20151230201221551">
+<meta property="og:image" content="http://img.blog.csdn.net/20151230201221551">
+<meta property="og:image" content="http://img.blog.csdn.net/20151230200824920">
+<meta property="og:image" content="http://img.blog.csdn.net/20151230202705096">
+<meta property="og:image" content="http://img.blog.csdn.net/20151230202758668">
+<meta property="og:updated_time" content="2016-04-08T13:57:35.991Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2015年总结">
-<meta name="twitter:description" content="在家度过了最寒冷的冬天，再次回到魔都。每次回家都是精神彻底的放松，不管在外面有着多么大的压力，只要回到家就不想思考，不想活动，不想论文、不想将来的工作。但是，就像太阳总是要出来一样，我也还是要回到学校中来了。学校里的梅花都盛开了，学生们都已经回到校园了，而我是时候为对去年做一个总结，对新年开启篇新的展望了。去年一月份的时候，我想抽出时间来写一篇总结，记忆已经模糊，忘了是因为什么而忽略了这份迟早要到">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/d1ac17f6jw1e8brr4r4y3j20ez06zq54.jpg">
+<meta name="twitter:title" content="LDA浅显理解">
+<meta name="twitter:description" content="这一段时间在看LDA主题模型，这里说一下我对LDA的理解，抛开复杂的数学、概率论、机器机器学习算法，只说思路，其他内容以后再更加详细的写。假设有一个机器人，他想写一篇文章,每篇文章包含N个词，那么他怎么写呢？？？">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20151224215521383">
 
 
 
@@ -88,7 +100,7 @@
   };
 </script>
 
-  <title> 2015年总结 | 王谦的博客 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> LDA浅显理解 | 王谦的博客 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -218,7 +230,7 @@
             
             
               
-                2015年总结
+                LDA浅显理解
               
             
           </h1>
@@ -230,8 +242,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-29T22:40:29+08:00" content="2016-03-29">
-              2016-03-29
+            <time itemprop="dateCreated" datetime="2016-04-08T21:52:25+08:00" content="2016-04-08">
+              2016-04-08
             </time>
           </span>
 
@@ -244,8 +256,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/总结/" itemprop="url" rel="index">
-                    <span itemprop="name">总结</span>
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">-机器学习</span>
                   </a>
                 </span>
 
@@ -260,8 +272,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/29/my2015/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/29/my2015/" itemprop="commentsCount"></span>
+                <a href="/2016/04/08/LDA浅显理解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/08/LDA浅显理解/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -283,12 +295,47 @@
       
 
       
-        <p>在家度过了最寒冷的冬天，再次回到魔都。每次回家都是精神彻底的放松，不管在外面有着多么大的压力，只要回到家就不想思考，不想活动，不想论文、不想将来的工作。但是，就像太阳总是要出来一样，我也还是要回到学校中来了。学校里的梅花都盛开了，学生们都已经回到校园了，而我是时候为对去年做一个总结，对新年开启篇新的展望了。<br>去年一月份的时候，我想抽出时间来写一篇总结，记忆已经模糊，忘了是因为什么而忽略了这份迟早要到来的总结。今天刚刚下完课，就乘着这个时候把我放在显微镜下剖析一下了吧。<br>过去的一年，在我的记忆立总是灰蒙蒙的，大概是受到了雾霾的影响吧。去年主要经历归纳为一条线为：考研——调剂——毕设——暑假学习——开学。<br><a id="more"></a></p>
-<h1 id="第一、考研"><a href="#第一、考研" class="headerlink" title="第一、考研"></a>第一、考研</h1><p>　　决定的是考华科，15年分数线涨了有二三十分，差一点，最后调剂到了上海大学。虽然最后没有考上一个理想的分数，但是这一年的经历还是让我记忆深刻。<br>　　从最开始的浮躁的准备着数学，英语，到最后慢慢沉下心来一点一点的复习，慢慢专注；做模拟卷子的时候，困难重重，一度认为自己没有希望了，差一点就放弃了，谢谢同伴的鼓励，谢谢女友的支持，同时也要感谢大学期间看的书籍，让我坚持了下来；找一个与你志同道合的人一起做一件事情，这个过程中相互鼓励，相互影响，一起加油。<br>　　当然这其中的问题还是有不少的。特别是数学，遇到问题，看了答案，恩，知道解了。但是下次遇到类似的题目，甚至是一模一样的题目，我还是做不对。这个问题很严重，遇到一个知识点的时候，一定要理解，自己愚钝点，那就把这个知识点的东西背下来，抄下来，将来的某一天总是会理解的。切记贪多嚼不烂！！！把看过的东西，啃完了再进行下一个。日子长着呢，厚积才能薄发！！！！！<br>　　<img src="http://ww1.sinaimg.cn/large/d1ac17f6jw1e8brr4r4y3j20ez06zq54.jpg" alt="这里写图片描述"><br>　　<br>　　选择调剂到上海大学。记得当时复试完了之后，自己的内心是一种失望。是对自己失望，还是对自己没有考上华科失望？其实这个已经不重要了。利用好接下来的每一分钟吧。　　</p>
-<h1 id="二、还未起步的创业"><a href="#二、还未起步的创业" class="headerlink" title="二、还未起步的创业"></a>二、还未起步的创业</h1><p>　　那时我有一个想法，做一款时间管理软件app，让你的时间能够产生价值。跟勇哥还有斯斯说了这件事情，将我的想法跟他们详细的描述了一下。问问他们这个想法怎么样。他们都觉得不错，于是每周抽出一天来讨论我们开始提需求，试用其他类似产品的app，使用报告，设计功能，功能排序，界面设计。完成上面的几步，就开始着手写代码了。但是我们三个人都没有写app的经验，准备让斯斯学习安卓开发。后来由于课程比较多，慢慢每周也就没有讨论了，也只有勇哥做了一点点网页的部分。<br>    　在刚开始设计的时候，还是很有动力，每天都在学习这，走路都在思考。可是到后来做的时候，因为各种原因，而放弃了。这个事情一定要引起警戒，畅想的那么美好，竟然连第一步都没有迈出去。我感觉创业把第一步迈出去，一定要把第一步迈出去！！！</p>
-<h1 id="三、2015年书单"><a href="#三、2015年书单" class="headerlink" title="三、2015年书单"></a>三、2015年书单</h1><p>　　“读万卷书，行万里路”，我没有办法到达世界的每一个地方，不能面对面与大牛交谈，不能接受名师的面授，我能做的就是靠读书来“神游”了。<br>　　我阅读的书分为技术与非技术。看书的速度也是时快时慢，有选择性看书。每次选书的时候，我想了解哪一个方面的知识，我就百度这个方面的推荐书籍。买了一个Kindle， 我可以随时随地给自己充电。<br>　　包括以下：<br>技术类：<br>　　《Pattern Recognition and Machine Learning》（在读）<br>　　《统计学习方法》（在读）<br>　　《快学scala》<br>　　《Spark大数据处理计数》<br>　　《R语言实战》<br>　　《使用python进行数据分析》<br>　　《python自然语言处理》（在读）<br>　　《算法导论》（基本算法）<br>非技术：<br>　　《知日-明治维新》<br>　　《九型人格》<br>　　《二胡》<br>　　《牛棚杂记》<br>　　《人类简史》<br>　　《时间简史》<br>　　《史玉柱自述》<br>　　《少年凯哥》<br>　　《21岁当总裁》<br>　　《统计数字会撒谎》<br>　　《奇特的一生》<br>　　《黑天鹅》<br>　　《人人都是产品经理》<br>　　《暗时间》<br>　　《拖延心理学》<br>　　《集装箱改变世界》<br>　　《秘密》<br>　　《IT创业疯魔史》<br>　　《如何阅读一本书》<br>　　《思考：快与慢》<br>　　《番茄工作法》<br>　　《乌合之众》三卷<br>　　《风口上的猪》<br>　　《旁观者》<br>　　《用户体验要素有感》<br>　　《历史的教训》<br>　　《卓有成效的管理者》<br>　　《吃掉那只青蛙》<br>　　《从0到1》<br>　　《我是这样拿到风投》<br>　　《怪诞行为学》<br>　　《精益创业》</p>
-<h1 id="2016年期望"><a href="#2016年期望" class="headerlink" title="2016年期望"></a>2016年期望</h1><p>1、发表一篇论文<br>2、找到一个好的实习<br>3、常读书<br>4、专心干好每件事（一件一件干好再干下一件事情）<br>5、每天工作看书不少于10个小时<br>6、学习如何挣钱<br>7、学习一门技能：Spark，深入源码<br>8、看过的每一个机器学习算法，写一篇博客，最好使用或者编写过代码。以scikitlearn库为中心！</p>
-<p>明天的阳光明媚，取决于今天的汗水！！Fighting吧</p>
+        <p>这一段时间在看LDA主题模型，这里说一下我对LDA的理解，抛开复杂的数学、概率论、机器机器学习算法，只说思路，其他内容以后再更加详细的写。<br>假设有一个机器人，他想写一篇文章,每篇文章包含N个词，那么他怎么写呢？？？<br><img src="http://img.blog.csdn.net/20151224215521383" alt="这里写图片描述"></p>
+<a id="more"></a>
+<h1 id="Unigram-model"><a href="#Unigram-model" class="headerlink" title="Unigram model"></a>Unigram model</h1><p>科学家A一开始这么设计，先给机器人读大量的文章，这样这个机器人的大脑中会有S个词，这些词组成了词向量$W=[w_1, w_2, w_3 …… w_S]$，每一个词都有相对应的概率$P=[p(w_1), p(w_2), p(w_3) …… p(w_S)$  。<br>算法如下：</p>
+<hr>
+<p>for i = 1 to N:<br> 　　choose a word $w_i～ p(W)$ </p>
+<hr>
+<p>数学表示即：</p>
+<p><center>$p(w) = ∏ p(w n )$<br><img src="http://img.my.csdn.net/uploads/201209/03/1346652013_8454.PNG" alt="这里写图片描述"></center></p>
+<h1 id="Mixture-of-unigrams"><a href="#Mixture-of-unigrams" class="headerlink" title="Mixture of unigrams"></a>Mixture of unigrams</h1><p>科学家B觉得不应该这样，他认为机器人读的这些文章分成不同的主题$Z=[z_1, z_2 …… z_t]$，每个主题的概率为$P(Z)=[p(z_1), p(z_2), …… p(z_t))]$,第i主题下又有S个高频词向量$W=[w_1, w_2, w_3 …… w_S]$，每一个词都有相对应的概率$P=[p(w_1|z_i), p(w_2|z_i), p(w_3|z_i) …… p(w_S|z_i)$。<br>算法描述如下：</p>
+<hr>
+<p>choose a topic $z_i～p(Z);  </p>
+<p>for i = 1 to N<br>　　choose a word $w_i～ p(W|z_i)$</p>
+<hr>
+<p>数学表示为：</p>
+<p><center>$p(w) = ∑ p(z) ∏ p(w n | z)<br><img src="http://img.blog.csdn.net/20151230194155151" alt="这里写图片描述"><br></center><br>也就是说按照学习到的概率选择一个Topic,按照这个Topic下词的概率选择N个词。</p>
+<h1 id="Probabilistic-lantent-semantic-indexinal-pLSI"><a href="#Probabilistic-lantent-semantic-indexinal-pLSI" class="headerlink" title="Probabilistic lantent semantic indexinal(pLSI)"></a>Probabilistic lantent semantic indexinal(pLSI)</h1><p>科学家C（Hoffman）认为应该一篇文档可以由多个主题（topic $Z=[z_1, z_2 …… z_t]$）混合而成，每个主题的概率为$P(Z)=[p(z_1), p(z_2), …… p(z_t))]$，而每个Topic都是词汇上的概率分布$P=[p(w_1|z_i), p(w_2|z_i), p(w_3|z_i) …… p(w_S|z_i)]$，文章中的每一个词都有固定的topic。<br>算法描述：</p>
+<hr>
+<p>Choose parameter θ ～ p(θ)             #θ为选择出来的主题向量<br>for i = 1 to N<br>　　choose a topic $z_j ～ p(z|θ)$<br> 　　choose a word $w_k ～ p(w|z_j)$</p>
+<hr>
+<p>数学表示即：</p>
+<p><center><img src="http://img.blog.csdn.net/20151230193416158" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20151230194255120" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20151230200824920" alt="这里写图片描述"><br></center></p>
+<h1 id="Lanton-Dirichlet-Allocation-LDA"><a href="#Lanton-Dirichlet-Allocation-LDA" class="headerlink" title="Lanton Dirichlet Allocation(LDA)"></a>Lanton Dirichlet Allocation(LDA)</h1><p>科学家D（David M. Blei）认为这个主题的概率分布、词汇的概率分布并不是固定的（与pLSA相比），应该是符合某一个分布，选取主题或词汇的时候，这个概率是动态变化的。</p>
+<hr>
+<p>initialize $φ_{ni}^0$  := 1/k for all i and n<br>initialize $γ_i := α<em>i + N/k$ for all i and n<br>repeat<br>　for n = 1 to N<br>　　for i = 1 to k<br>　　　 $φ^{t+1}</em>{ni} = β_{iw_n}exp(Ψ(γ_i^t ))$<br>　　normalize $φ<em>n^{t+1}$ to sum to 1.<br>　$γ</em>{t+1} = α + ∑^N_{n=1} φ_n^{t+1}$<br>until convergence</p>
+<hr>
+<p>数学公式如下：</p>
+<p><center><br><img src="http://img.blog.csdn.net/20151230201004940" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20151230201044552" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20151230201221551" alt="这里写图片描述"><br></center><br>上述是我理解的LDA，一个机器人想要写一篇文章，那么先按照Dirichlet分布选择出主题向量，载这个主题向量的基础上，生成词汇。<br>使用LDA模型进行推断的时候，是倒过来的，由文档的词汇生成主题。因此LDA常常也用来做<strong>降维工具</strong>。使用在语义分析，图像、文本分类等等</p>
+<h1 id="pLSA与LDA对比"><a href="#pLSA与LDA对比" class="headerlink" title="pLSA与LDA对比"></a>pLSA与LDA对比</h1><p><strong>LDA</strong>：假定语料库中共有M篇文章，每篇文章下的Topic的主题分布是一个从参数为的Dirichlet先验分布中采样得到的Multinomial分布，每个Topic下的词分布是一个从参数为的Dirichlet先验分布中采样得到的Multinomial分布。<br><img src="http://img.blog.csdn.net/20151230201221551" alt="这里写图片描述"></p>
+<p><strong>pLSA</strong>：对于某篇文章中的第n个词，首先从该文章中出现的每个主题的Multinomial分布（主题分布）中选择或采样一个主题，然后再在这个主题对应的词的Multinomial分布（词分布）中选择或采样一个词。不断重复这个随机生成过程，直到M篇文章全部生成完成。<br><img src="http://img.blog.csdn.net/20151230200824920" alt="这里写图片描述"></p>
+<h1 id="相关知识点"><a href="#相关知识点" class="headerlink" title="相关知识点"></a>相关知识点</h1><ul>
+<li>gamma函数</li>
+<li>Dirichlet分布</li>
+<li>共轭先验和贝叶斯框架</li>
+<li>EM模型</li>
+<li>MCMC、Gibbs采样</li>
+</ul>
+<h1 id="训练和推断"><a href="#训练和推断" class="headerlink" title="训练和推断"></a>训练和推断</h1><p>对于LDA模型，有两个目标：</p>
+<ul>
+<li>估计模型中的语料库中的主题Dirichlet分布和每个主题下的词汇的Dirichlet分布</li>
+<li>对于一篇新的文档，计算这篇文档的topic分布<br>训练过程：<br><img src="http://img.blog.csdn.net/20151230202705096" alt="这里写图片描述"><br>推断过程：<br><img src="http://img.blog.csdn.net/20151230202758668" alt="这里写图片描述"><br>###参考资料<br>1、Blei, David M.; Ng, Andrew Y.; Jordan, Michael I. Latent Dirichlet allocation（LDA原始论文）：<a href="http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf" target="_blank" rel="external">http://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf</a><br>2、rickjin的LDA数学八卦（力荐，本文部分图片和公式来自于此文档）<br>网页版：<a href="http://www.flickering.cn/tag/lda/" target="_blank" rel="external">http://www.flickering.cn/tag/lda/</a><br>PDF：<a href="http://emma.memect.com/t/9756da9a47744de993d8df13a26e04e38286c9bc1c5a0d2b259c4564c6613298/LDA；" target="_blank" rel="external">http://emma.memect.com/t/9756da9a47744de993d8df13a26e04e38286c9bc1c5a0d2b259c4564c6613298/LDA；</a><br>3、搜索背后的奥秘——浅谈语义主题计算：<a href="http://www.semgle.com/search-engine-algorithms-mystery-behind-search-on-the-calculation-of-semantic-topic；" target="_blank" rel="external">http://www.semgle.com/search-engine-algorithms-mystery-behind-search-on-the-calculation-of-semantic-topic；</a><br>4、LDA的相关论文、工具库：<a href="http://site.douban.com/204776/widget/notes/12599608/note/287085506/；" target="_blank" rel="external">http://site.douban.com/204776/widget/notes/12599608/note/287085506/；</a><br>5、LDA实现 <a href="http://www.cs.princeton.edu/~blei/topicmodeling.html" target="_blank" rel="external">http://www.cs.princeton.edu/~blei/topicmodeling.html</a></li>
+</ul>
 
       
     </div>
@@ -303,7 +350,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/总结/" rel="tag">#总结</a>
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+            <a href="/tags/LDA/" rel="tag">#LDA</a>
           
         </div>
       
@@ -312,16 +361,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/29/spark/" rel="next" title="spark探秘 ">
-                <i class="fa fa-chevron-left"></i> spark探秘 
+              <a href="/2016/04/08/逻辑斯蒂（Logistic-回归/" rel="next" title="大话逻辑回归">
+                <i class="fa fa-chevron-left"></i> 大话逻辑回归
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/03/29/部分优化算法对比/" rel="prev" title="部分优化算法对比">
-                部分优化算法对比 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/01/什么是机器学习/" rel="prev" title="什么是机器学习">
+                什么是机器学习 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -348,8 +397,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/29/my2015/"
-           data-title="2015年总结" data-url="http://yoursite.com/2016/03/29/my2015/">
+      <div class="ds-thread" data-thread-key="2016/04/08/LDA浅显理解/"
+           data-title="LDA浅显理解" data-url="http://yoursite.com/2016/04/08/LDA浅显理解/">
       </div>
     
   </div>
@@ -462,7 +511,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一、考研"><span class="nav-number">1.</span> <span class="nav-text">第一、考研</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、还未起步的创业"><span class="nav-number">2.</span> <span class="nav-text">二、还未起步的创业</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、2015年书单"><span class="nav-number">3.</span> <span class="nav-text">三、2015年书单</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2016年期望"><span class="nav-number">4.</span> <span class="nav-text">2016年期望</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Unigram-model"><span class="nav-number">1.</span> <span class="nav-text">Unigram model</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mixture-of-unigrams"><span class="nav-number">2.</span> <span class="nav-text">Mixture of unigrams</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Probabilistic-lantent-semantic-indexinal-pLSI"><span class="nav-number">3.</span> <span class="nav-text">Probabilistic lantent semantic indexinal(pLSI)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lanton-Dirichlet-Allocation-LDA"><span class="nav-number">4.</span> <span class="nav-text">Lanton Dirichlet Allocation(LDA)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pLSA与LDA对比"><span class="nav-number">5.</span> <span class="nav-text">pLSA与LDA对比</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关知识点"><span class="nav-number">6.</span> <span class="nav-text">相关知识点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#训练和推断"><span class="nav-number">7.</span> <span class="nav-text">训练和推断</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
