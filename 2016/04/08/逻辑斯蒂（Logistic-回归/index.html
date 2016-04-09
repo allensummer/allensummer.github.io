@@ -72,7 +72,7 @@
 <meta property="og:image" content="http://scikit-learn.org/stable/_images/math/96fe247fe9465d26af15706141dc22e598ac7826.png">
 <meta property="og:image" content="http://scikit-learn.org/stable/_images/math/3fb9bab302e67df4a9f00b8df259d326e01837fd.png">
 <meta property="og:image" content="http://i4.piimg.com/f83cad9cfe6687fc.png">
-<meta property="og:updated_time" content="2016-04-08T14:53:37.267Z">
+<meta property="og:updated_time" content="2016-04-09T04:22:08.532Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大话逻辑回归">
 <meta name="twitter:description" content="在Machine Learning中，逻辑斯蒂回归（Logistic Regression）是十分经典的方法,简称LR，虽然名字叫回归，但是这是线性分类模型而不是回归模型。这里面涉及到一些知识点，包括极大似然估计，损失函数，梯度下降，正则化等这篇文章的主要目的，就是通过理论与实践相结合的方式讲解LR模型，在讲解的过程中，加深对LR的理解、相关概念的梳理和应用。这篇文章中需要一些基础的数学知识，如果">
@@ -315,6 +315,7 @@
 <h1 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h1><p>在模型参数估计这，已经将问题变为目标函数的最优化问题。为了让降低模型的复杂度，更好的泛化，可以在使用梯度下降的时候，添加一个正则项。二分类问题的L2乘法回归最小化如下（正则化链接-等待更新）：<br><img src="http://scikit-learn.org/stable/_images/math/96fe247fe9465d26af15706141dc22e598ac7826.png" alt=""><br>同样，L1正则化逻辑回归解决的优化问题如下：</p>
 <p><img src="http://scikit-learn.org/stable/_images/math/3fb9bab302e67df4a9f00b8df259d326e01837fd.png" alt=""></p>
 <h1 id="多分类问题"><a href="#多分类问题" class="headerlink" title="多分类问题"></a>多分类问题</h1><p>在实际应用中，我们常常碰见多分类问题，我们如何将逻辑回归应用到上面呢？其实这里可以这样想，N分类问题，对于每一类都可以将他转换为二分类问题：是该类和非该类，每一类的逻辑模型是：<br><img src="http://i4.piimg.com/f83cad9cfe6687fc.png" alt=""><br>在进行分类的时候，对每一个输入的特征向量求的该类的该类，取概率最大的分类。</p>
+<h1 id="逻辑回归实现"><a href="#逻辑回归实现" class="headerlink" title="逻辑回归实现"></a>逻辑回归实现</h1><p>请看<a href="/2016/04/09/logistic实现/">逻辑回归实现</a></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>[1]《统计学习方法》<br>[2] AngrewNG 《机器学习》<br>[3] Christopher M. Bishop: Pattern Recognition and Machine Learning, chapter4.3<br>[4] <a href="https://www.douban.com/note/323644915/" target="_blank" rel="external">听课笔记（第十讲）： 逻辑斯蒂回归 (台大机器学习）</a><br>[5] <a href="http://www.tuicool.com/articles/auQFju" target="_blank" rel="external">逻辑回归模型(Logistic Regression, LR)基础</a><br>[6] <a href="http://www.eas-journal.org/articles/eas/pdf/2014/02/eas1466008.pdf" target="_blank" rel="external">logistic regression</a></p>
 
       
@@ -425,7 +426,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -442,7 +443,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -493,7 +494,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#逻辑斯蒂（logistic-函数"><span class="nav-number">1.</span> <span class="nav-text">逻辑斯蒂（logistic)函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑斯蒂函数"><span class="nav-number">1.1.</span> <span class="nav-text">逻辑斯蒂函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二项逻辑斯蒂回归模型"><span class="nav-number">2.</span> <span class="nav-text">二项逻辑斯蒂回归模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模型参数估计"><span class="nav-number">3.</span> <span class="nav-text">模型参数估计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正则化"><span class="nav-number">4.</span> <span class="nav-text">正则化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多分类问题"><span class="nav-number">5.</span> <span class="nav-text">多分类问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#逻辑斯蒂（logistic-函数"><span class="nav-number">1.</span> <span class="nav-text">逻辑斯蒂（logistic)函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑斯蒂函数"><span class="nav-number">1.1.</span> <span class="nav-text">逻辑斯蒂函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二项逻辑斯蒂回归模型"><span class="nav-number">2.</span> <span class="nav-text">二项逻辑斯蒂回归模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模型参数估计"><span class="nav-number">3.</span> <span class="nav-text">模型参数估计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正则化"><span class="nav-number">4.</span> <span class="nav-text">正则化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多分类问题"><span class="nav-number">5.</span> <span class="nav-text">多分类问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#逻辑回归实现"><span class="nav-number">6.</span> <span class="nav-text">逻辑回归实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
