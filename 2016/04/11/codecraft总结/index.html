@@ -1,0 +1,794 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="总结," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="WMind Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/58.jpg?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="3月中下旬的时候，听同学说有一个华为的比赛，叫codecraft。赛题是：
+未来网络·寻路赛题源自“未来网络”业务发放中的路由计算问题。算路问题属于基础算法问题，在图论、网络、交通等各个方面均有着广泛的研究与运用，里面不乏一些经典的算法，例如最短路中的广度优先搜索，Dijkstra算法等。网络算路问题的更优算法实现对于网络资源高效配置具有重要价值。技术领域：c、c++、JAVA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="codecraft失败者总结">
+<meta property="og:url" content="http://yoursite.com/2016/04/11/codecraft总结/index.html">
+<meta property="og:site_name" content="WMind Blog">
+<meta property="og:description" content="3月中下旬的时候，听同学说有一个华为的比赛，叫codecraft。赛题是：
+未来网络·寻路赛题源自“未来网络”业务发放中的路由计算问题。算路问题属于基础算法问题，在图论、网络、交通等各个方面均有着广泛的研究与运用，里面不乏一些经典的算法，例如最短路中的广度优先搜索，Dijkstra算法等。网络算路问题的更优算法实现对于网络资源高效配置具有重要价值。技术领域：c、c++、JAVA">
+<meta property="og:updated_time" content="2016-04-13T10:30:51.527Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="codecraft失败者总结">
+<meta name="twitter:description" content="3月中下旬的时候，听同学说有一个华为的比赛，叫codecraft。赛题是：
+未来网络·寻路赛题源自“未来网络”业务发放中的路由计算问题。算路问题属于基础算法问题，在图论、网络、交通等各个方面均有着广泛的研究与运用，里面不乏一些经典的算法，例如最短路中的广度优先搜索，Dijkstra算法等。网络算路问题的更优算法实现对于网络资源高效配置具有重要价值。技术领域：c、c++、JAVA">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 2520238585,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> codecraft失败者总结 | WMind Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">WMind Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                codecraft失败者总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-11T10:00:38+08:00" content="2016-04-11">
+              2016-04-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/总结/" itemprop="url" rel="index">
+                    <span itemprop="name">总结</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/11/codecraft总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/11/codecraft总结/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>3月中下旬的时候，听同学说有一个华为的比赛，叫codecraft。赛题是：</p>
+<p>未来网络·寻路<br>赛题源自“未来网络”业务发放中的路由计算问题。算路问题属于基础算法问题，在图论、网络、交通<br>等各个方面均有着广泛的研究与运用，里面不乏一些经典的算法，例如最短路中的广度优先搜索，Dijkstra算法等。网络算路问题的更优算法实现对于网络资源高效配置具有重要价值。<br>技术领域：c、c++、JAVA<br><a id="more"></a><br>当时听到这个消息，听心动的，三月下旬找了一个c++比较牛的队友，决定做这个比赛。一开始商量对策，我们两个人的算法功底都不行，面对面商量的时候没有商量出什么好的对策出来，再加上我c++功底很差，长时间没有使用，很多基础的东西都忘记了，也暴露出我的基础还比较薄弱。<br>后来我用python将算法写出来了，使用的是最短路径，从startpoint开始计算到下一个keypoint的最短路径，按照一定的概率选择下一个去的点，重复直到到达end点。重复多次，选取路径最短的路。借鉴的是随机森林的想法，建立多条随机路径，选择最优的那个。后来想想，这个算法太××了，节点少还好，节点多了完全没有办法找到最优路径，而且时间复杂度还很大。<br>当时写完算法，还没有意识到，就将算法给了那位同学，准备用boost graph library库，结果他不怎么会用，就悲催了，他一直在试探，好几天都没有处理（他比较忙这个也是一个客观因素）。最后智能自己上手，慢慢摸索，找到了boost graph library求最短路径的方法使用，结果快要到截止日期了（总共就没花几个晚上）。意识到时间复杂度跟效率太低，这个时候代码已经编写到一半了，现在改算法已经来不及了。。。。<br>总结如下：</p>
+<ol>
+<li>做程序员基础的数据结构跟算法的功底一定要强，这个方面我一定要加强</li>
+<li>程序员就像工匠，编程语言就是工匠手中的工具，想法再好，算法再厉害，不会用工具将这些算法实现处理，也是白瞎。</li>
+<li>想到一个算法之后，一定要在纸上演算一遍，计算时间和空间复杂度，否则实现代码的成本太大，等意识到算法效率跟复杂度达不到要求，就白费功夫了</li>
+<li>再次强调，算法一定要在纸上验算一下，写下伪代码，然后再具体编写代码，这样各种开销会小很多！！！！！</li>
+<li>关于专注力，我并没有将这个比赛放在心上，所以并没有花费太多时间在这件事上，因此也就导致最后的结果并不好，这是在意料之中的，但是如果不想做一件事，那么就不要接下来，接下来了就要全心全意的完成他！！！！将一件事做的完美这个才是最重要的。</li>
+<li>关于团队合作，除了第一天交流算法，后面十几天完全没有太多的交流，这个是十分的错误！！！最好两天或者三天就交流一次！！！</li>
+</ol>
+<p>虽然算法比较烂，还是附上，以后可能还有用，10000个小时法则，重点就在这10000个小时的积累。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Created on Wed Mar 30 20:20:51 2016</span><br><span class="line"></span><br><span class="line">@author: wq</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"># -*- coding:utf-8 -*-</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Created on Fri Mar 25 08:01:56 2016</span><br><span class="line"></span><br><span class="line">@author: wq</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">import networkx as nx</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import random  </span><br><span class="line"></span><br><span class="line">#绘图</span><br><span class="line">def draw(DG, subsub_set , subset, start, end):</span><br><span class="line"># nodes</span><br><span class="line">    pos=nx.spring_layout(DG) # positions for all nodes</span><br><span class="line"></span><br><span class="line">    nx.draw_networkx_nodes(DG,pos,nodelist =subsub_set,  node_size=500)</span><br><span class="line"></span><br><span class="line">    nx.draw_networkx_nodes(DG,pos,nodelist =subset,  node_size=500, node_color=&apos;b&apos;)</span><br><span class="line">    </span><br><span class="line">    nx.draw_networkx_nodes(DG,pos,nodelist =[start],  node_size=500, node_color=&apos;g&apos;)</span><br><span class="line">    nx.draw_networkx_nodes(DG,pos,nodelist =[end],  node_size=500, node_color=&apos;y&apos;)</span><br><span class="line">    # edges</span><br><span class="line">    nx.draw_networkx_edges(DG,pos)</span><br><span class="line">    # labels</span><br><span class="line">    nx.draw_networkx_labels(DG,pos,font_size=20,font_family=&apos;sans-serif&apos;)</span><br><span class="line">    </span><br><span class="line">    plt.axis(&apos;off&apos;)</span><br><span class="line">#    plt.savefig(&quot;weighted_graph.png&quot;) # save as png</span><br><span class="line">    plt.show() # display</span><br><span class="line">    </span><br><span class="line">#按照某一个概率抽取，如some_list = [1,2,3] probabilities = [0.2, 0.3, 0.5] </span><br><span class="line">def randomPick(some_list, probabilities):  </span><br><span class="line">    x = random.uniform(0,1)  </span><br><span class="line">    cumulative_probability = 0.0  </span><br><span class="line">    for item, item_probability in zip(some_list, probabilities):  </span><br><span class="line">        cumulative_probability += item_probability  </span><br><span class="line">        if x &lt; cumulative_probability:break  </span><br><span class="line">    return item  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#获得路径</span><br><span class="line">def getRoute(G, subset, start):</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    G不包括终点</span><br><span class="line">    G1与G一样，但是在函数体中不被操作</span><br><span class="line">    G为networkx图模型</span><br><span class="line">    subset为关键子集</span><br><span class="line">    start为起始点</span><br><span class="line">    route为返回的路径</span><br><span class="line">    score为权值得分</span><br><span class="line">    </span><br><span class="line">    该程序采用递归随机贪心算法</span><br><span class="line"></span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    start_point = start #运算的起点</span><br><span class="line">    subset_buf = subset[:] #子集的备份</span><br><span class="line">    score = 0 #权值得分</span><br><span class="line">    route = [start] #路径</span><br><span class="line">    G1 = G.copy() #图的复本</span><br><span class="line">    #subset_weight = [] #start_point到邻居权值</span><br><span class="line">    has_go_subset = [start]</span><br><span class="line">    next_route = &#123;&#125;#某一节点不可达的节点list</span><br><span class="line">    </span><br><span class="line">    #print start_point, subset_buf</span><br><span class="line">    next_route[start_point] = []</span><br><span class="line">    for i in subset:</span><br><span class="line">        next_route[i] = []</span><br><span class="line">    #print &apos;start&apos;, G.nodes(), subset, start</span><br><span class="line">    for deep in xrange(len(subset)*len(subset)/4):</span><br><span class="line">        #print &apos;subset_buf&apos;, subset_buf</span><br><span class="line">        subset_no_next = next_route[start_point]     </span><br><span class="line">        subset_buf_next = []</span><br><span class="line">        subset_weight = []</span><br><span class="line">        for i in subset_buf:</span><br><span class="line">            try:</span><br><span class="line">                if i in subset_no_next:</span><br><span class="line">                    #判断这条路是不是走不通了</span><br><span class="line">                    continue</span><br><span class="line">                else:</span><br><span class="line">                    subset_weight.append(nx.shortest_path_length(G1, source = start_point, target = i , weight = &apos;weight&apos;))           </span><br><span class="line">                    subset_buf_next.append(i)</span><br><span class="line">            except:</span><br><span class="line">                next_route[start_point].append(i)#如果不可达，则加入该节点不可达List中</span><br><span class="line">                #subset_weight.append(10000)</span><br><span class="line">        #将路径的权值转换为概率，例如subset = [x1, x2, x3] subset_weight = [w1, w2, w3]</span><br><span class="line">        #subset_probability = [(1/x1)/(1/x1+1/x2+1/x3), (1/x2)/(1/x1+1/x2+1/x3), (1/x3)/(1/x1+1/x2+1/x3)]</span><br><span class="line">        #求概率</span><br><span class="line">        #print &apos;subset no next&apos;, subset_no_next</span><br><span class="line">        #print &apos;subset weight&apos;, subset_weight</span><br><span class="line">        #print &apos;subset next&apos;, subset_buf_next</span><br><span class="line">        if len(subset_buf_next) == 0:</span><br><span class="line">            try:</span><br><span class="line">                start_point = has_go_subset.pop()</span><br><span class="line">            except:</span><br><span class="line">                return route, 100000</span><br><span class="line">            route = route[:route.index(start_point)+1]</span><br><span class="line">            </span><br><span class="line">            G1 = G.copy()</span><br><span class="line">            G1.remove_nodes_from(route[:route.index(start_point)])</span><br><span class="line">            subset_buf = [x for x in subset if x not in route]</span><br><span class="line">            continue</span><br><span class="line">        </span><br><span class="line">        accu_buf = reduce(lambda x, y:x*y, subset_weight)    #权值求和</span><br><span class="line">        sum_buf = reduce(lambda x, y: x + accu_buf/y, subset_weight)</span><br><span class="line">        </span><br><span class="line">        subset_probability = map(lambda x:accu_buf/(x*sum_buf), subset_weight)</span><br><span class="line">        #print &apos;subset_probability&apos;, subset_probability</span><br><span class="line">        </span><br><span class="line">        #按照subset_probability中的概率抽取next_point，将start到next_point的路径加入到route中</span><br><span class="line">        #print &apos;subset_buf_next&apos;, subset_buf_next        </span><br><span class="line">        next_point = randomPick(subset_buf_next, subset_probability)    </span><br><span class="line">        </span><br><span class="line">        try:</span><br><span class="line">            #print next_route</span><br><span class="line">            #print &apos;find&apos;, G1.nodes(), start_point, next_point, route, subset_buf</span><br><span class="line">            route_buf = nx.shortest_path(G1, start_point, next_point, weight = &apos;weight&apos;)  #如果本次没有找到next_point的路径，回退一下</span><br><span class="line">        #print &apos;next point&apos;, next_point</span><br><span class="line">        #print &apos;route_buf&apos;, route_buf</span><br><span class="line">        except nx.exception.NetworkXNoPath:</span><br><span class="line">           # print G1.nodes(), start_point, next_point</span><br><span class="line">            #print &apos;NoPath&apos;</span><br><span class="line">            if len(has_go_subset) == 0 :</span><br><span class="line">                return route, 100000</span><br><span class="line">            else:</span><br><span class="line">                next_route[start_point].append(next_point)</span><br><span class="line">                start_point = has_go_subset.pop()</span><br><span class="line">                route = route[:route.index(start_point)+1]</span><br><span class="line">                </span><br><span class="line">                G1 = G.copy()</span><br><span class="line">                G1.remove_nodes_from(route[:-1])</span><br><span class="line">                subset_buf = [x for x in subset if x not in route]</span><br><span class="line">                #print &apos;ba&apos;                </span><br><span class="line">                continue</span><br><span class="line">        #except KeyError:</span><br><span class="line">            #print &apos;keyerror&apos;, G1.nodes(),route,  start_point, next_point</span><br><span class="line">            #continue</span><br><span class="line">            </span><br><span class="line">                </span><br><span class="line">        G1.remove_nodes_from(route_buf[:-1])</span><br><span class="line">       # print &apos;route&apos;, route, &apos;route_buf&apos;, route_buf        </span><br><span class="line">        route = route + route_buf[1:]</span><br><span class="line">        #print &apos;after route&apos;, route</span><br><span class="line">        #计算总得分</span><br><span class="line">        score = score + subset_weight[subset_buf_next.index(next_point)]</span><br><span class="line">        #将路径中已经有的点从subset中去除</span><br><span class="line">        subset_buf = [x for x in subset if x not in route]</span><br><span class="line">        has_go_subset.append(next_point)</span><br><span class="line">        start_point = route[-1]</span><br><span class="line">       # print &apos;start_point&apos;, start_point</span><br><span class="line">        #如果subset为空，则返回route, score</span><br><span class="line">        if len(subset_buf) == 0:</span><br><span class="line">           # print &apos;get&apos;</span><br><span class="line">            return route, score</span><br><span class="line">    #print next_route</span><br><span class="line">    return route, score</span><br><span class="line"></span><br><span class="line">if __name__ ==&apos;__main__&apos;:</span><br><span class="line">    result_route=[]    #最终结果</span><br><span class="line">    result_weight = 100000   #最终得分</span><br><span class="line">    </span><br><span class="line">    for j in xrange(10):</span><br><span class="line">        #打开文件，</span><br><span class="line">        result_route=[]    #最终结果</span><br><span class="line">        result_weight = 100000   #最终得分</span><br><span class="line">        topo_file = open(&apos;case/case&apos; + str(j) + &apos;/topo.csv&apos;)</span><br><span class="line">        demand_file = open(&apos;case/case&apos; + str(j) + &apos;/demand.csv&apos;)</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        demand = demand_file.read().split(&apos;,&apos;)</span><br><span class="line">        start_point = int(demand[0])#开始点</span><br><span class="line">        end_point = int(demand[1])#结束点</span><br><span class="line">        subset = [int(x) for x in demand[2].split(&apos;|&apos;)]#关键点子集</span><br><span class="line">        </span><br><span class="line">        #构建图模型</span><br><span class="line">        SG = nx.DiGraph()</span><br><span class="line">        SG.add_nodes_from(subset)</span><br><span class="line">        graph = [line.strip().split(&apos;,&apos;)[1:4] for line in topo_file]</span><br><span class="line">        graph_int = [tuple([int(x), int(y), float(z)]) for (x, y, z) in graph]</span><br><span class="line">        </span><br><span class="line">        DG = nx.DiGraph()</span><br><span class="line">        DG.add_weighted_edges_from(graph_int)</span><br><span class="line">    </span><br><span class="line">        #全集减去子集，这里是未来方便图的可视化表示</span><br><span class="line">        subsub_set = [x[0] for x in graph_int if( x[0] not in subset)]</span><br><span class="line">        </span><br><span class="line">        #draw(DG, subsub_set, subset, start_point, end_point)</span><br><span class="line">        </span><br><span class="line">        #print nx.shortest_path(DG, source = 2, target = 19)</span><br><span class="line">        </span><br><span class="line">        #构建去除end_point的图</span><br><span class="line">        G1 = DG.copy()</span><br><span class="line">        G1.remove_node(end_point)</span><br><span class="line">        </span><br><span class="line">        #循环4×length of subset次</span><br><span class="line">        for i in xrange(40):    </span><br><span class="line">            #print i</span><br><span class="line">            #获得路径</span><br><span class="line">            #try:</span><br><span class="line">            route, weight = getRoute(G1, subset, start = start_point)</span><br><span class="line">            #except:</span><br><span class="line">                #print &apos;2&apos;</span><br><span class="line">                #continue</span><br><span class="line">                            </span><br><span class="line">            #找route中的最后一个点到end_point的路径</span><br><span class="line">            G3 = DG.copy()</span><br><span class="line">            </span><br><span class="line">            if weight == 10000:</span><br><span class="line">                result_weight = 10000</span><br><span class="line">                continue</span><br><span class="line">            </span><br><span class="line">            #构建将route中除最后一个node外的点全部删除的图</span><br><span class="line">            G3.remove_nodes_from(route[:-1])</span><br><span class="line">            #寻找最短路径和最短路径的权值</span><br><span class="line">            try:           </span><br><span class="line">            </span><br><span class="line">                result = nx.shortest_path(G3, route[-1], end_point, weight = &apos;weight&apos;)</span><br><span class="line">                weight = weight + nx.shortest_path_length(G3, route[-1], end_point, weight = &apos;weight&apos;)</span><br><span class="line">            </span><br><span class="line">            #本次路径        </span><br><span class="line">                route=route + result[1:]</span><br><span class="line">            except:</span><br><span class="line">                continue</span><br><span class="line">            #如果本次路径权值最短，输出为最终路径</span><br><span class="line">            if result_weight &gt; weight:</span><br><span class="line">                result_weight = weight</span><br><span class="line">                result_route = route</span><br><span class="line">                </span><br><span class="line">        if result_weight &gt;= 10000:</span><br><span class="line">            print &apos;case&apos; + str(j) + &apos;不可达&apos;</span><br><span class="line">            continue</span><br><span class="line">        print &apos;case&apos;,i, &apos;  &apos;,start_point, &apos; - &apos;, end_point</span><br><span class="line">        print &apos;case&apos; + str(j), result_weight</span><br><span class="line">        print &apos;case&apos; + str(j) +&apos;  route is&apos;, result_route</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/总结/" rel="tag">#总结</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/09/scikit-learn中的逻辑回归-一/" rel="next" title="scikit-learn中的逻辑回归">
+                <i class="fa fa-chevron-left"></i> scikit-learn中的逻辑回归
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/11/图像分割/" rel="prev" title="图像分割综述">
+                图像分割综述 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/11/codecraft总结/"
+           data-title="codecraft失败者总结" data-url="http://yoursite.com/2016/04/11/codecraft总结/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/58.jpg"
+               alt="Allen Wolf" />
+          <p class="site-author-name" itemprop="name">Allen Wolf</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/allensummer" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Allen Wolf</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"allensummer"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js"></script>
+      <script src="/js/src/hook-duoshuo.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
