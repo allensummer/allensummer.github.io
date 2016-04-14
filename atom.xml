@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-09T08:49:39.359Z</updated>
+  <updated>2016-04-14T00:47:15.518Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2016/08/01/%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     <id>http://yoursite.com/2016/08/01/什么是机器学习/</id>
     <published>2016-08-01T00:00:00.000Z</published>
-    <updated>2016-04-09T08:49:39.359Z</updated>
+    <updated>2016-04-14T00:47:15.518Z</updated>
     
     <content type="html">&lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;　　在介绍机器学习之前，我想先列几个关于机器学习的例子：&lt;/p&gt;
 &lt;ul&gt;
@@ -69,7 +69,11 @@
   * 高斯分布
   * 指数分布族
   * 非常数分布--&gt;&lt;/li&gt;
-&lt;li&gt;回归&lt;/li&gt;
+&lt;li&gt;回归&lt;ul&gt;
+&lt;li&gt;CART：分类和回归树算法&lt;/li&gt;
+&lt;li&gt;SVR支持向量回归&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;分类&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/earl211/article/details/48974865&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;感知机&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;逻辑回归&lt;ul&gt;
@@ -78,15 +82,35 @@
 &lt;li&gt;&lt;a href=&quot;/2016/04/09/scikit-learn中的逻辑回归/&quot;&gt;scikit-learn中的逻辑回归&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;li&gt;分类决策数算法C4.5&lt;/li&gt;
+&lt;li&gt;最近邻分类&lt;/li&gt;
+&lt;li&gt;朴素贝叶斯算法&lt;/li&gt;
+&lt;li&gt;CART：分类和回归树算法&lt;/li&gt;
+&lt;li&gt;Ada Boost迭代算法&lt;/li&gt;
+&lt;li&gt;支持向量机&lt;/li&gt;
+&lt;li&gt;图模型&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;聚类&lt;/li&gt;
+&lt;li&gt;聚类&lt;ul&gt;
+&lt;li&gt;k均值聚类&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;时间序列&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;/2016/03/29/test/&quot;&gt;时间序列完全教程（R）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;HMM隐马尔科夫模型&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;降维&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;/2016/04/08/LDA浅显理解/&quot;&gt;LDA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/2016/04/08/LDA浅显理解/&quot;&gt;LDA浅显理解&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;其他算法&lt;ul&gt;
+&lt;li&gt;最大期望（EM）算法&lt;/li&gt;
+&lt;li&gt;Apriori算法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;最优化算法&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/2016/04/14/挑战程序设计竞赛-抽签/&quot;&gt;梯度下降法&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -109,6 +133,94 @@
     
     
       <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>POJ-2386 Lake Counting 挑战程序设计竞赛</title>
+    <link href="http://yoursite.com/2016/04/15/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88/"/>
+    <id>http://yoursite.com/2016/04/15/深度优先/</id>
+    <published>2016-04-14T23:39:12.000Z</published>
+    <updated>2016-04-14T23:45:04.683Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;问题：&quot;&gt;&lt;a href=&quot;#问题：&quot; class=&quot;headerlink&quot; title=&quot;问题：&quot;&gt;&lt;/a&gt;问题：&lt;/h1&gt;&lt;p&gt;Due to recent rains, water has pooled in various places in Farmer John’s field, which is represented by a rectangle of N x M (1 &amp;lt;= N &amp;lt;= 100; 1 &amp;lt;= M &amp;lt;= 100) squares. Each square contains either water (‘W’) or dry land (‘.’). Farmer John would like to figure out how many ponds have formed in his field. A pond is a connected set of squares with water in them, where a square is considered adjacent to all eight of its neighbors. &lt;/p&gt;
+&lt;p&gt;Given a diagram of Farmer John’s field, determine how many ponds he has.&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;思路：&quot;&gt;&lt;a href=&quot;#思路：&quot; class=&quot;headerlink&quot; title=&quot;思路：&quot;&gt;&lt;/a&gt;思路：&lt;/h1&gt;&lt;p&gt;深度优先查找,查找相邻的W块有多少个&lt;/p&gt;
+&lt;h1 id=&quot;代码：&quot;&gt;&lt;a href=&quot;#代码：&quot; class=&quot;headerlink&quot; title=&quot;代码：&quot;&gt;&lt;/a&gt;代码：&lt;/h1&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;55&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;meta-string&quot;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;meta-string&quot;&gt;&amp;lt;cstdio&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;define&lt;/span&gt; MAX_N 100&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; N, M;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;char&lt;/span&gt; field[MAX_N][MAX_N+&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//现在位置（x, y)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; x,&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; y)&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    field[x][y] = &lt;span class=&quot;string&quot;&gt;&#39;.&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; nx, ny;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;//循环遍历8个方向&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;; i &amp;lt;= &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;; i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; j = &lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;; j &amp;lt;= &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;; j++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            nx = x + i; ny = y + j;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(nx &amp;gt;=&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; &amp;amp;&amp;amp; nx &amp;lt; N &amp;amp;&amp;amp; ny &amp;gt;= &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; &amp;amp;&amp;amp; ny &amp;lt;= M &amp;amp;&amp;amp; field[nx][ny] == &lt;span class=&quot;string&quot;&gt;&#39;W&#39;&lt;/span&gt;) dfs(nx, ny);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; ;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;solve&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; res = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i= &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i &amp;lt; N; i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; j = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; j &amp;lt; M ; j++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(field[i][j] == &lt;span class=&quot;string&quot;&gt;&#39;W&#39;&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                dfs(i, j);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                res++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;printf&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;%d\n&quot;&lt;/span&gt;, res);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;scanf&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;%d %d&quot;&lt;/span&gt;, &amp;amp;N, &amp;amp;M);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;i &amp;lt; N;i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; j = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; j &amp;lt; M; j++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &lt;span class=&quot;comment&quot;&gt;//  scanf(&quot;%c &quot;, &amp;amp;field[i][j]);&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;           &lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::&lt;span class=&quot;built_in&quot;&gt;cin&lt;/span&gt; &amp;gt;&amp;gt; field[i][j];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;i &amp;lt; N;i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; j = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; j &amp;lt; M; j++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;built_in&quot;&gt;printf&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;%c &quot;&lt;/span&gt;, field[i][j]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;printf&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;\n&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    solve();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;问题：&quot;&gt;&lt;a href=&quot;#问题：&quot; class=&quot;headerlink&quot; title=&quot;问题：&quot;&gt;&lt;/a&gt;问题：&lt;/h1&gt;&lt;p&gt;Due to recent rains, water has pooled in various places in Farmer John’s field, which is represented by a rectangle of N x M (1 &amp;lt;= N &amp;lt;= 100; 1 &amp;lt;= M &amp;lt;= 100) squares. Each square contains either water (‘W’) or dry land (‘.’). Farmer John would like to figure out how many ponds have formed in his field. A pond is a connected set of squares with water in them, where a square is considered adjacent to all eight of its neighbors. &lt;/p&gt;
+&lt;p&gt;Given a diagram of Farmer John’s field, determine how many ponds he has.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="挑战程序设计" scheme="http://yoursite.com/tags/%E6%8C%91%E6%88%98%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>抽签 挑战程序设计竞赛</title>
+    <link href="http://yoursite.com/2016/04/14/%E6%8C%91%E6%88%98%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B-%E6%8A%BD%E7%AD%BE/"/>
+    <id>http://yoursite.com/2016/04/14/挑战程序设计竞赛-抽签/</id>
+    <published>2016-04-13T23:08:33.000Z</published>
+    <updated>2016-04-14T00:45:44.014Z</updated>
+    
+    <content type="html">&lt;p&gt;问题：&lt;br&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/74311666jw1f2vv43yt30j20ow09nq4c.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;如果是我，我肯定最开始想到的是暴力破解，然而时间复杂度太高了，数据量小还好，如果数据量太大，时间会疯涨。&lt;br&gt;书中给了一个思路:将数组内相加等于某个值，转换为查找这个值减去数组内的一个或两个变量，这样就将问题转换为查找问题了，可以使用二分查找。这里再回顾一下查找算法。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;顺序查找（时间复杂度O(n))&lt;/li&gt;
+&lt;li&gt;折半查找(时间复杂度O(log(n)))&lt;/li&gt;
+&lt;li&gt;B树又称二叉查找&lt;/li&gt;
+&lt;li&gt;B+树&lt;/li&gt;
+&lt;li&gt;散列表（如果散列表构建的好，时间复杂度会是O(1)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这里使用折半查找，折半查找需要将数组排好序，排序算法如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;内部排序（使用内存）&lt;ul&gt;
+&lt;li&gt;插入排序&lt;ul&gt;
+&lt;li&gt;直接插入排序&lt;/li&gt;
+&lt;li&gt;希尔排序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;选择排序&lt;ul&gt;
+&lt;li&gt;简单选择排序&lt;/li&gt;
+&lt;li&gt;堆排序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;交换排序&lt;ul&gt;
+&lt;li&gt;冒泡排序&lt;/li&gt;
+&lt;li&gt;快速排序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;归并排序&lt;/li&gt;
+&lt;li&gt;基数排序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;外部排序（内存和外存结合使用）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;方法一：&lt;/p&gt;
+&lt;p&gt;将问题转换为查找number[k]=m-number[i]-number[j]&lt;br&gt;时间复杂度$O(n^{2}log(n))&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;meta-string&quot;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;meta-string&quot;&gt;&amp;lt;cstdio&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;meta-string&quot;&gt;&amp;lt;vector&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;meta-string&quot;&gt;&amp;lt;algorithm&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;myfunction&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i, &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; j)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; (i &amp;lt; j);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;solve&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; n,&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; m,  &lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::&lt;span class=&quot;built_in&quot;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;&amp;gt; number)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::sort(number.begin(), number.end());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt; f = &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i &amp;lt; n;i++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; j = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; j &amp;lt; n; j++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; k = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; k &amp;lt; n; k++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//                std::cout &amp;lt;&amp;lt;m - number[i]-number[j]&amp;lt;&amp;lt;&quot;search&quot; &amp;lt;&amp;lt; number[k]&amp;lt;&amp;lt;std::endl;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(&lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::binary_search(number.begin(), number.end(),m-number[i]-number[j]-number[k], myfunction))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    f = &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (f) &lt;span class=&quot;built_in&quot;&gt;puts&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;Yes&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;puts&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;No&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; n, m, buf;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::&lt;span class=&quot;built_in&quot;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;&amp;gt; k;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;scanf&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;%d %d&quot;&lt;/span&gt;, &amp;amp;n, &amp;amp;m);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;i &amp;lt; n;i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;scanf&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;%d&quot;&lt;/span&gt;, &amp;amp;buf);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        k.push_back(buf);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    solve(n, m, k);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;方法二：&lt;br&gt;将问题转换为查找number[i]+number[j] = m - number[k]&lt;br&gt;时间复杂度$O(n_{2}log(n))&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;54&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;meta-string&quot;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;meta-string&quot;&gt;&amp;lt;cstdio&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;meta-string&quot;&gt;&amp;lt;vector&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;meta-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;meta-string&quot;&gt;&amp;lt;algorithm&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;myfunction&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i, &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; j)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; (i &amp;lt; j);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;solve&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; n,&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; m,  &lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::&lt;span class=&quot;built_in&quot;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;&amp;gt; number)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::&lt;span class=&quot;built_in&quot;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;&amp;gt; number2;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;; i &amp;lt; n; i++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; j = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;; j &amp;lt; n; j ++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                number2.push_back(number[i] + number[j]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::sort(number2.begin(), number2.end());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;bool&lt;/span&gt; f = &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i &amp;lt; n;i++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; j = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; j &amp;lt; n; j++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//                std::cout &amp;lt;&amp;lt;m - number[i]-number[j]&amp;lt;&amp;lt;&quot;search&quot; &amp;lt;&amp;lt; number[k]&amp;lt;&amp;lt;std::endl;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(&lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::binary_search(number.begin(), number.end(),m-number[i]-number[j], myfunction))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    f = &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (f) &lt;span class=&quot;built_in&quot;&gt;puts&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;Yes&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;puts&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;No&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; n, m, buf;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;std&lt;/span&gt;::&lt;span class=&quot;built_in&quot;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;&amp;gt; k;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;scanf&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;%d %d&quot;&lt;/span&gt;, &amp;amp;n, &amp;amp;m);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;i &amp;lt; n;i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;scanf&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;%d&quot;&lt;/span&gt;, &amp;amp;buf);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        k.push_back(buf);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    solve(n, m, k);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;问题：&lt;br&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/74311666jw1f2vv43yt30j20ow09nq4c.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="挑战程序设计" scheme="http://yoursite.com/tags/%E6%8C%91%E6%88%98%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/"/>
     
   </entry>
   
@@ -1094,118 +1206,6 @@ c.~ vector &amp;lt;Elem&amp;gt;()：销毁所有数据，释放内存。
       <category term="数据挖掘" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
     
       <category term="优化算法" scheme="http://yoursite.com/tags/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2015年总结</title>
-    <link href="http://yoursite.com/2016/03/29/my2015/"/>
-    <id>http://yoursite.com/2016/03/29/my2015/</id>
-    <published>2016-03-29T14:40:29.000Z</published>
-    <updated>2016-03-29T14:41:59.014Z</updated>
-    
-    <content type="html">&lt;p&gt;在家度过了最寒冷的冬天，再次回到魔都。每次回家都是精神彻底的放松，不管在外面有着多么大的压力，只要回到家就不想思考，不想活动，不想论文、不想将来的工作。但是，就像太阳总是要出来一样，我也还是要回到学校中来了。学校里的梅花都盛开了，学生们都已经回到校园了，而我是时候为对去年做一个总结，对新年开启篇新的展望了。&lt;br&gt;去年一月份的时候，我想抽出时间来写一篇总结，记忆已经模糊，忘了是因为什么而忽略了这份迟早要到来的总结。今天刚刚下完课，就乘着这个时候把我放在显微镜下剖析一下了吧。&lt;br&gt;过去的一年，在我的记忆立总是灰蒙蒙的，大概是受到了雾霾的影响吧。去年主要经历归纳为一条线为：考研——调剂——毕设——暑假学习——开学。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&quot;第一、考研&quot;&gt;&lt;a href=&quot;#第一、考研&quot; class=&quot;headerlink&quot; title=&quot;第一、考研&quot;&gt;&lt;/a&gt;第一、考研&lt;/h1&gt;&lt;p&gt;　　决定的是考华科，15年分数线涨了有二三十分，差一点，最后调剂到了上海大学。虽然最后没有考上一个理想的分数，但是这一年的经历还是让我记忆深刻。&lt;br&gt;　　从最开始的浮躁的准备着数学，英语，到最后慢慢沉下心来一点一点的复习，慢慢专注；做模拟卷子的时候，困难重重，一度认为自己没有希望了，差一点就放弃了，谢谢同伴的鼓励，谢谢女友的支持，同时也要感谢大学期间看的书籍，让我坚持了下来；找一个与你志同道合的人一起做一件事情，这个过程中相互鼓励，相互影响，一起加油。&lt;br&gt;　　当然这其中的问题还是有不少的。特别是数学，遇到问题，看了答案，恩，知道解了。但是下次遇到类似的题目，甚至是一模一样的题目，我还是做不对。这个问题很严重，遇到一个知识点的时候，一定要理解，自己愚钝点，那就把这个知识点的东西背下来，抄下来，将来的某一天总是会理解的。切记贪多嚼不烂！！！把看过的东西，啃完了再进行下一个。日子长着呢，厚积才能薄发！！！！！&lt;br&gt;　　&lt;img src=&quot;http://ww1.sinaimg.cn/large/d1ac17f6jw1e8brr4r4y3j20ez06zq54.jpg&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;br&gt;　　&lt;br&gt;　　选择调剂到上海大学。记得当时复试完了之后，自己的内心是一种失望。是对自己失望，还是对自己没有考上华科失望？其实这个已经不重要了。利用好接下来的每一分钟吧。　　&lt;/p&gt;
-&lt;h1 id=&quot;二、还未起步的创业&quot;&gt;&lt;a href=&quot;#二、还未起步的创业&quot; class=&quot;headerlink&quot; title=&quot;二、还未起步的创业&quot;&gt;&lt;/a&gt;二、还未起步的创业&lt;/h1&gt;&lt;p&gt;　　那时我有一个想法，做一款时间管理软件app，让你的时间能够产生价值。跟勇哥还有斯斯说了这件事情，将我的想法跟他们详细的描述了一下。问问他们这个想法怎么样。他们都觉得不错，于是每周抽出一天来讨论我们开始提需求，试用其他类似产品的app，使用报告，设计功能，功能排序，界面设计。完成上面的几步，就开始着手写代码了。但是我们三个人都没有写app的经验，准备让斯斯学习安卓开发。后来由于课程比较多，慢慢每周也就没有讨论了，也只有勇哥做了一点点网页的部分。&lt;br&gt;    　在刚开始设计的时候，还是很有动力，每天都在学习这，走路都在思考。可是到后来做的时候，因为各种原因，而放弃了。这个事情一定要引起警戒，畅想的那么美好，竟然连第一步都没有迈出去。我感觉创业把第一步迈出去，一定要把第一步迈出去！！！&lt;/p&gt;
-&lt;h1 id=&quot;三、2015年书单&quot;&gt;&lt;a href=&quot;#三、2015年书单&quot; class=&quot;headerlink&quot; title=&quot;三、2015年书单&quot;&gt;&lt;/a&gt;三、2015年书单&lt;/h1&gt;&lt;p&gt;　　“读万卷书，行万里路”，我没有办法到达世界的每一个地方，不能面对面与大牛交谈，不能接受名师的面授，我能做的就是靠读书来“神游”了。&lt;br&gt;　　我阅读的书分为技术与非技术。看书的速度也是时快时慢，有选择性看书。每次选书的时候，我想了解哪一个方面的知识，我就百度这个方面的推荐书籍。买了一个Kindle， 我可以随时随地给自己充电。&lt;br&gt;　　包括以下：&lt;br&gt;技术类：&lt;br&gt;　　《Pattern Recognition and Machine Learning》（在读）&lt;br&gt;　　《统计学习方法》（在读）&lt;br&gt;　　《快学scala》&lt;br&gt;　　《Spark大数据处理计数》&lt;br&gt;　　《R语言实战》&lt;br&gt;　　《使用python进行数据分析》&lt;br&gt;　　《python自然语言处理》（在读）&lt;br&gt;　　《算法导论》（基本算法）&lt;br&gt;非技术：&lt;br&gt;　　《知日-明治维新》&lt;br&gt;　　《九型人格》&lt;br&gt;　　《二胡》&lt;br&gt;　　《牛棚杂记》&lt;br&gt;　　《人类简史》&lt;br&gt;　　《时间简史》&lt;br&gt;　　《史玉柱自述》&lt;br&gt;　　《少年凯哥》&lt;br&gt;　　《21岁当总裁》&lt;br&gt;　　《统计数字会撒谎》&lt;br&gt;　　《奇特的一生》&lt;br&gt;　　《黑天鹅》&lt;br&gt;　　《人人都是产品经理》&lt;br&gt;　　《暗时间》&lt;br&gt;　　《拖延心理学》&lt;br&gt;　　《集装箱改变世界》&lt;br&gt;　　《秘密》&lt;br&gt;　　《IT创业疯魔史》&lt;br&gt;　　《如何阅读一本书》&lt;br&gt;　　《思考：快与慢》&lt;br&gt;　　《番茄工作法》&lt;br&gt;　　《乌合之众》三卷&lt;br&gt;　　《风口上的猪》&lt;br&gt;　　《旁观者》&lt;br&gt;　　《用户体验要素有感》&lt;br&gt;　　《历史的教训》&lt;br&gt;　　《卓有成效的管理者》&lt;br&gt;　　《吃掉那只青蛙》&lt;br&gt;　　《从0到1》&lt;br&gt;　　《我是这样拿到风投》&lt;br&gt;　　《怪诞行为学》&lt;br&gt;　　《精益创业》&lt;/p&gt;
-&lt;h1 id=&quot;2016年期望&quot;&gt;&lt;a href=&quot;#2016年期望&quot; class=&quot;headerlink&quot; title=&quot;2016年期望&quot;&gt;&lt;/a&gt;2016年期望&lt;/h1&gt;&lt;p&gt;1、发表一篇论文&lt;br&gt;2、找到一个好的实习&lt;br&gt;3、常读书&lt;br&gt;4、专心干好每件事（一件一件干好再干下一件事情）&lt;br&gt;5、每天工作看书不少于10个小时&lt;br&gt;6、学习如何挣钱&lt;br&gt;7、学习一门技能：Spark，深入源码&lt;br&gt;8、看过的每一个机器学习算法，写一篇博客，最好使用或者编写过代码。以scikitlearn库为中心！&lt;/p&gt;
-&lt;p&gt;明天的阳光明媚，取决于今天的汗水！！Fighting吧&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在家度过了最寒冷的冬天，再次回到魔都。每次回家都是精神彻底的放松，不管在外面有着多么大的压力，只要回到家就不想思考，不想活动，不想论文、不想将来的工作。但是，就像太阳总是要出来一样，我也还是要回到学校中来了。学校里的梅花都盛开了，学生们都已经回到校园了，而我是时候为对去年做一个总结，对新年开启篇新的展望了。&lt;br&gt;去年一月份的时候，我想抽出时间来写一篇总结，记忆已经模糊，忘了是因为什么而忽略了这份迟早要到来的总结。今天刚刚下完课，就乘着这个时候把我放在显微镜下剖析一下了吧。&lt;br&gt;过去的一年，在我的记忆立总是灰蒙蒙的，大概是受到了雾霾的影响吧。去年主要经历归纳为一条线为：考研——调剂——毕设——暑假学习——开学。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="总结" scheme="http://yoursite.com/categories/%E6%80%BB%E7%BB%93/"/>
-    
-    
-      <category term="总结" scheme="http://yoursite.com/tags/%E6%80%BB%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>spark探秘 </title>
-    <link href="http://yoursite.com/2016/03/29/spark/"/>
-    <id>http://yoursite.com/2016/03/29/spark/</id>
-    <published>2016-03-29T14:28:24.000Z</published>
-    <updated>2016-03-29T14:55:54.558Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;1、spark简介&quot;&gt;&lt;a href=&quot;#1、spark简介&quot; class=&quot;headerlink&quot; title=&quot;1、spark简介&quot;&gt;&lt;/a&gt;1、spark简介&lt;/h1&gt;&lt;h2 id=&quot;1-1-这是什么？&quot;&gt;&lt;a href=&quot;#1-1-这是什么？&quot; class=&quot;headerlink&quot; title=&quot;1.1 这是什么？&quot;&gt;&lt;/a&gt;1.1 这是什么？&lt;/h2&gt;&lt;p&gt;  &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;Spark于2009年诞生于加州大学伯克利分校AMPLab（出身高贵呀）。目前，已经成为Apache软件基金会旗下的顶级项目（后妈同样很强）。Spark是基于内存计算的大数据并行计算架构。这里面有两个概念：内存计算，并行计算架构。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;内存计算，把数据放在内存中，运算的时候从内存中读取数据，而不是从硬盘中读取数据。&lt;/li&gt;
-&lt;li&gt;并行计算框架，使用多台计算机同时工作解决一件计算任务的框架。&lt;h2 id=&quot;1-2-优势&quot;&gt;&lt;a href=&quot;#1-2-优势&quot; class=&quot;headerlink&quot; title=&quot;1.2.优势&quot;&gt;&lt;/a&gt;1.2.优势&lt;/h2&gt;&lt;/li&gt;
-&lt;li&gt;支持复杂查询。（能干的活多）&lt;/li&gt;
-&lt;li&gt;轻量级快速处理。（代码少，速度快）&lt;/li&gt;
-&lt;li&gt;易于使用。支持Scala.java.python编写程序，最新版的Spark1.4还支持R语言。&lt;/li&gt;
-&lt;li&gt;于HDFS等存储层兼容。（Spark只负责计算，存储使用其他存储层）&lt;/li&gt;
-&lt;li&gt;社区活跃程度高。（很多人支持，不怕倒下）&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;1-3-Spark生态系统BDAS&quot;&gt;&lt;a href=&quot;#1-3-Spark生态系统BDAS&quot; class=&quot;headerlink&quot; title=&quot;1.3.Spark生态系统BDAS&quot;&gt;&lt;/a&gt;1.3.Spark生态系统BDAS&lt;/h2&gt;伯克利将Spark的整个生态系统称为伯克利数据分析栈（BDAS).其核心是Spark，围绕着Spark有着一系列的子项目，提供了更高层/更丰富的计算范式。底层同时也有其他重量级的选手，如分布式内存文件系统Tachyon,分布式文件系统HDFS,资源管理框架Mesos。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;http://www.2cto.com/uploadfile/2014/1203/20141203021322155.png&quot; alt=&quot;BDAS项目结构图&quot;&gt;&lt;br&gt;（1）Spark&lt;br&gt;Spark是整个BDAS的核心组件，是一个大数据分布式编程框架，不仅实现了MapReduce的算子map 函数和reduce函数及计算模型，还提供更为丰富的算子，如filter、join、groupByKey等。Spark将分布式数据抽象为弹性分布式数据集（RDD），实现了应用任务调度、RPC、序列化和压缩，并为运行在其上的上层组件提供API。其底层采用Scala这种函数式语言书写而成，并且所提供的API深度借鉴Scala函数式的编程思想，提供与Scala类似的编程接口。&lt;/p&gt;
-&lt;p&gt;（2）Shark&lt;br&gt;Shark是构建在Spark和Hive基础之上的数据仓库。目前，Shark已经完成学术使命，终止开发，但其架构和原理仍具有借鉴意义。它提供了能够查询Hive中所存储数据的一套SQL接口，兼容现有的Hive QL语法。这样，熟悉Hive QL或者SQL的用户可以基于Shark进行快速的Ad-Hoc、Reporting等类型的SQL查询。Shark底层复用Hive的解析器、优化器以及元数据存储和序列化接口。Shark会将Hive QL编译转化为一组Spark任务，进行分布式运算。&lt;/p&gt;
-&lt;p&gt;（3）Spark SQL&lt;br&gt;Spark SQL提供在大数据上的SQL查询功能，类似于Shark在整个生态系统的角色，它们可以统称为SQL on Spark。之前，Shark的查询编译和优化器依赖于Hive，使得Shark不得不维护一套Hive分支，而Spark SQL使用Catalyst做查询解析和优化器，并在底层使用Spark作为执行引擎实现SQL 的Operator。用户可以在Spark上直接书写SQL，相当于为Spark扩充了一套SQL算子，这无疑更加丰富了Spark的算子和功能，同时Spark SQL不断兼容不同的持久化存储（如HDFS、Hive等），为其发展奠定广阔的空间。&lt;/p&gt;
-&lt;p&gt;（4）Spark Streaming&lt;br&gt;Spark Streaming通过将流数据按指定时间片累积为RDD，然后将每个RDD进行批处理，进而实现大规模的流数据处理。其吞吐量能够超越现有主流流处理框架Storm，并提供丰富的API用于流数据计算。&lt;/p&gt;
-&lt;p&gt;（5）GraphX&lt;br&gt;GraphX基于BSP模型，在Spark之上封装类似Pregel的接口，进行大规模同步全局的图计算，尤其是当用户进行多轮迭代时，基于Spark内存计算的优势尤为明显。&lt;/p&gt;
-&lt;p&gt;（6）Tachyon&lt;br&gt;Tachyon是一个分布式内存文件系统，可以理解为内存中的HDFS。为了提供更高的性能，将数据存储剥离Java Heap。用户可以基于Tachyon实现RDD或者文件的跨应用共享，并提供高容错机制，保证数据的可靠性。&lt;/p&gt;
-&lt;p&gt;（7）Mesos&lt;br&gt;Mesos是一个资源管理框架，提供类似于YARN的功能。用户可以在其中插件式地运行Spark、MapReduce、Tez等计算框架的任务。Mesos会对资源和任务进行隔离，并实现高效的资源任务调度。&lt;/p&gt;
-&lt;p&gt;（8）BlinkDB&lt;br&gt;BlinkDB是一个用于在海量数据上进行交互式 SQL 的近似查询引擎。它允许用户通过在查询准确性和查询响应时间之间做出权衡，完成近似查询。其数据的精度被控制在允许的误差范围内。为了达到这个目标，BlinkDB的核心思想是：通过一个自适应优化框架，随着时间的推移，从原始数据建立并维护一组多维样本；通过一个动态样本选择策略，选择一个适当大小的示例，然后基于查询的准确性和响应时间满足用户查询需求。&lt;/p&gt;
-&lt;h2 id=&quot;1-4-Spark架构&quot;&gt;&lt;a href=&quot;#1-4-Spark架构&quot; class=&quot;headerlink&quot; title=&quot;1.4.Spark架构&quot;&gt;&lt;/a&gt;1.4.Spark架构&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://www.2cto.com/uploadfile/2014/1203/20141203022320916.png&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;br&gt;Spark集群成功部署了之后，需要在主节点和从节点分别启动Master进程和Worker进程。Client客户机将计算任务提交到主节点中的master进程，master进程找到一个worker启动Driver，Driver向Master或ClusterManager申请资源，之后将任务转化成RDD DAG，DAGScheduler将RDD DAG转化位Stage的有向无环图图提交给TaskScheduler，再又TaskScheduler提交计算任务给Executor执行。&lt;/p&gt;
-&lt;h1 id=&quot;2-RDD的Transformations操作&quot;&gt;&lt;a href=&quot;#2-RDD的Transformations操作&quot; class=&quot;headerlink&quot; title=&quot;2.RDD的Transformations操作&quot;&gt;&lt;/a&gt;2.RDD的Transformations操作&lt;/h1&gt;&lt;h2 id=&quot;2-1、简介&quot;&gt;&lt;a href=&quot;#2-1、简介&quot; class=&quot;headerlink&quot; title=&quot;2.1、简介&quot;&gt;&lt;/a&gt;2.1、简介&lt;/h2&gt;&lt;p&gt;　　Spark中的核心数据模型是弹性分布式数据集（RDD），而弹性分布式数据集（RDD）是个抽象类，具体的实现是由各个子类实现的。Spark将常用的大数据操作都转换为对RDD的子类操作。&lt;br&gt;　　Transformation操作的对象有两种：Value数据类型，Key-Value数据类型。下面将这两种数据类型的操作列出来：&lt;/p&gt;
-&lt;h2 id=&quot;2-2、Translation操作&quot;&gt;&lt;a href=&quot;#2-2、Translation操作&quot; class=&quot;headerlink&quot; title=&quot;2.2、Translation操作&quot;&gt;&lt;/a&gt;2.2、Translation操作&lt;/h2&gt;&lt;h3 id=&quot;2-1-Value数据类型&quot;&gt;&lt;a href=&quot;#2-1-Value数据类型&quot; class=&quot;headerlink&quot; title=&quot;2.1 Value数据类型&quot;&gt;&lt;/a&gt;2.1 Value数据类型&lt;/h3&gt;&lt;p&gt;map(func)&lt;br&gt;　　将原来RDD中的每个元素通过自定义函数func转换为一个包含新元素的RDD。&lt;/p&gt;
-&lt;p&gt;filter(func)&lt;br&gt;　　对原有RDD中的元素进行过滤，每个元素输入到func函数中，如果func函数返回为true则保留，返回false则丢弃。&lt;/p&gt;
-&lt;p&gt;flatMap(func)&lt;br&gt;　　功能与map相似，但是输出的是一个集合。&lt;/p&gt;
-&lt;p&gt;mapPatitions(func)&lt;br&gt;　　功能与map相似，但是mapPatitions获取的是每个分区的迭代器。&lt;/p&gt;
-&lt;p&gt;mapPationsWithIndex(func)&lt;br&gt;　　功能与mapPatitions相似，但是func函数要返回一个表示分区index的interger类型的值&lt;/p&gt;
-&lt;p&gt;sanple(withReplacement, fraction, seed)&lt;br&gt;　　对数据集中的数据进行采样，想成一个新的RDD&lt;/p&gt;
-&lt;p&gt;union(otherDateset)&lt;br&gt;　　将两个数据类型相同的RDD合并成一个RDD&lt;/p&gt;
-&lt;p&gt;intersection(oterDataset)&lt;br&gt;　　返回一个包含两个数据类型相同的RDD的交集的全新的RDD&lt;/p&gt;
-&lt;p&gt;distinct([numTasks])&lt;br&gt;　　对RDD中的元素进行去重操作&lt;/p&gt;
-&lt;p&gt;cartesian(otherDataset)&lt;br&gt;　　对两个RDD内的所有元素进行笛卡尔积操作。&lt;/p&gt;
-&lt;p&gt;pip(command, [envVars])&lt;br&gt; 　　对RDD的每个分区通过脚本命令，RDD元素可以写入进程的stdin和行输出到标准输出作为字符串返回。&lt;/p&gt;
-&lt;p&gt; coalesce(numPartitions)&lt;br&gt;  　　设置RDD数据的分区数，可以让数据集的操作更加高校。&lt;/p&gt;
-&lt;p&gt;  repartition(numPartitions)&lt;br&gt;  　　修改RDD数据的分区数&lt;/p&gt;
-&lt;p&gt;  repartionAndSortWithinPartitions(pationer)&lt;br&gt;  　　重新设置RDD分区，根据keys值排序，这个比repartition更加高效。&lt;/p&gt;
-&lt;h3 id=&quot;2-2-Key-value类型&quot;&gt;&lt;a href=&quot;#2-2-Key-value类型&quot; class=&quot;headerlink&quot; title=&quot;2.2 Key-value类型&quot;&gt;&lt;/a&gt;2.2 Key-value类型&lt;/h3&gt;&lt;p&gt;groupByKey([numTasks])&lt;br&gt;　　返回一个（k, iterable&lt;v&gt;)键值对&lt;br&gt;　　注意:如果你分组是为了执行一个聚合(比如求和或平均),使用reduceByKey或aggregateByKey将有更好的性能。&lt;br&gt;　　注意:默认情况下,并行输出的分区数取决于父抽样的分区的数量。您可以通过一个可选的numTasks参数设置不同数量的任务。&lt;br&gt;　　&lt;br&gt;reduceByKey(func, [numTasks])&lt;br&gt;　　对k相同的键值对中的值调用func函数，合并产生一个值&lt;br&gt;　　&lt;br&gt;aggregateByKey(zeroValue)(seqOp, combOp, [numTasks])&lt;br&gt;　　当对(K、V)的数据集对调用函数时,返回一个数据集的(K,U)对每个键值聚合使用给定的组合功能和一个中立的“0”值。允许产生的聚合值类型不同于输入值类型,同时避免不必要的配置。而在groupByKey中,需要配置第二个参数。&lt;br&gt;　　&lt;br&gt;sortedByKey([ascending], [numTasks])&lt;br&gt;　　返回一个按照k值进行排序的键值对RDD。&lt;/v&gt;&lt;/p&gt;
-&lt;p&gt;cogroup(oterDataset, [numTasks])&lt;br&gt;　　对两个RDD进行协同划分，每个RDD中形同Key的元素分别聚合为一个集合，并且返回两个RDD中对应key中的元素集合的迭代器。&lt;/p&gt;
-&lt;p&gt;join(otherDataset, [numTasks])&lt;br&gt;　　对俩个需要连接的RDD进行cogroup函数操作，cogroup原理如上，cogroup操作后形成的新的RDD，对每个Key下的元素进行笛卡尔积操作，返回结果在展平。&lt;/p&gt;
-&lt;h1 id=&quot;3-RDD的action操作&quot;&gt;&lt;a href=&quot;#3-RDD的action操作&quot; class=&quot;headerlink&quot; title=&quot;3.RDD的action操作&quot;&gt;&lt;/a&gt;3.RDD的action操作&lt;/h1&gt;&lt;p&gt;本质上，Action通过SparkContext执行提交作业的runjob操作，触发了RDD DAG的执行。&lt;/p&gt;
-&lt;p&gt;reduce(func)&lt;br&gt;　　 将集合中的元素通过func函数合并起来，该函数应该是可交换，结合的，这样才能应用到并行计算中。&lt;/p&gt;
-&lt;p&gt;collect()&lt;br&gt;　　将数据中的元素返回为一个数组，这个函数通常用在filter等其他操作后。&lt;/p&gt;
-&lt;p&gt;count()&lt;br&gt;　　返回数据集中元素的个数&lt;/p&gt;
-&lt;p&gt;first()&lt;br&gt;　　返回数据集中的第一个元素&lt;/p&gt;
-&lt;p&gt;take(n)&lt;br&gt;　　返回数据集中前n个元素&lt;/p&gt;
-&lt;p&gt;takeSample(withReplacement, num, [seed])&lt;br&gt;　　按设定的采样个数进行采样&lt;/p&gt;
-&lt;p&gt;takeOrdered(n, [ordering])&lt;br&gt;　　返回前N个RDD中元素的自然顺序或自定义比较器&lt;/p&gt;
-&lt;p&gt;saveAsTextFile(path)&lt;br&gt;　　将数据集中的元素存储起来，存在给定的目录中的本地文件系统，或任何其他的Hadoop HDFS 支持的文件系统。Spark可以调用toString将每个元素以每行的形式存在文本中&lt;/p&gt;
-&lt;p&gt;savaAsSequenceFile(path)&lt;br&gt;　　将数据集中的RDD以Hadoop SequenceFile的形式存在给定路径本地的文件系统，HDFS或者其他任何Hadoop支持的文件系统中。这个对读取存在Hadoop中健值对十分有用。&lt;/p&gt;
-&lt;p&gt;saveAsObjectFile(path)&lt;br&gt;　　使用java序列化将数据集中的元素存储为一个简单的格式，我们可以通过SparkContext.objectFile()进行读取。&lt;/p&gt;
-&lt;p&gt;countBykey()&lt;br&gt;　　返回具有不同健的键值对的个数&lt;/p&gt;
-&lt;p&gt;foreach(func)&lt;br&gt;　　对RDD中的每个元素应用func函数，不返回RDD和Arry，而是返回Uint。&lt;/p&gt;
-&lt;p&gt;#参考书籍&lt;br&gt;《Spark大数据处理：技术、应用与性能优化》&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;1、spark简介&quot;&gt;&lt;a href=&quot;#1、spark简介&quot; class=&quot;headerlink&quot; title=&quot;1、spark简介&quot;&gt;&lt;/a&gt;1、spark简介&lt;/h1&gt;&lt;h2 id=&quot;1-1-这是什么？&quot;&gt;&lt;a href=&quot;#1-1-这是什么？&quot; class=&quot;headerlink&quot; title=&quot;1.1 这是什么？&quot;&gt;&lt;/a&gt;1.1 这是什么？&lt;/h2&gt;&lt;p&gt;  &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;Spark于2009年诞生于加州大学伯克利分校AMPLab（出身高贵呀）。目前，已经成为Apache软件基金会旗下的顶级项目（后妈同样很强）。Spark是基于内存计算的大数据并行计算架构。这里面有两个概念：内存计算，并行计算架构。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;内存计算，把数据放在内存中，运算的时候从内存中读取数据，而不是从硬盘中读取数据。&lt;/li&gt;
-&lt;li&gt;并行计算框架，使用多台计算机同时工作解决一件计算任务的框架。&lt;h2 id=&quot;1-2-优势&quot;&gt;&lt;a href=&quot;#1-2-优势&quot; class=&quot;headerlink&quot; title=&quot;1.2.优势&quot;&gt;&lt;/a&gt;1.2.优势&lt;/h2&gt;&lt;/li&gt;
-&lt;li&gt;支持复杂查询。（能干的活多）&lt;/li&gt;
-&lt;li&gt;轻量级快速处理。（代码少，速度快）&lt;/li&gt;
-&lt;li&gt;易于使用。支持Scala.java.python编写程序，最新版的Spark1.4还支持R语言。&lt;/li&gt;
-&lt;li&gt;于HDFS等存储层兼容。（Spark只负责计算，存储使用其他存储层）&lt;/li&gt;
-&lt;li&gt;社区活跃程度高。（很多人支持，不怕倒下）
-    
-    </summary>
-    
-      <category term="spark" scheme="http://yoursite.com/categories/spark/"/>
-    
-    
-      <category term="spark" scheme="http://yoursite.com/tags/spark/"/>
-    
-      <category term="大数据" scheme="http://yoursite.com/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
   </entry>
   
