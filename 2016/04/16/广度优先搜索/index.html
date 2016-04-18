@@ -59,17 +59,17 @@
 
 
 
-<meta name="description" content="问题：Due to recent rains, water has pooled in various places in Farmer John’s field, which is represented by a rectangle of N x M (1 &amp;lt;= N &amp;lt;= 100; 1 &amp;lt;= M &amp;lt;= 100) squares. Each square contains">
+<meta name="description" content="问题：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="POJ-2386 Lake Counting 挑战程序设计竞赛">
-<meta property="og:url" content="http://yoursite.com/2016/04/15/深度优先/index.html">
+<meta property="og:title" content="广度优先搜索">
+<meta property="og:url" content="http://yoursite.com/2016/04/16/广度优先搜索/index.html">
 <meta property="og:site_name" content="WMind Blog">
-<meta property="og:description" content="问题：Due to recent rains, water has pooled in various places in Farmer John’s field, which is represented by a rectangle of N x M (1 &amp;lt;= N &amp;lt;= 100; 1 &amp;lt;= M &amp;lt;= 100) squares. Each square contains">
+<meta property="og:description" content="问题：">
 <meta property="og:image" content="http://img10.360buyimg.com/n0/jfs/t175/292/1098775324/43924/75672b06/53a31fa5N1a0d129c.jpg">
-<meta property="og:updated_time" content="2016-04-15T22:29:05.427Z">
+<meta property="og:updated_time" content="2016-04-18T01:22:51.634Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="POJ-2386 Lake Counting 挑战程序设计竞赛">
-<meta name="twitter:description" content="问题：Due to recent rains, water has pooled in various places in Farmer John’s field, which is represented by a rectangle of N x M (1 &amp;lt;= N &amp;lt;= 100; 1 &amp;lt;= M &amp;lt;= 100) squares. Each square contains">
+<meta name="twitter:title" content="广度优先搜索">
+<meta name="twitter:description" content="问题：">
 <meta name="twitter:image" content="http://img10.360buyimg.com/n0/jfs/t175/292/1098775324/43924/75672b06/53a31fa5N1a0d129c.jpg">
 
 
@@ -88,7 +88,7 @@
   };
 </script>
 
-  <title> POJ-2386 Lake Counting 挑战程序设计竞赛 | WMind Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 广度优先搜索 | WMind Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -218,7 +218,7 @@
             
             
               
-                POJ-2386 Lake Counting 挑战程序设计竞赛
+                广度优先搜索
               
             
           </h1>
@@ -230,8 +230,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-15T07:39:12+08:00" content="2016-04-15">
-              2016-04-15
+            <time itemprop="dateCreated" datetime="2016-04-16T07:26:58+08:00" content="2016-04-16">
+              2016-04-16
             </time>
           </span>
 
@@ -260,8 +260,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/15/深度优先/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/15/深度优先/" itemprop="commentsCount"></span>
+                <a href="/2016/04/16/广度优先搜索/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/16/广度优先搜索/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -286,7 +286,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://img10.360buyimg.com/n0/jfs/t175/292/1098775324/43924/75672b06/53a31fa5N1a0d129c.jpg" rel="gallery_cin5b82vo002f0dzkjxbxj53j"
+                 href="http://img10.360buyimg.com/n0/jfs/t175/292/1098775324/43924/75672b06/53a31fa5N1a0d129c.jpg" rel="gallery_cin5b82vd00250dzkcu64l5dm"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://img10.360buyimg.com/n0/jfs/t175/292/1098775324/43924/75672b06/53a31fa5N1a0d129c.jpg" itemprop="contentUrl"/>
               </a>
@@ -299,10 +299,8 @@
       
 
       
-        <h1 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h1><p>Due to recent rains, water has pooled in various places in Farmer John’s field, which is represented by a rectangle of N x M (1 &lt;= N &lt;= 100; 1 &lt;= M &lt;= 100) squares. Each square contains either water (‘W’) or dry land (‘.’). Farmer John would like to figure out how many ponds have formed in his field. A pond is a connected set of squares with water in them, where a square is considered adjacent to all eight of its neighbors. </p>
-<p>Given a diagram of Farmer John’s field, determine how many ponds he has.<br><a id="more"></a></p>
-<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>深度优先搜索（DFS）,查找相邻的W块有多少个。<br>时间复杂度:O(N*M)</p>
-<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_N 100</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> N, M;</span><br><span class="line"><span class="keyword">char</span> field[MAX_N][MAX_N+<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//现在位置（x, y)</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    field[x][y] = <span class="string">'.'</span>;</span><br><span class="line">    <span class="keyword">int</span> nx, ny;</span><br><span class="line">    <span class="comment">//循环遍历8个方向</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">-1</span>; i &lt;= <span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">-1</span>; j &lt;= <span class="number">1</span>; j++)&#123;</span><br><span class="line">            nx = x + i; ny = y + j;</span><br><span class="line">            <span class="keyword">if</span>(nx &gt;=<span class="number">0</span> &amp;&amp; nx &lt; N &amp;&amp; ny &gt;= <span class="number">0</span> &amp;&amp; ny &lt;= M &amp;&amp; field[nx][ny] == <span class="string">'W'</span>) dfs(nx, ny);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i= <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; M ; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(field[i][j] == <span class="string">'W'</span>)&#123;</span><br><span class="line">                dfs(i, j);</span><br><span class="line">                res++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, res);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;N, &amp;M);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; N;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; M; j++)&#123;</span><br><span class="line">          <span class="comment">//  scanf("%c ", &amp;field[i][j]);</span></span><br><span class="line">           <span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; field[i][j];</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; N;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; M; j++)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%c "</span>, field[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    solve();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>问题：<br><img src="http://i2.piimg.com/e204beb4368756f2.png" alt=""><br><a id="more"></a><br>思路：<br>广度优先搜索，找到最短路径。<br>时间复杂度O(n^2)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_N 100</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_M 100</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">1000000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">std</span>::pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; P;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> maze[MAX_N][MAX_M+<span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> N, M;</span><br><span class="line"><span class="keyword">int</span> sx, sy;</span><br><span class="line"><span class="keyword">int</span> gx, gy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> d[MAX_N][MAX_M];</span><br><span class="line"><span class="comment">//四个方向上的移动向量</span></span><br><span class="line"><span class="keyword">int</span> dx[<span class="number">4</span>] = &#123;<span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">0</span>&#125;, dy[<span class="number">4</span>] = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bfs</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; sx&lt;&lt;<span class="string">' '</span> &lt;&lt; sy &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; gx &lt;&lt; <span class="string">' '</span> &lt;&lt; gy &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">queue</span>&lt;P&gt; que;</span><br><span class="line"><span class="comment">//把所有的位置都初始化为INF</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++)&#123;</span><br><span class="line">            d[i][j] = INF;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    que.push(P(sx, sy));</span><br><span class="line">    d[sx][sy] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//不断循环知道队列的长度为0</span></span><br><span class="line"><span class="keyword">while</span>(que.size())&#123;</span><br><span class="line">    P p = que.front();que.pop();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (p.first == gx &amp;&amp; p.second == gy) <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//四个方向的循环</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> nx = p.first + dx[i], ny = p.second + dy[i];</span><br><span class="line"></span><br><span class="line">   <span class="comment">//判断是否可以移动以及是否已经访问过d[nx][ny]!=INF即为已经访问过</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="number">0</span> &lt;= nx &amp;&amp; nx &lt; N &amp;&amp; <span class="number">0</span> &lt;= ny &amp;&amp; ny &lt; M &amp;&amp; maze[nx][ny] != <span class="string">'#'</span> &amp;&amp; d[nx][ny] == INF)&#123;</span><br><span class="line">        <span class="comment">//如果可以移动的话，则加入到队列，并且到该位置的距离确定为到p的距离+1</span></span><br><span class="line">        que.push(P(nx, ny));</span><br><span class="line">        d[nx][ny] = d[p.first][p.second] + <span class="number">1</span>;</span><br><span class="line">           &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">return</span> d[gx][gy];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = bfs();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, res);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> buf;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d\n"</span>, &amp;N, &amp;M);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;N; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++)&#123;</span><br><span class="line">         <span class="comment">//   scanf("%c", &amp;buf);</span></span><br><span class="line">            <span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; buf;</span><br><span class="line">            maze[i][j] = buf;</span><br><span class="line">            <span class="comment">//cout &lt;&lt; buf &lt;&lt; endl;</span></span><br><span class="line">            <span class="keyword">if</span>(buf == <span class="string">'S'</span>)&#123;</span><br><span class="line">                sx = i;</span><br><span class="line">                sy = j;</span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; <span class="string">"start"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(buf == <span class="string">'G'</span>)&#123;</span><br><span class="line">                gx = i;</span><br><span class="line">                gy = j;</span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; <span class="string">"end"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">            &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//scanf("");</span></span><br><span class="line">    &#125;</span><br><span class="line">    solve();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -327,16 +325,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/14/挑战程序设计竞赛-抽签/" rel="next" title="抽签 挑战程序设计竞赛">
-                <i class="fa fa-chevron-left"></i> 抽签 挑战程序设计竞赛
+              <a href="/2016/04/15/深度优先/" rel="next" title="POJ-2386 Lake Counting 挑战程序设计竞赛">
+                <i class="fa fa-chevron-left"></i> POJ-2386 Lake Counting 挑战程序设计竞赛
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/16/广度优先搜索/" rel="prev" title="广度优先搜索">
-                广度优先搜索 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/18/C-推荐书单/" rel="prev" title="C++推荐书单">
+                C++推荐书单 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -363,8 +361,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/15/深度优先/"
-           data-title="POJ-2386 Lake Counting 挑战程序设计竞赛" data-url="http://yoursite.com/2016/04/15/深度优先/">
+      <div class="ds-thread" data-thread-key="2016/04/16/广度优先搜索/"
+           data-title="广度优先搜索" data-url="http://yoursite.com/2016/04/16/广度优先搜索/">
       </div>
     
   </div>
@@ -477,7 +475,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题："><span class="nav-number">1.</span> <span class="nav-text">问题：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路："><span class="nav-number">2.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码："><span class="nav-number">3.</span> <span class="nav-text">代码：</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

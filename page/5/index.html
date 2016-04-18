@@ -218,6 +218,257 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/31/learn-to-detect-partially-overlapping-instance笔记/" itemprop="url">
+                  learn to detect partially overlapping instance笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-31T10:28:03+08:00" content="2016-03-31">
+              2016-03-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/论文笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">论文笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/31/learn-to-detect-partially-overlapping-instance笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/31/learn-to-detect-partially-overlapping-instance笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p><strong>目的</strong>：本文的工作就是找到一副图片中某一类（细胞或人类）的所有实例。这些实例可能部分重叠或聚在一起，目前来说这对传统算法很困难，传统的方法主要是找到单个实例。<br><strong>方法</strong>：找到候选区域，然后优化全局的分类得分来找到这个选择区域，使这个选择区域满足非重叠的约束。本文新贡献是通过引入对象的元组单独的类到检测过程来扩展标准的对象检测。例如我们的检测器可以挑选含有两个或三个对象实例的区域中，而分配这样的区域适当标签。本文表明，使用结构化输出的SVM框架可以找到这个实例的区域。并且使用数构造区域图上的动态规划完成这个模型的推断。此外，这个学习只需要一个弱创新——每个实例用点表示。<br><strong>数据</strong>：荧光显微镜图像和UCSD行人。</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>大多数计算机视觉方法有两个类：</p>
+<ul>
+<li>第一类是基于独立物体识别。这类识别主要基于滑动窗口和Hough变换。这些方法有：<ul>
+<li>近似非最大值抑制[3,8,14]</li>
+<li>随机匹配感兴趣部分或对象模型[9,10,24]</li>
+<li>基于区域检测[2,18,19]</li>
+</ul>
+</li>
+<li>第二类不是检测独立实例，而是基于局部或全局上下文分析和外观描述。这些方法有：<ul>
+<li>图片中物体的总体实值计数[5,12,16,22]</li>
+<li>推测每一个感兴趣区域的局部物体的真实密度[11,15]</li>
+</ul>
+</li>
+</ul>
+<p>低重叠上述方法可以，但是高密度图像性能表现就会差很多。低密度与高密度共存的情况上述两种方法的性能并不好。这就促使我们在这里提出的方法。这个方法是简历载我们区域探测方法的基础之上的[2]。这主要方法的创新点在于能够分析输入图像，检测不同尺寸的对象（大小为1的“群”是一个特殊的情况）。通过对一组弱注释的训练图像进行训练，所提出的方法根据对象木渎的不痛那个学习不同组的大小。因此，与局部密度估计想死，这样可避免试图当它们成簇一起辨别各个对象。又不像局部密度评估，但是，该方法能够判断每个簇的中对象的数量。<br>与我们最初的方法[2]一样，解析过程是根据有效且精确的推理过程，这个过程检测提供一个最大的解析功能的一组非重叠的极值的区域的。学习是在一个结构化的框架，SVM执行和优化（凸上界）计数的损失。我们观察到这样的学习产生了理想的偏向喜欢最详细的解释，例如，选择最小尺寸的群体，只要对象是明显的，因为这种策略往往会提供最高的计算精度。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/29/部分优化算法对比/" itemprop="url">
+                  部分优化算法对比
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-29T22:46:13+08:00" content="2016-03-29">
+              2016-03-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据挖掘/" itemprop="url" rel="index">
+                    <span itemprop="name">数据挖掘</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/29/部分优化算法对比/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/29/部分优化算法对比/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>#部分优化算法对比</p>
+<ul>
+<li>梯度下降法，基于目标函数梯度的，算法的收敛速度是线性的，并且当问题是病态时或者问题规模较大时，收敛速度尤其慢（几乎不适用）；</li>
+<li>坐标下降法，虽然不用计算目标函数的梯度，但是其收敛速度依然很慢，因此它的适用范围也有局限；</li>
+<li>牛顿法，基于目标函数的二次阶导数（海森矩阵，二阶导数矩阵）的，其收敛速度较快，迭代次数较少，尤其是在最优值附件时，收敛速度是二次的。<strong>问题</strong>在于当海森矩阵稠密时，每次迭代的计算量比较大时，不仅计算量大（有时大到不可计算）而且需要的存储空间也多，因此牛顿法载面对海量数据时由于每一步迭代的开销巨大而变得不适用。牛顿法在每次迭代时不恩能够综述保证海森矩阵是正定的，一旦海森矩阵不是正定，优化方向就会“跑偏”，从而使得牛顿法失效，也说明了牛顿法的鲁班性较差
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/29/部分优化算法对比/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/29/my2015/" itemprop="url">
                   2015年总结
                 </a>
@@ -405,7 +656,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://www.2cto.com/uploadfile/2014/1203/20141203021322155.png" rel="gallery_cin0xoez0000nhizkmg1kqxnz"
+                 href="http://www.2cto.com/uploadfile/2014/1203/20141203021322155.png" rel="gallery_cin5b82v0001u0dzkbu2ggnf8"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://www.2cto.com/uploadfile/2014/1203/20141203021322155.png" itemprop="contentUrl"/>
               </a>
@@ -579,238 +830,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/29/test/" itemprop="url">
-                  时间序列完全教程（R）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-29T16:07:51+08:00" content="2016-03-29">
-              2016-03-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/数据挖掘/" itemprop="url" rel="index">
-                    <span itemprop="name">数据挖掘</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/29/test/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/29/test/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>在商业应用中，时间是最重要的因素，能够提升成功率。然而绝大多数公司很难跟上时间的脚步。但是随着技术的发展，出现了很多有效的方法，能够让我们预测未来。不要担心，本文并不会讨论时间机器，讨论的都是很实用的东西。<br>本文将要讨论关于预测的方法。有一种预测是跟时间相关的，而这种处理与时间相关数据的方法叫做<strong>时间序列模型</strong>。这个模型能够在与时间相关的数据中，寻到一些隐藏的信息来辅助决策。<br>当我们处理时序序列数据的时候，时间序列模型是非常有用的模型。大多数公司都是基于时间序列数据来分析第二年的销售量，网站流量，竞争地位和更多的东西。然而很多人并不了解的时间序列分析这个领域。<br>所以，如果你不了解时间序列模型。这篇文章将会想你介绍时间序列模型的处理步骤以及它的相关技术。<br>本文包含的内容如下所示：<br>目录</p>
-<ul>
-<li>1、时间序列模型介绍</li>
-<li>2、使用R语言来探索时间序列数据</li>
-<li>3、介绍ARMA时间序列模型</li>
-<li>4、ARIMA时间序列模型的框架与应用</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/29/test/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/29/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-29T14:55:09+08:00" content="2016-03-29">
-              2016-03-29
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/29/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/29/hello-world/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -851,7 +875,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1030,24 +1054,7 @@
   
     
       <script src="/vendors/ua-parser-js/dist/ua-parser.min.js"></script>
-      <script src="/js/src/hook-duoshuo.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+      <script src="/js/src/hook-duoshuo.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
   
 
