@@ -1,0 +1,892 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="WMind Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/58.jpg?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="简介　　在介绍机器学习之前，我想先列几个关于机器学习的例子：
+
+垃圾邮件检测：根据邮箱中的邮件，识别哪些是垃圾邮件，哪些不是。这样的模型，可以程序帮助归类垃圾邮件和非垃圾邮件。这个例子，我们应该都不陌生。
+信用卡欺诈检测：根据用户一个月内的信用卡交易，识别哪些交易是该用户操作的，哪些不是。这样的决策模型，可以帮助程序退还那些欺诈交易。
+数字识别：根据信封上手写的邮编，识别出每一个手写字符所代表的数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="什么是机器学习">
+<meta property="og:url" content="http://yoursite.com/2016/05/04/什么是机器学习/index.html">
+<meta property="og:site_name" content="WMind Blog">
+<meta property="og:description" content="简介　　在介绍机器学习之前，我想先列几个关于机器学习的例子：
+
+垃圾邮件检测：根据邮箱中的邮件，识别哪些是垃圾邮件，哪些不是。这样的模型，可以程序帮助归类垃圾邮件和非垃圾邮件。这个例子，我们应该都不陌生。
+信用卡欺诈检测：根据用户一个月内的信用卡交易，识别哪些交易是该用户操作的，哪些不是。这样的决策模型，可以帮助程序退还那些欺诈交易。
+数字识别：根据信封上手写的邮编，识别出每一个手写字符所代表的数">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/7cc829d3gw1eebxsvbwnhj20hc0d2jt6.jpg">
+<meta property="og:image" content="http://static.oschina.net/uploads/space/2012/0515/151727_DtZB_260935.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/mw690/7cc829d3gw1ekoj9ozt1xj208c06nq31.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/7cc829d3gw1ekoj9pp0wxj208c069mxc.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/mw690/7cc829d3gw1ekoj9qcia3j208c05kq3b.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/7cc829d3gw1ekoj9r0xldj208c04wgls.jpg">
+<meta property="og:updated_time" content="2016-05-04T12:29:31.530Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="什么是机器学习">
+<meta name="twitter:description" content="简介　　在介绍机器学习之前，我想先列几个关于机器学习的例子：
+
+垃圾邮件检测：根据邮箱中的邮件，识别哪些是垃圾邮件，哪些不是。这样的模型，可以程序帮助归类垃圾邮件和非垃圾邮件。这个例子，我们应该都不陌生。
+信用卡欺诈检测：根据用户一个月内的信用卡交易，识别哪些交易是该用户操作的，哪些不是。这样的决策模型，可以帮助程序退还那些欺诈交易。
+数字识别：根据信封上手写的邮编，识别出每一个手写字符所代表的数">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/7cc829d3gw1eebxsvbwnhj20hc0d2jt6.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 2520238585,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 什么是机器学习 | WMind Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">WMind Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                什么是机器学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-04T20:29:31+08:00" content="2016-05-04">
+              2016-05-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/04/什么是机器学习/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/04/什么是机器学习/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>　　在介绍机器学习之前，我想先列几个关于机器学习的例子：</p>
+<ul>
+<li>垃圾邮件检测：根据邮箱中的邮件，识别哪些是垃圾邮件，哪些不是。这样的模型，可以程序帮助归类垃圾邮件和非垃圾邮件。这个例子，我们应该都不陌生。</li>
+<li>信用卡欺诈检测：根据用户一个月内的信用卡交易，识别哪些交易是该用户操作的，哪些不是。这样的决策模型，可以帮助程序退还那些欺诈交易。</li>
+<li>数字识别：根据信封上手写的邮编，识别出每一个手写字符所代表的数字。这样的模型，可以帮助程序阅读和理解手写邮编，并根据地利位置分类信件。</li>
+<li>语音识别：从一个用户的话语，确定用户提出的具体要求。这样的模型，可以帮助程序能够并尝试自动填充用户需求。带有Siri系统的iPhone就有这种功能。</li>
+<li>人脸识别：根据相册中的众多数码照片，识别出那些包含某一个人的照片。这样的决策模型，可以帮助程序根据人脸管理照片。某些相机或软件，如iPhoto，就有这种功能。<br><img src="http://ww2.sinaimg.cn/large/7cc829d3gw1eebxsvbwnhj20hc0d2jt6.jpg" alt="人脸识别"><a id="more"></a></li>
+<li>产品推荐：根据一个用户的购物记录和冗长的收藏清单，识别出这其中哪些是该用户真正感兴趣，并且愿意购买的产品。这样的决策模型，可以帮助程序为客户提供建议并鼓励产品消费。登录Facebook或GooglePlus，它们就会推荐可能有关联的用户给你。</li>
+<li>医学分析：根据病人的症状和一个匿名的病人资料数据库，预测该病人可能患了什么病。这样的决策模型，可以程序为专业医疗人士提供支持。</li>
+<li>股票交易：根据一支股票现有的和以往的价格波动，判断这支股票是该建仓、持仓还是减仓。这样的决策模型，可以帮助程序为金融分析提供支持。</li>
+<li>客户细分：根据用户在试用期的的行为模式和所有用户过去的行为，识别出哪些用户会转变成该产品的付款用户，哪些不会。这样的决策模型，可以帮助程序进行用户干预，以说服用户早些付款使用或更好的参与产品试用。</li>
+<li>形状鉴定：根据用户在触摸屏幕上的手绘和一个已知的形状资料库，判断用户想描绘的形状。这样的决策模型，可以帮助程序显示该形状的理想版本，以绘制清晰的图像。iPhone应用Instaviz就能做到这样。[1]</li>
+</ul>
+<p><strong>机器学习(Machine Learning, ML)</strong>是一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、算法复杂度理论等多门学科。专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能。它是人工智能的核心，主要使用<strong>归纳、综合而不是演绎</strong>[2]</p>
+<p>关于机器学习的定义有很多，一种经常被引用的英文定义是：A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.[3]</p>
+<p>上面的这个定义如何理解呢？想象一下有一个邮箱过滤程序接受到一封邮件，该程序如何判断这封邮件是不是垃圾邮件呢？首先这封邮件先观察你之前标记过是不是垃圾邮件的邮件，基于这个学习到的经验，该过滤程序为你过滤掉垃圾邮件了。在这个任务中：</p>
+<ul>
+<li>判断邮件是不是垃圾邮件,这个<strong>任务T</strong></li>
+<li>观察到你之前标记过是不是垃圾邮件的邮件，这个是<strong>经验E</strong></li>
+<li>正确分类垃圾邮件与非垃圾邮件的数量，这个是<strong>性能P</strong></li>
+</ul>
+<p><img src="http://static.oschina.net/uploads/space/2012/0515/151727_DtZB_260935.jpg" alt="163邮箱"></p>
+<h1 id="机器学习分类"><a href="#机器学习分类" class="headerlink" title="机器学习分类"></a>机器学习分类</h1><p>从最广义的讲，任何涉及机器学习所用的方法，只要它利用了训练样本的信息，都可以认为运用了学习。实践中和有意义的机器学习都是如此困难，以至于根本无法实现猜测出一个最佳的分类判决。因此大部分的时间都运用与研究学习问题。实现一个机器学习算法设计：给定一般的模型或分类器的形式，利用训练样本去学习或评估模型的未知参数。这里的学习指用某种算法来降低训练样本的分类误差。一大类基于梯度下降的算法，能够调节分类器的参数，使它朝着能够降低误差的方向前进，目前已成为机器学习领域的主流学习算法。[4]<br>在一个机器学习的应用中，根据数据类型的不同，对一个问题的建模有不同的方式。在机器学习或者人工智能领域，人们首先会考虑算法的学习方式。在机器学习领域，有几种主要的学习方式。将算法按照学习方式分类是一个不错的想法，这样可以让人们在建模和算法选择的时候考虑能根据输入数据来选择最合适的算法来获得最好的结果。[5]</p>
+<h2 id="监督式学习"><a href="#监督式学习" class="headerlink" title="监督式学习"></a>监督式学习</h2><center><img src="http://ww4.sinaimg.cn/mw690/7cc829d3gw1ekoj9ozt1xj208c06nq31.jpg" alt=""></center>
+
+<p>在监督式学习下，输入数据被称为“训练数据”，每组训练数据有一个明确的标识或结果，如对防垃圾邮件系统中“垃圾邮件”“非垃圾邮件”，对手写数字识别中的“1“，”2“，”3“，”4“等。在建立预测模型的时候，监督式学习建立一个学习过程，将预测结果与“训练数据”的实际结果进行比较，不断的调整预测模型，直到模型的预测结果达到一个预期的准确率。监督式学习的常见应用场景如分类问题和回归问题。常见的算法有：逻辑回归，感知机，SVM支持向量机。</p>
+<h2 id="非监督学习"><a href="#非监督学习" class="headerlink" title="非监督学习"></a>非监督学习</h2><center><img src="http://ww1.sinaimg.cn/mw690/7cc829d3gw1ekoj9pp0wxj208c069mxc.jpg" alt=""></center>
+
+<p>在非监督式学习中，数据并不被特别标识，学习模型是为了推断出数据的一些内在结构。常见的应用场景包括关联规则的学习以及聚类等。常见算法包括：Apriori算法以及k-Means算法。</p>
+<h2 id="半监督学习"><a href="#半监督学习" class="headerlink" title="半监督学习"></a>半监督学习</h2><center><img src="http://ww3.sinaimg.cn/mw690/7cc829d3gw1ekoj9qcia3j208c05kq3b.jpg" alt=""></center>
+
+<p>在此学习方式下，输入数据部分被标识，部分没有被标识，这种学习模型可以用来进行预测，但是模型首先需要学习数据的内在结构以便合理的组织数据来进行预测。应用场景包括分类和回归，算法包括一些对常用监督式学习算法的延伸，这些算法首先试图对未标识数据进行建模，在此基础上再对标识的数据进行预测。如图论推理算法（Graph Inference）或者拉普拉斯支持向量机（Laplacian SVM.）等。</p>
+<h2 id="强化学习"><a href="#强化学习" class="headerlink" title="强化学习"></a>强化学习</h2><center><img src="http://ww1.sinaimg.cn/mw690/7cc829d3gw1ekoj9r0xldj208c04wgls.jpg" alt=""></center>
+
+<p>在这种学习模式下，输入数据作为对模型的反馈，不像监督模型那样，输入数据仅仅是作为一个检查模型对错的方式，在强化学习下，输入数据直接反馈到模型，模型必须对此立刻作出调整。常见的应用场景包括动态系统以及机器人控制等。常见算法包括Q-Learning以及时间差学习（Temporal difference learning）</p>
+<h1 id="机器学习框架"><a href="#机器学习框架" class="headerlink" title="机器学习框架"></a>机器学习框架</h1><p>在机器学习领域有很<a href="http://" target="_blank" rel="external"></a>多的框架、库以及软件。比较出名的有：C++的opencv, shark等，java中weka、hadoop的mahout、spark的mllib，matlab中的LibSVM、caffe，python的scikit-learn、NLTK、theano、brain、caffe等。<a href="https://github.com/josephmisiti/awesome-machine-learning" target="_blank" rel="external">机器学习框架、库与软件列表</a></p>
+<h1 id="目录（持续更新）"><a href="#目录（持续更新）" class="headerlink" title="目录（持续更新）"></a>目录（持续更新）</h1><ul>
+<li>基础知识  <!--* 概率论
+  * 模型评估与选择
+  * 维灾难
+  * 决策论
+  * 信息论--></li>
+<li>概率分布  <!--* 二项式分布
+  * 多项式分布
+  * 高斯分布
+  * 指数分布族
+  * 非常数分布--></li>
+<li>回归<ul>
+<li>CART：分类和回归树算法</li>
+<li>SVR支持向量回归</li>
+</ul>
+</li>
+<li>分类<ul>
+<li><a href="http://blog.csdn.net/earl211/article/details/48974865" target="_blank" rel="external">感知机</a></li>
+<li>逻辑回归<ul>
+<li><a href="/2016/04/08/逻辑斯蒂（Logistic-回归/#more">逻辑回归</a></li>
+<li><a href="/2016/04/09/logistic实现/">逻辑回归实现</a></li>
+<li><a href="/2016/04/09/scikit-learn中的逻辑回归/">scikit-learn中的逻辑回归</a></li>
+</ul>
+</li>
+<li>分类决策数算法C4.5</li>
+<li>最近邻分类</li>
+<li>朴素贝叶斯算法</li>
+<li>CART：分类和回归树算法</li>
+<li>Ada Boost迭代算法</li>
+<li>支持向量机</li>
+<li>图模型</li>
+</ul>
+</li>
+<li>聚类<ul>
+<li>k均值聚类</li>
+</ul>
+</li>
+<li>时间序列<ul>
+<li><a href="/2016/03/29/test/">时间序列完全教程（R）</a></li>
+<li>HMM隐马尔科夫模型</li>
+</ul>
+</li>
+<li>降维<ul>
+<li><a href="/2016/04/08/LDA浅显理解/">LDA浅显理解</a></li>
+</ul>
+</li>
+<li>其他算法<ul>
+<li>最大期望（EM）算法</li>
+<li>Apriori算法</li>
+</ul>
+</li>
+<li>最优化算法<ul>
+<li><a href="/2016/04/14/挑战程序设计竞赛-抽签/">梯度下降法</a></li>
+</ul>
+</li>
+</ul>
+<p>#参考资料<br>[1] <a href="http://blog.jobbole.com/62334" target="_blank" rel="external">机器学习十个实例</a><br>[2] <a href="http://baike.baidu.com/link?url=yeJM3HqBaKfzroNnRkaFt2Uya85p822Ct2Ke6DSQQtono8-JJdfB9iBiiz3uc35WfwuN5vT2FwQgFga4eP6onq" target="_blank" rel="external">百度百科</a><br>[3] <a href="https://www.coursera.org/learn/machine-learning" target="_blank" rel="external">机器学习</a><br>[4] 模式分类<br>[5] <a href="http://blog.jobbole.com/77620/" target="_blank" rel="external">机器学习常见分类</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/04/opencv基本绘图/" rel="next" title="opencv基本绘图">
+                <i class="fa fa-chevron-left"></i> opencv基本绘图
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/04/opencv之HighGUI/" rel="prev" title="opencv之HighGUI">
+                opencv之HighGUI <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/04/什么是机器学习/"
+           data-title="什么是机器学习" data-url="http://yoursite.com/2016/05/04/什么是机器学习/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/58.jpg"
+               alt="Allen Wolf" />
+          <p class="site-author-name" itemprop="name">Allen Wolf</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/allensummer" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#机器学习分类"><span class="nav-number">2.</span> <span class="nav-text">机器学习分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#监督式学习"><span class="nav-number">2.1.</span> <span class="nav-text">监督式学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非监督学习"><span class="nav-number">2.2.</span> <span class="nav-text">非监督学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#半监督学习"><span class="nav-number">2.3.</span> <span class="nav-text">半监督学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强化学习"><span class="nav-number">2.4.</span> <span class="nav-text">强化学习</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#机器学习框架"><span class="nav-number">3.</span> <span class="nav-text">机器学习框架</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#目录（持续更新）"><span class="nav-number">4.</span> <span class="nav-text">目录（持续更新）</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Allen Wolf</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"allensummer"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js"></script>
+      <script src="/js/src/hook-duoshuo.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

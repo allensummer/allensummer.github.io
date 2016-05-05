@@ -1,0 +1,1077 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="c++,opencv,机器视觉," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="WMind Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/58.jpg?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="目录
+基本数据类型
+DataType
+二维点坐标
+三维点坐标
+尺寸
+矩形区域
+Matx小矩阵
+vec短向量
+Scalar_四维向量
+Range
+Mat矩阵
+
+
+IplImage, CvMat与Mat
+IplImage
+CvMat
+Mat
+CvMat, Mat, IplImage之间的互相转换
+
+
+ROI和widthStep
+ROI
+widthStep">
+<meta property="og:type" content="article">
+<meta property="og:title" content="opencv的基本数据结构">
+<meta property="og:url" content="http://yoursite.com/2016/05/04/opencv的基本数据结构/index.html">
+<meta property="og:site_name" content="WMind Blog">
+<meta property="og:description" content="目录
+基本数据类型
+DataType
+二维点坐标
+三维点坐标
+尺寸
+矩形区域
+Matx小矩阵
+vec短向量
+Scalar_四维向量
+Range
+Mat矩阵
+
+
+IplImage, CvMat与Mat
+IplImage
+CvMat
+Mat
+CvMat, Mat, IplImage之间的互相转换
+
+
+ROI和widthStep
+ROI
+widthStep">
+<meta property="og:image" content="http://pic.baike.soso.com/p/20140221/bki-20140221032221-753276011.jpg">
+<meta property="og:updated_time" content="2016-05-04T11:51:45.806Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="opencv的基本数据结构">
+<meta name="twitter:description" content="目录
+基本数据类型
+DataType
+二维点坐标
+三维点坐标
+尺寸
+矩形区域
+Matx小矩阵
+vec短向量
+Scalar_四维向量
+Range
+Mat矩阵
+
+
+IplImage, CvMat与Mat
+IplImage
+CvMat
+Mat
+CvMat, Mat, IplImage之间的互相转换
+
+
+ROI和widthStep
+ROI
+widthStep">
+<meta name="twitter:image" content="http://pic.baike.soso.com/p/20140221/bki-20140221032221-753276011.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 2520238585,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> opencv的基本数据结构 | WMind Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">WMind Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                opencv的基本数据结构
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-04T18:15:28+08:00" content="2016-05-04">
+              2016-05-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/opencv/" itemprop="url" rel="index">
+                    <span itemprop="name">opencv</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/04/opencv的基本数据结构/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/04/opencv的基本数据结构/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+          
+          
+            <div class="post-gallery-row">
+              <a class="post-gallery-img fancybox"
+                 href="http://pic.baike.soso.com/p/20140221/bki-20140221032221-753276011.jpg" rel="gallery_cintp9jzv0014jwzkue56n3my"
+                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
+                <img src="http://pic.baike.soso.com/p/20140221/bki-20140221032221-753276011.jpg" itemprop="contentUrl"/>
+              </a>
+            
+          
+
+          
+          </div>
+        </div>
+      
+
+      
+        <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
+<li>基本数据类型<ul>
+<li>DataType</li>
+<li>二维点坐标</li>
+<li>三维点坐标</li>
+<li>尺寸</li>
+<li>矩形区域</li>
+<li>Matx小矩阵</li>
+<li>vec短向量</li>
+<li>Scalar_四维向量</li>
+<li>Range</li>
+<li>Mat矩阵</li>
+</ul>
+</li>
+<li>IplImage, CvMat与Mat<ul>
+<li>IplImage</li>
+<li>CvMat</li>
+<li>Mat</li>
+<li>CvMat, Mat, IplImage之间的互相转换</li>
+</ul>
+</li>
+<li>ROI和widthStep<ul>
+<li>ROI</li>
+<li>widthStep</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<h1 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h1><h2 id="DataType"><a href="#DataType" class="headerlink" title="DataType"></a>DataType</h2><p><strong>DataType</strong> : 将C++数据类型转换为对应的opencv数据类型</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> &#123; CV_8U=<span class="number">0</span>, CV_8S=<span class="number">1</span>, CV_16U=<span class="number">2</span>, CV_16S=<span class="number">3</span>, CV_32S=<span class="number">4</span>, CV_32F=<span class="number">5</span>, CV_64F=<span class="number">6</span> &#125;;</span><br><span class="line"><span class="comment">// allocates a 30x40 floating-point matrix  // CV_32F</span></span><br><span class="line"><span class="function">Mat <span class="title">A</span><span class="params">(<span class="number">30</span>, <span class="number">40</span>, DataType&lt;<span class="keyword">float</span>&gt;::type)</span></span>;</span><br><span class="line">Mat B = Mat_&lt;<span class="built_in">std</span>::<span class="keyword">complex</span>&lt;<span class="keyword">double</span>&gt; &gt;(<span class="number">3</span>, <span class="number">3</span>);</span><br><span class="line"><span class="comment">// the statement below will print 6, 2 /*, that is depth == CV_64F, channels == 2*/  CV_64FC2</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; B.depth() &lt;&lt; <span class="string">", "</span> &lt;&lt; B.channels() &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="二维点坐标"><a href="#二维点坐标" class="headerlink" title="二维点坐标"></a>二维点坐标</h2><p>Point_  二维点坐标(x,y)</p>
+<pre><code>typedef Point_&lt;int&gt; Point2i;
+typedef Point2i Point;
+typedef Point_&lt;float&gt; Point2f;
+typedef Point_&lt;double&gt; Point2d;
+</code></pre><h2 id="三维点坐标"><a href="#三维点坐标" class="headerlink" title="三维点坐标"></a>三维点坐标</h2><p>Point3_ 3维点坐标(x,y,z)</p>
+<pre><code>typedef Point3_&lt;int&gt; Point3i;
+typedef Point3_&lt;float&gt; Point3f;
+typedef Point3_&lt;double&gt; Point3d;
+</code></pre><h2 id="尺寸"><a href="#尺寸" class="headerlink" title="尺寸"></a>尺寸</h2><p>Size_  尺寸(width, height)</p>
+<pre><code>typedef Size_&lt;int&gt; Size2i;
+typedef Size2i Size;
+typedef Size_&lt;float&gt; Size2f;
+</code></pre><h2 id="矩形区域"><a href="#矩形区域" class="headerlink" title="矩形区域"></a>矩形区域</h2><p>Rect_  矩形区域(x,y,width,height) ，(x,y)左上角坐标, 范围[x, x + width), [y, y + height)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rect = rect ± point //矩形偏移(shifting a rectangle by a certain offset)</span><br><span class="line">rect = rect ± size //改变大小(expanding or shrinking a rectangle by a certain amount)</span><br><span class="line">rect += point, rect -= point, rect += size, rect -= size //(augmenting operations)</span><br><span class="line">rect = rect1 &amp; rect2 //矩形交集(rectangle intersection)</span><br><span class="line">rect = rect1 | rect2 //包含r1r2的最小矩形(minimum area rectangle containing rect2 and rect3 )</span><br><span class="line">rect &amp;= rect1, rect |= rect1 //(and the corresponding augmenting operations)</span><br><span class="line">rect == rect1, rect != rect1 //(rectangle comparison)</span><br></pre></td></tr></table></figure>
+<p>RotatedRect  旋转矩形</p>
+<pre><code>RotatedRect::RotatedRect(const Point2f&amp; center, const Size2f&amp; size, float angle)// 中心点（不是左上角坐标），尺寸，旋转角度
+RotatedRect rRect = RotatedRect(Point2f(100,100), Size2f(100,50), 30);
+</code></pre><h2 id="Matx小矩阵"><a href="#Matx小矩阵" class="headerlink" title="Matx小矩阵"></a>Matx小矩阵</h2><p>Matx 小矩阵</p>
+<pre><code>template&lt;typename_Tp, int m, int n&gt; class Matx {...};
+typedef Matx&lt;float, 1, 2&gt; Matx12f;
+typedef Matx&lt;double, 1, 2&gt; Matx12d;
+...
+typedef Matx&lt;float, 1, 6&gt; Matx16f;
+typedef Matx&lt;double, 1, 6&gt; Matx16d;
+typedef Matx&lt;float, 2, 1&gt; Matx21f;
+typedef Matx&lt;double, 2, 1&gt; Matx21d;
+...
+typedef Matx&lt;float, 6, 1&gt; Matx61f;
+typedef Matx&lt;double, 6, 1&gt; Matx61d;
+typedef Matx&lt;float, 2, 2&gt; Matx22f;
+typedef Matx&lt;double, 2, 2&gt; Matx22d;
+...
+typedef Matx&lt;float, 6, 6&gt; Matx66f;
+typedef Matx&lt;double, 6, 6&gt; Matx66d;
+
+Matx33f m(1, 2, 3,
+4, 5, 6,
+7, 8, 9);
+cout &lt;&lt; sum(Mat(m*m.t())) &lt;&lt; endl;//Matx转化为Mat
+</code></pre><h2 id="vec短向量"><a href="#vec短向量" class="headerlink" title="vec短向量"></a>vec短向量</h2><p>Vec  短向量，基于Matx</p>
+<pre><code>template&lt;typename_Tp, int n&gt; class Vec : public Matx&lt;_Tp, n, 1&gt; {...};
+typedef Vec&lt;uchar, 2&gt; Vec2b;
+typedef Vec&lt;uchar, 3&gt; Vec3b;
+typedef Vec&lt;uchar, 4&gt; Vec4b;
+typedef Vec&lt;short, 2&gt; Vec2s;
+typedef Vec&lt;short, 3&gt; Vec3s;
+typedef Vec&lt;short, 4&gt; Vec4s;
+typedef Vec&lt;int, 2&gt; Vec2i;
+typedef Vec&lt;int, 3&gt; Vec3i;
+typedef Vec&lt;int, 4&gt; Vec4i;
+typedef Vec&lt;float, 2&gt; Vec2f;
+typedef Vec&lt;float, 3&gt; Vec3f;
+typedef Vec&lt;float, 4&gt; Vec4f;
+typedef Vec&lt;float, 6&gt; Vec6f;
+typedef Vec&lt;double, 2&gt; Vec2d;
+typedef Vec&lt;double, 3&gt; Vec3d;
+typedef Vec&lt;double, 4&gt; Vec4d;
+typedef Vec&lt;double, 6&gt; Vec6d;
+</code></pre><h2 id="Scalar-四维向量"><a href="#Scalar-四维向量" class="headerlink" title="Scalar_四维向量"></a>Scalar_四维向量</h2><p>Scalar_  四维向量</p>
+<pre><code>template&lt;typename_Tp&gt; class Scalar_: public Vec&lt;_Tp, 4&gt; { ... };
+typedef Scalar_&lt;double&gt; Scalar;
+</code></pre><h2 id="Range"><a href="#Range" class="headerlink" title="Range"></a>Range</h2><p>Range 范围，（start, end）</p>
+<pre><code>Mat m(300,300,CV32F);
+Mat part = m(Range::all(), Range(20, 200)); // 相当于matlab的m(:, 20 : 199)
+</code></pre><p>对于自定义的函数，可以用如下方法来支持Range<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">void my_function(..., const Range&amp; r, ....)</span><br><span class="line">&#123;</span><br><span class="line">　　if(r == Range::all()) &#123; </span><br><span class="line">　　// process all the data, 使用全部数据</span><br><span class="line">　　&#125;</span><br><span class="line">　　else &#123;</span><br><span class="line">　　// process [r.start, r.end)，根据r中定义, 处理数据 start : end - 1 </span><br><span class="line">　　&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Mat矩阵"><a href="#Mat矩阵" class="headerlink" title="Mat矩阵"></a>Mat矩阵</h2><p>Mat 矩阵结构</p>
+<ul>
+<li>M.data  数据区域的指针</li>
+<li>M.dims  矩阵维度</li>
+<li>M.sizes  维度</li>
+<li>M.elemSize()  每个元素占的字节空间大小，与元素类型相关，如CV_8U</li>
+<li><p>M.step[]  用来计算元素地址， M.step[i] 表示所有比i大的维度所占空间大小</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">M.step[i] &gt;= M.step[i+1]*M.sizes[i+1]; //这里大于是因为数据空间可能有空白</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2-dimensional matrices are stored row-by-row</p>
+</li>
+<li>3-dimensional matrices are stored plane-by-plane<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addr(M(i(0),...,i(M.dims−1))) = M.data + M.step[0] ∗ i(0)+ M.step[1] ∗ i(1)+ ... + M.step[M.dims − 1] ∗ i(M.dims−1)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>创建数组：</p>
+<pre><code>// make a 7x7 complex matrix filled with 1+3j.
+Mat M(7,7,CV_32FC2,Scalar(1,3));
+// and now turn M to a 100x60 15-channel 8-bit matrix.
+// The old content will be deallocated
+M.create(100,60,CV_8UC(15));
+// create a 100x100x100 8-bit array
+int sz[] = {100, 100, 100};
+Mat bigCube(3, sz, CV_8U, Scalar::all(0));
+</code></pre><p>创建特殊矩阵：</p>
+<pre><code>diag
+ones
+zeros 
+eye
+</code></pre><p>属性相关：</p>
+<pre><code>rows
+cols
+begin
+end
+at
+size
+depth
+type
+elemSize
+total
+</code></pre><p>矩阵操作：</p>
+<pre><code>t
+inv
+mul
+cross
+dot
+reshape
+resize
+reserve
+push_back
+pop_back
+赋值相关：
+
+clone
+copyTo
+convertTo
+assignTo
+setTo
+</code></pre><p>InputArray<br>OutputArray</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//Do not explicitly create InputArray, OutputArray instances</span><br><span class="line">void myAffineTransform(InputArray_src, OutputArray_dst, InputArray_m)</span><br><span class="line">&#123;</span><br><span class="line">　　// get Mat headers for input arrays. This is O(1) operation,</span><br><span class="line">　　// unless_src and/or_m are matrix expressions.</span><br><span class="line">　　Mat src =_src.getMat(), m =_m.getMat();</span><br><span class="line">　　CV_Assert( src.type() == CV_32FC2 &amp;&amp; m.type() == CV_32F &amp;&amp; m.size() == Size(3, 2) );</span><br><span class="line">　　// [re]create the output array so that it has the proper size and type.</span><br><span class="line">　　// In case of Mat it calls Mat::create, in case of STL vector it calls vector::resize.</span><br><span class="line">　　_dst.create(src.size(), src.type());</span><br><span class="line">　　Mat dst =_dst.getMat();</span><br><span class="line">　　for( int i = 0; i &lt; src.rows; i++ )</span><br><span class="line">　　for( int j = 0; j &lt; src.cols; j++ )</span><br><span class="line">　　&#123;</span><br><span class="line">　　　　Point2f pt = src.at&lt;Point2f&gt;(i, j);</span><br><span class="line">　　　　dst.at&lt;Point2f&gt;(i, j) = Point2f(m.at&lt;float&gt;(0, 0)*pt.x +</span><br><span class="line">　　　　m.at&lt;float&gt;(0, 1)*pt.y +</span><br><span class="line">　　　　m.at&lt;float&gt;(0, 2),</span><br><span class="line">　　　　m.at&lt;float&gt;(1, 0)*pt.x +</span><br><span class="line">　　　　m.at&lt;float&gt;(1, 1)*pt.y +</span><br><span class="line">　　　　m.at&lt;float&gt;(1, 2));</span><br><span class="line">　　&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>SparseMat 稀疏矩阵</p>
+<p>Algorithm  实现一个算法的框架</p>
+<h1 id="IplImage-CvMat与Mat"><a href="#IplImage-CvMat与Mat" class="headerlink" title="IplImage, CvMat与Mat"></a>IplImage, CvMat与Mat</h1><p>opencv中常见的与图像操作有关的数据容器有Mat，cvMat和IplImage，这三种类型都可以代表和显示图像，但是，Mat类型侧重于计算，数学性较高，openCV对Mat类型的计算也进行了优化。而CvMat和IplImage类型更侧重于“图像”，opencv对其中的图像操作（缩放、单通道提取、图像阈值操作等）进行了优化。在opencv2.0之前，opencv是完全用C实现的，但是，IplImage类型与CvMat类型的关系类似于面向对象中的继承关系。实际上，CvMat之上还有一个更抽象的基类—-CvArr，这在源代码中会常见。如下图<br>!()[<a href="http://img1.imgtn.bdimg.com/it/u=1843122366,167567767&amp;fm=21&amp;gp=0.jpg" target="_blank" rel="external">http://img1.imgtn.bdimg.com/it/u=1843122366,167567767&amp;fm=21&amp;gp=0.jpg</a>]</p>
+<h2 id="IplImage"><a href="#IplImage" class="headerlink" title="IplImage"></a>IplImage</h2><p>opencv中的图像信息头，该结构体定义：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _IplImage </span><br><span class="line">&#123; </span><br><span class="line">    int nSize;    /* IplImage大小 */</span><br><span class="line">    int ID;    /* 版本 (=0)*/</span><br><span class="line">    int nChannels;  /* 大多数OPENCV函数支持1,2,3 或 4 个通道 */ </span><br><span class="line">    int alphaChannel;  /* 被OpenCV忽略 */ </span><br><span class="line">    int depth;   /* 像素的位深度: IPL_DEPTH_8U, IPL_DEPTH_8S, IPL_DEPTH_16U, </span><br><span class="line">                IPL_DEPTH_16S, IPL_DEPTH_32S, IPL_DEPTH_32F and IPL_DEPTH_64F 可支持 */ </span><br><span class="line">    </span><br><span class="line">    char colorModel[4]; /* 被OpenCV忽略 */ </span><br><span class="line">    char channelSeq[4]; /* 被OpenCV忽略 */ </span><br><span class="line">    int dataOrder;      /* 0 - 交叉存取颜色通道, 1 - 分开的颜色通道. cvCreateImage只能创建交叉存取图像 */ </span><br><span class="line">    int origin;     /* 0 - 顶—左结构,1 - 底—左结构 (Windows bitmaps 风格) */ </span><br><span class="line">    int align;     /* 图像行排列 (4 or 8). OpenCV 忽略它，使用 widthStep 代替 */ </span><br><span class="line">    </span><br><span class="line">    int width;     /* 图像宽像素数 */ </span><br><span class="line">    int height;    /* 图像高像素数*/ </span><br><span class="line">    </span><br><span class="line">    struct _IplROI *roi;  /* 图像感兴趣区域. 当该值非空只对该区域进行处理 */ </span><br><span class="line">    struct _IplImage *maskROI; /* 在 OpenCV中必须置NULL */ </span><br><span class="line">    void *imageId;  /* 同上*/ </span><br><span class="line">    struct _IplTileInfo *tileInfo;  /*同上*/ </span><br><span class="line">    </span><br><span class="line">    int imageSize;    /* 图像数据大小(在交叉存取格式下imageSize=image-&gt;height*image-&gt;widthStep），单位字节*/ </span><br><span class="line">    char *imageData;    /* 指向排列的图像数据 */ </span><br><span class="line">    int widthStep;     /* 排列的图像行大小，以字节为单位 */ </span><br><span class="line">    int BorderMode[4];     /* 边际结束模式, 被OpenCV忽略 */ </span><br><span class="line">    int BorderConst[4];    /* 同上 */ </span><br><span class="line">    </span><br><span class="line">    char *imageDataOrigin;    /* 指针指向一个不同的图像数据结构（不是必须排列的），是为了纠正图像内存分配准备的 */ </span><br><span class="line">&#125; IplImage;</span><br></pre></td></tr></table></figure>
+<p>重要变量：</p>
+<ul>
+<li>width和height</li>
+<li>depth和nchannals<ul>
+<li>depth 图片是由一个个像素点构成的，所有不同颜色的像素点构成了一副完整的图像，计算机存储图片是以二进制来进行的。1 bit : 用一位来存储，那么这个像素点的取值范围就是0或者1，那么我们看来这幅图片要么是黑色要么是白色。4 bit : 取值范围为 0 到 2 的4次方。8 bit : 来存储像素点的取值范围为 0 到 2 的8次方。以此类推，我们把计算机存储单个像素点所用到的bit为称之为图像的深度.</li>
+<li>我们知道了图片的深度信息，如果是24位的图片他的取值范围为 0 到 2的24次方，这个取值范围是相当的庞大的，那怎么根据图片某像素的深度值来确定那一像素点的颜色呢？我们都知道颜色的三元素 Red, Green, Blue. 如果是深度为24=3*8，我们刚好就可以用第一个8位存储Red值，第二个存储Green值，第三个存储Blue值, 2的8次方刚好是255,所以我们一般看到的RGB值都是(0-255,0-255,0-255)这样的值。如果用rgb来表示图片的颜色值，我们称这样的图片通道为三。</li>
+</ul>
+</li>
+<li>origin和dataOrder<ul>
+<li>origin变量可以有两种取值：IPL_ORIGIN_TL或者IPL_ORIGIN_BL，分别设置坐标原点的位置于图像的左上角或者左下角</li>
+<li>dataOrder中的两个取值：交叉存取颜色通道是颜色数据排列将会是BGRBGR…的交错排列。分开的颜色通道是有几个颜色通道就分几个颜色平面存储。roi是IplROI结构体，该结构体包含了xOffset,yOffset,height,width,coi成员变量，其中xOffset,yOffset是x,y坐标，coi代表channel of interest(感兴趣的通道)，非0的时候才有效。访问图像中的数据元素，分间接存储和直接存储，当图像元素为浮点型时，(uchar <em>) 改为 (float </em>)： </li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*间接存取*/</span></span><br><span class="line">IplImage* img=cvLoadImage(<span class="string">"lena.jpg"</span>, <span class="number">1</span>);</span><br><span class="line">CvScalar s;       <span class="comment">/*sizeof(s) == img-&gt;nChannels*/</span></span><br><span class="line">s=cvGet2D(img,i,j);  <span class="comment">/*get the (i,j) pixel value*/</span></span><br><span class="line">cvSet2D(img,i,j,s);   <span class="comment">/*set the (i,j) pixel value*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*宏操作*/</span></span><br><span class="line">IplImage* img; <span class="comment">//malloc memory by cvLoadImage or cvCreateImage</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> row = <span class="number">0</span>; row &lt;　img-&gt;height; row++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> col = <span class="number">0</span>; col &lt; img-&gt;width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">        b = CV_IMAGE_ELEM(img, UCHAR, row, col * img-&gt;nChannels + <span class="number">0</span>); </span><br><span class="line">        g = CV_IMAGE_ELEM(img, UCHAR, row, col * img-&gt;nChannels + <span class="number">1</span>); </span><br><span class="line">        r = CV_IMAGE_ELEM(img, UCHAR, row, col * img-&gt;nChannels + <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*直接存取*/</span></span><br><span class="line">IplImage* img; <span class="comment">//malloc memory by cvLoadImage or cvCreateImage</span></span><br><span class="line">uchar b, g, r; <span class="comment">// 3 channels</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> row = <span class="number">0</span>; row &lt;　img-&gt;height; row++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> col = <span class="number">0</span>; col &lt; img-&gt;width; col++)</span><br><span class="line">    &#123;</span><br><span class="line">        b = ((uchar *)(img-&gt;imageData + row * img-&gt;widthStep))[col * img-&gt;nChannels + <span class="number">0</span>]; </span><br><span class="line">        g = ((uchar *)(img-&gt;imageData + row * img-&gt;widthStep))[col * img-&gt;nChannels + <span class="number">1</span>]; </span><br><span class="line">        r = ((uchar *)(img-&gt;imageData + row * img-&gt;widthStep))[col * img-&gt;nChannels + <span class="number">2</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 初始化使用IplImage *，是一个指向结构体IplImage的指针：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">IplImage * cvLoadImage(const char * filename, int iscolor CV_DEFAULT(CV_LOAD_IMAGE_COLOR)); //load images from specified image </span><br><span class="line">IplImage * cvCreateImage(CvSize size, int depth, int channels);  //allocate memory</span><br></pre></td></tr></table></figure></p>
+<h2 id="CvMat"><a href="#CvMat" class="headerlink" title="CvMat"></a>CvMat</h2><p>首先，我们需要知道两个事情</p>
+<ul>
+<li>在OpenCV中没有向量(vector)结构。任何时候需要向量，都只需要一个列矩阵(如果需要一个转置或者共轭向量，则需要一个行矩阵)。</li>
+<li>OpenCV矩阵的概念与我们在线性代数课上学习的概念相比，更抽象，尤其是矩阵的元素，并非只能取简单的数值类型，可以是多通道的值。CvMat 的结构： </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">typedef struct CvMat </span><br><span class="line">&#123; </span><br><span class="line">    int type;         </span><br><span class="line">    int step;          /*用字节表示行数据长度*/</span><br><span class="line">    int* refcount;     /*内部访问*/</span><br><span class="line">    union &#123;</span><br><span class="line">        uchar*  ptr;</span><br><span class="line">        short*  s;</span><br><span class="line">        int*    i;</span><br><span class="line">        float*  fl;</span><br><span class="line">        double* db;</span><br><span class="line">    &#125; data;    /*数据指针*/</span><br><span class="line">     union &#123;</span><br><span class="line">        int rows;</span><br><span class="line">        int height;</span><br><span class="line">    &#125;;</span><br><span class="line">    union &#123;</span><br><span class="line">        int cols;   </span><br><span class="line">        int width;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125; CvMat; /*矩阵结构头*/</span><br></pre></td></tr></table></figure>
+<p> 创建CvMat数据：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CvMat * cvCreateMat(int rows, int cols, int type); /*创建矩阵头并分配内存*/</span><br><span class="line">CV_INLine CvMat cvMat((int rows, int cols, int type, void* data CV_DEFAULT); /*用已有数据data初始化矩阵*/</span><br><span class="line">CvMat * cvInitMatHeader(CvMat * mat, int rows, int cols, int type, void * data CV_DEFAULT(NULL), int step CV_DEFAULT(CV_AUTOSTEP)); /*(用已有数据data创建矩阵头)*/</span><br></pre></td></tr></table></figure></p>
+<p> 对矩阵数据进行访问：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">/*间接访问*/</span><br><span class="line">/*访问CV_32F1和CV_64FC1*/</span><br><span class="line">cvmSet( CvMat* mat, int row, int col, double value);</span><br><span class="line">cvmGet( const CvMat* mat, int row, int col );</span><br><span class="line"></span><br><span class="line">/*访问多通道或者其他数据类型: scalar的大小为图像的通道值*/</span><br><span class="line">CvScalar cvGet2D(const CvArr * arr, int idx0, int idx1); //CvArr只作为函数的形参void cvSet2D(CvArr* arr, int idx0, int idx1, CvScalar value);</span><br><span class="line"></span><br><span class="line">/*直接访问: 取决于数组的数据类型*/</span><br><span class="line">/*CV_32FC1*/</span><br><span class="line">CvMat * cvmat = cvCreateMat(4, 4, CV_32FC1);</span><br><span class="line">cvmat-&gt;data.fl[row * cvmat-&gt;cols + col] = (float)3.0;</span><br><span class="line"></span><br><span class="line">/*CV_64FC1*/</span><br><span class="line">CvMat * cvmat = cvCreateMat(4, 4, CV_64FC1);</span><br><span class="line">cvmat-&gt;data.db[row * cvmat-&gt;cols + col] = 3.0;</span><br><span class="line"></span><br><span class="line">/*一般对于单通道*/</span><br><span class="line">CvMat * cvmat = cvCreateMat(4, 4, CV_64FC1);</span><br><span class="line">CV_MAT_ELEM(*cvmat, double, row, col) = 3.0; /*double是根据数组的数据类型传入,这个宏不能处理多通道*/</span><br><span class="line"></span><br><span class="line">/*一般对于多通道*/</span><br><span class="line">if (CV_MAT_DEPTH(cvmat-&gt;type) == CV_32F)</span><br><span class="line">    CV_MAT_ELEM_CN(*cvmat, float, row, col * CV_MAT_CN(cvmat-&gt;type) + ch) = (float)3.0; // ch为通道值</span><br><span class="line">if (CV_MAT_DEPTH(cvmat-&gt;type) == CV_64F)</span><br><span class="line">    CV_MAT_ELEM_CN(*cvmat, double, row, col * CV_MAT_CN(cvmat-&gt;type) + ch) = 3.0; // ch为通道值</span><br><span class="line"></span><br><span class="line">/*多通道数组*/</span><br><span class="line">/*3通道*/</span><br><span class="line">for (int row = 0; row &lt; cvmat-&gt;rows; row++)</span><br><span class="line">&#123;    </span><br><span class="line">    p = cvmat -&gt;data.fl + row * (cvmat-&gt;step / 4);</span><br><span class="line">    for (int col = 0; col &lt; cvmat-&gt;cols; col++)   </span><br><span class="line">    &#123;       </span><br><span class="line">         *p = (float) row + col;       </span><br><span class="line">         *(p+1) = (float)row + col + 1;       </span><br><span class="line">         *(p+2) = (float)row + col + 2;       </span><br><span class="line">         p += 3;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">/*2通道*/</span><br><span class="line">CvMat * vector = cvCreateMat(1,3, CV_32SC2);CV_MAT_ELEM(*vector, CvPoint, 0, 0) = cvPoint(100,100);</span><br><span class="line">/*4通道*/</span><br><span class="line">CvMat * vector = cvCreateMat(1,3, CV_64FC4);CV_MAT_ELEM(*vector, CvScalar, 0, 0) = CvScalar(0, 0, 0, 0);</span><br></pre></td></tr></table></figure></p>
+<p> 复制矩阵操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/*复制矩阵*/</span><br><span class="line">CvMat* M1 = cvCreateMat(4,4,CV_32FC1);</span><br><span class="line">CvMat* M2;</span><br><span class="line">M2=cvCloneMat(M1);</span><br></pre></td></tr></table></figure>
+<h2 id="Mat"><a href="#Mat" class="headerlink" title="Mat"></a>Mat</h2><p>Mat是opencv2.0推出的处理图像的新的数据结构，现在越来越有趋势取代之前的cvMat和lplImage，相比之下Mat最大的好处就是能够更加方便的进行内存管理，不再需要程序员手动管理内存的释放。opencv2.3中提到Mat是一个多维的密集数据数组，可以用来处理向量和矩阵、图像、直方图等等常见的多维数据。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class CV_EXPORTS Mat</span><br><span class="line">&#123;</span><br><span class="line"> </span><br><span class="line">public：</span><br><span class="line"> </span><br><span class="line">/*..很多方法..*/</span><br><span class="line">/*............*/</span><br><span class="line"> </span><br><span class="line">int flags;（Note ：目前还不知道flags做什么用的）</span><br><span class="line">int dims;  /*数据的维数*/</span><br><span class="line">int rows,cols; /*行和列的数量;数组超过2维时为(-1，-1)*/</span><br><span class="line">uchar *data;   /*指向数据*/</span><br><span class="line">int * refcount;   /*指针的引用计数器; 阵列指向用户分配的数据时，指针为 NULL</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">/* 其他成员 */ </span><br><span class="line">...</span><br><span class="line"> </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p> 从以上结构体可以看出Mat也是一个矩阵头，默认不分配内存，只是指向一块内存(注意读写保护)。初始化使用create函数或者Mat构造函数，以下整理自opencv2.3.1 Manual:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Mat(nrows, ncols, type, fillValue]); </span><br><span class="line">M.create(nrows, ncols, type);</span><br><span class="line"></span><br><span class="line">例子：</span><br><span class="line">Mat M(7,7,CV_32FC2,Scalar(1,3)); /*创建复数矩阵1+3j*/</span><br><span class="line">M.create(100, 60, CV_8UC(15)); /*创建15个通道的8bit的矩阵*/</span><br><span class="line"></span><br><span class="line">/*创建100*100*100的8位数组*/</span><br><span class="line">int sz[] = &#123;100, 100, 100&#125;; </span><br><span class="line">Mat bigCube(3, sz, CV_8U, Scalar:all(0));</span><br><span class="line"></span><br><span class="line">/*现成数组*/</span><br><span class="line">double m[3][3] = &#123;&#123;a, b, c&#125;, &#123;d, e, f&#125;, &#123;g, h, i&#125;&#125;;</span><br><span class="line">Mat M = Mat(3, 3, CV_64F, m).inv();</span><br><span class="line"></span><br><span class="line">/*图像数据*/</span><br><span class="line">Mat img(Size(320,240),CV_8UC3); </span><br><span class="line">Mat img(height, width, CV_8UC3, pixels, step); /*const unsigned char* pixels,int width, int height, int step*/</span><br><span class="line"></span><br><span class="line">/*使用现成图像初始化Mat*/</span><br><span class="line">IplImage* img = cvLoadImage(&quot;greatwave.jpg&quot;, 1);</span><br><span class="line">Mat mtx(img,0); // convert IplImage* -&gt; Mat; /*不复制数据,只创建一个数据头*/</span><br></pre></td></tr></table></figure>
+<p>访问Mat的数据元素：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">/*对某行进行访问*/</span><br><span class="line">Mat M;</span><br><span class="line">M.row(3) = M.row(3) + M.row(5) * 3; /*第5行扩大三倍加到第3行*/</span><br><span class="line"></span><br><span class="line">/*对某列进行复制操作*/</span><br><span class="line">Mat M1 = M.col(1);</span><br><span class="line">M.col(7).copyTo(M1); /*第7列复制给第1列*/</span><br><span class="line"></span><br><span class="line">/*对某个元素的访问*/</span><br><span class="line">Mat M;</span><br><span class="line">M.at&lt;double&gt;(i,j); /*double*/</span><br><span class="line">M.at(uchar)(i,j);  /*CV_8UC1*/</span><br><span class="line">Vec3i bgr1 = M.at(Vec3b)(i,j) /*CV_8UC3*/</span><br><span class="line">Vec3s bgr2 = M.at(Vec3s)(i,j) /*CV_8SC3*/</span><br><span class="line">Vec3w bgr3 = M.at(Vec3w)(i,j) /*CV_16UC3*/</span><br><span class="line"></span><br><span class="line">/*遍历整个二维数组*/</span><br><span class="line">double sum = 0.0f;</span><br><span class="line">for(int row = 0; row &lt; M.rows; row++)</span><br><span class="line">&#123;    </span><br><span class="line">    const double * Mi = M.ptr&lt;double&gt;(row); </span><br><span class="line">    for (int col = 0; col &lt; M.cols; col++)      </span><br><span class="line">        sum += std::max(Mi[j], 0.);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*STL iterator*/</span><br><span class="line">double sum=0;</span><br><span class="line">MatConstIterator&lt;double&gt; it = M.begin&lt;double&gt;(), it_end = M.end&lt;double&gt;();</span><br><span class="line">for(; it != it_end; ++it)    </span><br><span class="line">sum += std::max(*it, 0.);</span><br></pre></td></tr></table></figure></p>
+<p>Mat可进行Matlab风格的矩阵操作，如初始化的时候可以用initializers,zeros(), ones(), eye(). 除以上内容之外，Mat还有有3个重要的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mat mat = imread(const String* filename);           // 读取图像</span><br><span class="line">imshow(const string frameName, InputArray mat);  //    显示图像</span><br><span class="line">imwrite (const string&amp; filename, InputArray img);    //储存图像</span><br></pre></td></tr></table></figure>
+<h2 id="CvMat-Mat-IplImage之间的互相转换"><a href="#CvMat-Mat-IplImage之间的互相转换" class="headerlink" title="CvMat, Mat, IplImage之间的互相转换"></a>CvMat, Mat, IplImage之间的互相转换</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">IpIImage -&gt; CvMat</span><br><span class="line">/*cvGetMat*/</span><br><span class="line">CvMat matheader;</span><br><span class="line">CvMat * mat = cvGetMat(img, &amp;matheader);</span><br><span class="line">/*cvConvert*/</span><br><span class="line">CvMat * mat = cvCreateMat(img-&gt;height, img-&gt;width, CV_64FC3);</span><br><span class="line">cvConvert(img, mat)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">IplImage -&gt; Mat</span><br><span class="line">Mat::Mat(const IplImage* img, bool copyData=false);/*default copyData=false,与原来的IplImage共享数据,只是创建一个矩阵头*/</span><br><span class="line">例子：</span><br><span class="line">IplImage* iplImg = cvLoadImage(&quot;greatwave.jpg&quot;, 1);</span><br><span class="line">Mat mtx(iplImg); /* IplImage * -&gt; Mat,共享数据; or : Mat mtx = iplImg;*/</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">Mat -&gt; IplImage</span><br><span class="line">Mat M</span><br><span class="line">IplImage iplimage = M; /*只创建图像头，不复制数据*/</span><br><span class="line"></span><br><span class="line">CvMat -&gt; Mat</span><br><span class="line">Mat::Mat(const CvMat* m, bool copyData=false); /*类似IplImage -&gt; Mat，可选择是否复制数据*/</span><br><span class="line"></span><br><span class="line">Mat -&gt; CvMat</span><br><span class="line">例子(假设Mat类型的imgMat图像数据存在)：</span><br><span class="line">CvMat cvMat = imgMat;/*Mat -&gt; CvMat, 类似转换到IplImage，不复制数据只创建矩阵头</span><br></pre></td></tr></table></figure>
+<h1 id="ROI和widthStep"><a href="#ROI和widthStep" class="headerlink" title="ROI和widthStep"></a>ROI和widthStep</h1><h2 id="ROI"><a href="#ROI" class="headerlink" title="ROI"></a>ROI</h2><p>ROI和widthStep在实际工作中有很重要的作用，能够提高计算机视觉代码的执行速度。允许对图像中的某一小部分进行操作。<br>void cvSetImageROI( IplImage<em> image, CvRect rect);    //设置ROI<br>void cvResetImageROI( IplImage</em> image );            //取消ROI<br>为了解释用法，加载一副图片，并修改一些区域<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cv.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;highgui.h&gt;</span></span></span><br><span class="line"><span class="comment">// ch3_ex3_12 image_name x y width height add# </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span></span><br><span class="line"></span>&#123;</span><br><span class="line"></span><br><span class="line">    IplImage* src;</span><br><span class="line">    cvNamedWindow(<span class="string">"Example3_12_pre"</span>, CV_WINDOW_AUTOSIZE);</span><br><span class="line">    cvNamedWindow(<span class="string">"Example3_12_post"</span>, CV_WINDOW_AUTOSIZE);  </span><br><span class="line">    <span class="keyword">if</span>( argc == <span class="number">7</span> &amp;&amp; ((src=cvLoadImage(argv[<span class="number">1</span>],<span class="number">1</span>)) != <span class="number">0</span> ))</span><br><span class="line">    &#123;</span><br><span class="line">		<span class="keyword">int</span> x = atoi(argv[<span class="number">2</span>]);</span><br><span class="line">		<span class="keyword">int</span> y = atoi(argv[<span class="number">3</span>]);</span><br><span class="line">		<span class="keyword">int</span> width = atoi(argv[<span class="number">4</span>]);</span><br><span class="line">		<span class="keyword">int</span> height = atoi(argv[<span class="number">5</span>]);</span><br><span class="line">		<span class="keyword">int</span> add = atoi(argv[<span class="number">6</span>]);</span><br><span class="line">		cvShowImage( <span class="string">"Example3_12_pre"</span>, src);</span><br><span class="line">		cvSetImageROI(src, cvRect(x,y,width,height));	<span class="comment">//设置ROI区域</span></span><br><span class="line">		cvAddS(src, cvScalar(add),src);					<span class="comment">//增加操作,将图片仍然存放载源图片中</span></span><br><span class="line">		cvResetImageROI(src);							<span class="comment">//取消ROI区域</span></span><br><span class="line">		cvShowImage( <span class="string">"Example3_12_post"</span>,src);</span><br><span class="line">      cvWaitKey();</span><br><span class="line">    &#125;</span><br><span class="line">  cvReleaseImage( &amp;src );</span><br><span class="line">  cvDestroyWindow(<span class="string">"Example3_12_pre"</span>);</span><br><span class="line">  cvDestroyWindow(<span class="string">"Example3_12_post"</span>);   </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我是在ubuntu 下面进行编译的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wq@wq-Lenovo-K4450:~/code/c++/opencv$ g++ imageROI.cpp -o Test `pkg-config --cflags --libs opencv`</span><br><span class="line">wq@wq-Lenovo-K4450:~/code/c++/opencv$ ./Test test.jpg 20 20 500 300 50</span><br><span class="line">init done </span><br><span class="line">opengl support availabl</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://i3.piimg.com/5a05fd244b8e9f47.png" alt=""></p>
+<h2 id="widthStep"><a href="#widthStep" class="headerlink" title="widthStep"></a>widthStep</h2><p>通过巧妙地使用widthStep，可以达到同样的效果。看到下面的代码，可能会想，跟ROI比好麻烦呀，那么为什么需要这个东西呢？如果想要一个图像中的多个子区域处于活动状态，就需要使用这个了，而ROI只能串行处理并且必须不断地设置和重置。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cv.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;highgui.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    IplImage* interest_img;</span><br><span class="line">    CvRect interest_rect;</span><br><span class="line">    <span class="keyword">if</span>( argc == <span class="number">7</span> &amp;&amp; ((interest_img=cvLoadImage(argv[<span class="number">1</span>],<span class="number">1</span>)) != <span class="number">0</span> ))</span><br><span class="line">    &#123;</span><br><span class="line">        interest_rect.x = atoi(argv[<span class="number">2</span>]);</span><br><span class="line">        interest_rect.y = atoi(argv[<span class="number">3</span>]);</span><br><span class="line">        interest_rect.width = atoi(argv[<span class="number">4</span>]);</span><br><span class="line">        interest_rect.height = atoi(argv[<span class="number">5</span>]);</span><br><span class="line">        <span class="keyword">int</span> add = atoi(argv[<span class="number">6</span>]);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//设想要处理图片interest_img和某一个区域interest_rect</span></span><br><span class="line">        </span><br><span class="line">        IplImage *sub_img = cvCreateImageHeader(</span><br><span class="line">          cvSize(</span><br><span class="line">             interest_rect.width, </span><br><span class="line">             interest_rect.height</span><br><span class="line">          ),</span><br><span class="line">          interest_img-&gt;depth, </span><br><span class="line">          interest_img-&gt;nChannels</span><br><span class="line">        );</span><br><span class="line">        </span><br><span class="line">        sub_img-&gt;origin = interest_img-&gt;origin;</span><br><span class="line">        </span><br><span class="line">        sub_img-&gt;widthStep = interest_img-&gt;widthStep;</span><br><span class="line">        </span><br><span class="line">        sub_img-&gt;imageData = interest_img-&gt;imageData + </span><br><span class="line">          interest_rect.y * interest_img-&gt;widthStep  +</span><br><span class="line">          interest_rect.x * interest_img-&gt;nChannels;</span><br><span class="line">        </span><br><span class="line">        cvAddS( sub_img, cvScalar(add), sub_img );</span><br><span class="line">        </span><br><span class="line">        cvReleaseImageHeader(&amp;sub_img);</span><br><span class="line"></span><br><span class="line">        cvNamedWindow( <span class="string">"Roi_Add"</span>, CV_WINDOW_AUTOSIZE );</span><br><span class="line">        cvShowImage( <span class="string">"Roi_Add"</span>, interest_img );</span><br><span class="line">        cvWaitKey();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wq@wq-Lenovo-K4450:~/code/c++/opencv$ g++ widthStep.cpp -o Test `pkg-config --cflags --libs opencv`</span><br><span class="line">wq@wq-Lenovo-K4450:~/code/c++/opencv$ ./Test test.jpg 20 20 500 300 50init done</span><br></pre></td></tr></table></figure>
+<p><img src="http://i3.piimg.com/43be2a578c4f3d55.png" alt=""></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>《学习OpenCV（中文版）》</li>
+<li><a href="http://www.it165.net/os/html/201407/8801.html" target="_blank" rel="external">在linux环境下编译运行OpenCV程序的两种方法</a></li>
+<li><a href="http://www.cnblogs.com/summerRQ/articles/2406109.html" target="_blank" rel="external">http://www.cnblogs.com/summerRQ/articles/2406109.html</a></li>
+<li><a href="http://www.cnblogs.com/guoqiaojin/p/3176692.html" target="_blank" rel="external">http://www.cnblogs.com/guoqiaojin/p/3176692.html</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c/" rel="tag">#c++</a>
+          
+            <a href="/tags/opencv/" rel="tag">#opencv</a>
+          
+            <a href="/tags/机器视觉/" rel="tag">#机器视觉</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/04/opencv入门/" rel="next" title="opencv入门">
+                <i class="fa fa-chevron-left"></i> opencv入门
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/04/opencv矩阵和图像操作/" rel="prev" title="opencv矩阵和图像操作">
+                opencv矩阵和图像操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/04/opencv的基本数据结构/"
+           data-title="opencv的基本数据结构" data-url="http://yoursite.com/2016/05/04/opencv的基本数据结构/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/58.jpg"
+               alt="Allen Wolf" />
+          <p class="site-author-name" itemprop="name">Allen Wolf</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/allensummer" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本数据结构"><span class="nav-number">2.</span> <span class="nav-text">基本数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DataType"><span class="nav-number">2.1.</span> <span class="nav-text">DataType</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二维点坐标"><span class="nav-number">2.2.</span> <span class="nav-text">二维点坐标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三维点坐标"><span class="nav-number">2.3.</span> <span class="nav-text">三维点坐标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#尺寸"><span class="nav-number">2.4.</span> <span class="nav-text">尺寸</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩形区域"><span class="nav-number">2.5.</span> <span class="nav-text">矩形区域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Matx小矩阵"><span class="nav-number">2.6.</span> <span class="nav-text">Matx小矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vec短向量"><span class="nav-number">2.7.</span> <span class="nav-text">vec短向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scalar-四维向量"><span class="nav-number">2.8.</span> <span class="nav-text">Scalar_四维向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Range"><span class="nav-number">2.9.</span> <span class="nav-text">Range</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mat矩阵"><span class="nav-number">2.10.</span> <span class="nav-text">Mat矩阵</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IplImage-CvMat与Mat"><span class="nav-number">3.</span> <span class="nav-text">IplImage, CvMat与Mat</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IplImage"><span class="nav-number">3.1.</span> <span class="nav-text">IplImage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CvMat"><span class="nav-number">3.2.</span> <span class="nav-text">CvMat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mat"><span class="nav-number">3.3.</span> <span class="nav-text">Mat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CvMat-Mat-IplImage之间的互相转换"><span class="nav-number">3.4.</span> <span class="nav-text">CvMat, Mat, IplImage之间的互相转换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ROI和widthStep"><span class="nav-number">4.</span> <span class="nav-text">ROI和widthStep</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ROI"><span class="nav-number">4.1.</span> <span class="nav-text">ROI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#widthStep"><span class="nav-number">4.2.</span> <span class="nav-text">widthStep</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Allen Wolf</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"allensummer"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js"></script>
+      <script src="/js/src/hook-duoshuo.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
